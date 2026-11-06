@@ -1,0 +1,112 @@
+ArtPlus test run — 2026-11-02 22:49:57
+
+=== artplus_pdf_smoke ===
+ArtPlus PDF engine smoke test
+=============================
+  [PASS] source file is readable
+
+Open:
+  [PASS] PdfDocument::open returned a document
+  [PASS] document is valid
+  [PASS] page count is greater than zero
+  [PASS] document is not encrypted
+  pages          : 15
+  file version   : 17
+  title          : 
+  author         : Luis Fernando Coutinho Fernandes
+  page 1 size    : 595.30 x 841.89 pt
+  [PASS] page 1 has positive dimensions
+
+Render:
+  [PASS] page 1 rendered a non-null image
+  [PASS] page 1 image has a positive size
+  page 1 image   : 893 x 1263 px
+  [PASS] last page rendered a non-null image
+  [PASS] thumbnail render succeeded
+
+Invalid input:
+  [PASS] non-PDF file is rejected
+  rejection msg  : Not a PDF or corrupted file
+
+Preservation:
+  [PASS] source file bytes are unchanged after open/render
+  sha256         : bc319aa26b0ad3292dd86cd65e1f93727b24e992a3c09da03c3f6e0464e643f0
+  [PASS] saved page 1 PNG
+  [PASS] saved last page PNG
+  wrote          : H:/Desktop/artplus-lite/research/artpro_analysis/test_output/render_page01.png
+  wrote          : H:/Desktop/artplus-lite/research/artpro_analysis/test_output/render_page15.png
+
+Result: 14 checks, 0 failure(s)
+exit=0
+
+=== artplus_pageview_test ===
+ArtPlus PageView logic test
+===========================
+
+Fit page:
+  [PASS] fitPage produced a positive zoom
+  [PASS] page fits widget width after fitPage
+  [PASS] page fits widget height after fitPage
+  [PASS] fitted page preserves aspect ratio
+  fit zoom       : 0.6556
+
+Zoom:
+  [PASS] zoomIn increases zoom
+  [PASS] zoomIn then zoomOut restores zoom
+  [PASS] actualSize sets 96/72 px per point
+  [PASS] zoom is clamped at the upper bound
+  [PASS] zoom is clamped at the lower bound
+
+Rotation:
+  [PASS] viewRotation stores 90 degrees
+  [PASS] a 90-degree rotation swaps the visual page orientation
+  [PASS] viewRotation stores 270 degrees
+
+Pan:
+  [PASS] drag pans horizontally by 50 px
+  [PASS] drag pans vertically by 30 px
+
+Result: 14 checks, 0 failure(s)
+exit=0
+
+=== artplus_mainwindow_test ===
+ArtPlus MainWindow integration test
+===================================
+
+Initial state:
+  [PASS] no document at startup
+  [PASS] page count is zero at startup
+
+Open:
+  [PASS] openDocument succeeded
+  [PASS] window reports a document
+  [PASS] window reports a positive page count
+  [PASS] opens on the first page
+  [PASS] a fit zoom was applied on open
+  pages          : 15
+  initial zoom   : 0.1805
+
+Navigation:
+  [PASS] nextPage slot is invokable
+  [PASS] nextPage advances to page 2
+  [PASS] previousPage slot is invokable
+  [PASS] previousPage returns to page 1
+  [PASS] goToPage slot is invokable
+  [PASS] goToPage(last) selects the last page
+
+Zoom / fit:
+  [PASS] actualSize applies 96/72
+  [PASS] zoomIn increases zoom
+  [PASS] zoomOut decreases zoom
+  [PASS] fitPage keeps a positive zoom
+  [PASS] fitWidth keeps a positive zoom
+
+Rotation:
+  [PASS] rotation keeps a positive zoom
+
+Close:
+  [PASS] closeDocument clears the document
+  [PASS] page count returns to zero after close
+
+Result: 21 checks, 0 failure(s)
+exit=0
