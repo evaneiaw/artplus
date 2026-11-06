@@ -1,5 +1,39 @@
 # ArtPlus — Status de Validação
 
+## Milestone 24 / Etapa 1 — Geometry Engine Core — CONCLUÍDA (2026-11-06)
+
+### Entregue
+
+- Novo alvo **Qt-free** `artplus_geometry_core` (não liga Qt, PDFium nem
+  `artplus_core`): `Point`, `Rect`, `Matrix`/`AffineTransform`, `Line`
+  (interseções de segmentos), `QuadBezier`/`CubicBezier` (avaliação, split,
+  bounds exatos, comprimento, elevação de grau exata), flattening com tolerância
+  e `Polygon` (área, orientação, centroide, perímetro, bounds, `classify()`).
+- `artplus_geometry` (camada Qt para `Path`) mantém a API existente; `Path::bounds()`
+  e `flattenCubic(QVector&)` passaram a delegar no core, removendo a duplicação
+  do solver de extremos e do algoritmo de subdivisão.
+- Nova suíte `artplus.geometry` (169 checks) ligada **apenas** a
+  `artplus_geometry_core` — prova de independência de Qt/PDFium.
+
+### Build e testes executados em 2026-11-06
+
+- Build: `build-msvc-nmake` → **BUILD_OK** (MSVC 2022 14.44, sem erros).
+- CTest: **9/9 suítes (100%)**, **497 checks, 0 falhas**:
+  geometry 169 · edit 88 · command 73 · pageview 35 · smoke 20 · import 18 ·
+  mainwindow 46 · colour 20 · transform_again 28.
+- Sem regressões: as 8 suítes pré-existentes continuam a passar.
+
+### Limitações desta etapa (explícitas)
+
+- Operações booleanas (union/difference/intersection/XOR) e offset **não** foram
+  implementadas — pertencem à etapa 2.
+- `Path` continua a depender de Qt (`QVector`/`QString`); o core Qt-free é o novo
+  `artplus_geometry_core`.
+- A validação é numérica/automatizada. **Não** houve validação visual nem
+  comparação com o ArtPro+ v24 nesta etapa.
+
+---
+
 ## Build e Testes — 5 de novembro de 2026 (sessão atual)
 
 ### Status da Compilação

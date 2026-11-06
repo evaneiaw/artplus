@@ -145,24 +145,44 @@ final geometry (verified by tests and by inspection).
 
 ---
 
-## Milestone 24 — Geometry Engine — NEXT (architecture prepared)
+## Milestone 24 — Geometry Engine — ACTIVE (stage 1 DONE)
 
 Boundary prepared by M23: geometry work must live in a pure library
 (`artplus::geometry`) with no UI or PDFium dependency; commands and the editor
 already operate on matrices and bounds, so path-level editing can be added
 without changing the command/history layer.
 
+### Stage 1 — Geometry engine core — DONE (2026-11-06)
 
----
+Delivered:
 
-## Milestone 24 — Geometry Engine — PLANNED
+- Qt-free target `artplus_geometry_core` (no Qt, no PDFium, no artplus_core):
+  - `Point`, `Rect` (bounds, width/height, union, intersection, contains).
+  - `Matrix` with `AffineTransform` alias (translate, scale, rotate, compose,
+    invert, determinant, `mapRect` with exact corner expansion).
+  - `Line` + `solve` of segment/segment and infinite-line intersections,
+    including parallel, collinear-overlap, endpoint-touch and zero-length cases.
+  - `QuadBezier` / `CubicBezier`: evaluation (de Casteljau), derivative, split,
+    exact extrema bounds, arc length, exact degree elevation.
+  - Tolerance-driven flattening (`flattenQuadratic`, `flattenCubic`) returning
+    `std::vector<Point>`.
+  - `Polygon` (`std::vector` storage): signed/absolute area, orientation,
+    centroid, perimeter, bounds and `classify()` returning
+    `Outside`/`Inside`/`Boundary`.
+- `artplus_geometry` stays as the Qt-facing layer for `Path` (QVector/QString).
+  `Path::bounds()` and `flattenCubic(QVector&)` now delegate to the core, so the
+  cubic extrema solver and the subdivision algorithm exist in one place only.
+- New CTest suite `artplus.geometry` (169 checks) linked only against
+  `artplus_geometry_core`; a leaked Qt include would break its link step.
 
-- Lines, quadratic/cubic Bézier, curve conversion and flattening.
+Limits of stage 1: no boolean operations and no offset (stage 2). Validation is
+numeric/automated only; no ArtPro+ v24 visual comparison was performed.
+
+### Stage 2 — Boolean operations and offset — PLANNED
+
 - Boolean operations: union, difference, intersection, XOR.
 - Offset/inset with miter/bevel/round and miter limit.
-- Intersections, area, centroid, point-in-polygon.
-- Transform pipeline with numeric robustness.
-- Geometric bleed generation.
+- Self-intersection cleanup and geometric bleed generation.
 
 Implementation must be independent. The reverse-engineering notes
 (`05_GEOMETRY_ENGINE.md`, `13_ALGORITHM_CATALOG.md`, `15_DATA_STRUCTURES.md`)

@@ -1,9 +1,22 @@
 #pragma once
 
-#include <QtGlobal>
-#include <QString>
+// Qt-free geometric primitives.
+//
+// Conventions used by the whole artplus::geometry core:
+//  * Units are PDF points (1 pt = 1/72 inch). No unit conversion happens here.
+//  * Coordinates are an abstract 2D Cartesian frame. ArtPlus renders PDF page
+//    space, which is y-down, so a rotation that is mathematically
+//    counter-clockwise appears clockwise on screen. Every helper in this
+//    library documents which convention it uses instead of assuming one.
+//  * Tolerances are absolute distances in points unless a function says
+//    otherwise. kGeometryEpsilon (1e-9 pt) is ~3.5e-10 mm: far below any
+//    coordinate precision a PDF page can carry, so it only absorbs
+//    floating-point noise and never hides geometric error.
 
 namespace artplus::geometry {
+
+// Absolute distance tolerance shared by the core primitives.
+inline constexpr double kGeometryEpsilon = 1e-9;
 
 struct Point {
     double x = 0.0;
@@ -39,9 +52,21 @@ struct Rect {
 
     constexpr double width() const { return right - left; }
     constexpr double height() const { return bottom - top; }
+    // A rect is empty when it has no area in either axis. Note that the default
+    // Rect {} is therefore empty *and* anchored at the origin; use united()/
+    // expandToInclude() only after seeding with the first point.
     constexpr bool isEmpty() const { return right <= left || bottom <= top; }
     constexpr Point topLeft() const { return {left, top}; }
+    constexpr Point topRight() const { return {right, top}; }
+    constexpr Point bottomLeft() const { return {left, bottom}; }
+    constexpr Point bottomRight() const { return {right, bottom}; }
     constexpr Point center() const { return {(left + right) / 2.0, (top + bottom) / 2.0}; }
+
+    constexpr bool operator==(const Rect& o) const
+    {
+        return left == o.left && top == o.top && right == o.right && bottom == o.bottom;
+    }
+    constexpr bool operator!=(const Rect& o) const { return !(*this == o); }
 
     void expandToInclude(const Point& p);
     void expandBy(double d);
@@ -53,8 +78,11 @@ struct Rect {
     Rect normalized() const;
 };
 
+// 2D affine transform in PDF convention:
+//   x' = a*x + c*y + e
+//   y' = b*x + d*y + f
+// Composition order: (A * B) applied to a point means "B first, then A".
 struct Matrix {
-    // PDF convention: x' = a*x + c*y + e, y' = b*x + d*y + f
     double a = 1.0, b = 0.0, c = 0.0, d = 1.0, e = 0.0, f = 0.0;
 
     constexpr Matrix() = default;
@@ -76,6 +104,11 @@ struct Matrix {
     double determinant() const { return a * d - b * c; }
     bool isIdentity() const;
 };
+
+// `AffineTransform` is the name used by the geometry engine documentation for
+// exactly the transform above. It is an alias rather than a second type so that
+// callers can pick the clearer name without duplicating the implementation.
+using AffineTransform = Matrix;
 
 double distance(const Point& a, const Point& b);
 Point lerp(const Point& a, const Point& b, double t);

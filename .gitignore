@@ -86,6 +86,14 @@ tests/runtime/
 artplus_*_fixture.pdf
 artplus_*_edited.pdf
 
+# Proprietary / third-party binaries (never publish Esko or PDFium artifacts)
+third_party/bin/
+third_party/lib/
+
+# Supervisor state and stray build captures
+.codex-supervisor/
+cmake.out
+
 # Review/scratch
 review_temp/
 unzip_test/

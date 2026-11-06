@@ -1,9 +1,12 @@
 #include "artplus/geometry/Path.h"
 
+#include "artplus/geometry/Bezier.h"
+
 #include <QStringList>
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <vector>
 
 namespace artplus::geometry {
 
@@ -126,60 +129,36 @@ Rect Path::bounds() const
 {
     Rect result;
     bool first = true;
+    auto includePoint = [&](const Point& p) {
+        if (first) {
+            result = Rect(p.x, p.y, p.x, p.y);
+            first = false;
+        } else {
+            result.expandToInclude(p);
+        }
+    };
+    auto includeRect = [&](const Rect& r) {
+        if (first) {
+            result = r;
+            first = false;
+        } else {
+            result = result.united(r);
+        }
+    };
+
     for (const auto& sp : m_subpaths) {
+        includePoint(sp.start);
         Point current = sp.start;
-        auto include = [&](const Point& p) {
-            if (first) {
-                result = Rect(p.x, p.y, p.x, p.y);
-                first = false;
-            } else {
-                result.expandToInclude(p);
-            }
-        };
-        include(sp.start);
         for (const auto& seg : sp.segments) {
             if (seg.type == Segment::Type::Line) {
-                include(seg.p1);
+                includePoint(seg.p1);
+                current = seg.p1;
             } else {
-                // Exact bounds via cubic extrema on each axis.
-                const Point p0 = current;
-                const Point p1 = seg.p1;
-                const Point p2 = seg.p2;
-                const Point p3 = seg.p3;
-                include(p3);
-                for (int axis = 0; axis < 2; ++axis) {
-                    const double v0 = axis == 0 ? p0.x : p0.y;
-                    const double v1 = axis == 0 ? p1.x : p1.y;
-                    const double v2 = axis == 0 ? p2.x : p2.y;
-                    const double v3 = axis == 0 ? p3.x : p3.y;
-                    const double a = -v0 + 3 * v1 - 3 * v2 + v3;
-                    const double b = 2 * (v0 - 2 * v1 + v2);
-                    const double c = v1 - v0;
-                    auto addAt = [&](double t) {
-                        if (t <= 0.0 || t >= 1.0)
-                            return;
-                        const double mt = 1.0 - t;
-                        const double v = mt * mt * mt * v0 + 3 * mt * mt * t * v1
-                                       + 3 * mt * t * t * v2 + t * t * t * v3;
-                        if (axis == 0)
-                            include({v, current.y});
-                        else
-                            include({current.x, v});
-                    };
-                    if (std::abs(a) < 1e-12) {
-                        if (std::abs(b) > 1e-12)
-                            addAt(-c / b);
-                    } else {
-                        const double disc = b * b - 4 * a * c;
-                        if (disc >= 0.0) {
-                            const double sq = std::sqrt(disc);
-                            addAt((-b + sq) / (2 * a));
-                            addAt((-b - sq) / (2 * a));
-                        }
-                    }
-                }
+                // Exact cubic extrema come from the shared geometry core so the
+                // solver exists in exactly one place.
+                includeRect(CubicBezier{current, seg.p1, seg.p2, seg.p3}.bounds());
+                current = seg.p3;
             }
-            current = seg.type == Segment::Type::Line ? seg.p1 : seg.p3;
         }
     }
     return result;
@@ -220,34 +199,13 @@ void Path::transform(const Matrix& m)
 void flattenCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p3,
                   double tolerance, QVector<Point>& out)
 {
-    // Flatness test using the maximum distance of control points from the chord.
-    const double dx = p3.x - p0.x;
-    const double dy = p3.y - p0.y;
-    const double d1 = std::abs((c1.x - p3.x) * dy - (c1.y - p3.y) * dx);
-    const double d2 = std::abs((c2.x - p3.x) * dy - (c2.y - p3.y) * dx);
-    const double lenSq = dx * dx + dy * dy;
-    const double tol = std::max(tolerance, 1e-6);
-
-    if (lenSq < 1e-18) {
-        const double dist = std::max(distance(p0, c1), distance(p0, c2));
-        if (dist <= tol) {
-            out.push_back(p3);
-            return;
-        }
-    } else if ((d1 + d2) * (d1 + d2) <= tol * tol * lenSq) {
-        out.push_back(p3);
-        return;
-    }
-
-    // de Casteljau subdivision.
-    const Point p01 = lerp(p0, c1, 0.5);
-    const Point p12 = lerp(c1, c2, 0.5);
-    const Point p23 = lerp(c2, p3, 0.5);
-    const Point p012 = lerp(p01, p12, 0.5);
-    const Point p123 = lerp(p12, p23, 0.5);
-    const Point mid = lerp(p012, p123, 0.5);
-    flattenCubic(p0, p01, p012, mid, tolerance, out);
-    flattenCubic(mid, p123, p23, p3, tolerance, out);
+    // The subdivision algorithm lives in the Qt-free core; this overload only
+    // adapts the result to QVector so existing callers keep working.
+    std::vector<Point> points;
+    flattenCubic(p0, c1, c2, p3, tolerance, points);
+    out.reserve(out.size() + static_cast<int>(points.size()));
+    for (const Point& p : points)
+        out.push_back(p);
 }
 
 QVector<QVector<Point>> Path::flatten(double tolerance) const

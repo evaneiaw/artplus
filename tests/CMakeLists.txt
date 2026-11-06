@@ -85,6 +85,16 @@ set(artplus_test_workdir "${CMAKE_CURRENT_BINARY_DIR}/runtime")
 file(MAKE_DIRECTORY "${artplus_test_workdir}")
 set(artplus_test_pdf "${artplus_test_workdir}/artplus_edit_multipage_fixture.pdf")
 
+# Qt-free geometry engine core (Milestone 24 / stage 1). Linking only the core
+# target is intentional: if a Qt or PDFium dependency ever leaks into the core,
+# this executable stops linking and the milestone regression is caught at once.
+add_executable(artplus_geometry_test geometry_test.cpp)
+target_link_libraries(artplus_geometry_test PRIVATE artplus_geometry_core)
+add_test(NAME artplus.geometry COMMAND artplus_geometry_test)
+set_tests_properties(artplus.geometry PROPERTIES
+    WORKING_DIRECTORY "${artplus_test_workdir}"
+    TIMEOUT 60)
+
 add_test(NAME artplus.edit COMMAND artplus_edit_test)
 set_tests_properties(artplus.edit PROPERTIES FIXTURES_SETUP artplus_pdf_fixture)
 add_test(NAME artplus.command COMMAND artplus_command_test)
