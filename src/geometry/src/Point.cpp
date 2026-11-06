@@ -5,6 +5,18 @@
 
 namespace artplus::geometry {
 
+namespace {
+
+// Dimensionless threshold on |sin(theta)| between the two column vectors of the
+// linear part. Because det = |col0| * |col1| * sin(theta), comparing |det| with
+// |col0| * |col1| measures *linear dependence* and is invariant under a uniform
+// scale of any magnitude. 1e-12 leaves about 4.5e3 * DBL_EPSILON of head-room:
+// below it the inverse would amplify rounding error beyond what a double can
+// represent meaningfully, so the matrix is numerically singular.
+constexpr double kSingularSineEpsilon = 1e-12;
+
+} // namespace
+
 double Point::length() const
 {
     return std::sqrt(x * x + y * y);
@@ -17,10 +29,18 @@ double Point::lengthSquared() const
 
 Point Point::normalized() const
 {
-    const double len = length();
-    if (len <= 1e-12)
+    // Divide by the largest component first. This is the standard scale-invariant
+    // formulation: it cannot overflow on huge vectors and does not underflow on
+    // tiny ones, so every non-zero vector keeps its direction. The previous
+    // absolute cut-off (len <= 1e-12 -> zero) silently zeroed valid small
+    // vectors such as (3e-15, 4e-15).
+    const double magnitude = std::max(std::abs(x), std::abs(y));
+    if (magnitude == 0.0)
         return {};
-    return {x / len, y / len};
+    const double sx = x / magnitude;
+    const double sy = y / magnitude;
+    const double scaledLength = std::sqrt(sx * sx + sy * sy);
+    return {sx / scaledLength, sy / scaledLength};
 }
 
 void Rect::expandToInclude(const Point& p)
@@ -98,15 +118,22 @@ Point Matrix::map(const Point& p) const
 
 Rect Matrix::mapRect(const Rect& r) const
 {
+    // Degenerate geometry is still geometry. A rect with zero width (vertical
+    // segment), zero height (horizontal segment) or zero area (single point) is
+    // transformed corner by corner and its envelope is returned, so the position
+    // and orientation survive the transform. Rect::isEmpty() deliberately treats
+    // those as empty, which is why it is NOT used here: an inside-out rect is
+    // normalised first, and only truly invalid (NaN) input yields an empty rect.
     const Rect n = r.normalized();
-    Rect out;
-    if (n.isEmpty())
-        return out;
+    if (std::isnan(n.left) || std::isnan(n.top) || std::isnan(n.right) || std::isnan(n.bottom))
+        return {};
+
     const Point p0 = map({n.left, n.top});
     const Point p1 = map({n.right, n.top});
     const Point p2 = map({n.right, n.bottom});
     const Point p3 = map({n.left, n.bottom});
-    out = Rect(p0.x, p0.y, p0.x, p0.y);
+
+    Rect out(p0.x, p0.y, p0.x, p0.y);
     out.expandToInclude(p1);
     out.expandToInclude(p2);
     out.expandToInclude(p3);
@@ -125,14 +152,33 @@ Matrix Matrix::operator*(const Matrix& o) const
 
 Matrix Matrix::inverted(bool* ok) const
 {
-    const double det = determinant();
-    if (std::abs(det) < 1e-12) {
+    // A 2D affine transform is invertible iff its 2x2 linear part is. Singularity
+    // is therefore tested on the (dimensionless) sine of the angle between the
+    // two column vectors instead of on |det|, whose magnitude scales with the
+    // transform: an absolute |det| < 1e-12 rejected every scale below ~1e-6 even
+    // though those transforms are perfectly invertible in double precision.
+    const double col0Length = std::sqrt(a * a + b * b);   // image of (1, 0)
+    const double col1Length = std::sqrt(c * c + d * d);   // image of (0, 1)
+
+    bool singular = false;
+    if (col0Length == 0.0 || col1Length == 0.0) {
+        singular = true; // a collapsed axis can never be inverted
+    } else {
+        // |sin(theta)| = |det| / (|col0| * |col1|); normalising by the column
+        // lengths removes the scale factor entirely.
+        const double sine = std::abs(determinant()) / (col0Length * col1Length);
+        singular = !(sine > kSingularSineEpsilon);
+    }
+
+    if (singular) {
         if (ok)
             *ok = false;
         return {};
     }
     if (ok)
         *ok = true;
+
+    const double det = determinant();
     const double inv = 1.0 / det;
     return {d * inv, -b * inv, -c * inv, a * inv,
             (c * f - d * e) * inv, (b * e - a * f) * inv};

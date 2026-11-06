@@ -9,6 +9,12 @@ namespace {
 
 constexpr double kMinFlattenTolerance = 1e-6;
 
+// Relative head-room for the "is the denominator zero?" tests. A coefficient is
+// treated as zero when it is negligible compared with the magnitudes it is
+// derived from, never against an absolute constant: an absolute 1e-12 silently
+// discarded valid extrema on curves at 1e-15 scale.
+constexpr double kRelativeEpsilon = 1e-12;
+
 Point lerp3(const Point& a, const Point& b, const Point& c, double t)
 {
     return lerp(lerp(a, b, t), lerp(b, c, t), t);
@@ -18,6 +24,12 @@ Point lerp4(const Point& a, const Point& b, const Point& c, const Point& d, doub
 {
     return lerp(lerp3(a, b, c, t), lerp3(b, c, d, t), t);
 }
+
+// |value| is negligible against the largest magnitude in `scale`.
+bool isNegligible(double value, double scale)
+{
+    return std::abs(value) <= kRelativeEpsilon * std::abs(scale);
+} 
 
 // Flatness test: the sum of both control points' perpendicular distances from
 // the chord is compared against tolerance * chordLength. This is the classic
@@ -30,9 +42,16 @@ bool cubicIsFlat(const Point& p0, const Point& c1, const Point& c2, const Point&
     const double dy = p1.y - p0.y;
     const double lenSq = dx * dx + dy * dy;
 
-    if (lenSq < 1e-18) {
-        // Degenerate chord: the curve collapses towards a point. Measure the
-        // control point spread directly.
+    // The chord is "degenerate" when its length is negligible against the curve
+    // scale (relative test, not an absolute 1e-18 that misfires on tiny curves).
+    const double extent = std::max({std::abs(p1.x - p0.x), std::abs(p1.y - p0.y),
+                                    std::abs(c1.x - p0.x), std::abs(c1.y - p0.y),
+                                    std::abs(c2.x - p0.x), std::abs(c2.y - p0.y)});
+
+    if (!(lenSq > 0.0) || (extent > 0.0 && std::abs(dx) <= kRelativeEpsilon * extent
+                           && std::abs(dy) <= kRelativeEpsilon * extent)) {
+        // Chord collapses towards a point: measure the control point spread
+        // directly, which is the actual deviation from a degenerate curve.
         return std::max(distance(p0, c1), distance(p0, c2)) <= tolerance;
     }
 
@@ -93,7 +112,8 @@ Rect QuadBezier::bounds() const
         const double vc = axis == 0 ? c.x : c.y;
         const double v1 = axis == 0 ? p1.x : p1.y;
         const double den = v0 - 2.0 * vc + v1;
-        if (std::abs(den) < 1e-18)
+        const double scale = std::max({std::abs(v0), std::abs(vc), std::abs(v1)});
+        if (isNegligible(den, scale))
             continue; // control point is the chord midpoint: no interior extremum
         const double t = (v0 - vc) / den;
         if (t > 0.0 && t < 1.0)
@@ -148,19 +168,25 @@ Rect CubicBezier::bounds() const
         const double a = -v0 + 3.0 * v1 - 3.0 * v2 + v3;
         const double b = 2.0 * (v0 - 2.0 * v1 + v2);
         const double c = v1 - v0;
+        const double scale = std::max({std::abs(v0), std::abs(v1), std::abs(v2), std::abs(v3)});
 
         auto consider = [&](double t) {
             if (t > 0.0 && t < 1.0)
                 r.expandToInclude(evaluate(t));
         };
 
-        if (std::abs(a) < 1e-12) {
-            if (std::abs(b) > 1e-12)
+        if (isNegligible(a, scale)) {
+            // Linear derivative: at most one root.
+            if (!isNegligible(b, scale))
                 consider(-c / b);
         } else {
             const double disc = b * b - 4.0 * a * c;
-            if (disc >= 0.0) {
-                const double sq = std::sqrt(disc);
+            // Compare the discriminant against its own magnitude (b^2 and 4ac)
+            // rather than an absolute constant, so tiny and huge curves behave
+            // identically.
+            const double discScale = b * b + std::abs(4.0 * a * c);
+            if (disc >= 0.0 || isNegligible(disc, discScale)) {
+                const double sq = std::sqrt(std::max(disc, 0.0));
                 consider((-b + sq) / (2.0 * a));
                 consider((-b - sq) / (2.0 * a));
             }

@@ -33,6 +33,34 @@ implementação.
 | `Polygon::classify(p, epsilon)` | `epsilon` é **distância** absoluta. `Boundary` tem precedência sobre o ray casting. |
 | Tolerância de flattening | Desvio máximo em pontos; valores ≤ 0 são limitados a 1e-6 para garantir terminação. |
 
+### Limites numéricos: relativo vs. absoluto
+
+Um limite absoluto (`|x| < 1e-12`) é **invariante de escala apenas quando a
+grandeza comparada é ela própria adimensional**. Por isso cada teste usa o
+critério adequado:
+
+| Teste | Critério | Justificativa |
+|---|---|---|
+| `Matrix::inverted()` | `\|sin θ\| = \|det\| / (\|col₀\|·\|col₁\|) > 1e-12` | Adimensional. `\|det\|` absoluto escalava com a transformação e rejeitava escalas < ~1e-6, que são perfeitamente invertíveis em `double`. |
+| `Point::normalized()` | divisor = maior componente; zero só quando ambas são 0 | Elimina overflow (`1e300`) e underflow (`1e-320`); nenhum vetor não nulo é descartado. |
+| Extremos de Bézier (`Bezier.cpp`) | `isNegligible(coef, escala)` com `1e-12` **relativo** ao maior termo | Coeficientes de derivada e discriminantes variam com a escala da curva; limite absoluto `1e-12`/`1e-18` perdia extremos em curvas de 1e-15. |
+| `cubicIsFlat()` (colapso da corda) | `1e-12` relativo à extensão da curva | Indica "corda degenerada", que é adimensional em intenção. |
+| `Polygon::orientation()` | `1e-12` relativo à área da bounding box | Ver acima. |
+| `kGeometryEpsilon` (bordas, paralelismo) | **distância** absoluta `1e-9` pt | Aqui a grandeza *é* uma distância física; comparar distâncias com distâncias é correto. |
+
+Precisão típica obtida: round-trip `inv(m·p)` fiel a ~1e-9 relativo, inclusive a
+escala `1e-8`; normalização exata em `(3e-15, 4e-15)` → `(0.6, 0.8)` e em
+`(3e300, 4e300)` sem overflow.
+
+### Degenerado ≠ ausente
+
+`Matrix::mapRect()` transforma os quatro cantos mesmo quando a largura ou a
+altura é zero: um segmento vertical/horizontal ou um único ponto mantém a sua
+posição após a transformação. `Rect::isEmpty()` continua a reportar esses rects
+como vazios (semântica histórica usada por `intersects`/`united`), mas
+`mapRect()` **não** usa esse predicado. Só `NaN` produz um rect vazio.
+
+
 ## API
 
 ### `Point`, `Rect`, `Matrix`
@@ -113,7 +141,7 @@ bounding box) o centroide é a média aritmética dos vértices e a orientação
 
 ## Robustez
 
-Casos cobertos pela suíte `artplus.geometry` (169 checks):
+Casos cobertos pela suíte `artplus.geometry` (282 checks):
 
 - coordenadas negativas;
 - polígonos degenerados (colineares, 1 e 2 vértices, vazio);
@@ -121,7 +149,14 @@ Casos cobertos pela suíte `artplus.geometry` (169 checks):
 - curvas com pontos de controlo coincidentes (incluindo todos coincidentes);
 - polígonos horários e anti-horários;
 - pontos exatamente sobre arestas e vértices, e a `kGeometryEpsilon` de distância;
-- transformações não invertíveis (determinante 0);
+- transformações não invertíveis (determinante 0) e **invertibilidade em escala**
+  (`1e-8`, `1e-6`, `1`, `1e6`) com round-trip verificado;
+- `mapRect` de rects com largura zero, altura zero e de um único ponto, sob
+  translação, rotação e escala;
+- `normalized()` para vetor zero, `(3,4)`, `(3e-15, 4e-15)`, `(3e300, 4e300)` e
+  subnormal `(1e-320, 0)`, com verificação de ausência de NaN/infinito;
+- curvas quadráticas e cúbicas em escalas `1e-21 … 1e9`, verificando bounds,
+  avaliação, flattening (dentro da tolerância) e comprimento de arco;
 - magnitudes muito pequenas (1e-6 pt) e muito grandes (1e9 pt).
 
 Tolerâncias são explícitas e documentadas; não são usadas para esconder erro

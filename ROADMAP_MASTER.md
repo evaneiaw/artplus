@@ -178,6 +178,27 @@ Delivered:
 Limits of stage 1: no boolean operations and no offset (stage 2). Validation is
 numeric/automated only; no ArtPro+ v24 visual comparison was performed.
 
+### Stage 1.1 — Numerical robustness fix — DONE (2026-11-06)
+
+Review of `f55a01b` found four scale-dependent (absolute) thresholds that broke
+valid geometry at small magnitudes. Each defect was first reproduced by a failing
+test (24 failures) and then fixed with a scale-invariant criterion:
+
+- `Matrix::inverted()`: singularity now tested on the dimensionless
+  `|sin θ| = |det| / (|col₀|·|col₁|) > 1e-12` instead of an absolute `|det|`, so
+  uniform scales from 1e-8 to 1e6 invert correctly.
+- `Matrix::mapRect()`: transforms all four corners and keeps degenerate geometry
+  (zero width/height, single point); only `NaN` yields an empty rect.
+- `Point::normalized()`: divides by the largest component first, so tiny
+  (`3e-15`), subnormal and huge (`3e300`) vectors normalize without loss or
+  overflow.
+- `Bezier.cpp`: derivative-extremum and chord-collapse tests use relative
+  head-room against the curve's own magnitude, so bounds are correct from 1e-21
+  to 1e9 scale.
+
+Exit criteria: `artplus.geometry` covers all four cases across scales
+(282 checks) and the full CTest suite stays green (9/9, 610 checks).
+
 ### Stage 2 — Boolean operations and offset — PLANNED
 
 - Boolean operations: union, difference, intersection, XOR.

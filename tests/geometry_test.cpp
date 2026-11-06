@@ -557,6 +557,214 @@ int main()
                   "polygonBoundsOf free function");
     }
 
+    // --- 1.1 regression: scale-invariant invertibility -----------------------
+    std::printf("\nMatrix invertibility across scales:\n");
+    {
+        // A uniform scale is always invertible. The previous absolute test
+        // |det| < 1e-12 rejected everything below roughly 1e-6 scale.
+        for (double s : {1e-8, 1e-6, 1.0, 1e6}) {
+            char label[160];
+            const Matrix m = Matrix::translation(3.0 * s, -2.0 * s) * Matrix::scaling(s, s);
+            bool ok = false;
+            const Matrix inv = m.inverted(&ok);
+            std::snprintf(label, sizeof(label), "uniform scale %.0e is invertible", s);
+            check(ok, label);
+
+            const Point original{7.0 * s, -4.0 * s};
+            const Point back = inv.map(m.map(original));
+            std::snprintf(label, sizeof(label), "uniform scale %.0e round-trips x", s);
+            checkNear(back.x, original.x, std::abs(original.x) * 1e-9, label);
+            std::snprintf(label, sizeof(label), "uniform scale %.0e round-trips y", s);
+            checkNear(back.y, original.y, std::abs(original.y) * 1e-9, label);
+        }
+
+        // Rank-1 matrix: mathematically singular, must stay rejected.
+        const Matrix rankOne{1.0, 2.0, 2.0, 4.0, 0.0, 0.0};
+        bool rankOneOk = true;
+        (void)rankOne.inverted(&rankOneOk);
+        check(!rankOneOk, "rank-1 matrix is rejected as singular");
+
+        // Columns dependent to within 1e-16: numerically singular.
+        const Matrix nearlyDependent{1.0, 1.0, 1.0, 1.0 + 1e-16, 0.0, 0.0};
+        bool nearOk = true;
+        (void)nearlyDependent.inverted(&nearOk);
+        check(!nearOk, "columns dependent to 1e-16 are rejected as singular");
+
+        // Rotation combined with a tiny uniform scale must still invert.
+        const Matrix tinyRot = Matrix::rotationDegrees(30.0) * Matrix::scaling(1e-8, 1e-8);
+        bool tinyRotOk = false;
+        const Matrix tinyRotInv = tinyRot.inverted(&tinyRotOk);
+        check(tinyRotOk, "rotation at 1e-8 scale is invertible");
+        const Point p{1e-8, 0.0};
+        const Point q = tinyRotInv.map(tinyRot.map(p));
+        checkNear(q.x, p.x, 1e-17, "tiny rotation round-trip x");
+        checkNear(q.y, p.y, 1e-17, "tiny rotation round-trip y");
+
+        // A large uniform scale must also invert.
+        const Matrix large = Matrix::scaling(1e6, 1e6);
+        bool largeOk = false;
+        const Matrix largeInv = large.inverted(&largeOk);
+        check(largeOk, "uniform scale 1e6 is invertible");
+        const Point largeBack = largeInv.map(large.map(Point{1.5e6, -2.5e6}));
+        checkNear(largeBack.x, 1.5e6, 1e-3, "large scale round-trip x");
+        checkNear(largeBack.y, -2.5e6, 1e-3, "large scale round-trip y");
+    }
+
+    // --- 1.1 regression: mapRect keeps degenerate geometry -------------------
+    std::printf("\nmapRect with degenerate geometry:\n");
+    {
+        const Matrix translate = Matrix::translation(1.0, 2.0);
+
+        const Rect normal = translate.mapRect(Rect{0.0, 0.0, 10.0, 20.0});
+        checkNear(normal.left, 1.0, 1e-12, "normal rect keeps left");
+        checkNear(normal.bottom, 22.0, 1e-12, "normal rect keeps bottom");
+
+        // Zero width: a vertical segment. Its transformed x must survive.
+        const Rect zeroWidth = translate.mapRect(Rect{5.0, 0.0, 5.0, 10.0});
+        checkNear(zeroWidth.left, 6.0, 1e-12, "zero-width rect keeps x");
+        checkNear(zeroWidth.right, 6.0, 1e-12, "zero-width rect keeps right edge");
+        checkNear(zeroWidth.top, 2.0, 1e-12, "zero-width rect keeps top");
+        checkNear(zeroWidth.bottom, 12.0, 1e-12, "zero-width rect keeps bottom");
+        checkNear(zeroWidth.height(), 10.0, 1e-12, "zero-width rect keeps its span");
+
+        // Zero height: a horizontal segment.
+        const Rect zeroHeight = translate.mapRect(Rect{0.0, 7.0, 10.0, 7.0});
+        checkNear(zeroHeight.top, 9.0, 1e-12, "zero-height rect keeps top");
+        checkNear(zeroHeight.width(), 10.0, 1e-12, "zero-height rect keeps width");
+
+        // A single point.
+        const Rect point = translate.mapRect(Rect{3.0, 4.0, 3.0, 4.0});
+        checkNear(point.left, 4.0, 1e-12, "point rect keeps x");
+        checkNear(point.top, 6.0, 1e-12, "point rect keeps y");
+
+        // Rotation of a zero-width rect must rotate the segment, not erase it.
+        const Rect rotatedLine = Matrix::rotationDegrees(90.0).mapRect(Rect{0.0, 0.0, 0.0, 10.0});
+        checkNear(rotatedLine.left, -10.0, 1e-12, "rotated zero-width rect: left");
+        checkNear(rotatedLine.right, 0.0, 1e-12, "rotated zero-width rect: right");
+        checkNear(rotatedLine.top, 0.0, 1e-12, "rotated zero-width rect: top");
+        checkNear(rotatedLine.bottom, 0.0, 1e-12, "rotated zero-width rect: bottom");
+
+        // Scale of a zero-height rect keeps its transformed span.
+        const Rect scaledLine = Matrix::scaling(2.0, 3.0).mapRect(Rect{0.0, 0.0, 0.0, 5.0});
+        checkNear(scaledLine.bottom, 15.0, 1e-12, "scaled zero-width rect keeps its span");
+    }
+
+    // --- 1.1 regression: normalized() is scale invariant ---------------------
+    std::printf("\nPoint::normalized across scales:\n");
+    {
+        const Point zero = Point{}.normalized();
+        check(zero == Point{}, "zero vector stays zero");
+        check(std::isfinite(zero.x) && std::isfinite(zero.y), "zero vector has no NaN/inf");
+
+        const Point classic = Point{3.0, 4.0}.normalized();
+        checkNear(classic.x, 0.6, 1e-15, "classic vector normalized x");
+        checkNear(classic.y, 0.8, 1e-15, "classic vector normalized y");
+
+        const Point tiny = Point{3e-15, 4e-15}.normalized();
+        checkNear(tiny.x, 0.6, 1e-12, "1e-15 vector is normalized, not zeroed (x)");
+        checkNear(tiny.y, 0.8, 1e-12, "1e-15 vector is normalized, not zeroed (y)");
+        check(std::isfinite(tiny.x) && std::isfinite(tiny.y), "tiny vector is finite");
+
+        const Point huge = Point{3e300, 4e300}.normalized();
+        checkNear(huge.x, 0.6, 1e-12, "1e300 vector normalized without overflow (x)");
+        checkNear(huge.y, 0.8, 1e-12, "1e300 vector normalized without overflow (y)");
+        check(std::isfinite(huge.x) && std::isfinite(huge.y), "huge vector is finite");
+
+        const Point subnormal = Point{1e-320, 0.0}.normalized();
+        checkNear(subnormal.x, 1.0, 1e-12, "subnormal vector normalizes");
+        checkNear(subnormal.y, 0.0, 1e-12, "subnormal vector y is zero");
+    }
+
+    // --- 1.1 regression: Bezier behaviour across scales ----------------------
+    std::printf("\nBezier across scales:\n");
+    {
+        auto makeCubic = [](double s) {
+            return CubicBezier{Point{0.0, 0.0}, Point{0.0, 100.0 * s},
+                               Point{100.0 * s, 100.0 * s}, Point{100.0 * s, 0.0}};
+        };
+
+        for (double s : {1e-15, 1e-9, 1e-6, 1.0, 1e6, 1e9}) {
+            char label[160];
+            const CubicBezier curve = makeCubic(s);
+
+            const Rect bb = curve.bounds();
+            std::snprintf(label, sizeof(label), "cubic %.0e: bounds width", s);
+            checkNear(bb.width(), 100.0 * s, std::abs(100.0 * s) * 1e-9, label);
+            std::snprintf(label, sizeof(label), "cubic %.0e: bounds use the interior extremum", s);
+            checkNear(bb.bottom, 75.0 * s, std::abs(75.0 * s) * 1e-9, label);
+
+            const Point mid = curve.evaluate(0.5);
+            std::snprintf(label, sizeof(label), "cubic %.0e: evaluation x", s);
+            checkNear(mid.x, 50.0 * s, std::abs(50.0 * s) * 1e-9, label);
+            std::snprintf(label, sizeof(label), "cubic %.0e: evaluation y", s);
+            checkNear(mid.y, 75.0 * s, std::abs(75.0 * s) * 1e-9, label);
+
+            // Flattening honours the requested tolerance; values below 1e-6 are
+            // clamped (documented contract), so the effective bound is used.
+            const double requestedTolerance = std::max(1e-6, 1e-3 * s);
+            std::vector<Point> flat;
+            flattenCubic(curve, requestedTolerance, flat);
+            std::vector<Point> polyline;
+            polyline.push_back(curve.p0);
+            polyline.insert(polyline.end(), flat.begin(), flat.end());
+
+            double worst = 0.0;
+            for (int i = 0; i <= 200; ++i) {
+                const double t = static_cast<double>(i) / 200.0;
+                worst = std::max(worst, distanceToPolyline(curve.evaluate(t), polyline));
+            }
+            std::snprintf(label, sizeof(label), "cubic %.0e: flattening within tolerance", s);
+            check(worst <= requestedTolerance * 1.001, label);
+        }
+
+        // Arc length must scale linearly with the curve. Only scales whose
+        // flattening tolerance stays above the documented 1e-6 clamp are exact.
+        const double baseLength = makeCubic(1.0).length(1e-4);
+        check(baseLength > 100.0, "unit S-curve arc length exceeds its chord");
+        for (double s : {1e-3, 1.0, 1e6, 1e9}) {
+            char label[160];
+            const double lengthAtScale = makeCubic(s).length(std::max(1e-6, 1e-3 * s));
+            std::snprintf(label, sizeof(label), "cubic %.0e: arc length scales", s);
+            checkNear(lengthAtScale / s, baseLength, baseLength * 0.01, label);
+        }
+
+        // Quadratic: bounds, evaluation and flattening across scales.
+        auto makeQuad = [](double s) {
+            return QuadBezier{Point{0.0, 0.0}, Point{50.0 * s, 100.0 * s}, Point{100.0 * s, 0.0}};
+        };
+        for (double s : {1e-21, 1e-9, 1e-6, 1.0, 1e6, 1e9}) {
+            char label[160];
+            const QuadBezier quad = makeQuad(s);
+
+            const Rect bb = quad.bounds();
+            std::snprintf(label, sizeof(label), "quad %.0e: bounds use the interior extremum", s);
+            checkNear(bb.bottom, 50.0 * s, std::abs(50.0 * s) * 1e-9, label);
+            std::snprintf(label, sizeof(label), "quad %.0e: bounds width", s);
+            checkNear(bb.width(), 100.0 * s, std::abs(100.0 * s) * 1e-9, label);
+
+            const Point mid = quad.evaluate(0.5);
+            std::snprintf(label, sizeof(label), "quad %.0e: evaluation x", s);
+            checkNear(mid.x, 50.0 * s, std::abs(50.0 * s) * 1e-9, label);
+            std::snprintf(label, sizeof(label), "quad %.0e: evaluation y", s);
+            checkNear(mid.y, 50.0 * s, std::abs(50.0 * s) * 1e-9, label);
+
+            const double requestedTolerance = std::max(1e-6, 1e-3 * s);
+            std::vector<Point> flat;
+            flattenQuadratic(quad, requestedTolerance, flat);
+            std::vector<Point> polyline;
+            polyline.push_back(quad.p0);
+            polyline.insert(polyline.end(), flat.begin(), flat.end());
+
+            double worst = 0.0;
+            for (int i = 0; i <= 200; ++i) {
+                const double t = static_cast<double>(i) / 200.0;
+                worst = std::max(worst, distanceToPolyline(quad.evaluate(t), polyline));
+            }
+            std::snprintf(label, sizeof(label), "quad %.0e: flattening within tolerance", s);
+            check(worst <= requestedTolerance * 1.001, label);
+        }
+    }
+
     std::printf("\n%s\n", g_failures == 0 ? "ALL PASSED" : "FAILURES PRESENT");
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
     return g_failures == 0 ? 0 : 1;

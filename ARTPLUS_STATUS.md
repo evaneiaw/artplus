@@ -1,5 +1,31 @@
 # ArtPlus — Status de Validação
 
+## Milestone 24 / Etapa 1.1 — Correção de robustez numérica — CONCLUÍDA (2026-11-06)
+
+Revisão do commit `f55a01b` identificou quatro defeitos numéricos reproduzíveis.
+Cada um foi primeiro reproduzido por teste (24 falhas), depois corrigido com um
+critério **relativo/invariante de escala** em vez de um limite absoluto novo.
+
+| Defeito | Causa | Correção |
+|---|---|---|
+| `Matrix::inverted()` rejeitava transformações válidas | `\|det\| < 1e-12` é absoluto e cresce com a escala: escalas < ~1e-6 eram declaradas singulares | Singularidade por `\|sin θ\| = \|det\| / (\|col₀\|·\|col₁\|) > 1e-12` (adimensional) + rejeição quando uma coluna colapsa |
+| `Matrix::mapRect()` apagava geometria degenerada | `isEmpty()` (largura/altura zero) devolvia rect vazio, descartando segmentos e pontos | Transforma os quatro cantos e devolve a envolvente; só `NaN` dá vazio |
+| `Point::normalized()` zerava vetores pequenos | divisor absoluto `len <= 1e-12 → zero`, perdendo direções válidas | Divisão prévia pela maior componente: sem overflow em `1e300`, sem underflow em `1e-320` |
+| Extremos de Bézier errados em curvas minúsculas | limites absolutos `1e-12`/`1e-18` em coeficientes que escalam com a curva | `isNegligible(coef, escala)` relativo ao maior termo; discriminante comparado com a sua própria magnitude |
+
+### Verificação
+
+- Build `build-msvc-nmake`: **BUILD_OK**.
+- `artplus.geometry`: **282 checks, 0 falhas** (eram 169; +113 de regressão).
+- CTest completo: **9/9 suítes, 100%**, sem regressões.
+- Precisão obtida: round-trip da inversa fiel a ~1e-9 relativo desde escala
+  `1e-8` até `1e6`; `normalized((3e-15, 4e-15)) = (0.6, 0.8)`.
+
+Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação
+visual nem comparação com o ArtPro+ v24.
+
+---
+
 ## Milestone 24 / Etapa 1 — Geometry Engine Core — CONCLUÍDA (2026-11-06)
 
 ### Entregue
@@ -18,8 +44,8 @@
 ### Build e testes executados em 2026-11-06
 
 - Build: `build-msvc-nmake` → **BUILD_OK** (MSVC 2022 14.44, sem erros).
-- CTest: **9/9 suítes (100%)**, **497 checks, 0 falhas**:
-  geometry 169 · edit 88 · command 73 · pageview 35 · smoke 20 · import 18 ·
+- CTest: **9/9 suítes (100%)**, **610 checks, 0 falhas** após a etapa 1.1:
+  geometry 282 · edit 88 · command 73 · pageview 35 · smoke 20 · import 18 ·
   mainwindow 46 · colour 20 · transform_again 28.
 - Sem regressões: as 8 suítes pré-existentes continuam a passar.
 
