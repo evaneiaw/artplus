@@ -1,0 +1,19 @@
+ArtPlus UI milestone test run — 2026-11-02 23:19:31
+=== pdf_smoke ===
+  [PASS] source file is readable
+  [PASS] PdfDocument::open returned a document
+  [PASS] document is valid
+  [PASS] page count is greater than zero
+  [PASS] document is not encrypted
+  [PASS] page 1 has positive dimensions
+  [PASS] page 1 rendered a non-null image
+  [PASS] page 1 image has a positive size
+  [PASS] last page rendered a non-null image
+  [PASS] thumbnail render succeeded
+  [PASS] non-PDF file is rejected
+  [PASS] source file bytes are unchanged after open/render
+Result: 12 checks, 0 failure(s)
+=== pageview ===
+Result: 14 checks, 0 failure(s)
+=== mainwindow ===
+Result: 21 checks, 0 failure(s)
