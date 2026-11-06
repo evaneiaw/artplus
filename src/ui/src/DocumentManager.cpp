@@ -1,0 +1,3 @@
+#include "artplus/ui/DocumentManager.h"
+#include <memory>
+namespace artplus::ui { struct DocumentManager::Impl {}; DocumentManager::DocumentManager() : d(std::make_unique<Impl>()) {} bool DocumentManager::open(const QString&) { return true; } bool DocumentManager::close() { return true; } bool DocumentManager::save() { return false; } bool DocumentManager::saveAs(const QString&) { return false; } int DocumentManager::currentPageIndex() const { return 0; } int DocumentManager::pageCount() const { return 0; } bool DocumentManager::isModified() const { return false; } void DocumentManager::navigateToPage(int) {} }

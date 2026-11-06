@@ -1,0 +1,50 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\DocumentTrap.dll
+
+File Type: DLL
+
+  Section contains the following exports for DocumentTrap.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          25 number of functions
+          25 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00053C90 ??0Module@DocumentTrap@@QEAA@XZ
+          2    1 00053E30 ??1Module@DocumentTrap@@UEAA@XZ
+          3    2 00072850 ??8Tag@DocumentTrap@@YA_NAEBUReverseTrapping@01@0@Z
+          4    3 00072900 ??8Tag@DocumentTrap@@YA_NAEBUTrapping@01@0@Z
+          5    4 00093378 ??_7Module@DocumentTrap@@6B@
+          6    5 00093388 ??_8Module@DocumentTrap@@7B@
+          7    6 00053E60 ??_DModule@DocumentTrap@@QEAAXXZ
+          8    7 0001B4E0 ?AddBleed@DocumentTrap@@YAPEAVLayer@ArtDoc@@AEAVContent@3@AEBV?$function@$$A6A_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z@std@@_NAEBV?$function@$$A6A_NAEBVContentObject@ArtDoc@@@Z@6@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@6@V?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4Join@YAGL@@5@Z
+          9    8 00078B20 ?AddTrap@DocumentTrap@@YAPEAVLayer@ArtDoc@@AEAVContent@3@AEBUCollapsionSelection@1@AEBV?$optional@UPureTrapParameters@DocumentTrap@@@std@@AEBV?$optional@UPullbackParameters@DocumentTrap@@@7@@Z
+         10    9 00078C50 ?AutomaticTrap@DocumentTrap@@YAPEAVLayer@ArtDoc@@AEAVContent@3@AEBV?$function@$$A6A_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z@std@@_NAEBV?$function@$$A6A_NAEBVContentObject@ArtDoc@@@Z@6@AEBUSessionParameters@1@AEBV?$variant@PEAVLayer@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@6@@Z
+         11    A 00078E10 ?CanRemoveTrap@DocumentTrap@@YA?AV?$array@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@$02@std@@AEBVContent@ArtDoc@@AEBUCollapsionSelection@1@W4ActionSelector@1@@Z
+         12    B 00079880 ?CanTrap@DocumentTrap@@YA?AV?$optional@UTrapCandidate@DocumentTrap@@@std@@AEBVContent@ArtDoc@@AEBUCollapsionSelection@1@W4ActionSelector@1@@Z
+         13    C 00053F60 ?Create@Module@DocumentTrap@@SA?AV?$unique_ptr@VModule@ArtDoc@@U?$default_delete@VModule@ArtDoc@@@std@@@std@@XZ
+         14    D 00053960 ?GetLayerData@DocumentTrap@@YA?AV?$optional@ULayerData@DocumentTrap@@@std@@AEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@3@@Z
+         15    E 00053FD0 ?GetName@Module@DocumentTrap@@UEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+         16    F 00072980 ?GetReverseTrapping@Tag@DocumentTrap@@YA?AV?$optional@UReverseTrapping@Tag@DocumentTrap@@@std@@AEBVContentObject@ArtDoc@@@Z
+         17   10 00072AA0 ?GetTrapping@Tag@DocumentTrap@@YA?AV?$optional@UTrapping@Tag@DocumentTrap@@@std@@AEBVContentObject@ArtDoc@@@Z
+         18   11 0007BE70 ?InitializeSession@DocumentTrap@@YAXAEAVContent@ArtDoc@@AEBV?$function@$$A6A_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z@std@@_NAEBV?$function@$$A6A_NAEBVContentObject@ArtDoc@@@Z@5@AEBUSessionParameters@1@AEBV?$variant@PEAVLayer@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@5@@Z
+         19   12 0007C1A0 ?IsAutomaticTrapLayerInSync@DocumentTrap@@YA_NAEBVContent@ArtDoc@@@Z
+         20   13 0007CE80 ?RemoveTrap@DocumentTrap@@YAPEAVLayer@ArtDoc@@AEAVContent@3@AEBUCollapsionSelection@1@W4ActionSelector@1@@Z
+         21   14 00072BB0 ?SetReverseTrapping@Tag@DocumentTrap@@YAXAEAVContentObject@ArtDoc@@AEBUReverseTrapping@12@@Z
+         22   15 00007FB0 ?SetReverseTrappingAction@Tag@DocumentTrap@@YAXAEAVContentObject@ArtDoc@@AEBUReverseTrapping@12@@Z
+         23   16 00072D00 ?SetTrapping@Tag@DocumentTrap@@YAXAEAVContentObject@ArtDoc@@AEBUTrapping@12@@Z
+         24   17 00008150 ?SetTrappingAction@Tag@DocumentTrap@@YAXAEAVContentObject@ArtDoc@@AEBUTrapping@12@@Z
+         25   18 00093368 ?kModuleID@Module@DocumentTrap@@2HB
+
+  Summary
+
+        6000 .data
+        7000 .pdata
+       29000 .rdata
+        1000 .reloc
+        1000 .rsrc
+       8E000 .text

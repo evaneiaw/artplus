@@ -1,0 +1,32 @@
+#pragma once
+#include <QString>
+#include <QVector>
+#include <QObject>
+namespace artplus::preflight {
+
+enum class CheckCategory {
+    PageBoxes,
+    Separations,
+    Font,
+    Image,
+    Color,
+    Resolution
+};
+
+enum class Severity { Warning, Error, Info };
+
+struct CheckResult {
+    CheckCategory category;
+    Severity severity;
+    QString title;
+    QString description;
+    QString suggestion;
+    QString details; // e.g., page number, ink names, TAC value
+};
+
+struct Profile {
+    int tacLimit = 300; // default TAC limit in%
+    QVector<CheckCategory> enabledChecks;
+};
+
+} // namespace artplus::preflight

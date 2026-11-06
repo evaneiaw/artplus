@@ -1,0 +1,40 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\ArtPro+.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Section contains the following exports for ArtPro+.exe
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          12 number of functions
+          12 number of names
+
+    ordinal hint RVA      name
+
+          1    0 01CA1480 ?$TSS0@?1??create@?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@CAAEAUPolymorphicCasters@34@XZ@4HA
+          2    1 01CA14D0 ?$TSS0@?1??create@?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@CAAEAUVersions@34@XZ@4HA
+          3    2 0011BCD0 ??4?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@QEAAAEAV012@AEBV012@@Z
+          4    3 0011BCD0 ??4?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@QEAAAEAV012@AEBV012@@Z
+          5    4 00224A30 ?create@?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@CAAEAUPolymorphicCasters@23@XZ
+          6    5 00224AB0 ?create@?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@CAAEAUVersions@23@XZ
+          7    6 00224C00 ?getInstance@?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@SAAEAUPolymorphicCasters@23@XZ
+          8    7 00224C10 ?getInstance@?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@SAAEAUVersions@23@XZ
+          9    8 01CA1428 ?instance@?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@0AEAUPolymorphicCasters@23@EA
+         10    9 01CA1420 ?instance@?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@0AEAUVersions@23@EA
+         11    A 01CA1430 ?t@?1??create@?$StaticObject@UPolymorphicCasters@detail@cereal@@@detail@cereal@@CAAEAUPolymorphicCasters@34@XZ@4U534@A
+         12    B 01CA1490 ?t@?1??create@?$StaticObject@UVersions@detail@cereal@@@detail@cereal@@CAAEAUVersions@34@XZ@4U534@A
+
+  Summary
+
+      4EA000 .data
+        1000 .fnp_dir
+        1000 .fnp_mar
+       A3000 .pdata
+      6EF000 .rdata
+       54000 .reloc
+       3E000 .rsrc
+     12D3000 .text
+       A8000 .textidx

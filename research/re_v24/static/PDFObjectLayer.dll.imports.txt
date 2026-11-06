@@ -1,0 +1,1319 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\PDFObjectLayer.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    FontLayer.dll
+             18015FC50 Import Address Table
+             1802112D8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          AD ??1GFParsedStream@@UEAA@XZ
+                          EE ??4GFParsedStream@@QEAAAEAV0@AEBV0@@Z
+                         21E ?GetRefCount@GFParsedStream@@QEBAJXZ
+                          AC ??1GFGlyph@@QEAA@XZ
+                         176 ?GetAdvanceWidth@GFGlyph@@QEBANXZ
+                         175 ?GetAdvanceVWidth@GFGlyph@@QEBANXZ
+                         242 ?GetVPosX@GFGlyph@@QEBANXZ
+                         243 ?GetVPosY@GFGlyph@@QEBANXZ
+                         1ED ?GetGlyphForGID@GFFont@@QEBA?AVGFGlyph@@J@Z
+                          A4 ??1GFFont@@UEAA@XZ
+                          43 ??0GFFont@@QEAA@AEBV0@@Z
+                         1CD ?GetFont@GFEncoding@@QEBAAEBVGFFont@@XZ
+                          8E ??1CIDGIDProcessor@GFEncodingComposite@@UEAA@XZ
+                           1 ??0CIDGIDProcessor@GFEncodingComposite@@QEAA@XZ
+                         125 ?Assign@GFFont@@MEAAXAEBVGFParsedStream@@@Z
+                         298 ?ProcessCIDGIDPairs@GFEncodingComposite@@QEBAXAEAVCIDGIDProcessor@1@@Z
+                          77 ??0GFGlyph@@QEAA@PEAVGFGlyphImp@@@Z
+                          EB ??4GFGlyph@@QEAAAEAV0@AEBV0@@Z
+                         27A ?IsValid@GFGlyph@@QEBA_NXZ
+                         214 ?GetOutline@GFGlyph@@QEBAAEBVGOutline@@XZ
+                         276 ?IsParsedOK@GFGlyph@@QEBA_NXZ
+                         22C ?GetSymbolicUsage@GFEncodingSimple@@QEBA?AW4SymbolicMappingsUsage@GFFont@@XZ
+                         1F3 ?GetGlyphNameForGID@GFFont@@QEBA_NJW4SymbolicMappingsUsage@1@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         177 ?GetAllCharCodesForGID@GFEncoding@@UEBA_NJAEAV?$GTable@VGCharCode@@@@@Z
+                         138 ?ClearFont@GFEncoding@@UEAAXXZ
+                         2B1 ?SetFont@GFEncoding@@UEAAXAEBVGFFont@@@Z
+                         121 ?ApplyGSUB@GFEncodingComposite@@MEBAXAEAVGBuffer@@@Z
+                         1B8 ?GetDefaultCharCode@GFEncodingComposite@@MEBA_NAEAVGCharCode@@@Z
+                         13E ?ConvertFromInternal@GFEncodingComposite@@MEBAJAEBVGBuffer@@AEBVGFEncoding@@AEAV2@@Z
+                         19A ?GetCharCodeInternal@GFEncodingComposite@@MEBAXAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1F4 ?GetGlyphNameInternal@GFEncodingComposite@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         1AB ?GetCharStringForUnicodeInternal@GFEncodingComposite@@MEBA_NGAEAVGBuffer@@@Z
+                         23B ?GetUnicodeForCharCodeInternal@GFEncodingComposite@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         1DC ?GetGIDForCID@GFEncodingComposite@@UEBA_NJAEAJ@Z
+                         196 ?GetCharCodeForGID@GFEncodingComposite@@UEBA_NJAEAVGCharCode@@@Z
+                         1DD ?GetGIDForCharCode@GFEncodingComposite@@UEBA_NAEBVGCharCode@@AEAJ@Z
+                         248 ?GetWritingMode@GFEncodingComposite@@UEBA?AW4WritingMode@GFEncoding@@XZ
+                         19D ?GetCharCodeRanges@GFEncodingComposite@@UEBAXAEAV?$GTable@VGCharCodeRange@@@@@Z
+                         264 ?IsNotDefined@GFEncodingComposite@@UEBA?AW4GTriState@@AEBVGCharCode@@@Z
+                         238 ?GetUnicodeForCID@GFEncodingComposite@@UEBA_NJAEAVGBuffer@@@Z
+                         194 ?GetCharCodeForCID@GFEncodingComposite@@UEBA_NJAEAVGCharCode@@@Z
+                         185 ?GetCIDForCharCode@GFEncodingComposite@@UEBA_NAEBVGCharCode@@AEAJ@Z
+                         1EA ?GetGlyphForCID@GFEncodingComposite@@UEBA_NJAEAVGFGlyph@@@Z
+                         1E9 ?GetGlyphForCID@GFEncodingComposite@@UEBA?AVGFGlyph@@J@Z
+                         1A2 ?GetCharCodesForCharString@GFEncodingComposite@@UEBA_NAEBVGBuffer@@AEAV?$GTable@VGCharCode@@@@@Z
+                         26B ?IsOfType@GFEncodingComposite@@UEBA_NAEBVGBuffer@@@Z
+                         170 ?GetASCIIDescription@GFEncodingComposite@@UEBAAEBVGBuffer@@XZ
+                         203 ?GetLength@GFEncodingComposite@@UEBAJPEBE@Z
+                         133 ?Clear@GFEncodingComposite@@UEAAXXZ
+                         14E ?CreateClone@GFEncodingComposite@@UEBA?AV?$GSharedObject@VGFEncoding@@@@XZ
+                         279 ?IsUsed@GFSubsetter@@QEBA_NJ@Z
+                         1D5 ?GetFont@GFSubsetter@@QEBAAEBVGFFont@@XZ
+                         2B4 ?SetROS@GFEncodingCreator@@SAXAEBVGFParsedStreamManager@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@1JW4WritingMode@GFCMap@@AEAVGFEncodingComposite@@@Z
+                         148 ?Create@GFEncodingCreator@@SAXAEBVGFParsedStreamManager@@AEBVGFFont@@_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAVGFEncodingComposite@@@Z
+                         160 ?EnsureCIDToGID@GFEncodingComposite@@QEAAX_N@Z
+                         2AA ?SetCIDToGID@GFEncodingComposite@@QEAAXV?$unique_ptr@VCIDToGID@GFEncodingComposite@@U?$default_delete@VCIDToGID@GFEncodingComposite@@@std@@@std@@@Z
+                          8F ??1CIDToGID@GFEncodingComposite@@QEAA@XZ
+                           3 ??0CIDToGID@GFEncodingComposite@@QEAA@AEAVGInStream@@@Z
+                           7 ??0CIDToGID@GFEncodingComposite@@QEAA@XZ
+                         2BD ?UsesDefaultCIDMap@GFEncodingComposite@@QEBA_NXZ
+                         2A9 ?SetCIDMap@GFEncodingComposite@@QEAAXAEBVGFCMapCID@@@Z
+                         2AB ?SetCharacterSet@GFEncodingComposite@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0J@Z
+                         2B6 ?SetUnicodeMap@GFEncoding@@QEAAXAEBVGFCMapUnicode@@@Z
+                          92 ??1GFCMapCIDIterator@@QEAA@XZ
+                         190 ?GetCharCode@GFCMapCIDIterator@@QEBAAEBVGCharCode@@XZ
+                         289 ?Next@GFCMapCIDIterator@@QEAA_NXZ
+                          19 ??0GFCMapCIDIterator@@QEAA@AEBVGFCMapCID@@W4NotDefUsage@0@_N@Z
+                          10 ??0GFCMapCID@@QEAA@AEBV0@@Z
+                         20B ?GetMaxCID@GFCMapCID@@QEBAJXZ
+                         20C ?GetMinCID@GFCMapCID@@QEBAJXZ
+                         193 ?GetCharCodeForCID@GFCMapCID@@QEBA_NJAEAVGCharCode@@@Z
+                         1A1 ?GetCharCodesForCharString@GFCMapCID@@QEBA_NAEBVGBuffer@@AEAV?$GTable@VGCharCode@@@@@Z
+                         25E ?IsEquivalent@GFParsedStream@@QEBA_NAEBV1@@Z
+                          F8 ??9GFParsedStream@@QEBA_NAEBV0@@Z
+                          27 ??0GFEncodingComposite@@QEAA@AEBV0@@Z
+                         254 ?HasUnicodeMap@GFEncoding@@QEBA_NXZ
+                         13A ?ClearUnicodeMap@GFEncoding@@QEAAXXZ
+                         120 ?ApplyGSUB@GFEncoding@@MEBAXAEAVGBuffer@@@Z
+                         1BC ?GetDefaultUnicode@GFEncoding@@MEBAXAEAG@Z
+                         191 ?GetCharCode@GFEncoding@@UEBAXAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1F1 ?GetGlyphName@GFEncoding@@UEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         142 ?ConvertTo@GFEncoding@@UEBAJAEBVGBuffer@@PEBVGUnicodeEncoding@@AEAV2@@Z
+                         13C ?ConvertFrom@GFEncoding@@UEBAJAEBVGBuffer@@PEBVGEncoding@@AEAV2@@Z
+                         259 ?IsBufferCompatible@GFEncoding@@UEBA_NAEBVGBuffer@@@Z
+                         247 ?GetWritingMode@GFEncoding@@UEBA?AW4WritingMode@1@XZ
+                         1EC ?GetGlyphForCharCode@GFEncoding@@UEBA_NAEBVGCharCode@@AEAVGFGlyph@@@Z
+                         1EB ?GetGlyphForCharCode@GFEncoding@@UEBA?AVGFGlyph@@AEBVGCharCode@@@Z
+                         1A6 ?GetCharStringForCharCode@GFEncoding@@UEBAXAEBVGCharCode@@AEAVGBuffer@@@Z
+                         195 ?GetCharCodeForCharString@GFEncoding@@UEBA_NAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1B9 ?GetDefaultCharCode@GFEncodingSimple@@MEBA_NAEAVGCharCode@@@Z
+                         13F ?ConvertFromInternal@GFEncodingSimple@@MEBAJAEBVGBuffer@@AEBVGFEncoding@@AEAV2@@Z
+                         19B ?GetCharCodeInternal@GFEncodingSimple@@MEBAXAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1F5 ?GetGlyphNameInternal@GFEncodingSimple@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         1AC ?GetCharStringForUnicodeInternal@GFEncodingSimple@@MEBA_NGAEAVGBuffer@@@Z
+                         23C ?GetUnicodeForCharCodeInternal@GFEncodingSimple@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         26C ?IsOfType@GFEncodingSimple@@UEBA_NAEBVGBuffer@@@Z
+                         171 ?GetASCIIDescription@GFEncodingSimple@@UEBAAEBVGBuffer@@XZ
+                         1F2 ?GetGlyphNameForByteCode@GFEncodingSimple@@UEBA_NEAEAVGBuffer@@@Z
+                         181 ?GetByteCodeForGlyphName@GFEncodingSimple@@UEBA_NAEBVGBuffer@@AEAE@Z
+                         1EF ?GetGlyphForGlyphName@GFEncodingSimple@@UEBA_NAEBVGBuffer@@AEAVGFGlyph@@@Z
+                         1EE ?GetGlyphForGlyphName@GFEncodingSimple@@UEBA?AVGFGlyph@@AEBVGBuffer@@@Z
+                         1E8 ?GetGlyphForByteCode@GFEncodingSimple@@UEBA_NEAEAVGFGlyph@@@Z
+                         1E7 ?GetGlyphForByteCode@GFEncodingSimple@@UEBA?AVGFGlyph@@E@Z
+                         19E ?GetCharCodeRanges@GFEncodingSimple@@UEBAXAEAV?$GTable@VGCharCodeRange@@@@@Z
+                         265 ?IsNotDefined@GFEncodingSimple@@UEBA?AW4GTriState@@AEBVGCharCode@@@Z
+                         178 ?GetAllCharCodesForGID@GFEncodingSimple@@UEBA_NJAEAV?$GTable@VGCharCode@@@@@Z
+                         197 ?GetCharCodeForGID@GFEncodingSimple@@UEBA_NJAEAVGCharCode@@@Z
+                         1DE ?GetGIDForCharCode@GFEncodingSimple@@UEBA_NAEBVGCharCode@@AEAJ@Z
+                         1A3 ?GetCharCodesForCharString@GFEncodingSimple@@UEBA_NAEBVGBuffer@@AEAV?$GTable@VGCharCode@@@@@Z
+                         139 ?ClearFont@GFEncodingSimple@@UEAAXXZ
+                         2B2 ?SetFont@GFEncodingSimple@@UEAAXAEBVGFFont@@@Z
+                         134 ?Clear@GFEncodingSimple@@UEAAXXZ
+                         14F ?CreateClone@GFEncodingSimple@@UEBA?AV?$GSharedObject@VGFEncoding@@@@XZ
+                         144 ?Create@GFEncodingCreator@@SAXAEBVGBuffer@@_N1110AEBV?$GDict@EVGBuffer@@@@AEBVGFCMapUnicode@@AEAVGFEncodingSimple@@@Z
+                         145 ?Create@GFEncodingCreator@@SAXAEBVGFFont@@_N11AEBVGBuffer@@AEBV?$GDict@EVGBuffer@@@@AEBVGFCMapUnicode@@AEAVGFEncodingSimple@@@Z
+                         166 ?Finalize@GFFontLayer@@SAXXZ
+                         257 ?Initialize@GFFontLayer@@SAXXZ
+                          32 ??0GFException@@QEAA@AEBV0@@Z
+                          9C ??1GFException@@UEAA@XZ
+                          A7 ??1GFFontMMType1@@UEAA@XZ
+                         152 ?CreateInstance@GFFontMMType1@@QEBA?AVGFFont@@AEBV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@JU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@J@std@@@2@@std@@@Z
+                          5F ??0GFFontMMType1@@QEAA@XZ
+                          A6 ??1GFFontCollection@@UEAA@XZ
+                         270 ?IsOfType@GFFontCollection@@SA_NAEBVGFParsedStream@@@Z
+                          F9 ??AGFFontCollection@@QEBA?AVGFFont@@J@Z
+                         1B5 ?GetCount@GFFontCollection@@QEBAJXZ
+                          54 ??0GFFontCollection@@QEAA@AEBVGFParsedStream@@@Z
+                          37 ??0GFException@@QEAA@XZ
+                         250 ?HasFont@GFEncoding@@QEBA_NXZ
+                         26E ?IsOfType@GFFont@@SA_NAEBVGFParsedStream@@@Z
+                          44 ??0GFFont@@QEAA@AEBVGFParsedStream@@@Z
+                          1D ??0GFCMapUnicode@@QEAA@AEBVGInStream@@@Z
+                          13 ??0GFCMapCID@@QEAA@AEBVGInStream@@@Z
+                          16 ??0GFCMapCID@@QEAA@XZ
+                         2A8 ?SetBaseMap@GFCMap@@QEAAXAEBV1@@Z
+                         215 ?GetParsedBaseMapName@GFCMap@@QEBA_NAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         18D ?GetCMap@GFParsedStreamManager@@QEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAVGFCMapCID@@@Z
+                         1D1 ?GetFont@GFParsedStreamManager@@QEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAVGFFontMMType1@@@Z
+                         217 ?GetPathName@GFParsedStream@@QEBAAEBVGPathName@@XZ
+                          7A ??0GFParsedStream@@QEAA@AEBVGInStream@@@Z
+                          7E ??0GFParsedStream@@QEAA@XZ
+                         294 ?NormalizeFontName@GFNormalizedString@@SAXAEAVGBuffer@@@Z
+                          78 ??0GFParsedStream@@QEAA@AEBV0@@Z
+                         155 ?CreateSubset@GFSubsetter@@QEBA?AV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AEAVGName@@@Z
+                         27E ?LicenseAllows@GFFont@@QEBA_NW4Permissions@GFLicense@@@Z
+                         235 ?GetUnderlinePosition@GFFont@@QEBANXZ
+                         2D5 ?cType@GFParsedStreamManagerCombined@@2VGName@@B
+                         230 ?GetTopLvlType@GFParsedStreamManagerFiles@@UEBAAEBVGName@@XZ
+                         16E ?Get@GFParsedStreamManagerFiles@@UEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGName@@AEAVGFParsedStream@@W4AllowCIDFonts@GFParsedStreamManager@@@Z
+                         16F ?Get@GFParsedStreamManagerFiles@@UEBA_NAEBVGFFileInfo@@AEAVGFParsedStream@@@Z
+                         22E ?GetTopLvlType@GFParsedStreamManager@@UEBAAEBVGName@@XZ
+                         16A ?Get@GFParsedStreamManager@@UEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGName@@AEAVGFParsedStream@@W4AllowCIDFonts@1@@Z
+                         16B ?Get@GFParsedStreamManager@@UEBA_NAEBVGFFileInfo@@AEAVGFParsedStream@@@Z
+                         22F ?GetTopLvlType@GFParsedStreamManagerCombined@@UEBAAEBVGName@@XZ
+                         16C ?Get@GFParsedStreamManagerCombined@@UEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGName@@AEAVGFParsedStream@@W4AllowCIDFonts@GFParsedStreamManager@@@Z
+                         16D ?Get@GFParsedStreamManagerCombined@@UEBA_NAEBVGFFileInfo@@AEAVGFParsedStream@@@Z
+                         165 ?Execute@GFFileManager@@EEAA_NXZ
+                         2B0 ?SetFileManager@GFParsedStreamManagerFiles@@QEAAXAEAV?$GAutoPtr@VGFFileManager@@UGDeletePtr@@@@@Z
+                          B0 ??1GFParsedStreamManagerFiles@@UEAA@XZ
+                          83 ??0GFParsedStreamManagerFiles@@QEAA@AEAV?$GAutoPtr@VGFFileManager@@UGDeletePtr@@@@@Z
+                         1CA ?GetFirst@GFParsedStreamManagerCombined@@QEAAAEAVGFParsedStreamManager@@XZ
+                          AF ??1GFParsedStreamManagerCombined@@UEAA@XZ
+                          82 ??0GFParsedStreamManagerCombined@@QEAA@V?$GSmartPtr@VGFParsedStreamManager@@@@0@Z
+                          AE ??1GFParsedStreamManager@@UEAA@XZ
+                          80 ??0GFParsedStreamManager@@QEAA@XZ
+                          3D ??0GFFileManager@@QEAA@XZ
+                         2D2 ?cType@GFFontType1@@2AEBVGName@@EB
+                         2D1 ?cType@GFFontTrueType@@2AEBVGName@@EB
+                         2D0 ?cType@GFFontOTFCFF@@2AEBVGName@@EB
+                         2C0 ?cASCIIDescription@GFEncodingComposite@@2VGBuffer@@B
+                         2C1 ?cASCIIDescription@GFEncodingSimple@@2VGBuffer@@B
+                         2C3 ?cBuiltIn@GFEncodingSimple@@2VGBuffer@@B
+                         2D7 ?cWinAnsi@GFEncodingSimple@@2VGBuffer@@B
+                         2C4 ?cMacExpert@GFEncodingSimple@@2VGBuffer@@B
+                         2C5 ?cMacRoman@GFEncodingSimple@@2VGBuffer@@B
+                         2CD ?cType@GFFontCFF@@2AEBVGName@@EB
+                         295 ?NormalizeFontName@GFNormalizedString@@SAXAEAVGString@@@Z
+                         1E4 ?GetGlyphCount@GFFileInfo@@QEBAJXZ
+                         277 ?IsTrueTypeFont@GFFileInfo@@QEBA_NXZ
+                         25B ?IsCIDFont@GFFileInfo@@QEBA_NXZ
+                         233 ?GetType@GFFileInfo@@QEBAAEBVGName@@XZ
+                         274 ?IsOfType@GFFontType1@@SA_NAEBVGFParsedStream@@@Z
+                         205 ?GetLengths@GFFontType1@@SA_NAEBVGInStream@@AEAJ11@Z
+                         273 ?IsOfType@GFFontTrueType@@SA_NAEBVGFParsedStream@@@Z
+                          A8 ??1GFFontOTFCFF@@UEAA@XZ
+                         272 ?IsOfType@GFFontOTFCFF@@SA_NAEBVGFParsedStream@@@Z
+                         14D ?CreateCFFWithoutOTF@GFFontOTFCFF@@QEBAXAEAV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@@Z
+                          62 ??0GFFontOTFCFF@@QEAA@AEBVGFParsedStream@@@Z
+                          97 ??1GFEncodingComposite@@UEAA@XZ
+                         18A ?GetCIDToGID@GFEncodingComposite@@QEBAPEBVCIDToGID@1@XZ
+                         153 ?CreateStream@CIDToGID@GFEncodingComposite@@QEBA?AV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@XZ
+                         25F ?IsIdentity@CIDToGID@GFEncodingComposite@@QEBA_NXZ
+                         189 ?GetCIDMap@GFEncodingComposite@@QEBAAEBVGFCMapCID@@XZ
+                         22A ?GetSupplement@GFEncodingComposite@@QEBAJXZ
+                         213 ?GetOrdering@GFEncodingComposite@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         220 ?GetRegistry@GFEncodingComposite@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          28 ??0GFEncodingComposite@@QEAA@XZ
+                         14A ?Create@GFEncodingCreator@@SAXAEBVGFParsedStreamManager@@AEBVGFFont@@_NAEBVGString@@W4WritingMode@GFCMap@@AEAVGFEncodingComposite@@@Z
+                         146 ?Create@GFEncodingCreator@@SAXAEBVGFFont@@_NAEBVGString@@AEAVGFEncodingSimple@@@Z
+                          9A ??1GFEncodingSimple@@UEAA@XZ
+                         1C1 ?GetDifferences@GFEncodingSimple@@QEBAAEBV?$GDict@EVGBuffer@@@@XZ
+                         17A ?GetBaseEncoding@GFEncodingSimple@@QEBAAEBVGBuffer@@XZ
+                          2E ??0GFEncodingSimple@@QEAA@XZ
+                         240 ?GetUnicodeMap@GFEncoding@@QEBA_NAEAVGFCMapUnicode@@@Z
+                         1CE ?GetFont@GFEncoding@@QEBA_NAEAVGFFont@@@Z
+                          93 ??1GFCMapUnicode@@UEAA@XZ
+                          20 ??0GFCMapUnicode@@QEAA@XZ
+                          91 ??1GFCMapCID@@UEAA@XZ
+                          12 ??0GFCMapCID@@QEAA@AEBVGFParsedStream@@@Z
+                          90 ??1GFCMap@@UEAA@XZ
+                         154 ?CreateStream@GFCMap@@QEBAXAEAV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@@Z
+                         17C ?GetBaseMap@GFCMap@@QEBA_NAEAV1@@Z
+                         246 ?GetWritingMode@GFCMap@@QEBA?AW4WritingMode@1@XZ
+                          A0 ??1GFFileManager@@UEAA@XZ
+                         229 ?GetSupplement@GFCMap@@QEBAJXZ
+                         212 ?GetOrdering@GFCMap@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         21F ?GetRegistry@GFCMap@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         20E ?GetName@GFCMap@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                           E ??0GFCMap@@QEAA@XZ
+                         2BC ?ToCFF@GFConverter@@SA?AVGFFontCFF@@AEBVGFFont@@@Z
+                          A5 ??1GFFontCFF@@UEAA@XZ
+                         26F ?IsOfType@GFFontCFF@@SA_NAEBVGFParsedStream@@@Z
+                         25C ?IsCIDFont@GFFontCFF@@QEBA_NXZ
+                          4C ??0GFFontCFF@@QEAA@AEBVGFParsedStream@@@Z
+                         151 ?CreateEmbedded@GFFont@@QEBAXAEAV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@AEAVGName@@@Z
+                         1E0 ?GetGIDForGlyphName@GFFont@@QEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4SymbolicMappingsUsage@1@AEAJ@Z
+                         1E5 ?GetGlyphCount@GFFont@@QEBAJXZ
+                         225 ?GetShouldForceBold@GFFont@@QEBA_NXZ
+                         227 ?GetStemVertical@GFFont@@QEBANXZ
+                         226 ?GetStemHorizontal@GFFont@@QEBANXZ
+                         1CC ?GetFixedWidth@GFFont@@QEBA_NXZ
+                         22B ?GetSymbolic@GFFont@@QEBA?AW4GTriState@@XZ
+                         224 ?GetSerif@GFFont@@QEBA_NXZ
+                         221 ?GetScript@GFFont@@QEBA_NXZ
+                         207 ?GetLowercaseIsSmallUppercase@GFFont@@QEBA_NXZ
+                         202 ?GetLeading@GFFont@@QEBANXZ
+                         200 ?GetItalicAngle@GFFont@@QEBANXZ
+                         1FF ?GetItalic@GFFont@@QEBA_NXZ
+                         1D8 ?GetFontNames@GFFont@@QEBAXAEAV?$GTable@VGString@@@@@Z
+                         219 ?GetPostScriptFontName@GFFont@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         1C6 ?GetFamily@GFFont@@QEBA_NAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         20A ?GetMaxAdvanceWidth@GFFont@@QEBANXZ
+                         17F ?GetBoundingBox@GFFont@@QEBAXAEAV?$GRectBase@N@@@Z
+                         1BD ?GetDescent@GFFont@@QEBANXZ
+                         179 ?GetAscent@GFFont@@QEBANXZ
+                          49 ??0GFFont@@QEAA@XZ
+                         180 ?GetBoundingBox@GFGlyph@@QEBAAEBV?$GRectBase@N@@XZ
+
+    PDFAccessLayer.dll
+             180160560 Import Address Table
+             180211BE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         4D7 ?RemoveAll@GADict@@QEAAXXZ
+                         308 ?Get@GADict@@QEBA?AVGAObject@@AEBVGName@@@Z
+                         42D ?Has@GADict@@QEBA_NAEBVGName@@@Z
+                         13C ??1GADict@@QEAA@XZ
+                          48 ??0GADoc@@QEAA@XZ
+                         1AF ??4GADoc@@QEAAXAEBV0@@Z
+                         13E ??1GADoc@@QEAA@XZ
+                          1E ??0GABool@@QEAA@AEBVGADoc@@_NW4GAPersistenceType@GAPersistentObject@@@Z
+                         28A ?Cast@GABool@@SA?AV1@AEBVGAObject@@@Z
+                         307 ?Get@GABool@@QEBA_NXZ
+                         12E ??1GABool@@QEAA@XZ
+                          7C ??0GAFilter@@QEAA@AEBV0@@Z
+                         150 ??1GAFilter@@QEAA@XZ
+                          83 ??0GAFlateFilter@@QEAA@JJJJ@Z
+                         151 ??1GAFlateFilter@@QEAA@XZ
+                          9C ??0GAName@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         28D ?Cast@GAName@@SA?AV1@AEBVGAObject@@@Z
+                         309 ?Get@GAName@@QEBAXAEAVGBuffer@@@Z
+                         15A ??1GAName@@QEAA@XZ
+                          A4 ??0GANumber@@QEAA@AEBVGADoc@@NW4GAPersistenceType@GAPersistentObject@@@Z
+                         28F ?Cast@GANumber@@SA?AV1@AEBVGAObject@@@Z
+                         30A ?Get@GANumber@@QEBANXZ
+                         4C4 ?Put@GADict@@QEAAXAEBVGName@@AEBVGAObject@@@Z
+                         350 ?GetDoc@GAObject@@QEBA?AVGADoc@@XZ
+                         478 ?IsNull@GAObject@@QEBA_NXZ
+                         43F ?IsBool@GAObject@@QEBA_NXZ
+                         47A ?IsNumber@GAObject@@QEBA_NXZ
+                         476 ?IsName@GAObject@@QEBA_NXZ
+                         484 ?IsString@GAObject@@QEBA_NXZ
+                         43D ?IsArray@GAObject@@QEBA_NXZ
+                         483 ?IsStream@GAObject@@QEBA_NXZ
+                          19 ??0GAArray@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         289 ?Cast@GAArray@@SA?AV1@AEBVGAObject@@@Z
+                         4C3 ?Put@GAArray@@QEAAXJAEBVGAObject@@@Z
+                         397 ?GetLength@GAArray@@QEBAJXZ
+                         306 ?Get@GAArray@@QEBA?AVGAObject@@J@Z
+                         3BA ?GetNumber@GAArray@@QEBA?AVGANumber@@J@Z
+                         12C ??1GAArray@@QEAA@XZ
+                          42 ??0GADict@@QEAA@XZ
+                          40 ??0GADict@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          3F ??0GADict@@QEAA@AEBV0@@Z
+                         1AE ??4GADict@@QEAAXAEBV0@@Z
+                         391 ?GetInt@GANumber@@QEBAJXZ
+                         15C ??1GANumber@@QEAA@XZ
+                          F2 ??0GAStream@@QEAA@AEBVGADoc@@AEAVGADict@@AEBVGBuffer@@AEBV?$GTable@VGAFilter@@@@_N@Z
+                         290 ?Cast@GAStream@@SA?AV1@AEBVGAObject@@@Z
+                         30C ?Get@GAStream@@QEBAXAEAVGBuffer@@@Z
+                         4D4 ?Remove@GADict@@QEAAXAEBVGName@@@Z
+                         1E6 ??4GAObject@@QEAAXAEBV0@@Z
+                         161 ??1GAObject@@QEAA@XZ
+                         17A ??1GAStream@@QEAA@XZ
+                          F7 ??0GAString@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          F8 ??0GAString@@QEAA@AEBVGADoc@@AEBVGString@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         291 ?Cast@GAString@@SA?AV1@AEBVGAObject@@@Z
+                         30D ?Get@GAString@@QEBAXAEAVGBuffer@@@Z
+                         30E ?Get@GAString@@QEBAXAEAVGString@@@Z
+                         17B ??1GAString@@QEAA@XZ
+                         45C ?IsEquivalent@GAObject@@QEBA_NAEBV1@@Z
+                          63 ??0GADocSaveParams@@QEAA@J@Z
+                          64 ??0GADocSaveParams@@QEAA@JAEBVGPathName@@JJ@Z
+                         148 ??1GADocSaveParams@@QEAA@XZ
+                         44E ?IsEncrypted@GADoc@@QEBA_NXZ
+                         3D9 ?GetPermissions@GADoc@@QEBAJXZ
+                         38F ?GetInstance@GAScratchDoc@@SA?AVGADoc@@XZ
+                         28B ?Cast@GADict@@SA?AV1@AEBVGAObject@@@Z
+                         3FE ?GetString@GADict@@QEBA?AVGAString@@AEBVGName@@@Z
+                         445 ?IsDict@GAObject@@QEBA_NXZ
+                          32 ??0GADeepCloneStrategy@@QEAA@XZ
+                         137 ??1GADeepCloneStrategy@@UEAA@XZ
+                         218 ??8GAName@@QEBA_NPEBD@Z
+                         4D0 ?RegisterClone@GACloneStrategy@@UEAAXAEBVGAObject@@0@Z
+                         57C ?UnregisterClone@GACloneStrategy@@UEAAXAEBVGAObject@@@Z
+                         32F ?GetClone@GACloneStrategy@@UEAA_NAEBVGAObject@@AEAV2@@Z
+                         3E4 ?GetRegisteredClones@GACloneStrategy@@UEAAAEBV?$GDict@VGAObjectProxy@@V1@@@XZ
+                         3EC ?GetReplacement@GADeepCloneStrategy@@UEAA?AVGAObject@@AEBVGName@@AEBV2@@Z
+                         3EB ?GetReplacement@GADeepCloneStrategy@@UEAA?AVGAObject@@AEBV2@@Z
+                         217 ??8GAName@@QEBA_NAEBVGBuffer@@@Z
+                         167 ??1GAObjectProxy@@QEAA@XZ
+                          C0 ??0GAObjectProxy@@QEAA@AEBVGAObject@@@Z
+                         37E ?GetHash@GAObjectProxy@@QEBAKXZ
+                         3A2 ?GetName@GADict@@QEBA?AVGAName@@AEBVGName@@@Z
+                         3BB ?GetNumber@GADict@@QEBA?AVGANumber@@AEBVGName@@@Z
+                         318 ?GetArray@GADict@@QEBA?AVGAArray@@AEBVGName@@@Z
+                         317 ?GetArray@GAArray@@QEBA?AV1@J@Z
+                          1B ??0GAArray@@QEAA@XZ
+                         26E ?Add@GAArray@@QEAAXAEBVGAObject@@@Z
+                         3A1 ?GetName@GAArray@@QEBA?AVGAName@@J@Z
+                          B1 ??0GAObject@@QEAA@AEBV0@@Z
+                         46C ?IsIndirect@GAObject@@QEBA_NXZ
+                         31E ?GetBool@GADict@@QEBA?AVGABool@@AEBVGName@@@Z
+                         34D ?GetDict@GADict@@QEBA?AV1@AEBVGName@@@Z
+                          44 ??0GADoc@@QEAA@AEBV0@@Z
+                         125 ??1?$GReceiver@VGADocDigSignatureMessage@@@@UEAA@XZ
+                         101 ??0GAUndoLock@@QEAA@AEBVGADoc@@@Z
+                         182 ??1GAUndoLock@@QEAA@XZ
+                         4E7 ?SaveDirty@GADoc@@QEAAXXZ
+                         4E4 ?RestoreDirty@GADoc@@QEAAXXZ
+                         46E ?IsInline@GAObject@@QEBA_NXZ
+                          43 ??0GADictIterator@@QEAA@AEBVGADict@@@Z
+                         13D ??1GADictIterator@@UEAA@XZ
+                         4A3 ?Next@GADictIterator@@QEAA_NAEAVGName@@AEAVGAObject@@@Z
+                         4BB ?PrepareForInsert@GAObjectSupport@@SA_NAEAVGAObject@@AEBVGADoc@@_N@Z
+                         490 ?IsValid@GAObject@@QEBA_NXZ
+                         19E ??4GAArray@@QEAAXAEBV0@@Z
+                         4D3 ?Remove@GAArray@@QEAAXJ@Z
+                         4A7 ?NextKey@GADictIterator@@QEAA_NAEAVGName@@@Z
+                          F5 ??0GAStream@@QEAA@XZ
+                         206 ??4GAStream@@QEAAXAEBV0@@Z
+                         4C7 ?RectToArray@GAObjectSupport@@SAXAEBV?$GRectBase@N@@AEAVGAArray@@@Z
+                         282 ?ArrayToRect@GAObjectSupport@@SAXAEBVGAArray@@AEAV?$GRectBase@N@@@Z
+                         29A ?Clone@GAObject@@QEAAXAEAVGACloneStrategy@@AEBVGADoc@@@Z
+                          F1 ??0GAStream@@QEAA@AEBVGADoc@@AEAVGADict@@AEAVGInStream@@AEBV?$GTable@VGAFilter@@@@_N@Z
+                          F0 ??0GAStream@@QEAA@AEBV0@@Z
+                         34E ?GetDict@GAStream@@QEBA?AVGADict@@XZ
+                          E9 ??0GAShallowCloneStrategy@@QEAA@XZ
+                         4D5 ?Remove@GANumberTree@@QEAAXJ@Z
+                         4C5 ?Put@GANumberTree@@QEAAXJAEBVGAObject@@@Z
+                         4A8 ?NextValue@GADictIterator@@QEAA_NAEAVGAObject@@@Z
+                         345 ?GetCurrentIndex@GAArrayIterator@@QEBAJXZ
+                          53 ??0GADocDigSignatureMessage@@QEAA@AEBV0@@Z
+                         142 ??1GADocDigSignatureMessage@@QEAA@XZ
+                          54 ??0GADocDigSignatureMessage@@QEAA@AEBVGADoc@@AEBVGAObject@@1@Z
+                         323 ?GetByteOffset@GADoc@@QEBA_JAEBVGAObject@@@Z
+                         366 ?GetFile@GADoc@@QEAAAEAVGAPDFFile@@XZ
+                         5CB ?sMaxNameLength@GAImplementationLimits@@2JB
+                         5C7 ?sMaxContentStringLength@GAImplementationLimits@@2JB
+                         5CA ?sMaxIntValue@GAImplementationLimits@@2_JB
+                         5D2 ?sMinIntValue@GAImplementationLimits@@2_JB
+                         369 ?GetFileUpdateSizes@GADoc@@QEBAXAEAV?$GTable@_J@@@Z
+                         31D ?GetBool@GAArray@@QEBA?AVGABool@@J@Z
+                         29E ?CloneContentsTo@GAObjectSupport@@SAXAEBVGADict@@AEAV2@AEAVGACloneStrategy@@@Z
+                         422 ?GetWriteProcSet@GADocParams@@QEBA?AW4WriteProcSet@1@XZ
+                         2FB ?Finalize@GAPDFAccessLayer@@SAXXZ
+                         434 ?Initialize@GAPDFAccessLayer@@SA_NXZ
+                         1DB ??4GAName@@QEAAXAEBV0@@Z
+                          9E ??0GAName@@QEAA@XZ
+                         3B9 ?GetNumParents@GAObject@@QEBAJXZ
+                         2F3 ?EnsureArrayInDictionary@GAObjectSupport@@SA?AVGAArray@@AEAVGADict@@AEBVGName@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         4D6 ?RemoveAll@GAArray@@QEAAXXZ
+                         3FA ?GetStream@GADict@@QEBA?AVGAStream@@AEBVGName@@@Z
+                         56E ?UnSubscribe@?$GReceiver@VGADocDigSignatureMessage@@@@MEAAXJ@Z
+                         4D2 ?Remove@GAArray@@QEAAXAEBVGAObject@@@Z
+                           9 ??0?$GReceiver@VGADocDigSignatureMessage@@@@QEAA@XZ
+                         562 ?Subscribe@?$GReceiver@VGADocDigSignatureMessage@@@@MEAAXJ@Z
+                          9B ??0GAName@@QEAA@AEBV0@@Z
+                         34A ?GetDecodedStream@GADocFactory@@QEAAPEAVGInStream@@PEAV2@AEBV?$GTable@VGAFilter@@@@@Z
+                         35A ?GetEncodedStream@GADocFactory@@QEAAPEAVGInStream@@AEAV2@AEBV?$GTable@VGAFilter@@@@@Z
+                         46F ?IsInteger@GANumber@@QEBA_NXZ
+                         2B3 ?CreateDecodedStream@GAFilter@@QEBAPEAVGInStream@@PEAV2@@Z
+                         348 ?GetDecodedDataLength@GAObjectSupport@@SA_JAEBV?$GSizeBase@J@@JJ@Z
+                         4F9 ?SetColorspace@GAJPXFilter@@QEAAXW4ColourSpace@GJPXEnums@@AEBVGBuffer@@@Z
+                         4EC ?SetBitsPerComponent@GAJPXFilter@@QEAAXJ@Z
+                         533 ?SetNumColorPlanes@GAJPXFilter@@QEAAXJ@Z
+                         504 ?SetDimensions@GAJPXFilter@@QEAAXAEBV?$GSizeBase@J@@@Z
+                         52E ?SetNrColumns@GALZWFilter@@QEAAXJ@Z
+                         4ED ?SetBitsPerComponent@GALZWFilter@@QEAAXJ@Z
+                         530 ?SetNrComponents@GALZWFilter@@QEAAXJ@Z
+                         52D ?SetNrColumns@GAFlateFilter@@QEAAXJ@Z
+                         4EB ?SetBitsPerComponent@GAFlateFilter@@QEAAXJ@Z
+                         52F ?SetNrComponents@GAFlateFilter@@QEAAXJ@Z
+                         135 ??1GADCTFilter@@QEAA@XZ
+                         3E1 ?GetQuality@GADCTFilter@@QEBAJXZ
+                         4F7 ?SetColorTransform@GADCTFilter@@QEAAXW4ColorTransform@GDCTEnums@@_N@Z
+                         33D ?GetColorTransform@GADCTFilter@@QEBA?AW4ColorTransform@GDCTEnums@@_N@Z
+                          30 ??0GADCTFilter@@QEAA@W4ColorTransform@GDCTEnums@@JJJJ@Z
+                         532 ?SetNrRows@GACCITTFilter@@QEAAXJ@Z
+                         52C ?SetNrColumns@GACCITTFilter@@QEAAXJ@Z
+                         38D ?GetInstance@GADocFactory@@SAPEAV1@XZ
+                         36C ?GetFilters@GAStream@@QEBAXAEAV?$GTable@VGAFilter@@@@@Z
+                         3CD ?GetPDFFilterType@GAFilter@@QEBA?AW4FilterType@GAFilterTypes@@XZ
+                         1CF ??4GAFilter@@QEAAAEAV0@AEBV0@@Z
+                         16F ??1GAPartialEquivalenceStrategy@@UEAA@XZ
+                         274 ?AddNoFollowKey@GAPartialEquivalenceStrategy@@UEAAXAEBVGName@@@Z
+                          DA ??0GAPartialEquivalenceStrategy@@QEAA@_N@Z
+                         3F9 ?GetStream@GAArray@@QEBA?AVGAStream@@J@Z
+                         45D ?IsEquivalent@GAObject@@QEBA_NAEBV1@AEAVGAEquivalenceStrategy@@@Z
+                         499 ?MatrixToArray@GAObjectSupport@@SAXAEBV?$GMatrixBase@N@@AEAVGAArray@@@Z
+                         2CD ?DelayedUpdateLastModified@GADoc@@QEAAXAEBVGADict@@AEBVGName@@@Z
+                         21A ??9GAName@@QEBA_NAEBVGBuffer@@@Z
+                         16E ??1GAPartialCloneStrategy@@UEAA@XZ
+                          D7 ??0GAPartialCloneStrategy@@QEAA@XZ
+                         278 ?AddSkipKey@GAPartialCloneStrategy@@UEAAXAEBVGName@@@Z
+                          29 ??0GACloneKeepStrategy@@QEAA@XZ
+                         270 ?AddCloneKey@GACloneKeepStrategy@@QEAAXAEBVGName@@@Z
+                         132 ??1GACloneKeepStrategy@@UEAA@XZ
+                         4FF ?SetData@GAStream@@QEAAXAEAVGInStream@@AEBV?$GTable@VGAFilter@@@@_N@Z
+                          77 ??0GAException@@QEAA@J@Z
+                         2EB ?EndVisit@GAVisitor@@UEAAXAEAVGAArray@@@Z
+                         2EC ?EndVisit@GAVisitor@@UEAAXAEAVGADict@@@Z
+                         2EE ?EndVisit@GAVisitor@@UEAAXAEAVGAStream@@@Z
+                         2ED ?EndVisit@GAVisitor@@UEAAXAEAVGADoc@@@Z
+                         5A3 ?Visit@GAVisitor@@UEAAXAEAVGAObject@@@Z
+                         5A1 ?Visit@GAVisitor@@UEAAXAEAVGANull@@@Z
+                         59D ?Visit@GAVisitor@@UEAAXAEAVGABool@@@Z
+                         5A2 ?Visit@GAVisitor@@UEAAXAEAVGANumber@@@Z
+                         5A0 ?Visit@GAVisitor@@UEAAXAEAVGAName@@@Z
+                         5A5 ?Visit@GAVisitor@@UEAAXAEAVGAString@@@Z
+                         59C ?Visit@GAVisitor@@UEAAXAEAVGAArray@@@Z
+                         5A4 ?Visit@GAVisitor@@UEAAXAEAVGAStream@@@Z
+                         59F ?Visit@GAVisitor@@UEAAXAEAVGADoc@@@Z
+                         5A6 ?Visit@GAVisitor@@UEAAXAEBVGName@@@Z
+                         5A7 ?Visit@GAVisitor@@UEAAXJ@Z
+                         18C ??1GAVisitor@@UEAA@XZ
+                         116 ??0GAVisitor@@QEAA@XZ
+                         136 ??1GADeepCloneReplaceStrategy@@UEAA@XZ
+                          31 ??0GADeepCloneReplaceStrategy@@QEAA@AEAV?$GDict@VGAObject@@V1@@@@Z
+                         133 ??1GACloneStrategy@@UEAA@XZ
+                          2A ??0GACloneStrategy@@QEAA@XZ
+                         438 ?Insert@GAArray@@QEAAXJAEBVGAObject@@@Z
+                         3DD ?GetPersistenceType@GAObject@@QEBA?AW4GAPersistenceType@GAPersistentObject@@XZ
+                         56C ?UnSubscribe@?$GReceiver@VGADocDidChangePagesMessage@@@@MEAAXJ@Z
+                         570 ?UnSubscribe@?$GReceiver@VGADocMovePagesMessage@@@@MEAAXJ@Z
+                         56D ?UnSubscribe@?$GReceiver@VGADocDidSaveMessage@@@@MEAAXJ@Z
+                         56F ?UnSubscribe@?$GReceiver@VGADocInsertPagesMessage@@@@MEAAXJ@Z
+                         571 ?UnSubscribe@?$GReceiver@VGADocReplacePagesMessage@@@@MEAAXJ@Z
+                         572 ?UnSubscribe@?$GReceiver@VGADocWillSaveMessage@@@@MEAAXJ@Z
+                         56B ?UnSubscribe@?$GReceiver@VGADocDeletePagesMessage@@@@MEAAXJ@Z
+                         56A ?UnSubscribe@?$GReceiver@VGADoc@@@@MEAAXJ@Z
+                          73 ??0GAExWrongObjectType@@QEAA@AEBV0@@Z
+                         14D ??1GAExWrongObjectType@@UEAA@XZ
+                         2F4 ?EnsureDictionaryInDictionary@GAObjectSupport@@SA?AVGADict@@AEAV2@AEBVGName@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         29D ?CloneContentsTo@GAObjectSupport@@SAXAEBVGAArray@@AEAV2@AEAVGACloneStrategy@@@Z
+                         30B ?Get@GANumberTree@@QEBA_NJAEAVGAObject@@@Z
+                         395 ?GetKnownNumbers@GANumberTree@@QEBAXAEAV?$GTable@J@@@Z
+                         15D ??1GANumberTree@@UEAA@XZ
+                          A7 ??0GANumberTree@@QEAA@AEBVGADict@@@Z
+                          74 ??0GAExWrongObjectType@@QEAA@XZ
+                         3FD ?GetString@GAArray@@QEBA?AVGAString@@J@Z
+                          11 ??0?$GReceiver@VGADocWillSaveMessage@@@@QEAA@XZ
+                         566 ?Subscribe@?$GReceiver@VGADocWillSaveMessage@@@@MEAAXJ@Z
+                         129 ??1?$GReceiver@VGADocWillSaveMessage@@@@UEAA@XZ
+                           F ??0?$GReceiver@VGADocReplacePagesMessage@@@@QEAA@XZ
+                         565 ?Subscribe@?$GReceiver@VGADocReplacePagesMessage@@@@MEAAXJ@Z
+                         128 ??1?$GReceiver@VGADocReplacePagesMessage@@@@UEAA@XZ
+                           D ??0?$GReceiver@VGADocMovePagesMessage@@@@QEAA@XZ
+                         564 ?Subscribe@?$GReceiver@VGADocMovePagesMessage@@@@MEAAXJ@Z
+                         127 ??1?$GReceiver@VGADocMovePagesMessage@@@@UEAA@XZ
+                           3 ??0?$GReceiver@VGADocDeletePagesMessage@@@@QEAA@XZ
+                         55F ?Subscribe@?$GReceiver@VGADocDeletePagesMessage@@@@MEAAXJ@Z
+                         122 ??1?$GReceiver@VGADocDeletePagesMessage@@@@UEAA@XZ
+                           B ??0?$GReceiver@VGADocInsertPagesMessage@@@@QEAA@XZ
+                         563 ?Subscribe@?$GReceiver@VGADocInsertPagesMessage@@@@MEAAXJ@Z
+                         126 ??1?$GReceiver@VGADocInsertPagesMessage@@@@UEAA@XZ
+                          59 ??0GADocInsertPagesMessage@@QEAA@AEBV0@@Z
+                         145 ??1GADocInsertPagesMessage@@QEAA@XZ
+                          5A ??0GADocInsertPagesMessage@@QEAA@AEBVGADoc@@J0JJJJ@Z
+                           7 ??0?$GReceiver@VGADocDidSaveMessage@@@@QEAA@XZ
+                         561 ?Subscribe@?$GReceiver@VGADocDidSaveMessage@@@@MEAAXJ@Z
+                         124 ??1?$GReceiver@VGADocDidSaveMessage@@@@UEAA@XZ
+                           5 ??0?$GReceiver@VGADocDidChangePagesMessage@@@@QEAA@XZ
+                         560 ?Subscribe@?$GReceiver@VGADocDidChangePagesMessage@@@@MEAAXJ@Z
+                         123 ??1?$GReceiver@VGADocDidChangePagesMessage@@@@UEAA@XZ
+                           1 ??0?$GReceiver@VGADoc@@@@QEAA@XZ
+                         55E ?Subscribe@?$GReceiver@VGADoc@@@@MEAAXJ@Z
+                         121 ??1?$GReceiver@VGADoc@@@@UEAA@XZ
+                         4BC ?PrepareInfoDict@GADoc@@QEAA_NXZ
+                         471 ?IsLinearized@GADoc@@QEBA_NXZ
+                         5B4 ?WasRepaired@GADoc@@QEBA_NXZ
+                         4D9 ?RemoveDelayedUpdateLastModified@GADoc@@QEAAXAEBVGADict@@@Z
+                         521 ?SetModDate@GADoc@@QEAAXAEBVGDateTime@@@Z
+                         40F ?GetUndoManager@GADoc@@QEBAAEAVGAUndoManager@@XZ
+                         177 ??1GAShallowCloneStrategy@@UEAA@XZ
+                         50F ?SetFileType@GADoc@@QEAA_NAEBVGFileType@@@Z
+                         368 ?GetFileTypePtr@GADoc@@QEBAPEBVGFileType@@XZ
+                         413 ?GetUniqueID@GADoc@@QEBAXAEAVGBuffer@@0@Z
+                         430 ?HasInfoDict@GADoc@@QEBA_NXZ
+                         38C ?GetInfoDict@GADoc@@QEBA?AVGAObject@@XZ
+                         549 ?SetVersion@GADoc@@QEAAXJJ@Z
+                         3C9 ?GetOriginalVersion@GADoc@@QEBAXAEAJ0@Z
+                         2A1 ?Close@GADoc@@QEAAXXZ
+                         4A9 ?Open@GADoc@@QEAAXXZ
+                         3D0 ?GetPathName@GADoc@@QEBAAEBVGPathName@@XZ
+                         4E6 ?Save@GADoc@@QEAAXAEBVGADocSaveParams@@@Z
+                          46 ??0GADoc@@QEAA@AEBVGPathName@@AEBVGBuffer@@_N@Z
+                          45 ??0GADoc@@QEAA@AEBVGPathName@@@Z
+                         4CD ?Redo@GAUndoManager@@QEAAXK@Z
+                         578 ?Undo@GAUndoManager@@QEAAXK@Z
+                         26F ?AddCheckpoint@GAUndoManager@@QEAAKXZ
+                         446 ?IsDirect@GAObject@@QEBA_NXZ
+                         42C ?Handle@GAExceptionHandler@@UEBAXXZ
+                         5CF ?sMaxQNesting@GAImplementationLimits@@2JB
+                         515 ?SetHex@GAString@@QEAAX_N@Z
+                         4A2 ?Next@GAArrayIterator@@QEAA_NAEAVGAObject@@@Z
+                         12D ??1GAArrayIterator@@UEAA@XZ
+                          1C ??0GAArrayIterator@@QEAA@AEBVGAArray@@_N@Z
+                         40A ?GetType@GAObject@@QEBA?AW4GAObjectTypes@@XZ
+                         2C4 ?CreateStream@GAStream@@QEBAPEAVGInStream@@_N@Z
+                         364 ?GetEscapedName@GAObjectSupport@@SAXAEBVGBuffer@@AEAV2@@Z
+                         390 ?GetInt64@GANumber@@QEBA_JXZ
+                         155 ??1GAInlineGenerator@@UEAA@XZ
+                          8A ??0GAInlineGenerator@@QEAA@AEAVGBuffer@@@Z
+                         15B ??1GANull@@QEAA@XZ
+                          A2 ??0GANull@@QEAA@XZ
+                         138 ??1GADeepProcessingStrategy@@UEAA@XZ
+                          35 ??0GADeepProcessingStrategy@@QEAA@XZ
+                         354 ?GetDocParams@GADoc@@QEAAAEAVGADocParams@@XZ
+                         417 ?GetVersion@GADoc@@QEBAXAEAJ0@Z
+                         421 ?GetWriteInlineImageLengthKey@GADocParams@@QEBA?AW4WriteInlineImageLengthKey@1@XZ
+                         398 ?GetLength@GADict@@QEBAJXZ
+                         26D ?Accept@GAObject@@QEAAXAEAVGAVisitor@@AEAVGAProcessingStrategy@@@Z
+                          18 ??0GAArray@@QEAA@AEBV0@@Z
+                         303 ?GStringFromName@GAObjectSupport@@SAXAEBVGBuffer@@AEAVGString@@@Z
+                         4D1 ?RegisterClone@GAShallowCloneReplaceStrategy@@UEAAXAEBVGAObject@@0@Z
+                         330 ?GetClone@GAShallowCloneReplaceStrategy@@UEAA_NAEBVGAObject@@AEAV2@@Z
+                         57D ?UnregisterClone@GAShallowCloneReplaceStrategy@@UEAAXAEBVGAObject@@@Z
+                         3EF ?GetReplacement@GAShallowCloneReplaceStrategy@@UEAA?AVGAObject@@AEBV2@@Z
+                         3F0 ?GetReplacement@GAShallowCloneReplaceStrategy@@UEAA?AVGAObject@@AEBVGName@@AEBV2@@Z
+                         339 ?GetCloneAction@GAShallowCloneReplaceStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGAObject@@@Z
+                         33A ?GetCloneAction@GAShallowCloneReplaceStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGName@@AEBVGAObject@@@Z
+                         176 ??1GAShallowCloneReplaceStrategy@@UEAA@XZ
+                          E8 ??0GAShallowCloneReplaceStrategy@@QEAA@AEAV?$GDict@VGAObjectProxy@@V1@@@@Z
+                         1EA ??4GAObjectProxy@@QEAAAEAV0@AEBV0@@Z
+                         21D ??BGAObjectProxy@@QEBA?BVGAObject@@XZ
+                          BF ??0GAObjectProxy@@QEAA@AEBV0@@Z
+                         335 ?GetCloneAction@GADeepCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGAObject@@@Z
+                         336 ?GetCloneAction@GADeepCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGName@@AEBVGAObject@@@Z
+                         3F1 ?GetReplacement@GAShallowCloneStrategy@@UEAA?AVGAObject@@AEBV2@@Z
+                         3F2 ?GetReplacement@GAShallowCloneStrategy@@UEAA?AVGAObject@@AEBVGName@@AEBV2@@Z
+                         33B ?GetCloneAction@GAShallowCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGAObject@@@Z
+                         33C ?GetCloneAction@GAShallowCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGName@@AEBVGAObject@@@Z
+                         4A0 ?NewStartpoint@GACloneStrategy@@QEAAXXZ
+                          75 ??0GAException@@QEAA@$$QEAV0@@Z
+                          76 ??0GAException@@QEAA@AEBV0@@Z
+                         14E ??1GAException@@UEAA@XZ
+                         34C ?GetDict@GAArray@@QEBA?AVGADict@@J@Z
+                         1E7 ??4GAObjectCache@@QEAAAEAV0@AEBV0@@Z
+                         328 ?GetCachingMode@GAObjectCache@@IEBA_NXZ
+                         162 ??1GAObjectCache@@UEAA@XZ
+                          B4 ??0GAObjectCache@@QEAA@AEBV0@@Z
+                          B5 ??0GAObjectCache@@QEAA@AEBVGADoc@@@Z
+                         4E2 ?ResetPermissionsCache@GADoc@@QEAAXXZ
+                         329 ?GetCatalog@GADoc@@QEBA?AVGADict@@XZ
+                         4DF ?Reparse@GAObject@@QEAAXXZ
+                         4E1 ?Reset@GAObject@@QEAAXXZ
+                         280 ?ArrayToMatrix@GAObjectSupport@@SAXAEBVGAArray@@AEAV?$GMatrixBase@N@@@Z
+                         1CE ??4GAExceptionHandler@@QEAAAEAV0@AEBV0@@Z
+                          79 ??0GAExceptionHandler@@QEAA@AEBV0@@Z
+                          7A ??0GAExceptionHandler@@QEAA@XZ
+                         14F ??1GAExceptionHandler@@UEAA@XZ
+                         285 ?Authorize@GADoc@@QEAAXAEBVGBuffer@@@Z
+
+    XMPLibCore.dll
+             180161090 Import Address Table
+             180212718 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          26 WXMPMeta_GetNamespaceURI_1
+                          29 WXMPMeta_GetProperty_1
+                          21 WXMPMeta_GetArrayItem_1
+                          30 WXMPMeta_GetStructField_1
+                          2F WXMPMeta_GetQualifier_1
+                          3F WXMPMeta_SetProperty_1
+                          38 WXMPMeta_SetArrayItem_1
+                           F WXMPMeta_AppendArrayItem_1
+                          46 WXMPMeta_SetStructField_1
+                          45 WXMPMeta_SetQualifier_1
+                          17 WXMPMeta_DeleteProperty_1
+                          14 WXMPMeta_DeleteArrayItem_1
+                          19 WXMPMeta_DeleteStructField_1
+                          18 WXMPMeta_DeleteQualifier_1
+                          1B WXMPMeta_DoesPropertyExist_1
+                          1A WXMPMeta_DoesArrayItemExist_1
+                          1D WXMPMeta_DoesStructFieldExist_1
+                          1C WXMPMeta_DoesQualifierExist_1
+                          24 WXMPMeta_GetLocalizedText_1
+                          3C WXMPMeta_SetLocalizedText_1
+                          15 WXMPMeta_DeleteLocalizedText_1
+                          2A WXMPMeta_GetProperty_Bool_1
+                          2E WXMPMeta_GetProperty_Int_1
+                          2D WXMPMeta_GetProperty_Int64_1
+                          25 WXMPMeta_GetNamespacePrefix_1
+                          2B WXMPMeta_GetProperty_Date_1
+                          40 WXMPMeta_SetProperty_Bool_1
+                          44 WXMPMeta_SetProperty_Int_1
+                          43 WXMPMeta_SetProperty_Int64_1
+                          42 WXMPMeta_SetProperty_Float_1
+                          41 WXMPMeta_SetProperty_Date_1
+                          27 WXMPMeta_GetObjectName_1
+                          3D WXMPMeta_SetObjectName_1
+                          28 WXMPMeta_GetObjectOptions_1
+                          3B WXMPMeta_SetGlobalOptions_1
+                          47 WXMPMeta_Sort_1
+                          20 WXMPMeta_Erase_1
+                          11 WXMPMeta_Clone_1
+                          12 WXMPMeta_CountArrayItems_1
+                          1F WXMPMeta_DumpObject_1
+                          34 WXMPMeta_ParseFromBuffer_1
+                          37 WXMPMeta_SerializeToBuffer_1
+                          39 WXMPMeta_SetDefaultErrorCallback_1
+                          3A WXMPMeta_SetErrorCallback_1
+                          36 WXMPMeta_ResetErrorCallbackLimit_1
+                          4D WXMPUtils_ComposeArrayItemPath_1
+                          22 WXMPMeta_GetGlobalOptions_1
+                          13 WXMPMeta_DecrementRefCount_1
+                          32 WXMPMeta_IncrementRefCount_1
+                          35 WXMPMeta_RegisterNamespace_1
+                          2C WXMPMeta_GetProperty_Float_1
+                          5E WXMPUtils_CurrentDateTime_1
+                          10 WXMPMeta_CTor_1
+                          48 WXMPMeta_Terminate_1
+                          33 WXMPMeta_Initialize_1
+                          31 WXMPMeta_GetVersionInfo_1
+                           D WXMPIterator_Skip_1
+                           B WXMPIterator_Next_1
+                           9 WXMPIterator_DecrementRefCount_1
+                           A WXMPIterator_IncrementRefCount_1
+                           E WXMPIterator_TableCTor_1
+                           C WXMPIterator_PropCTor_1
+                          1E WXMPMeta_DumpNamespaces_1
+                          3E WXMPMeta_SetObjectOptions_1
+                          16 WXMPMeta_DeleteNamespace_1
+
+    EncryptionLayer.dll
+             18015FBD0 Import Address Table
+             180211258 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          98 ?IsValid@GPKCS7@@QEBA_NXZ
+                          16 ??0GPKCS7@@QEAA@AEAVGInStream@@AEBVGBuffer@@@Z
+                          33 ??1GPKCS12@@QEAA@XZ
+                          8D ?GetPrivateKey@GPKCS12@@QEBAAEBVGPrivateKey@@XZ
+                          8E ?GetSignerCertificate@GPKCS12@@QEBAAEBVGX509Certificate@@XZ
+                          14 ??0GPKCS12@@QEAA@AEBVGPathName@@AEBVGBuffer@@@Z
+                          9E ?cSHA1@HashingFunctions@GPKCS7@@2VGBuffer@@B
+                          34 ??1GPKCS7@@QEAA@XZ
+                          79 ?GetBytes@GPKCS7@@QEBAAEBVGBuffer@@XZ
+                          17 ??0GPKCS7@@QEAA@AEAVGInStream@@AEBVGBuffer@@AEBVGPrivateKey@@AEBVGX509Certificate@@AEBV?$GTable@VGX509Certificate@@@@@Z
+                          38 ??1GX509Certificate@@QEAA@XZ
+                          7C ?GetCredentials@GX509Certificate@@QEBAAEBVGCredentials@@XZ
+                          7A ?GetCommonName@GCredentials@@QEBAAEBVGString@@XZ
+                          78 ?Finalize@GEncryptionLayer@@SAXXZ
+                          93 ?Initialize@GEncryptionLayer@@SA_NXZ
+
+    JPXSupportLayer.dll
+             180160460 Import Address Table
+             180211AE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          31 ?GetICCProfileData@GJPXImageInfo@@QEBAAEBVGBuffer@@XZ
+                          3A ?Initialize@GJPXSupportLayer@@SA_NXZ
+                          16 ??1GJPXImageInfo@@QEAA@XZ
+                          2C ?Finalize@GJPXSupportLayer@@SAXXZ
+                          30 ?GetColourSpaceType@GJPXImageInfo@@QEBA?AW4ColourSpace@GJPXEnums@@XZ
+
+    JPEGSupportLayer.dll
+             180160440 Import Address Table
+             180211AC8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1F ?sEnoughData@GDCTDecode@@2_NA
+                          12 ?Finalize@GJPEGSupportLayer@@SAXXZ
+                          18 ?Initialize@GJPEGSupportLayer@@SA_NXZ
+
+    libxmlSupportLayer.dll
+             180161438 Import Address Table
+             180212AC0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          32 ?SaveToBuffer@GlxDoc@@QEBAXAEAVGBuffer@@@Z
+                           7 ??0GlxNoStdErr@@QEAA@XZ
+                           E ??1GlxNoStdErr@@QEAA@XZ
+                          1E ?CopyAndAddRoot@GlxDoc@@QEAA?AVGlxNode@@AEBV2@@Z
+                          1C ?AddRoot@GlxDoc@@QEAA?AVGlxNode@@AEBVGBuffer@@@Z
+                          29 ?GetRoot@GlxDoc@@QEBA?AVGlxNode@@XZ
+                           C ??1GlxDoc@@QEAA@XZ
+                           0 ??0GlxDoc@@QEAA@AEBVGBuffer@@@Z
+                           1 ??0GlxDoc@@QEAA@AEBVGPathName@@@Z
+                           2 ??0GlxDoc@@QEAA@XZ
+                          33 ?SetContent@GlxNode@@QEAAXAEBVGBuffer@@@Z
+                          31 ?Save@GlxDoc@@QEBAXAEBVGPathName@@_N@Z
+                          35 ?SetProperty@GlxNode@@QEAAXAEBVGBuffer@@0@Z
+                          28 ?GetProperty@GlxNode@@QEBA_NAEBVGBuffer@@AEAV2@@Z
+                          1D ?CopyAndAddChild@GlxNode@@QEAA?AV1@AEBV1@@Z
+                          1B ?AddChild@GlxNode@@QEAA?AV1@AEBVGBuffer@@@Z
+                          27 ?GetNext@GlxNode@@QEBA?AV1@XZ
+                          23 ?GetFirstChild@GlxNode@@QEBA?AV1@XZ
+                          25 ?GetName@GlxNode@@QEBAXAEAVGBuffer@@@Z
+                          2F ?IsValid@GlxNode@@QEBA_NXZ
+                           9 ??0GlxNode@@QEAA@XZ
+                          21 ?Finalize@GlxLibxmlSupportLayer@@SAXXZ
+                          2C ?Initialize@GlxLibxmlSupportLayer@@SAXXZ
+                          22 ?GetContent@GlxNode@@QEBAXAEAVGBuffer@@@Z
+
+    MD5SupportLayer.dll
+             180160530 Import Address Table
+             180211BB8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           9 ?Finalize@GMD5SupportLayer@@SAXXZ
+                           A ?Initialize@GMD5SupportLayer@@SA_NXZ
+
+    ImageSupportLayer.dll
+             180160410 Import Address Table
+             180211A98 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          15 ??0GImageBitExpander@@QEAA@PEAVGInStream@@AEBV?$GSizeBase@J@@JJ@Z
+                          CE ?CreateClone@GImageBitExpander@@UEBAPEAVGInStream@@XZ
+                         13E ?Reset@GImageBitExpander@@UEAAXXZ
+                         11A ?Read@GImageBitExpander@@UEAAJAEAVGBuffer@@J@Z
+                          65 ??1GImageBitExpander@@UEAA@XZ
+
+    BasicFrameworkCoreLayer.dll
+             18015F000 Import Address Table
+             180210688 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         820 ?IsInfinite@?$GRectBase@N@@QEBA_NXZ
+                         984 ?SetDecode@GSampledFunction@@QEAAXAEBV?$GTable@N@@@Z
+                         9EA ?SetOrder@GSampledFunction@@QEAAXJ@Z
+                         6FE ?GetOrder@GSampledFunction@@QEBAJXZ
+                         9FE ?SetSamples@GSampledFunction@@QEAAXAEBV?$GTable@N@@AEBV?$GTable@J@@0@Z
+                         73D ?GetSamples@GSampledFunction@@QEBAAEBV?$GTable@N@@XZ
+                         73C ?GetSampleRange@GSampledFunction@@QEBAAEBV?$GTable@N@@XZ
+                         9E6 ?SetNumberOfSamplesPerInputDimension@GSampledFunction@@QEAAXAEBV?$GTable@J@@@Z
+                         5F2 ?GetDecodedSample@GSampledFunction@@QEBAXAEBV?$GTable@N@@AEAV2@@Z
+                         60C ?GetEncode@GSampledFunction@@QEBAAEBV?$GTable@N@@XZ
+                         5F1 ?GetDecode@GSampledFunction@@QEBAAEBV?$GTable@N@@XZ
+                         20F ??1GSampledFunction@@UEAA@XZ
+                         13C ??0GSampledFunction@@QEAA@AEBV0@@Z
+                         6F0 ?GetNumberOfInputValues@GSampledFunction@@UEBAJXZ
+                         6F3 ?GetNumberOfOutputValues@GSampledFunction@@UEBAJXZ
+                         663 ?GetInstance@GAllocator@@SAAEAV1@XZ
+                         43D ?Alloc@GAllocator@@QEAAPEAX_K@Z
+                         579 ?Free@GAllocator@@QEAAXPEAX_K@Z
+                         23D ??3GFastAllocatable@@SAXPEAX_K@Z
+                          54 ??0GBuffer@@QEAA@PEBD@Z
+                         1BD ??1GBuffer@@QEAA@XZ
+                          50 ??0GBuffer@@QEAA@J@Z
+                          52 ??0GBuffer@@QEAA@N@Z
+                         38E ??YGBuffer@@QEAAAEAV0@E@Z
+                         322 ??8@YA_NAEBVGBuffer@@0@Z
+                         661 ?GetInstance@GASCIIEncoding@@SAPEAV1@XZ
+                         16A ??0GString@@QEAA@XZ
+                         160 ??0GString@@QEAA@AEBVGBuffer@@PEBVGEncoding@@_N@Z
+                         21A ??1GString@@QEAA@XZ
+                         488 ?Clear@GString@@QEAAXXZ
+                         961 ?Set@GString@@QEAAXAEBVGBuffer@@PEBVGEncoding@@_N@Z
+                         67B ?GetInt32@GString@@QEBAJXZ
+                         728 ?GetReal@GString@@QEBANXZ
+                         973 ?SetBuffer@GName@@QEAAXAEBVGBuffer@@@Z
+                           4 ??0?$GMatrixBase@N@@QEAA@AEBVGString@@@Z
+                         92B ?Set@?$GMatrixBase@N@@QEAAXNNNNNN@Z
+                         A90 ?ToString@?$GMatrixBase@N@@QEBAXAEAVGString@@@Z
+                          2E ??0?$GSizeBase@N@@QEAA@AEBVGString@@@Z
+                         A99 ?ToString@?$GSizeBase@N@@QEBAXAEAVGString@@@Z
+                          12 ??0?$GPointBase@N@@QEAA@AEBVGString@@@Z
+                         A93 ?ToString@?$GPointBase@N@@QEBAXAEAVGString@@@Z
+                          25 ??0?$GRectBase@N@@QEAA@AEBVGString@@@Z
+                         47E ?Clear@?$GRectBase@N@@QEAAXXZ
+                         93A ?Set@?$GRectBase@N@@QEAAXNNNN@Z
+                         A96 ?ToString@?$GRectBase@N@@QEBAXAEAVGString@@@Z
+                         99D ?SetFromPDFDateTime@GDateTime@@QEAAJAEBVGBuffer@@@Z
+                         5A9 ?GetAsPDFDateTime@GDateTime@@QEBAXAEAVGBuffer@@@Z
+                         95D ?Set@GRange@@QEAAJAEBVGString@@@Z
+                         A9B ?ToString@GRange@@QEBAXAEAVGString@@J@Z
+                         20E ??1GRefCount@@UEAA@XZ
+                         40E ?Acquire@GRefCount@@QEBAXXZ
+                         8D1 ?Release@GRefCount@@QEBAXXZ
+                         72D ?GetRefCount@GRefCount@@QEBAJXZ
+                         23A ??2GFastAllocatable@@SAPEAX_K@Z
+                         23C ??3GFastAllocatable@@SAXPEAX0@Z
+                          4F ??0GBuffer@@QEAA@AEBV0@@Z
+                          4E ??0GBuffer@@QEAA@$$QEAV0@@Z
+                         9C9 ?SetLength@GBuffer@@QEAAXJ@Z
+                         71C ?GetPtr@GBuffer@@QEBAPEBEXZ
+                         8F0 ?Replace@GBuffer@@QEAAXJJAEBV1@@Z
+                         55D ?FindLastOccurrence@GBuffer@@QEBAJEJ@Z
+                         266 ??4GBuffer@@QEAAAEAV0@$$QEAV0@@Z
+                         38C ??YGBuffer@@QEAAAEAV0@AEBV0@@Z
+                         36A ??H@YA?AVGBuffer@@AEBV0@0@Z
+                         371 ??M@YA_NAEBVGBuffer@@0@Z
+                         10F ??0GName@@QEAA@PEBD@Z
+                         122 ??0GPathName@@QEAA@XZ
+                         1FF ??1GPathName@@UEAA@XZ
+                         813 ?IsEmpty@GPathName@@QEBA_NXZ
+                         485 ?Clear@GPathName@@QEAAXXZ
+                         11F ??0GPathName@@QEAA@AEBV0@@Z
+                         88F ?PostConcat@?$GMatrixBase@N@@QEAAXAEBV1@@Z
+                         7F6 ?Invert@?$GMatrixBase@N@@QEAAXXZ
+                         65F ?GetHypoLength@?$GSizeBase@N@@QEBANXZ
+                         AAD ?Transform@?$GSizeBase@N@@QEAAAEAV1@AEBV?$GMatrixBase@N@@@Z
+                          26 ??0?$GRectBase@N@@QEAA@NNNN@Z
+                         214 ??1GSignalBase@@UEAA@XZ
+                         14F ??0GSignalBase@@IEAA@J@Z
+                         8D0 ?RegisterSignal@GSignalBase@@KAXPEAV1@@Z
+                         745 ?GetSignal@GSignalBase@@KAPEAV1@J@Z
+                          8E ??0GDateTime@@QEAA@_N@Z
+                         629 ?GetFromUserID@GFileType@@SAPEBV1@J@Z
+                         53B ?FileExists@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         4FA ?CreateFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEAVGPathName@@PEBVGFileType@@_N@Z
+                         8DB ?RemoveFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         9EC ?SetPermissions@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEBVGPathName@@J_N11@Z
+                         12F ??0GProgress@@QEAA@N@Z
+                         209 ??1GProgress@@QEAA@XZ
+                         B1D ?cEmptyBuffer@GBuffer@@2V1@B
+                          13 ??0?$GPointBase@N@@QEAA@NN@Z
+                         446 ?AppendLineTo@GOutline@@QEAAXAEBV?$GPointBase@N@@@Z
+                         9E1 ?SetMoveTo@GOutline@@QEAAXAEBV?$GPointBase@N@@@Z
+                         116 ??0GOutline@@QEAA@XZ
+                         1FB ??1GOutline@@QEAA@XZ
+                         115 ??0GOutline@@QEAA@AEBV0@@Z
+                          14 ??0?$GPointBase@N@@QEAA@XZ
+                         1AF ??1?$GSubjectT@$$V@@UEAA@XZ
+                         238 ??1ScopeGuardImplBase@@IEAA@XZ
+                         1A6 ??0ScopeGuardImplBase@@IEAA@XZ
+                         15E ??0GString@@QEAA@AEBV0@@Z
+                         711 ?GetPrecision@GLocalPrecisionSetter@@SANXZ
+                         712 ?GetPrecisionType@GLocalPrecisionSetter@@SA?AW4PrecisionType@1@XZ
+                         452 ?AreEqual@GMathLib@@YA_NNNNW4PrecisionType@GLocalPrecisionSetter@@@Z
+                         1D1 ??1GDelayedMessageBase@@UEAA@XZ
+                          9C ??0GDelayedMessageBase@@QEAA@XZ
+                         85C ?MarkConsolidatePending@GSignalBase@@IEAAXXZ
+                         89C ?QueueDelayedSignal@GSignalBase@@KAXPEAVGDelayedMessageBase@@@Z
+                         753 ?GetString@GStringPool@@SAAEBVGString@@J@Z
+                         436 ?AddStringPoolData@GStringPoolSupport@@SAXAEBVGBuffer@@PEBDPEAUGStringPoolDataStruct@@J_N@Z
+                         267 ??4GBuffer@@QEAAAEAV0@AEBV0@@Z
+                         5A1 ?GetAllocation@GDictUtil@@YAJJ@Z
+                         1DA ??1GExceptionHandler@@UEAA@XZ
+                          B2 ??0GExceptionHandler@@QEAA@XZ
+                          B1 ??0GExceptionHandler@@QEAA@AEBV0@@Z
+                         297 ??4GExceptionHandler@@QEAAAEAV0@AEBV0@@Z
+                         139 ??0GRefCount@@QEAA@XZ
+                         482 ?Clear@GBuffer@@QEAAXXZ
+                         2B2 ??4GLngString@@QEAAAEAV0@AEBV0@@Z
+                          AD ??0GException@@QEAA@AEBV0@@Z
+                         6A7 ?GetLngDescription@GException@@UEBA?BVGLngString@@XZ
+                         6AB ?GetLngFullDescription@GException@@UEBA?BVGLngString@@XZ
+                         615 ?GetExceptionID@GException@@UEBAJXZ
+                         450 ?AreEqual@GMathLib@@YA_NNNNNNNNW4PrecisionType@GLocalPrecisionSetter@@@Z
+                          27 ??0?$GRectBase@N@@QEAA@XZ
+                         415 ?Add@?$GRectBase@N@@QEAAXAEBV1@@Z
+                         AA7 ?Transform@?$GPointBase@N@@QEAAAEAV1@AEBV?$GMatrixBase@N@@@Z
+                         7F1 ?Intersects@?$GRectBase@N@@QEBA_NAEBV1@@Z
+                         4A9 ?Contains@?$GRectBase@N@@QEBA_NAEBV1@@Z
+                         7E5 ?Intersect@?$GRectBase@N@@QEAAXAEBV1@@Z
+                         646 ?GetHash@GBuffer@@QEBAKXZ
+                         339 ??9@YA_NAEBVGBuffer@@0@Z
+                         A71 ?SubstituteParams@GString@@QEAAAEAV1@AEBV1@@Z
+                         2EB ??4GString@@QEAAAEAV0@AEBV0@@Z
+                         755 ?GetString@GStringPool@@SA_NJAEAVGString@@@Z
+                         890 ?PreConcat@?$GMatrixBase@N@@QEAAXAEBV1@@Z
+                         1C3 ??1GCharCode@@QEAA@XZ
+                         26F ??4GCharCode@@QEAAAEAV0@AEBV0@@Z
+                         34E ??BGCharCode@@QEBAKXZ
+                         681 ?GetInverse@?$GMatrixBase@N@@QEBA?AV1@XZ
+                         317 ??8?$GMatrixBase@N@@QEBA_NAEBV0@@Z
+                         43E ?Allocate@GBuffer@@QEAAXJ@Z
+                         75A ?GetSubBuffer@GBuffer@@QEBA?AV1@JJ@Z
+                         390 ??YGBuffer@@QEAAAEAV0@PEBD@Z
+                         725 ?GetReal@GBuffer@@QEBANXZ
+                         A77 ?Swap@GBuffer@@QEAAXAEAV1@@Z
+                         8C1 ?RealToBuffer@GBufferSupport@@SAXNAEAVGBuffer@@_N@Z
+                         104 ??0GMemoryInStream@@QEAA@AEBVGBuffer@@@Z
+                         105 ??0GMemoryInStream@@QEAA@PEAVGBuffer@@@Z
+                         1F6 ??1GMemoryInStream@@UEAA@XZ
+                          F8 ??0GLocalPrecisionSetter@@QEAA@N@Z
+                         1F0 ??1GLocalPrecisionSetter@@QEAA@XZ
+                         96B ?SetA@?$GMatrixBase@N@@QEAAXN@Z
+                         972 ?SetB@?$GMatrixBase@N@@QEAAXN@Z
+                         975 ?SetC@?$GMatrixBase@N@@QEAAXN@Z
+                         981 ?SetD@?$GMatrixBase@N@@QEAAXN@Z
+                         A08 ?SetTX@?$GMatrixBase@N@@QEAAXN@Z
+                         A09 ?SetTY@?$GMatrixBase@N@@QEAAXN@Z
+                         32E ??9?$GMatrixBase@N@@QEBA_NAEBV0@@Z
+                         31A ??8?$GPointBase@N@@QEBA_NAEBV0@@Z
+                          E2 ??0GInStreamConnector@@QEAA@$$QEAV?$GAutoTable@VGInStream@@@@@Z
+                         1EA ??1GInStreamConnector@@UEAA@XZ
+                         A40 ?Skip@GInStream@@UEAA_J_J@Z
+                         4F5 ?CreateClone@GInStreamConnector@@UEBAPEAVGInStream@@XZ
+                         8A7 ?Read@GInStreamConnector@@UEAAJAEAVGBuffer@@J@Z
+                         903 ?Reset@GInStreamConnector@@UEAAXXZ
+                         4F6 ?CreateClone@GMemoryInStream@@UEBAPEAVGInStream@@XZ
+                         904 ?Reset@GMemoryInStream@@UEAAXXZ
+                         A41 ?Skip@GMemoryInStream@@UEAA_J_J@Z
+                         8A8 ?Read@GMemoryInStream@@UEAAJAEAVGBuffer@@J@Z
+                         ADE ?Unread@GMemoryInStream@@UEAAJJ@Z
+                         9FB ?SetRollBackPoint@GMemoryInStream@@UEAAXXZ
+                         913 ?RollBack@GMemoryInStream@@UEAAJXZ
+                         8D5 ?Remove@GBuffer@@QEAAXJJ@Z
+                         331 ??9?$GPointBase@N@@QEBA_NAEBV0@@Z
+                         796 ?GetWidth@?$GRectBase@N@@QEBANXZ
+                         64F ?GetHeight@?$GRectBase@N@@QEBANXZ
+                         AC1 ?TrimMemoryUsage@GOutline@@QEAAXXZ
+                         117 ??0GOutlineIterator@@QEAA@AEBVGOutline@@@Z
+                         877 ?Next@GOutlineIterator@@QEAA_NXZ
+                         6FD ?GetOperator@GOutlineIterator@@QEBAEXZ
+                         70C ?GetPoint@GOutlineIterator@@QEBAAEBV?$GPointBase@N@@XZ
+                         70D ?GetPoints@GOutlineIterator@@QEBAXAEAV?$GPointBase@N@@00@Z
+                         70E ?GetPoints@GOutlineIterator@@QEBAXAEAV?$GPointBase@N@@0@Z
+                         729 ?GetRect@GOutlineIterator@@QEBAAEBV?$GRectBase@N@@XZ
+                           5 ??0?$GMatrixBase@N@@QEAA@HN@Z
+                         43A ?AdjustMatrixToKeepCornerFixed@GPositionSupport@@SA?AV?$GMatrixBase@N@@AEBV2@AEBV?$GRectBase@N@@W4Position@1@@Z
+                         62A ?GetFullDescription@GException@@QEBA?BVGString@@XZ
+                         7B2 ?Handle@GExceptionHandler@@UEBAXXZ
+                          56 ??0GBuffer@@QEAA@XZ
+                         329 ??8@YA_NAEBVGString@@0@Z
+                         38F ??YGBuffer@@QEAAAEAV0@G@Z
+                         379 ??O@YA_NAEBVGBuffer@@0@Z
+                         375 ??N@YA_NAEBVGBuffer@@0@Z
+                         166 ??0GString@@QEAA@PEBD@Z
+                         15F ??0GString@@QEAA@AEBVGBuffer@@@Z
+                         15C ??0GString@@QEAA@$$QEAV0@@Z
+                         814 ?IsEmpty@GString@@QEBA_NXZ
+                         5B6 ?GetBuffer@GString@@QEBAJAEAVGBuffer@@PEBVGEncoding@@@Z
+                         345 ??AGString@@QEBAGJ@Z
+                         8F2 ?Replace@GString@@QEAA_NJAEBV1@0@Z
+                         552 ?FindFirst@GString@@QEBAJGJ@Z
+                         2EA ??4GString@@QEAAAEAV0@$$QEAV0@@Z
+                         393 ??YGString@@QEAAAEAV0@AEBV0@@Z
+                         340 ??9@YA_NAEBVGString@@0@Z
+                         531 ?EnsureUnicode@GString@@QEBAXXZ
+                         2C4 ??4GPathName@@QEAAAEAV0@AEBV0@@Z
+                         A64 ?StripLeadingWhiteSpace@GStringSupport@@YAAEAVGString@@AEAV2@@Z
+                         A66 ?StripTrailingWhiteSpace@GStringSupport@@YAAEAVGString@@AEAV2@@Z
+                         1AC ??1?$GObserverT@$$V@@UEAA@XZ
+                           B ??0?$GObserverT@$$V@@QEAA@XZ
+                         7FF ?IsAttached@?$GSubjectT@$$V@@QEBA_NPEAV?$GObserverT@$$V@@@Z
+                          8D ??0GDateTime@@QEAA@JJJ_N@Z
+                         496 ?CompareWith@GDateTime@@QEBAJAEBV1@@Z
+                         ADF ?Update@?$GObserverT@$$V@@UEAAXPEAV?$GSubjectT@$$V@@@Z
+                         B20 ?cEmptyString@GString@@2V1@B
+                         674 ?GetInstance@GUTF8Encoding@@SAPEAV1@XZ
+                         5B5 ?GetBuffer@GString@@QEBA?AVGBuffer@@PEBVGEncoding@@@Z
+                         1D9 ??1GExceptionContext@@UEAA@XZ
+                          B0 ??0GExceptionContext@@QEAA@XZ
+                         1DB ??1GExceptionLocation@@QEAA@XZ
+                          F5 ??0GLngString@@QEAA@AEBVGString@@@Z
+                         B44 ?sContextStack@GExceptionLocation@@1V?$GTable@PEAVGExceptionContext@@@@A
+                         20D ??1GRecursionLock@@QEAA@XZ
+                         944 ?Set@GBuffer@@QEAAXPEBEJ@Z
+                         54F ?Find@GString@@QEBAJAEBV1@J@Z
+                         454 ?AssignEncoding@GStringSupport@@YA_NAEBVGBuffer@@AEAVGString@@AEBV?$GTable@PEAVGEncoding@@@@@Z
+                         453 ?AssignEncoding@GStringSupport@@YA_NAEBVGBuffer@@AEAVGString@@@Z
+                         669 ?GetInstance@GMacRomanEncoding@@SAPEAV1@XZ
+                         66A ?GetInstance@GPDFDocEncoding@@SAPEAV1@XZ
+                         670 ?GetInstance@GShiftJISEncoding@@SAPEAVGPlatformEncoding@@XZ
+                         678 ?GetInstance@GWinAnsiEncoding@@SAPEAV1@XZ
+                         684 ?GetLanguage@GStringPool@@SAXAEAVGString@@@Z
+                         74F ?GetStreamLength@GStreamSupport@@SA_KAEAVGInStream@@@Z
+                         79D ?GetWritePtr@GBuffer@@QEAAPEAEXZ
+                         75B ?GetSubBuffer@GBuffer@@QEBAXAEAV1@JJ@Z
+                         967 ?Set@GString@@QEAAXPEBDPEBVGEncoding@@_N@Z
+                         A8B ?ToLower@GString@@QEAAXXZ
+                         5B9 ?GetBuffer@GStringSupport@@YA_NAEBVGString@@AEAVGBuffer@@AEBV?$GTable@PEAVGEncoding@@@@@Z
+                          6D ??0GCharCode@@QEAA@XZ
+                         167 ??0GString@@QEAA@PEBDPEBVGEncoding@@_N@Z
+                         A8C ?ToStdString@GStdSupport@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGBuffer@@@Z
+                         6A5 ?GetLineSegmentIntersection@GMathLib@@YAJNNNNNNNNAEAN0@Z
+                         455 ?Attach@?$GSubjectT@$$V@@UEAAXPEAV?$GObserverT@$$V@@J@Z
+                         50E ?Detach@?$GSubjectT@$$V@@UEAAXPEAV?$GObserverT@$$V@@@Z
+                         AAA ?Transform@?$GRectBase@N@@QEAAAEAV1@AEBV?$GMatrixBase@N@@@Z
+                         417 ?Add@?$GRectBase@N@@QEAAXNN@Z
+                         AE0 ?Update@?$GObserverT@$$V@@UEAAXPEAV?$GSubjectT@$$V@@J@Z
+                          32 ??0?$GSubjectT@$$V@@QEAA@XZ
+                         882 ?Notify@?$GSubjectT@$$V@@IEAAXXZ
+                         27D ??4GDateTime@@QEAAAEAV0@AEBV0@@Z
+                         1E2 ??1GFunction@@UEAA@XZ
+                          CE ??0GFunction@@QEAA@XZ
+                         468 ?CanSetNumberOfOutputValues@GFunction@@UEBA_NJ@Z
+                         9E4 ?SetNumberOfOutputValues@GFunction@@UEAA_NJ@Z
+                         106 ??0GMemoryOutStream@@QEAA@AEAVGBuffer@@@Z
+                         1F7 ??1GMemoryOutStream@@UEAA@XZ
+                          44 ??0GBitReader@@QEAA@AEAVGInStream@@@Z
+                         8B5 ?ReadNBits@GBitReader@@QEAA_NKAEAK@Z
+                         1B8 ??1GBitReader@@QEAA@XZ
+                          46 ??0GBitWriter@@QEAA@AEAVGOutStream@@@Z
+                         1B9 ??1GBitWriter@@QEAA@XZ
+                         B0D ?WriteNBits@GBitWriter@@QEAAXKK@Z
+                         13F ??0GSampledFunction@@QEAA@XZ
+                         700 ?GetOutputValues@GSampledFunction@@UEBAXAEBV?$GTable@N@@AEAV2@@Z
+                         607 ?GetDomain@GSampledFunction@@UEBAAEBV?$GTable@N@@XZ
+                         71F ?GetRange@GSampledFunction@@UEBA?AV?$GTable@N@@XZ
+                         6F6 ?GetNumberOfSamplesPerInputDimension@GSampledFunction@@QEBAAEBV?$GTable@J@@XZ
+                         9F5 ?SetRange@GSampledFunction@@QEAAXAEBV?$GTable@N@@@Z
+                         990 ?SetDomain@GSampledFunction@@QEAAXAEBV?$GTable@N@@@Z
+                         6E1 ?GetNrDomainElements@GSampledFunction@@UEBAJXZ
+                         1DD ??1GFileInStream@@UEAA@XZ
+                          BF ??0GFileInStream@@QEAA@AEBVGPathName@@@Z
+                         1FE ??1GPartialInStream@@UEAA@XZ
+                         11C ??0GPartialInStream@@QEAA@AEAVGInStream@@_J1@Z
+                          E4 ??0GInStreamConnector@@QEAA@AEAV?$GTable@PEAVGInStream@@@@_N@Z
+                         A10 ?SetToHexBuffer@GHexSupport@@YAXAEBVGBuffer@@AEAV2@@Z
+                          57 ??0GBuffer@@QEAA@_J@Z
+                         5CF ?GetContent@GStreamSupport@@SAJAEAVGInStream@@AEAVGBuffer@@@Z
+                         66B ?GetInstance@GPlatformEncoding@@SAPEAV1@XZ
+                         AC0 ?TranslateUTCToLocal@GDateTime@@SAXAEAJ00000JJJ@Z
+                          8B ??0GDateTime@@QEAA@JJJJJJJJJ@Z
+                         881 ?Notify@?$GSubjectT@$$V@@IEAAXJ@Z
+                         558 ?FindFirstOccurrence@GBuffer@@QEBAJEJ@Z
+                         A87 ?ToGBuffer@GStdSupport@@YA?AVGBuffer@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         461 ?BufferTableToSeparatedBuffer@GBufferSupport@@SAXAEBV?$GTable@VGBuffer@@@@AEBVGBuffer@@AEAV3@@Z
+                         926 ?SeparatedBufferToBufferTable@GBufferSupport@@SAXAEBVGBuffer@@AEBV?$GTable@E@@AEAV?$GTable@VGBuffer@@@@_N@Z
+                         563 ?FindSubBuffer@GBuffer@@QEBAJAEBV1@J_N@Z
+                         268 ??4GBuffer@@QEAAAEAV0@PEBD@Z
+                         585 ?Get@GCharCode@@QEBAXAEAVGBuffer@@@Z
+                         675 ?GetInstance@GUnicodeEncoding@@SAPEAV1@XZ
+                         467 ?CanInvert@?$GMatrixBase@N@@QEBA_NXZ
+                         A70 ?SubstituteParams@GString@@QEAAAEAV1@AEBV1@0@Z
+                         83E ?IsRectOnPolyEdge@GMathLib@@YA_NPEBNJNNNN@Z
+                         484 ?Clear@GOutline@@QEAAXXZ
+                         449 ?AppendRect@GOutline@@QEAAXAEBV?$GPointBase@N@@AEBV?$GSizeBase@N@@@Z
+                         447 ?AppendMoveTo@GOutline@@QEAAXAEBV?$GPointBase@N@@@Z
+                         8C5 ?RectToPoints@GOutline@@SAXAEBV?$GRectBase@N@@AEAV?$GTable@V?$GPointBase@N@@@@@Z
+                          24 ??0?$GRectBase@N@@QEAA@AEBV?$GPointBase@N@@AEBV?$GSizeBase@N@@@Z
+                         464 ?CalcBezierDeriv@GMathLib@@YAXNNNNNNNNNAEAN0@Z
+                         887 ?Open@GOutline@@QEAAXXZ
+                         808 ?IsClosed@GOutline@@QEBA_NXZ
+                         48A ?Close@GOutline@@QEAAXXZ
+                         5DD ?GetCurrentPoint@GOutline@@QEBAXAEAV?$GPointBase@N@@@Z
+                         74C ?GetStartPoint@GOutline@@QEBAXAEAV?$GPointBase@N@@@Z
+                         6E7 ?GetNumNodes@GOutline@@QEBAJXZ
+                         9F7 ?SetRect@GOutline@@QEAAXAEBV?$GRectBase@N@@@Z
+                         9F6 ?SetRect@GOutline@@QEAAXAEBV?$GPointBase@N@@AEBV?$GSizeBase@N@@@Z
+                         44C ?AppendYBezier@GOutline@@QEAAXAEBV?$GPointBase@N@@0@Z
+                         44B ?AppendVBezier@GOutline@@QEAAXAEBV?$GPointBase@N@@0@Z
+                         444 ?AppendBezier@GOutline@@QEAAXAEBV?$GPointBase@N@@00@Z
+                         94A ?Set@GCharCode@@QEAAXPEBEJ@Z
+                         698 ?GetLength@GEncoding@@UEBAJPEBE@Z
+                         87D ?Normalize@GEncoding@@UEBAXAEAVGBuffer@@@Z
+                         4C8 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGMacRomanEncoding@@AEAV2@@Z
+                         4C6 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGASCIIEncoding@@AEAV2@@Z
+                         4CA ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGWinAnsiEncoding@@AEAV2@@Z
+                         4C7 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGCustomEncoding@@AEAV2@@Z
+                         4C9 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGPDFDocEncoding@@AEAV2@@Z
+                         947 ?Set@GCharCode@@QEAAXE@Z
+                         34C ??BGCharCode@@QEBAEXZ
+                          69 ??0GCharCode@@QEAA@E@Z
+                         5A0 ?GetAllocatedLength@GBuffer@@QEBAJXZ
+                         939 ?Set@?$GRectBase@N@@QEAAXNN@Z
+                         838 ?IsPointInPoly@GMathLib@@YA_NNNPEANJ@Z
+                         A4C ?SolveSecondDegreeFunction@GMathLib@@YAJNNNAEAN0@Z
+                         9E5 ?SetNumberOfOutputValues@GShadingFunctionAdapter@@UEAA_NJ@Z
+                         469 ?CanSetNumberOfOutputValues@GShadingFunctionAdapter@@UEBA_NJ@Z
+                         720 ?GetRange@GShadingFunctionAdapter@@UEBA?AV?$GTable@N@@XZ
+                         608 ?GetDomain@GShadingFunctionAdapter@@UEBAAEBV?$GTable@N@@XZ
+                         6E5 ?GetNrRangeElements@GShadingFunctionAdapter@@UEBAJXZ
+                         6E2 ?GetNrDomainElements@GShadingFunctionAdapter@@UEBAJXZ
+                         6F4 ?GetNumberOfOutputValues@GShadingFunctionAdapter@@UEBAJXZ
+                         6F1 ?GetNumberOfInputValues@GShadingFunctionAdapter@@UEBAJXZ
+                         701 ?GetOutputValues@GShadingFunctionAdapter@@UEBAXAEBV?$GTable@N@@AEAV2@@Z
+                         213 ??1GShadingFunctionAdapter@@UEAA@XZ
+                         14D ??0GShadingFunctionAdapter@@QEAA@AEAV?$GTable@PEAVGFunction@@@@@Z
+                         9AF ?SetInfinite@?$GRectBase@N@@QEAAXXZ
+                         221 ??1GToleranceComparator@@UEAA@XZ
+                         491 ?Compare@GToleranceComparator@@UEBA_NNN@Z
+                         17D ??0GToleranceComparator@@QEAA@W4Operator@GComparatorBase@@N@Z
+                         6E4 ?GetNrRangeElements@GSampledFunction@@UEBAJXZ
+                         749 ?GetSize@GOutlineIterator@@QEBAAEBV?$GSizeBase@N@@XZ
+                         7F4 ?Intersects@?$GRectBase@N@@QEBA_NNN@Z
+                          23 ??0?$GRectBase@N@@QEAA@AEBV?$GPointBase@N@@0@Z
+                         465 ?CalcBezierSmallArc@GMathLib@@YA_NNNNNNNAEAN000@Z
+                         529 ?Enlarge@?$GRectBase@N@@QEAAXNN@Z
+                         463 ?CalcBezierBBox@GMathLib@@YAXNNNNNNNNAEAN000@Z
+                         5E9 ?GetData@GOutline@@QEBAAEBVGBuffer@@XZ
+                         AAF ?Transform@GOutline@@QEAAAEAV1@AEBV?$GMatrixBase@N@@@Z
+                         31D ??8?$GRectBase@N@@QEBA_NAEBV0@@Z
+                         7DE ?IntToRomanNumeralUpper@GBufferSupport@@SA?AVGBuffer@@K@Z
+                         7DD ?IntToRomanNumeralLower@GBufferSupport@@SA?AVGBuffer@@K@Z
+                         541 ?Finalize@GBasicFrameworkCoreLayer@@SAXXZ
+                         7C8 ?Initialize@GBasicFrameworkCoreLayer@@SA_NXZ
+                         862 ?MatchStrings@GStringSupport@@YA_NAEBVGString@@0_N111@Z
+                         36C ??H@YA?BVGString@@AEBV0@0@Z
+                         AD0 ?UnSubscribe@?$GReceiver@VGEmptyMessage@@@@MEAAXJ@Z
+                         A8D ?ToStdString@GStdSupport@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGString@@PEBVGEncoding@@@Z
+                          16 ??0?$GReceiver@VGEmptyMessage@@@@QEAA@XZ
+                         A69 ?Subscribe@?$GReceiver@VGEmptyMessage@@@@MEAAXJ@Z
+                         1AD ??1?$GReceiver@VGEmptyMessage@@@@UEAA@XZ
+                         33F ??9@YA_NAEBVGPathName@@0@Z
+                         328 ??8@YA_NAEBVGPathName@@0@Z
+                         9E0 ?SetMoreMemoryFree@GAllocator@@QEAAX_N@Z
+                         161 ??0GString@@QEAA@J@Z
+                         679 ?GetInt32@GBuffer@@QEBAJXZ
+                         660 ?GetHypoLength@?$GSizeBase@N@@SANNN@Z
+                           6 ??0?$GMatrixBase@N@@QEAA@HNN@Z
+                         451 ?AreEqual@GMathLib@@YA_NNNNNNW4PrecisionType@GLocalPrecisionSetter@@@Z
+                         1E5 ??1GHexDecode@@UEAA@XZ
+                          D7 ??0GHexDecode@@QEAA@PEAVGInStream@@@Z
+                         4E9 ?CopyStream@GStreamSupport@@SA_JAEAVGInStream@@AEAVGOutStream@@@Z
+                         99F ?SetFromStatic@GBuffer@@QEAAXPEBDJJ@Z
+                         1E9 ??1GInStream@@UEAA@XZ
+                          E0 ??0GInStream@@QEAA@XZ
+                         2A9 ??4GInStream@@IEAAAEAV0@AEBV0@@Z
+                         991 ?SetEncode@GSampledFunction@@QEAAXAEBV?$GTable@N@@@Z
+
+    libxml.dll
+             1801613A8 Import Address Table
+             180212A30 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         3D6 xmlTextReaderConstValue
+                         3FB xmlTextReaderPrefix
+                         3F0 xmlTextReaderMoveToAttributeNo
+                         138 xmlFree
+                          D2 xmlCheckVersion
+                         531 xmlValidateNMToken
+                         3D2 xmlTextReaderConstName
+                         397 xmlSetGenericErrorFunc
+                         286 xmlParseMemory
+                         154 xmlFreeTextReader
+                         3FF xmlTextReaderRead
+                         400 xmlTextReaderReadAttributeValue
+                         3CB xmlTextReaderAttributeCount
+                         3F9 xmlTextReaderNodeType
+                         3D1 xmlTextReaderConstLocalName
+                         13C xmlFreeDoc
+                         2CE xmlReaderForMemory
+
+    MSVCP140.dll
+             180160548 Import Address Table
+             180211BD0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         28C ?_Xbad_function_call@std@@YAXXZ
+
+    VCRUNTIME140.dll
+             180161008 Import Address Table
+             180212690 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          3B memcmp
+                          3C memcpy
+                          3D memmove
+                          23 __std_terminate
+                           1 _CxxThrowException
+                          21 __std_exception_copy
+                          22 __std_exception_destroy
+                          40 strchr
+                          3E memset
+                          1B __current_exception
+                          25 __std_type_info_destroy_list
+                           8 __C_specific_handler
+                          1C __current_exception_context
+                          36 _purecall
+
+    VCRUNTIME140_1.dll
+             180161080 Import Address Table
+             180212708 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             180161320 Import Address Table
+             1802129A8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          33 _initialize_narrow_environment
+                          3F _seh_filter_dll
+                          67 terminate
+                          34 _initialize_onexit_table
+                          39 _invalid_parameter_noinfo_noreturn
+                          3C _register_onexit_function
+                          22 _execute_onexit_table
+                          1E _crt_atexit
+                          16 _cexit
+                          37 _initterm_e
+                          36 _initterm
+                          18 _configure_narrow_argv
+
+    api-ms-win-crt-utility-l1-1-0.dll
+             180161398 Import Address Table
+             180212A20 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          19 qsort
+
+    api-ms-win-crt-math-l1-1-0.dll
+             1801612C0 Import Address Table
+             180212948 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          55 atan2
+                          FE pow
+                          EA lround
+                          BE floor
+                          7C ceil
+                          DA log
+                          DB log10
+                         112 sin
+                          90 cos
+                         116 sqrt
+                          54 atan
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             180161388 Import Address Table
+             180212A10 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          10 __stdio_common_vsscanf
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1801612A0 Import Address Table
+             180212928 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          18 free
+                          19 malloc
+                           8 _callnewh
+
+    KERNEL32.dll
+             180160490 Import Address Table
+             180211B18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         2F8 GetSystemTimeAsFileTime
+                         4C2 ReleaseSRWLockExclusive
+                         125 DisableThreadLibraryCalls
+                         378 InitializeSListHead
+                         226 GetCurrentThreadId
+                         222 GetCurrentProcessId
+                         45B QueryPerformanceCounter
+                         38E IsDebuggerPresent
+                         395 IsProcessorFeaturePresent
+                         5AC TerminateProcess
+                         221 GetCurrentProcess
+                         58D SetUnhandledExceptionFilter
+                         5CE UnhandledExceptionFilter
+                         4EE RtlVirtualUnwind
+                         4E7 RtlLookupFunctionEntry
+                         4DF RtlCaptureContext
+                         59F SleepConditionVariableSRW
+                         600 WakeAllConditionVariable
+                           0 AcquireSRWLockExclusive
+
+  Summary
+
+        B000 .data
+       13000 .pdata
+       C1000 .rdata
+        5000 .reloc
+        1000 .rsrc
+      15E000 .text

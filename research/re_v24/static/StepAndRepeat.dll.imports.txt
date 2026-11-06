@@ -1,0 +1,678 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\StepAndRepeat.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    BGTypes.dll
+             180030038 Import Address Table
+             18003B8B0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         369 ??0BG_TAny@@QEAA@AEBV0@@Z
+                         D46 ??_DBG_TAny@@QEAAXXZ
+                        1522 ?BG_MostDerivedObject@BG_TThread@@UEBAPEAXXZ
+                        113D ?BG_DynamicInfo@BG_TThread@@UEBAPEAXPEBD@Z
+                         419 ??0BG_TThread@@QEAA@P6AHPEAX@Z0@Z
+                         D6B ??_DBG_TThread@@QEAAXXZ
+                        18F7 ?Lock@BG_TMutex@@QEAAAEAV1@XZ
+                        1AB6 ?Unlock@BG_TMutex@@QEAAAEAV1@XZ
+                         693 ??FBG_TMutex@@QEAAAEAV0@H@Z
+                        1881 ?HasInterface@BG_IInterface@@UEBA_NPEBD@Z
+                        1825 ?DynamicCast@BG_TObject@@QEBAPEBXPEBD@Z
+                         D69 ??_DBG_TString@@QEAAXXZ
+                         371 ??0BG_TAny@@QEAA@I@Z
+                         36A ??0BG_TAny@@QEAA@AEBVBG_IPackable@@@Z
+                         42E ??0BG_TURL@@QEAA@XZ
+                         42A ??0BG_TURL@@QEAA@AEBV0@@Z
+                         D6F ??_DBG_TURL@@QEAAXXZ
+                         370 ??0BG_TAny@@QEAA@H@Z
+                        18BD ?IsDone@BG_TConstIterator@@UEBA_NXZ
+                        1AC4 ?Value@BG_TConstIterator@@UEBAAEBVBG_TAny@@XZ
+                         D4B ??_DBG_TConstIterator@@QEAAXXZ
+                        1823 ?DynamicCast@BG_TObject@@QEAAPEAXPEBD@Z
+                         373 ??0BG_TAny@@QEAA@N@Z
+                         3A4 ??0BG_TDict@@QEAA@XZ
+                         D81 ?Add@BG_TDict@@UEAAAEAV1@PEB_W$$QEAVBG_TAny@@@Z
+                         D4F ??_DBG_TDict@@QEAAXXZ
+                         40E ??0BG_TString@@QEAA@PEBDI@Z
+                         37C ??0BG_TAny@@QEAA@_K@Z
+                         379 ??0BG_TAny@@QEAA@PEB_W@Z
+                         42D ??0BG_TURL@@QEAA@AEBVBG_TString@@@Z
+                         411 ??0BG_TString@@QEAA@PEB_WI@Z
+                        1B28 ?c_str@BG_TString@@UEBAPEBDXZ
+                        1BFF ?wc_str@BG_TString@@UEBAPEB_WXZ
+                        183C ?Extension@BG_TURL@@UEBA?AVBG_TString@@XZ
+                        18F4 ?LocalName@BG_TURL@@UEBA?AVBG_TString@@XZ
+                         37A ??0BG_TAny@@QEAA@XZ
+                         376 ??0BG_TAny@@QEAA@PEBD@Z
+                         DCC ?BG_Cast@BG_TObject@@UEBAPEAXPEBD@Z
+                        1890 ?HasSuperclass@BG_TObject@@UEBA_NPEBD@Z
+                        17C3 ?ClassName@BG_TObject@@UEBAPEBDXZ
+                         391 ??0BG_TConstIterator@@QEAA@AEBVBG_IIteratable@@@Z
+                        17C6 ?ClassObject@BG_TObject@@UEBAAEBVBG_TClass@@XZ
+
+    DocumentFlexoTools.dll
+             1800304E0 Import Address Table
+             18003BD58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          57 ?GetPlateCutLayer@DocumentFlexoTools@@YA?AV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@AEBVPage@ArtDoc@@@Z
+                          5F ?IsPlateCutLayer@DocumentFlexoTools@@YA_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+
+    SheetIterator.dll
+             1800308D8 Import Address Table
+             18003C150 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          91 ?GetNumberOfPages@Iterator@SheetIterator@@QEBAHXZ
+                          24 ??0SNR_GridParameters@SheetIterator@@QEAA@XZ
+                          23 ??0SNR_GridParameters@SheetIterator@@QEAA@AEBV01@@Z
+                          31 ??1SNR_GridParameters@SheetIterator@@QEAA@XZ
+                          7A ?GetCellSizeY@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          76 ?GetCellNumbersX@SNR_GridParameters@SheetIterator@@QEBAHXZ
+                          77 ?GetCellNumbersY@SNR_GridParameters@SheetIterator@@QEBAHXZ
+                          74 ?GetCellGapX@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          75 ?GetCellGapY@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          6E ?GetActualCellSizeX@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          6F ?GetActualCellSizeY@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          CE ?SetName@SNR_GridParameters@SheetIterator@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          8F ?GetName@SNR_GridParameters@SheetIterator@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          D6 ?SetUpdateInks@Iterator@SheetIterator@@QEAAX_N@Z
+                          83 ?GetGridOffsetX@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          84 ?GetGridOffsetY@SNR_GridParameters@SheetIterator@@QEBANXZ
+                          D7 ?SetUseBleed@SNR_GridParameters@SheetIterator@@QEAAX_N@Z
+                          45 ??4SNR_GridParameters@SheetIterator@@QEAAAEAV01@AEBV01@@Z
+                          25 ??0SheetParameters@SheetIterator@@QEAA@XZ
+                          90 ?GetNumberOfCells@Iterator@SheetIterator@@QEBAHXZ
+                          63 ?CopyToPage@Iterator@SheetIterator@@QEAA_NHAEAVPage@ArtDoc@@AEAVCloneStrategy@4@_NPEAPEAVPath@4@222AEAV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@2AEA_N@Z
+                          35 ??4InputRunList@SheetIterator@@QEAAAEAV01@AEBV01@@Z
+                          B0 ?RemoveMarks@Iterator@SheetIterator@@QEAAXXZ
+                          D8 ?TransformPage@Iterator@SheetIterator@@QEAAXAEAVPage@ArtDoc@@AEBUPageTransformation@2@PEBUTemplateMargins@2@@Z
+                          9F ?GetTemplate@Iterator@SheetIterator@@QEAAPEAVDocument@ArtDoc@@XZ
+                          8A ?GetInksOnSheet@Iterator@SheetIterator@@QEAA_NHAEAV?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@AEAV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@@Z
+                          9A ?GetSeparationsFromJob@Iterator@SheetIterator@@QEAA_NAEAV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@@Z
+                          7C ?GetColorantOrder@Iterator@SheetIterator@@QEBAAEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@XZ
+                          8C ?GetJDFMarksURLs@Iterator@SheetIterator@@QEBAAEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@XZ
+                          8B ?GetJDFCreator@Iterator@SheetIterator@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          61 ?ColorizeContent@Iterator@SheetIterator@@SAXAEAVPageContent@ArtDoc@@AEBV?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@AEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@Z
+                         114 ?getOutputIntentFromInputRunList@Iterator@SheetIterator@@QEAA?AV?$optional@VOutputIntent@ArtColor@@@std@@XZ
+                         130 ?mergeHalftonesFromInputRunList@Iterator@SheetIterator@@QEAAXAEAVDocument@ArtDoc@@_N@Z
+                          5E ?ClearDocumentCache@SheetIterator@@YAX_N@Z
+                          16 ??0InputRunListItemPDFSource@SheetIterator@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@Z
+                          2B ??1InputRunListItemPDFSource@SheetIterator@@UEAA@XZ
+                           C ??0InputRunListGroup@SheetIterator@@QEAA@AEBVInputRunListGroupParams@1@@Z
+                          E3 ?addInputRunListItem@InputRunListGroup@SheetIterator@@QEAAXAEBVInputRunListItemSource@2@@Z
+                          E1 ?addExtraBackgroundInputRunListItem@InputRunListGroup@SheetIterator@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         108 ?getGroupTotalNumberOfItems@InputRunListGroup@SheetIterator@@QEBAHXZ
+                         142 ?setSinglePageFileFlag@InputRunListGroup@SheetIterator@@QEAAX_N@Z
+                         13B ?setPageSize@InputRunListGroup@SheetIterator@@QEAAXNN@Z
+                          28 ??1InputRunListGroup@SheetIterator@@QEAA@XZ
+                          E2 ?addGroup@InputRunList@SheetIterator@@QEAAXAEBVInputRunListGroup@2@@Z
+                         125 ?getTotalSize@InputRunList@SheetIterator@@QEBAHXZ
+                          F9 ?getExternalRef@InputRunListItem@SheetIterator@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         111 ?getNumberOfGroupInputRunListsItems@InputRunListGroup@SheetIterator@@QEBA_KXZ
+                         107 ?getGroupRunListItems@InputRunListGroup@SheetIterator@@QEBAAEBV?$vector@VInputRunListItem@SheetIterator@@V?$allocator@VInputRunListItem@SheetIterator@@@std@@@std@@XZ
+                         112 ?getNumberOfGroups@InputRunList@SheetIterator@@QEBAHXZ
+                         11C ?getRunListGroups@InputRunList@SheetIterator@@QEBAAEBV?$vector@VInputRunListGroup@SheetIterator@@V?$allocator@VInputRunListGroup@SheetIterator@@@std@@@std@@XZ
+                          1C ??0Iterator@SheetIterator@@QEAA@XZ
+                          2E ??1Iterator@SheetIterator@@QEAA@XZ
+                          68 ?CreateFromTemplate@Iterator@SheetIterator@@QEAA?AW4ErrorCode@2@PEAVDocument@ArtDoc@@AEBVInputRunList@2@W4SheetSide@2@_N33333@Z
+                          66 ?CreateFromParameters@Iterator@SheetIterator@@QEAA?AW4ErrorCode@2@AEBV?$vector@VSNR_GridParameters@SheetIterator@@V?$allocator@VSNR_GridParameters@SheetIterator@@@std@@@std@@AEBVSheetParameters@2@AEBVInputRunList@2@W4SheetSide@2@_N4444@Z
+                          65 ?CreateFromJDF@Iterator@SheetIterator@@QEAA?AW4ErrorCode@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVInputRunList@2@W4SheetSide@2@_N@Z
+                          5D ?CheckGridsAgainstBoxes@Iterator@SheetIterator@@QEBAXNAEA_N00@Z
+                         122 ?getSheetSizeX@SheetParameters@SheetIterator@@QEBANXZ
+                         123 ?getSheetSizeY@SheetParameters@SheetIterator@@QEBANXZ
+                          BA ?SetCellNumbers@SNR_GridParameters@SheetIterator@@QEAAXHH@Z
+                         128 ?getTrimSizeX@SheetParameters@SheetIterator@@QEBANXZ
+                         129 ?getTrimSizeY@SheetParameters@SheetIterator@@QEBANXZ
+                         126 ?getTrimOffsetX@SheetParameters@SheetIterator@@QEBANXZ
+                         127 ?getTrimOffsetY@SheetParameters@SheetIterator@@QEBANXZ
+                          1B ??0InputRunListItemVDPSource@SheetIterator@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@000@Z
+                          79 ?GetCellSizeX@SNR_GridParameters@SheetIterator@@QEBANXZ
+                         13C ?setRecordCount@InputRunListItemVDPSource@SheetIterator@@QEAAX_K@Z
+                          2D ??1InputRunListItemVDPSource@SheetIterator@@UEAA@XZ
+                           F ??0InputRunListGroupParams@SheetIterator@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4BlockLength@1@HHW4LBOptimization@1@_N33PEBVInputRunListItem@1@4@Z
+                         102 ?getGapLength@InputRunListGroupParams@SheetIterator@@QEBAHXZ
+                          F6 ?getBlockLengthValue@InputRunListGroupParams@SheetIterator@@QEBAHXZ
+                          F5 ?getBlockLengthType@InputRunListGroupParams@SheetIterator@@QEBA?AW4BlockLength@2@XZ
+                         11F ?getSequence@InputRunListGroupParams@SheetIterator@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         113 ?getOptimization@InputRunListGroupParams@SheetIterator@@QEBA?AW4LBOptimization@2@XZ
+                         12C ?getUseMBox@InputRunListGroupParams@SheetIterator@@QEBA_NXZ
+                         101 ?getGapItem@InputRunListGroupParams@SheetIterator@@QEBAAEBVInputRunListItem@2@XZ
+                          F8 ?getEmptyItem@InputRunListGroupParams@SheetIterator@@QEBAAEBVInputRunListItem@2@XZ
+                          29 ??1InputRunListGroupParams@SheetIterator@@QEAA@XZ
+                          DF ?addDuplexInputRunListItem@InputRunListGroup@SheetIterator@@QEAAXAEBVInputRunListItemSource@2@0@Z
+                         116 ?getParams@InputRunListGroup@SheetIterator@@QEBAAEBVInputRunListGroupParams@2@XZ
+                         124 ?getSinglePageFileFlag@InputRunListGroup@SheetIterator@@QEBA_NXZ
+                          36 ??4InputRunListGroup@SheetIterator@@QEAAAEAV01@$$QEAV01@@Z
+                         12B ?getType@InputRunListItemVDPSource@SheetIterator@@UEBA?AW4Type@InputRunListItemSource@2@XZ
+                          FB ?getExternalRef@InputRunListItemVDPSource@SheetIterator@@UEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         139 ?setExternalRef@InputRunListItemVDPSource@SheetIterator@@UEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          FF ?getFirstPage@InputRunListItemVDPSource@SheetIterator@@UEBAHXZ
+                         10D ?getLastPage@InputRunListItemVDPSource@SheetIterator@@UEBAHXZ
+                         11A ?getRepeats@InputRunListItemVDPSource@SheetIterator@@UEBAHXZ
+                         13F ?setRepeats@InputRunListItemVDPSource@SheetIterator@@UEAAXH@Z
+                          BE ?SetCellSize@SNR_GridParameters@SheetIterator@@QEAAXNN@Z
+                          B7 ?SetCellGap@SNR_GridParameters@SheetIterator@@QEAAXNN@Z
+                          BD ?SetCellRotation@SNR_GridParameters@SheetIterator@@QEAAXW4Rotation@LayoutParameters@@@Z
+                         143 ?setTrimOffset@SheetParameters@SheetIterator@@QEAAXNN@Z
+                         144 ?setTrimSize@SheetParameters@SheetIterator@@QEAAXNN@Z
+                         141 ?setSheetSize@SheetParameters@SheetIterator@@QEAAXNN@Z
+                          B6 ?SetBleed@SNR_GridParameters@SheetIterator@@QEAAXN@Z
+                         12A ?getType@InputRunListItemPDFSource@SheetIterator@@UEBA?AW4Type@InputRunListItemSource@2@XZ
+                          FA ?getExternalRef@InputRunListItemPDFSource@SheetIterator@@UEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         138 ?setExternalRef@InputRunListItemPDFSource@SheetIterator@@UEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          FE ?getFirstPage@InputRunListItemPDFSource@SheetIterator@@UEBAHXZ
+                         10C ?getLastPage@InputRunListItemPDFSource@SheetIterator@@UEBAHXZ
+                         119 ?getRepeats@InputRunListItemPDFSource@SheetIterator@@UEBAHXZ
+                         13E ?setRepeats@InputRunListItemPDFSource@SheetIterator@@UEAAXH@Z
+                          15 ??0InputRunListItemPDFSource@SheetIterator@@QEAA@AEBV01@@Z
+                          14 ??0InputRunListItemPDFSource@SheetIterator@@QEAA@$$QEAV01@@Z
+                          E0 ?addEmptyRunListItem@InputRunListGroup@SheetIterator@@QEAAXH_N@Z
+                           8 ??0InputRunList@SheetIterator@@QEAA@XZ
+                          C8 ?SetGridOffsets@SNR_GridParameters@SheetIterator@@QEAAXNN@Z
+                          27 ??1InputRunList@SheetIterator@@QEAA@XZ
+
+    DocumentLayout.dll
+             1800304F8 Import Address Table
+             18003BD70 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          CC ?SetLayoutProperties@DocumentLayout@@YAXAEAVPart@ArtDoc@@AEBV?$optional@ULayoutProperties@DocumentLayout@@@std@@@Z
+                          9E ?GetLayoutProperties@DocumentLayout@@YA?AV?$optional@ULayoutProperties@DocumentLayout@@@std@@AEBVPage@ArtDoc@@@Z
+
+    DocumentMarks.dll
+             180030510 Import Address Table
+             18003BD88 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         33B ?AddProfileInfo@DocumentMarks@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_N@Z
+                         55F ?MergeSeparationInfo@DocumentMarks@@YA?AV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@AEBV23@0@Z
+                         589 ?PrintProfilingInfo@DocumentMarks@@YAXAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@_N@Z
+                         34D ?Clear@TaskMarkSets@DocumentMarks@@QEAAXXZ
+                         547 ?IsCached@TaskMarkSets@DocumentMarks@@QEBA_NXZ
+                         585 ?PrepareMarksCache@TaskMarkSets@DocumentMarks@@QEAA_NAEAVSheetIteratorProxy@12@AEBVpath@filesystem@boost@@@Z
+                         347 ?ApplyRelevantMarkSets@TaskMarkSets@DocumentMarks@@QEAAXAEAVPage@ArtDoc@@H_N111@Z
+                         348 ?ApplyRelevantMarkSetsWithReuse@TaskMarkSets@DocumentMarks@@QEAAXAEAVPage@ArtDoc@@AEAVCloneStrategy@4@H_N2PEAV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         462 ?GetCachedDocSeparations@TaskMarkSets@DocumentMarks@@QEBAAEBV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@XZ
+                         656 ?SetTemplateSeparationInfo@TaskMarkSets@DocumentMarks@@QEAAXAEBV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@@Z
+                         43C ?Flush@TaskMarkSets@DocumentMarks@@QEAAXXZ
+                         33A ?AddProfileInfo@DocumentMarks@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
+                         43F ?ForceDocumentLoad@DocumentMarks@@YAXAEAVDocument@ArtDoc@@@Z
+                         3BE ?DeleteMarks@DocumentMarks@@YAXAEAVPage@ArtDoc@@@Z
+                         381 ?ContainsInputFileMark@DocumentMarks@@YA_NAEBV?$unique_ptr@VDocument@ArtDoc@@U?$default_delete@VDocument@ArtDoc@@@std@@@std@@@Z
+                         695 ?UnregisterPDFPlusMarks@DocumentMarks@@YAXAEAVPage@ArtDoc@@@Z
+                         3BF ?DeleteOneUpForms@DocumentMarks@@YAXXZ
+                         559 ?MakeAllMarksOnPageStatic@DocumentMarks@@YAXAEAVPage@ArtDoc@@@Z
+                         4D6 ?GetProcessWorkingSetMB@DocumentMarks@@YAH_N@Z
+                         3BB ?DegradeGridsToGroups@DocumentMarks@@YAXAEAVPage@ArtDoc@@AEBV?$vector@PEAVGroup@ArtDoc@@V?$allocator@PEAVGroup@ArtDoc@@@std@@@std@@_NAEAVCloneStrategy@3@@Z
+
+    Document.dll
+             180030190 Import Address Table
+             18003BA08 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         686 ?GetDescription@DocumentOpenException@ArtDoc@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         77F ?GetNumberOfPages@Document@ArtDoc@@QEBA_KXZ
+                         78B ?GetOrientation@Page@ArtDoc@@QEBA?AW4PageOrientation@2@XZ
+                         388 ??DArtDoc@@YA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4PageOrientation@0@AEBV12@@Z
+                         567 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVDocument@2@@Z
+                         570 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVParts@2@@Z
+                         56F ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPart@2@@Z
+                         56D ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPage@2@@Z
+                         565 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVContent@2@@Z
+                         56E ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPageContent@2@@Z
+                         566 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVContentObject@2@@Z
+                         575 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVTransformable@2@@Z
+                         564 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVClippable@2@@Z
+                         563 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVBlendable@2@@Z
+                         56A ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVImage@2@@Z
+                         568 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVFillable@2@@Z
+                         572 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVStrokable@2@@Z
+                         571 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPath@2@@Z
+                         573 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVText@2@@Z
+                         56B ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVImageMask@2@@Z
+                         569 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVGroup@2@@Z
+                         56C ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVLayer@2@@Z
+                         574 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVTextGroup@2@@Z
+                         B2B ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVDocument@2@@Z
+                         B34 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVParts@2@@Z
+                         B33 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPart@2@@Z
+                         B31 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPage@2@@Z
+                         B29 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVContent@2@@Z
+                         B32 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPageContent@2@@Z
+                         B2A ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVContentObject@2@@Z
+                         B39 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVTransformable@2@@Z
+                         B28 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVClippable@2@@Z
+                         B27 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVBlendable@2@@Z
+                         B2E ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVImage@2@@Z
+                         B2C ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVFillable@2@@Z
+                         B36 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVStrokable@2@@Z
+                         B35 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPath@2@@Z
+                         B37 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVText@2@@Z
+                         B2F ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVImageMask@2@@Z
+                         B30 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVLayer@2@@Z
+                         B38 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVTextGroup@2@@Z
+                         594 ?FindModule@ArtDoc@@YAPEAVModule@1@H@Z
+                         865 ?GetUniqueID@FormPaint@ArtPaint@@QEBAAEBV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@XZ
+                         858 ?GetType@ArtPaint@@YA?AW4Type@Paint@1@AEBV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@@Z
+                         A0F ?SetFilePathForDocument@ArtDoc@@YAXAEBVpath@filesystem@boost@@AEBVDocument@1@@Z
+                         6B7 ?GetErrorType@SaveException@ArtDoc@@QEBA?AW4Type@SaveError@2@XZ
+                         4D4 ?Clone@Path@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         6DC ?GetFillPaint@Fillable@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@XZ
+                         8B5 ?InsertPart@Parts@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEAVPart@2@@Z
+                         80C ?GetRoot@Parts@ArtDoc@@QEAAAEAVPart@2@XZ
+                         A3F ?SetLevelNames@Parts@ArtDoc@@QEAAXV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$optional@_K@4@@Z
+                         4A8 ?Cache@Content@ArtDoc@@QEBAXXZ
+                         613 ?GetChildren@Content@ArtDoc@@QEAAAEAV?$List@VContentObject@ArtDoc@@@Detail@2@XZ
+                         694 ?GetDocument@Content@ArtDoc@@QEAAAEAVDocument@2@XZ
+                         481 ?AddOnTop@Content@ArtDoc@@QEAAXPEAVContentObject@2@@Z
+                         678 ?GetDefaultConfiguration@Layers@ArtDoc@@QEAAAEAVLayerConfiguration@2@XZ
+                         508 ?CopyLayerOrder@ArtDoc@@YAXAEBVLayerConfiguration@1@AEAVCloneStrategy@1@@Z
+                         850 ?GetTransformation@Transformable@ArtDoc@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         AB1 ?SetTransformation@Transformable@ArtDoc@@QEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4TransformationMode@2@@Z
+                         87A ?GetWorkingSpaceProfile@ArtDoc@@YA?AV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@AEBVDocument@1@@Z
+                         740 ?GetLayers@Document@ArtDoc@@QEAAAEAVLayers@2@XZ
+                         A00 ?SetDistortion@Document@ArtDoc@@QEAAXAEBV?$array@N$01@std@@@Z
+                         692 ?GetDistortion@Document@ArtDoc@@QEBAAEBV?$array@N$01@std@@XZ
+                         A57 ?SetOutputIntent@Document@ArtDoc@@QEAAXV?$optional@VOutputIntent@ArtColor@@@std@@@Z
+                         A88 ?SetStatusReporter@Document@ArtDoc@@QEAAXAEAVStatusReporting@ArtSys@@@Z
+                         59B ?Flush@Document@ArtDoc@@QEAAXXZ
+                         816 ?GetSeparationInfo@Document@ArtDoc@@QEBAAEBV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@XZ
+                         A7D ?SetSeparationInfo@Document@ArtDoc@@QEAAXV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@@Z
+                         5BC ?GetActionList@Document@ArtDoc@@QEBAAEAVActionList@2@XZ
+                         521 ?CreateParts@Document@ArtDoc@@QEAAAEAVParts@2@XZ
+                         7B5 ?GetParts@Document@ArtDoc@@QEAAPEAVParts@2@XZ
+                         8AF ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@V345@@Z
+                         8AE ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEAVPart@2@@Z
+                         928 ?MovePage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V345@AEAVPart@2@@Z
+                         7A9 ?GetPagesEnd@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         7A7 ?GetPagesBegin@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         A2E ?SetInfoString@Document@ArtDoc@@QEAAXW4DocumentInfoKey@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         9CD ?Save@Document@ArtDoc@@QEAAXAEBVpath@filesystem@boost@@AEBVWriteOptions@2@@Z
+                         1D1 ??1Document@ArtDoc@@UEAA@XZ
+                         50E ?Create@Document@ArtDoc@@SA?AV?$unique_ptr@VDocument@ArtDoc@@U?$default_delete@VDocument@ArtDoc@@@std@@@std@@AEBVpath@filesystem@boost@@AEBVReadOptions@2@@Z
+                         50D ?Create@Document@ArtDoc@@SA?AV?$unique_ptr@VDocument@ArtDoc@@U?$default_delete@VDocument@ArtDoc@@@std@@@std@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         262 ??1WriteOptions@ArtDoc@@QEAA@XZ
+                         18B ??0WriteOptions@ArtDoc@@QEAA@W4Flavour@01@@Z
+                         2FA ??4Entry@Separation@ArtDoc@@QEAAAEAV012@AEBV012@@Z
+                          8F ??0Entry@Separation@ArtDoc@@QEAA@AEBV012@@Z
+                         1DA ??1Entry@Separation@ArtDoc@@QEAA@XZ
+                         246 ??1ReadOptions@ArtDoc@@QEAA@XZ
+                         A4C ?SetMode@ReadOptions@ArtDoc@@QEAAXW4Mode@12@@Z
+                         15B ??0ReadOptions@ArtDoc@@QEAA@XZ
+                         43E ?Accept@Page@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         7B3 ?GetPart@Page@ArtDoc@@QEAAPEAVPart@2@XZ
+                         641 ?GetContent@Page@ArtDoc@@QEAAAEAVPageContent@2@XZ
+                         79D ?GetPageBox@Page@ArtDoc@@QEBAAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4PageBox@2@@Z
+                         186 ??0VisitorBase@ArtDoc@@QEAA@XZ
+                         260 ??1VisitorBase@ArtDoc@@UEAA@XZ
+                         31B ??4OutputIntent@ArtColor@@QEAAAEAV01@$$QEAV01@@Z
+                         22C ??1OutputIntent@ArtColor@@QEAA@XZ
+                         128 ??0OutputIntent@ArtColor@@QEAA@$$QEAV01@@Z
+                         129 ??0OutputIntent@ArtColor@@QEAA@AEBV01@@Z
+                         12A ??0OutputIntent@ArtColor@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0V?$shared_ptr@$$CBVICCProfile@ArtColor@@@3@@Z
+                         1B9 ??1CloneStrategy@ArtDoc@@QEAA@XZ
+                          54 ??0CloneStrategy@ArtDoc@@QEAA@AEAVDocument@1@W4CloneFlags@01@@Z
+                         691 ?GetDisplayName@ICCProfile@ArtColor@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         688 ?GetDescription@ICCProfile@ArtColor@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         4B6 ?Clear@ActionList@ArtDoc@@QEAAXXZ
+
+    ArtSys.dll
+             180030000 Import Address Table
+             18003B878 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         4DE ?SetStatusMessage@StatusReporting@ArtSys@@QEAAXPEBD0@Z
+                          9D ??0ScopedStatusReporting@ArtSys@@QEAA@AEAVStatusReporting@1@MM@Z
+                         10C ??1ScopedStatusReporting@ArtSys@@QEAA@XZ
+                         542 ?Uni16CharToUTF8@ArtSys@@YAHPEB_WPEAD_K@Z
+                         435 ?ProgressInitialize@StatusReporting@ArtSys@@QEAAXM@Z
+                         436 ?ProgressUpdate@StatusReporting@ArtSys@@QEAAXM@Z
+
+    XercesC.dll
+             180030CD0 Import Address Table
+             18003C548 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         AA3 ?endExtSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         AAA ?endIntSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         A83 ?endAttList@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@@Z
+                         A6B ?elementDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@_N@Z
+                         A46 ?doctypePI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                         A43 ?doctypeDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@QEB_W1_N2@Z
+                         A40 ?doctypeComment@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W@Z
+                         7C4 ?attDef@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@AEBVDTDAttDef@2@_N@Z
+                         73F ?XMLDecl@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W000@Z
+                        1CAE ?startElement@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLElementDecl@2@IQEB_WAEBV?$RefVectorOf@VXMLAttr@xercesc_3_2@@@2@_K_N4@Z
+                        1CA4 ?startDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1902 ?resetDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        14B6 ?ignorableWhitespace@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K_N@Z
+                         A9F ?endEntityReference@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLEntityDecl@2@@Z
+                         A91 ?endElement@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLElementDecl@2@I_NQEB_W@Z
+                         A88 ?endDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         A3C ?docPI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                         A37 ?docComment@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W@Z
+                         A32 ?docCharacters@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K_N@Z
+                        147C ?handleAttributesPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIAttributeList@2@@Z
+                        147F ?handlePartialElementPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIElement@2@@Z
+                        147E ?handleElementPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIElement@2@@Z
+                        1B85 ?setPSVIHandler@AbstractDOMParser@xercesc_3_2@@UEAAXQEAVPSVIHandler@2@@Z
+                         ABE ?entityDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDEntityDecl@2@_N1@Z
+                        190C ?resetEntities@XercesDOMParser@xercesc_3_2@@UEAAXXZ
+                         AE1 ?expandSystemId@XercesDOMParser@xercesc_3_2@@UEAA_NQEB_WAEAVXMLBuffer@2@@Z
+                         AA9 ?endInputSource@XercesDOMParser@xercesc_3_2@@UEAAXAEBVInputSource@2@@Z
+                        1DBB ?warning@HandlerBase@xercesc_3_2@@UEAAXAEBVSAXParseException@2@@Z
+                        1CB1 ?startElement@HandlerBase@xercesc_3_2@@UEAAXQEB_WAEAVAttributeList@2@@Z
+                        1CA7 ?startDocument@HandlerBase@xercesc_3_2@@UEAAXXZ
+                        1A84 ?setDocumentLocator@HandlerBase@xercesc_3_2@@UEAAXQEBVLocator@2@@Z
+                        1D83 ?unparsedEntityDecl@HandlerBase@xercesc_3_2@@UEAAXQEB_W000@Z
+                        192B ?resolveEntity@HandlerBase@xercesc_3_2@@UEAAPEAVInputSource@2@QEB_W0@Z
+                        18FE ?resetDocType@HandlerBase@xercesc_3_2@@UEAAXXZ
+                        1904 ?resetDocument@HandlerBase@xercesc_3_2@@UEAAXXZ
+                        190F ?resetErrors@HandlerBase@xercesc_3_2@@UEAAXXZ
+                        1829 ?processingInstruction@HandlerBase@xercesc_3_2@@UEAAXQEB_W0@Z
+                        1777 ?notationDecl@HandlerBase@xercesc_3_2@@UEAAXQEB_W00@Z
+                        14BA ?ignorableWhitespace@HandlerBase@xercesc_3_2@@UEAAXQEB_W_K@Z
+                         AF8 ?fatalError@HandlerBase@xercesc_3_2@@UEAAXAEBVSAXParseException@2@@Z
+                         AC8 ?error@HandlerBase@xercesc_3_2@@UEAAXAEBVSAXParseException@2@@Z
+                         A94 ?endElement@HandlerBase@xercesc_3_2@@UEAAXQEB_W@Z
+                         A8A ?endDocument@HandlerBase@xercesc_3_2@@UEAAXXZ
+                         812 ?characters@HandlerBase@xercesc_3_2@@UEAAXQEB_W_K@Z
+                         3D0 ??1TranscodeToStr@xercesc_3_2@@QEAA@XZ
+                         1DE ??0TranscodeToStr@xercesc_3_2@@QEAA@PEB_WPEBDPEAVMemoryManager@1@@Z
+                        1ABB ?setErrorHandler@XercesDOMParser@xercesc_3_2@@QEAAXQEAVErrorHandler@2@@Z
+                         451 ??1XercesDOMParser@xercesc_3_2@@UEAA@XZ
+                        18FC ?resetDocType@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1775 ?notationDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLNotationDecl@2@_N@Z
+                        1C9F ?startAttList@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@@Z
+                        1CC6 ?startIntSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1CBF ?startExtSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         739 ?TextDecl@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                         96B ?createCDATASection@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMCDATASection@2@PEB_W_K@Z
+                         9F8 ?createText@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMText@2@PEB_W_K@Z
+                         981 ?createElement@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMElement@2@PEB_W@Z
+                         983 ?createElementNS@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMElement@2@PEB_W000@Z
+                         965 ?createAttr@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMAttr@2@PEB_W@Z
+                         966 ?createAttrNS@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMAttr@2@PEB_W000@Z
+                         ACD ?error@XercesDOMParser@xercesc_3_2@@UEAAXIQEB_WW4ErrTypes@XMLErrorReporter@2@000_K2@Z
+                        1913 ?resetErrors@XercesDOMParser@xercesc_3_2@@UEAAXXZ
+                        1930 ?resolveEntity@XercesDOMParser@xercesc_3_2@@UEAAPEAVInputSource@2@PEAVXMLResourceIdentifier@2@@Z
+                         D99 ?fgXercescDefaultLocale@XMLUni@xercesc_3_2@@2QBDB
+                         C6B ?fgMemoryManager@XMLPlatformUtils@xercesc_3_2@@2PEAVMemoryManager@2@EA
+                        1CC5 ?startInputSource@XercesDOMParser@xercesc_3_2@@UEAAXAEBVInputSource@2@@Z
+                         2B0 ??0XercesDOMParser@xercesc_3_2@@QEAA@QEAVXMLValidator@1@QEAVMemoryManager@1@QEAVXMLGrammarPool@1@@Z
+                        178E ?parse@AbstractDOMParser@xercesc_3_2@@QEAAXQEB_W@Z
+                         F54 ?getDocument@AbstractDOMParser@xercesc_3_2@@QEAAPEAVDOMDocument@2@XZ
+                         369 ??1HandlerBase@xercesc_3_2@@UEAA@XZ
+                         10B ??0HandlerBase@xercesc_3_2@@QEAA@XZ
+                        10D5 ?getLineNumber@SAXParseException@xercesc_3_2@@QEBA_KXZ
+                         DE2 ?get@?$ArrayJanitor@E@xercesc_3_2@@QEBAPEAEXZ
+                        187D ?release@XMLString@xercesc_3_2@@SAXPEAPEA_WQEAVMemoryManager@2@@Z
+                        1D42 ?transcode@XMLString@xercesc_3_2@@SAPEA_WQEBDQEAVMemoryManager@2@@Z
+                         738 ?Terminate@XMLPlatformUtils@xercesc_3_2@@SAXXZ
+                         723 ?Initialize@XMLPlatformUtils@xercesc_3_2@@SAXQEBD0QEAVPanicHandler@2@QEAVMemoryManager@2@@Z
+                        112B ?getMessage@XMLException@xercesc_3_2@@QEBAPEB_WXZ
+                         EC4 ?getCode@XMLException@xercesc_3_2@@QEBA?AW4Codes@XMLExcepts@2@XZ
+                         45E ??3XMemory@xercesc_3_2@@SAXPEAX@Z
+                         459 ??2XMemory@xercesc_3_2@@SAPEAX_K@Z
+                         A49 ?doctypeWhitespace@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K@Z
+                        1CBA ?startEntityReference@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLEntityDecl@2@@Z
+
+    ExtraBoostFilesystem.dll
+             1800305B8 Import Address Table
+             18003BE30 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          6A ?ToUTF8String@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVpath@filesystem@boost@@@Z
+                          35 ?FromUTF8String@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+
+    boost_filesystem.dll
+             180031080 Import Address Table
+             18003C8F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          69 ?status@detail@filesystem@boost@@YA?AVfile_status@23@AEBVpath@23@PEAVerror_code@system@3@@Z
+                          35 ?file_size@detail@filesystem@boost@@YA_KAEBVpath@23@PEAVerror_code@system@3@@Z
+
+    KERNEL32.dll
+             1800305D0 Import Address Table
+             18003BE48 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         395 IsProcessorFeaturePresent
+                         58D SetUnhandledExceptionFilter
+                         5CE UnhandledExceptionFilter
+                         38E IsDebuggerPresent
+                         2F8 GetSystemTimeAsFileTime
+                         4E7 RtlLookupFunctionEntry
+                         4DF RtlCaptureContext
+                         59F SleepConditionVariableSRW
+                         600 WakeAllConditionVariable
+                           0 AcquireSRWLockExclusive
+                         4C2 ReleaseSRWLockExclusive
+                         26C GetLocalTime
+                         221 GetCurrentProcess
+                         45B QueryPerformanceCounter
+                         4EE RtlVirtualUnwind
+                         378 InitializeSListHead
+                         125 DisableThreadLibraryCalls
+                         222 GetCurrentProcessId
+                         5AC TerminateProcess
+                         226 GetCurrentThreadId
+
+    MSVCP140.dll
+             180030678 Import Address Table
+             18003BEF0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         367 ?flags@ios_base@std@@QEBAHXZ
+                         3C5 ?good@ios_base@std@@QEBA_NXZ
+                         1C8 ?_Getcvt@_Locinfo@std@@QEBA?AU_Cvtvec@@XZ
+                         28C ?_Xbad_function_call@std@@YAXXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         28B ?_Xbad_alloc@std@@YAXXZ
+                         51F ?uncaught_exceptions@std@@YAHXZ
+                         53D ?width@ios_base@std@@QEAA_J_J@Z
+                         4DE ?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z
+                         4E1 ?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         50A ?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ
+                         487 ?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+                         361 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ
+                         244 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                         10D ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_N@Z
+                          FF ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+                         104 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z
+                         368 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
+                         2B4 ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+                         131 ??Bid@locale@std@@QEAA_KXZ
+                         20F ?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z
+                         1D5 ?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ
+                         515 ?toupper@?$ctype@D@std@@QEBADD@Z
+                         1B6 ?_Getcat@?$ctype@D@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z
+                         534 ?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z
+                         106 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
+                         461 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z
+                         3CF ?id@?$ctype@D@std@@2V0locale@2@A
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         34D ?eback@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         3C6 ?gptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         447 ?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         350 ?egptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         36B ?gbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         4BA ?setg@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         359 ?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4BF ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD0@Z
+                         4BE ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         24A ?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                          1A ??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                          83 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          CC ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAH@Z
+                         3F6 ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z
+                         4FD ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         4B5 ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                         51B ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         27F ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         228 ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         28D ?_Xinvalid_argument@std@@YAXPEBD@Z
+                          6C ??0_Locinfo@std@@QEAA@PEBD@Z
+                          A4 ??1_Locinfo@std@@QEAA@XZ
+                         1CB ?_Getfalse@_Locinfo@std@@QEBAPEBDXZ
+                         1E1 ?_Gettrue@_Locinfo@std@@QEBAPEBDXZ
+                         29F ?c_str@?$_Yarn@D@std@@QEBAPEBDXZ
+                          75 ??0facet@locale@std@@IEAA@_K@Z
+                          AB ??1facet@locale@std@@MEAA@XZ
+                         2A4 ?classic@locale@std@@SAAEBV12@XZ
+                         43E ?pbase@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                          13 ??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z
+                          80 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         1F2 ?_Incref@facet@locale@std@@UEAAXXZ
+                         19E ?_Decref@facet@locale@std@@UEAAPEAV_Facet_base@3@XZ
+                         3E7 ?id@?$numpunct@D@std@@2V0locale@2@A
+                         2AF ?clog@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                         53E ?width@ios_base@std@@QEBA_JXZ
+
+    VCRUNTIME140.dll
+             180030C40 Import Address Table
+             18003C4B8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          23 __std_terminate
+                          25 __std_type_info_destroy_list
+                           8 __C_specific_handler
+                          1C __current_exception_context
+                          1B __current_exception
+                          3E memset
+                          3D memmove
+                          3C memcpy
+                          3B memcmp
+                          18 __RTDynamicCast
+                          21 __std_exception_copy
+                           1 _CxxThrowException
+                          24 __std_type_info_compare
+                          22 __std_exception_destroy
+                          36 _purecall
+
+    VCRUNTIME140_1.dll
+             180030CC0 Import Address Table
+             18003C538 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             180030FD8 Import Address Table
+             18003C850 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          36 _initterm
+                          33 _initialize_narrow_environment
+                          39 _invalid_parameter_noinfo_noreturn
+                          18 _configure_narrow_argv
+                          16 _cexit
+                          67 terminate
+                          34 _initialize_onexit_table
+                          37 _initterm_e
+                          1E _crt_atexit
+                          22 _execute_onexit_table
+                          3C _register_onexit_function
+                          21 _errno
+                          3F _seh_filter_dll
+
+    api-ms-win-crt-math-l1-1-0.dll
+             180030FC8 Import Address Table
+             18003C840 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          D0 ldexp
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             180030F90 Import Address Table
+             18003C808 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           8 _callnewh
+                          19 malloc
+                          17 calloc
+                          18 free
+
+    api-ms-win-crt-time-l1-1-0.dll
+             180031070 Import Address Table
+             18003C8E8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          45 clock
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             180030F70 Import Address Table
+             18003C7E8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          61 strtol
+                          50 atoi
+                          5E strtod
+
+    api-ms-win-crt-string-l1-1-0.dll
+             180031058 Import Address Table
+             18003C8D0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          86 strcmp
+                          68 isdigit
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             180031048 Import Address Table
+             18003C8C0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           D __stdio_common_vsprintf
+
+    api-ms-win-crt-locale-l1-1-0.dll
+             180030FB8 Import Address Table
+             18003C830 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          12 localeconv
+
+  Summary
+
+        4000 .data
+        3000 .pdata
+       15000 .rdata
+        1000 .reloc
+        1000 .rsrc
+       2F000 .text

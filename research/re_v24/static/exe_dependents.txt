@@ -1,0 +1,114 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\ArtPro+.exe
+
+File Type: EXECUTABLE IMAGE
+
+  Image has the following dependencies:
+
+    PredistortEngine.dll
+    UnifiedToolkitInterprocess.dll
+    Cornering.dll
+    JEFView.dll
+    NDLModelActionList.dll
+    NDLModelActionListTypes.dll
+    NDLModelLocal.dll
+    PDFConversionRules.dll
+    Preferences.dll
+    Snapping.dll
+    SoftwareAnalyticsCore.dll
+    SSO.dll
+    ADVAPI32.dll
+    d3d9.dll
+    VERSION.dll
+    Extensis.dll
+    AlephClient_Qt.dll
+    Aleph.dll
+    UECILib.dll
+    Qt6WebEngineWidgets.dll
+    Qt6WebEngineCore.dll
+    Qt6WebChannel.dll
+    Qt6Network.dll
+    JEFQtGlue.dll
+    ExtraQt.dll
+    Qt6PrintSupport.dll
+    StudioDesignerCoreController.dll
+    StudioDesignerCoreRenderEngine.dll
+    VisualizerSDKDaliRenderResources.dll
+    GMGOpenColorModel.dll
+    HELLJobTicket.dll
+    dali.dll
+    OPENGL32.dll
+    NDLModel.dll
+    Pack3D.dll
+    lib3d.dll
+    euclid.dll
+    StudioCommon.dll
+    JEFModel.dll
+    NDLTypes.dll
+    JEFUtils.dll
+    DocumentFlexoTools.dll
+    DocumentMarks.dll
+    LayoutEngine.dll
+    lcms.dll
+    bcrypt.dll
+    USER32.dll
+    StructuralDesignImportProfile.dll
+    libxmlGlue.dll
+    Document.dll
+    Localization.dll
+    YAGL.dll
+    CurveApprox.dll
+    GeoMapper.dll
+    ArtSys.dll
+    ADT.dll
+    aws-sdk-cpp-core.dll
+    boost_iostreams.dll
+    KERNEL32.dll
+    Logging.dll
+    ExtraBoostFilesystem.dll
+    boost_nowide.dll
+    WS2_32.dll
+    zlib1.dll
+    COMCTL32.dll
+    NETAPI32.dll
+    WSOCK32.dll
+    CRYPT32.dll
+    boost_filesystem.dll
+    boost_thread.dll
+    libxml.dll
+    Secur32.dll
+    Qt6Core.dll
+    Qt6Gui.dll
+    Qt6Widgets.dll
+    SHELL32.dll
+    ole32.dll
+    OLEAUT32.dll
+    COMDLG32.dll
+    MSVCP140.dll
+    VCRUNTIME140.dll
+    VCRUNTIME140_1.dll
+    api-ms-win-crt-runtime-l1-1-0.dll
+    api-ms-win-crt-heap-l1-1-0.dll
+    api-ms-win-crt-stdio-l1-1-0.dll
+    api-ms-win-crt-filesystem-l1-1-0.dll
+    api-ms-win-crt-string-l1-1-0.dll
+    api-ms-win-crt-math-l1-1-0.dll
+    api-ms-win-crt-utility-l1-1-0.dll
+    api-ms-win-crt-convert-l1-1-0.dll
+    api-ms-win-crt-locale-l1-1-0.dll
+    api-ms-win-crt-time-l1-1-0.dll
+    api-ms-win-crt-environment-l1-1-0.dll
+    SHLWAPI.dll
+    WINHTTP.dll
+
+  Summary
+
+      4EA000 .data
+        1000 .fnp_dir
+        1000 .fnp_mar
+       A3000 .pdata
+      6EF000 .rdata
+       54000 .reloc
+       3E000 .rsrc
+     12D3000 .text
+       A8000 .textidx

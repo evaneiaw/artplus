@@ -1,0 +1,210 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\ArtPro+.exe
+
+PE signature found
+
+File Type: EXECUTABLE IMAGE
+
+FILE HEADER VALUES
+            8664 machine (x64)
+               9 number of sections
+        65F08F90 time date stamp Tue Mar 12 14:23:28 2024
+               0 file pointer to symbol table
+               0 number of symbols
+              F0 size of optional header
+              22 characteristics
+                   Executable
+                   Application can handle large (>2GB) addresses
+
+OPTIONAL HEADER VALUES
+             20B magic # (PE32+)
+           14.38 linker version
+         1379E00 size of code
+          D0CE00 size of initialized data
+               0 size of uninitialized data
+         10729DC entry point (00000001410729DC)
+            1000 base of code
+       140000000 image base (0000000140000000 to 000000014208BFFF)
+            1000 section alignment
+             200 file alignment
+            6.00 operating system version
+            0.00 image version
+            6.00 subsystem version
+               0 Win32 version
+         208C000 size of image
+             400 size of headers
+         1DE154F checksum
+               2 subsystem (Windows GUI)
+            8160 DLL characteristics
+                   High Entropy Virtual Addresses
+                   Dynamic base
+                   NX compatible
+                   Terminal Server Aware
+          100000 size of stack reserve
+            1000 size of stack commit
+          100000 size of heap reserve
+            1000 size of heap commit
+               0 loader flags
+              10 number of directories
+         19AD230 [     554] RVA [size] of Export Directory
+         19AD784 [     780] RVA [size] of Import Directory
+         1FFA000 [   3DD98] RVA [size] of Resource Directory
+         1F55000 [   A2FD8] RVA [size] of Exception Directory
+         1DD1400 [    2BB0] RVA [size] of Certificates Directory
+         2038000 [   53730] RVA [size] of Base Relocation Directory
+         17154C0 [      1C] RVA [size] of Debug Directory
+               0 [       0] RVA [size] of Architecture Directory
+               0 [       0] RVA [size] of Global Pointer Directory
+         1715500 [      28] RVA [size] of Thread Storage Directory
+         1715380 [     140] RVA [size] of Load Configuration Directory
+               0 [       0] RVA [size] of Bound Import Directory
+         137C000 [   11740] RVA [size] of Import Address Table Directory
+               0 [       0] RVA [size] of Delay Import Directory
+               0 [       0] RVA [size] of COM Descriptor Directory
+               0 [       0] RVA [size] of Reserved Directory
+
+
+SECTION HEADER #1
+   .text name
+ 12D238B virtual size
+    1000 virtual address (0000000140001000 to 00000001412D338A)
+ 12D2400 size of raw data
+     400 file pointer to raw data (00000400 to 012D27FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+60000020 flags
+         Code
+         Execute Read
+
+SECTION HEADER #2
+.textidx name
+   A7903 virtual size
+ 12D4000 virtual address (00000001412D4000 to 000000014137B902)
+   A7A00 size of raw data
+ 12D2800 file pointer to raw data (012D2800 to 0137A1FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+60000020 flags
+         Code
+         Execute Read
+
+SECTION HEADER #3
+  .rdata name
+  6EE7A8 virtual size
+ 137C000 virtual address (000000014137C000 to 0000000141A6A7A7)
+  6EE800 size of raw data
+ 137A200 file pointer to raw data (0137A200 to 01A689FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+40000040 flags
+         Initialized Data
+         Read Only
+
+  Debug Directories
+
+        Time Type        Size      RVA  Pointer
+    -------- ------- -------- -------- --------
+    65F08F90 coffgrp      440 0184E1D8  184C3D8
+
+SECTION HEADER #4
+   .data name
+  4E9AF8 virtual size
+ 1A6B000 virtual address (0000000141A6B000 to 0000000141F54AF7)
+  234000 size of raw data
+ 1A68A00 file pointer to raw data (01A68A00 to 01C9C9FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+C0000040 flags
+         Initialized Data
+         Read Write
+
+SECTION HEADER #5
+  .pdata name
+   A2FD8 virtual size
+ 1F55000 virtual address (0000000141F55000 to 0000000141FF7FD7)
+   A3000 size of raw data
+ 1C9CA00 file pointer to raw data (01C9CA00 to 01D3F9FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+40000040 flags
+         Initialized Data
+         Read Only
+
+SECTION HEADER #6
+.fnp_dir name
+      78 virtual size
+ 1FF8000 virtual address (0000000141FF8000 to 0000000141FF8077)
+     200 size of raw data
+ 1D3FA00 file pointer to raw data (01D3FA00 to 01D3FBFF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+C0000040 flags
+         Initialized Data
+         Read Write
+
+SECTION HEADER #7
+.fnp_mar name
+       1 virtual size
+ 1FF9000 virtual address (0000000141FF9000 to 0000000141FF9000)
+     200 size of raw data
+ 1D3FC00 file pointer to raw data (01D3FC00 to 01D3FDFF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+C0000040 flags
+         Initialized Data
+         Read Write
+
+SECTION HEADER #8
+   .rsrc name
+   3DD98 virtual size
+ 1FFA000 virtual address (0000000141FFA000 to 0000000142037D97)
+   3DE00 size of raw data
+ 1D3FE00 file pointer to raw data (01D3FE00 to 01D7DBFF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+40000040 flags
+         Initialized Data
+         Read Only
+
+SECTION HEADER #9
+  .reloc name
+   53730 virtual size
+ 2038000 virtual address (0000000142038000 to 000000014208B72F)
+   53800 size of raw data
+ 1D7DC00 file pointer to raw data (01D7DC00 to 01DD13FF)
+       0 file pointer to relocation table
+       0 file pointer to line numbers
+       0 number of relocations
+       0 number of line numbers
+42000040 flags
+         Initialized Data
+         Discardable
+         Read Only
+
+  Summary
+
+      4EA000 .data
+        1000 .fnp_dir
+        1000 .fnp_mar
+       A3000 .pdata
+      6EF000 .rdata
+       54000 .reloc
+       3E000 .rsrc
+     12D3000 .text
+       A8000 .textidx

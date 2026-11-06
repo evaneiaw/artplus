@@ -1,0 +1,2483 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\Document.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    ArtSys.dll
+             1802D8038 Import Address Table
+             1803C1010 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          2C ??0ErrorReporterScopeGuard@Core@ArtSys@@QEAA@AEAVErrorReporter@12@V?$function@$$A6AXAEAVError@Core@ArtSys@@@Z@std@@@Z
+                          DA ??1ErrorReporterScopeGuard@Core@ArtSys@@QEAA@XZ
+                          A8 ??0StatusReporting@ArtSys@@QEAA@XZ
+                         110 ??1StatusReporting@ArtSys@@UEAA@XZ
+                         434 ?ProgressFinalize@StatusReporting@ArtSys@@QEAAXXZ
+                         3CF ?IsProgressing@StatusReporting@ArtSys@@QEBA_NXZ
+                         5CE ?what@Error@Core@ArtSys@@UEBAPEBDXZ
+                         532 ?Uni16CharPartialCompare@ArtSys@@YAHPEB_W0_K@Z
+                         53C ?Uni16CharToPlatformCString@ArtSys@@YAHPEB_WPEAD_K@Z
+                         542 ?Uni16CharToUTF8@ArtSys@@YAHPEB_WPEAD_K@Z
+                         4DD ?SetStatusMessage@StatusReporting@ArtSys@@QEAAXAEBV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@@Z
+                         435 ?ProgressInitialize@StatusReporting@ArtSys@@QEAAXM@Z
+                         436 ?ProgressUpdate@StatusReporting@ArtSys@@QEAAXM@Z
+                          AA ??0StatusReportingScopeGuard@ArtSys@@QEAA@PEAVStatusReporting@1@MM@Z
+                         111 ??1StatusReportingScopeGuard@ArtSys@@QEAA@XZ
+                         316 ?GetLogonName@ArtSys@@YA_NAEAV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@@Z
+                         3A3 ?HasProperty@Error@Core@ArtSys@@QEBA_NH@Z
+                         280 ?EraseProperty@Error@Core@ArtSys@@QEAA_KH@Z
+                         535 ?Uni16CharPartialFindCharacter@ArtSys@@YAPEB_WPEB_W_W_K@Z
+                          29 ??0ErrorLogger@Core@ArtSys@@QEAA@XZ
+                          D8 ??1ErrorLogger@Core@ArtSys@@UEAA@XZ
+                           A ??0BroadcastParameter@ArtSys@@QEAA@XZ
+                          D7 ??1Error@Core@ArtSys@@UEAA@XZ
+                           C ??0Broadcaster@ArtSys@@QEAA@XZ
+                          CF ??1Broadcaster@ArtSys@@UEAA@XZ
+                         26A ?DoSendMessage@Broadcaster@ArtSys@@QEBA_NIPEAVBroadcastParameter@2@@Z
+                         21F ?Begin@ErrorLogger@Core@ArtSys@@UEAAXXZ
+                         46A ?Report@ErrorLogger@Core@ArtSys@@UEAAXAEBVError@23@@Z
+                         27D ?End@ErrorLogger@Core@ArtSys@@UEAAXV?$function@$$A6AXAEAVError@Core@ArtSys@@@Z@std@@@Z
+                         3A1 ?HasPending@ErrorLogger@Core@ArtSys@@UEBA_NXZ
+                         49C ?SetEnabled@ErrorLogger@Core@ArtSys@@UEAAX_N@Z
+                         26B ?DoSendMessageSelf@Broadcaster@ArtSys@@MEBAXIPEAVBroadcastParameter@2@@Z
+                         2B5 ?GetDescription@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                          49 ??0FileSpec@ArtSys@@QEAA@XZ
+                          E4 ??1FileSpec@ArtSys@@UEAA@XZ
+                         28A ?GetAppPackageFolder@FileSupport@ArtSys@@SA_NAEAVFileSpec@2@W4EFolderType@FileSupportBase@2@_N@Z
+                         258 ?CreateWStringFromUni16String@Core@ArtSys@@YA?AV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@AEBV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@4@@Z
+                         301 ?GetInstance@Packages@ArtSys@@SAAEAV12@XZ
+                         356 ?GetResourceSpec@Packages@ArtSys@@QEAA?AV?$set@VFileSpec@ArtSys@@U?$less@VFileSpec@ArtSys@@@std@@V?$allocator@VFileSpec@ArtSys@@@4@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@4@W4ChainStrategy@12@@Z
+                         4D9 ?SetSeverity@Error@Core@ArtSys@@QEAAXW4Severity@123@@Z
+                         220 ?BeginProgressMap@StatusReporting@ArtSys@@QEAAXMM@Z
+                         27E ?EndProgressMap@StatusReporting@ArtSys@@QEAAX_N@Z
+                         52E ?Uni16CharGetLength@ArtSys@@YA_KPEB_W@Z
+                         426 ?PlatformCStringToUni16Char@ArtSys@@YAHPEBDPEA_W_K@Z
+                         465 ?ReplaceAllSubstrings@ArtSys@@YA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@AEBV23@00@Z
+                          27 ??0Error@Core@ArtSys@@QEAA@W4Severity@012@@Z
+                         51D ?UTF8ToUni16Char@ArtSys@@YAHPEBDPEA_W_K@Z
+                         37C ?GetTimeStamp@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         37F ?GetTitle@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         137 ??4Error@Core@ArtSys@@IEAAAEAV012@AEBV012@@Z
+                          CE ??1BroadcastParameter@ArtSys@@UEAA@XZ
+                          26 ??0Error@Core@ArtSys@@IEAA@AEBV012@@Z
+
+    ColorManipulationLayer.dll
+             1802D86B8 Import Address Table
+             1803C1690 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          6B ??1GCCalGray@@UEAA@XZ
+                           4 ??0GCCalRGB@@QEAA@UGCXYZValue@@0AEBV?$GTable@N@@1@Z
+                          6C ??1GCCalRGB@@UEAA@XZ
+                         14B ?GetICCProfile@GCICCBased@@QEBA?BV?$GSharedObject@VGCICCProfile@@@@XZ
+                          35 ??0GCICCBasedCMYK@@QEAA@AEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                          7F ??1GCICCBasedCMYK@@UEAA@XZ
+                          3A ??0GCICCBasedGray@@QEAA@AEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                          80 ??1GCICCBasedGray@@UEAA@XZ
+                          3F ??0GCICCBasedLab@@QEAA@AEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                         102 ?GetActiveICCProfile@GCColorManipulation@@QEBA?BV?$GSharedObject@VGCICCProfile@@@@W4ColorType@GCColorManipulationEnums@@_NW4ObjectType@4@@Z
+                          81 ??1GCICCBasedLab@@UEAA@XZ
+                          44 ??0GCICCBasedRGB@@QEAA@AEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                          82 ??1GCICCBasedRGB@@UEAA@XZ
+                          50 ??0GCLab@@QEAA@UGCXYZValue@@0AEBV?$GTable@N@@@Z
+                         19B ?GetType@GCCalGray@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          ED ?CreateClone@GCCalGray@@UEBAPEAV1@XZ
+                         1A5 ?GetType@GCICCBasedGray@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F3 ?CreateClone@GCICCBasedGray@@UEBAPEAV1@XZ
+                         19C ?GetType@GCCalRGB@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          EE ?CreateClone@GCCalRGB@@UEBAPEAV1@XZ
+                         1A1 ?GetType@GCDeviceGray@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F0 ?CreateClone@GCDeviceGray@@UEBAPEAV1@XZ
+                         1A7 ?GetType@GCICCBasedRGB@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F5 ?CreateClone@GCICCBasedRGB@@UEBAPEAV1@XZ
+                         1A4 ?GetType@GCICCBasedCMYK@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F2 ?CreateClone@GCICCBasedCMYK@@UEBAPEAV1@XZ
+                         1A8 ?GetType@GCLab@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                         152 ?GetInstance@GCColorManipulation@@SAAEAV1@XZ
+                          85 ??1GCLab@@UEAA@XZ
+                          51 ??0GCLab@@QEAA@XZ
+                          78 ??1GCDeviceCMYK@@UEAA@XZ
+                          1F ??0GCDeviceCMYK@@QEAA@XZ
+                          7B ??1GCDeviceRGB@@UEAA@XZ
+                          25 ??0GCDeviceRGB@@QEAA@XZ
+                          79 ??1GCDeviceGray@@UEAA@XZ
+                         1A2 ?GetType@GCDeviceRGB@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F1 ?CreateClone@GCDeviceRGB@@UEBAPEAV1@XZ
+                         1A6 ?GetType@GCICCBasedLab@@UEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                          F4 ?CreateClone@GCICCBasedLab@@UEBAPEAV1@XZ
+                          5B ??0GCSourceObjectInfo@@QEAA@AEBW4ObjectType@GCColorManipulationEnums@@AEBV?$GTable@N@@AEBVGCColorSpace@@AEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                          89 ??1GCSourceObjectInfo@@UEAA@XZ
+                          15 ??0GCColorObject@@QEAA@AEBVGCSourceObjectInfo@@AEBVGCColorSpace@@AEBV?$GSharedObject@VGCICCProfile@@@@W4RenderingIntent@GCColorManipulationEnums@@@Z
+                          73 ??1GCColorObject@@QEAA@XZ
+                         153 ?GetInstance@GCConverterFactory@@SAPEAV1@XZ
+                         1F9 ?SetLevelEngineType@GCColorManipulation@@QEAAXW4EngineType@GCColorManipulationEnums@@@Z
+                         1F4 ?SetLevelCMMEnabled@GCColorManipulation@@QEAAXW4State@GCColorManipulationEnums@@W4CategoryType@3@@Z
+                         1BF ?IsActiveCMMEngine@GCColorManipulation@@QEBA_NW4CategoryType@GCColorManipulationEnums@@@Z
+                         1FF ?SetLevelRenderingIntent@GCColorManipulation@@QEAAXW4RenderingIntent@GCColorManipulationEnums@@W4CategoryType@3@@Z
+                         107 ?GetActiveRenderingIntent@GCColorManipulation@@QEBA?AW4RenderingIntent@GCColorManipulationEnums@@W4CategoryType@3@@Z
+                         1FA ?SetLevelICCProfile@GCColorManipulation@@QEAAXW4ColorType@GCColorManipulationEnums@@AEBV?$GSharedObject@VGCICCProfile@@@@_NW4CategoryType@3@@Z
+                         1FC ?SetLevelICCProfileState@GCColorManipulation@@QEAAXW4ColorType@GCColorManipulationEnums@@_NW4State@3@W4CategoryType@3@@Z
+                         15F ?GetLevelICCProfile@GCColorManipulation@@QEBA?BV?$GSharedObject@VGCICCProfile@@@@W4ColorType@GCColorManipulationEnums@@_NW4CategoryType@4@@Z
+                         210 ?SetXYZICCProfile@GCColorManipulation@@QEAAXAEBV?$GSharedObject@VGCICCProfile@@@@@Z
+                         1B4 ?GetXYZICCProfile@GCColorManipulation@@QEBA?BV?$GSharedObject@VGCICCProfile@@@@XZ
+                         154 ?GetInstance@GCICCProfileCache@@SAPEAV1@XZ
+                         17F ?GetProfile@GCICCProfileCache@@QEAA?BV?$GSharedObject@VGCICCProfile@@@@AEBVGPathName@@@Z
+                         149 ?GetICCColorSpace@GCICCProfile@@QEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                         1D4 ?IsValid@GCICCProfile@@QEBA_NXZ
+                         181 ?GetProfileID@GCICCProfile@@QEBAAEBVGBuffer@@_N@Z
+                         182 ?GetProfileVersion@GCICCProfile@@QEBAKXZ
+                         180 ?GetProfileDescription@GCICCProfile@@QEBAXAEAVGString@@@Z
+                         13A ?GetDisplayName@GCICCProfile@@QEBAAEBVGString@@XZ
+                         14D ?GetICCProfileData@GCICCProfile@@QEBAXAEAVGBuffer@@@Z
+                         188 ?GetRenderingIntent@GCICCProfile@@QEBA?AW4RenderingIntent@GCColorManipulationEnums@@XZ
+                         1B2 ?GetWhitePoint@GCICCProfile@@QEBA?AUGCXYZValue@@XZ
+                         17E ?GetProfile@GCICCProfileCache@@QEAA?BV?$GSharedObject@VGCICCProfile@@@@AEAVGInStream@@@Z
+                         148 ?GetICCClass@GCICCProfile@@QEBA?AW4Class@GCColorManipulationEnums@@XZ
+                         1BA ?Initialize@GCColorManipulationLayer@@SA_NXZ
+                          FA ?Finalize@GCColorManipulationLayer@@SAXXZ
+                         1D8 ?PushLevel@GCColorManipulation@@QEAAXXZ
+                          21 ??0GCDeviceGray@@QEAA@XZ
+                           1 ??0GCCalGray@@QEAA@UGCXYZValue@@0N@Z
+                          F6 ?CreateClone@GCLab@@UEBAPEAV1@XZ
+                         18B ?GetSourceICCColorSpace@GCICCProfile@@QEBA?AW4ColorType@GCColorManipulationEnums@@XZ
+                         1D7 ?PopLevel@GCColorManipulation@@QEAAXXZ
+
+    BarCodeWrapper.dll
+             1802D81E0 Import Address Table
+             1803C11B8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         232 ?QuaternaryToDecimalInput@EberleParameters@BarCodeWrapper@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+                         14B ?BinaryToDecimalInput@SICKParameters@BarCodeWrapper@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+                         14A ?BinaryToDecimalInput@PharmaParameters@BarCodeWrapper@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@W4Type@2@@Z
+                         233 ?QuaternaryToDecimalInput@KlebrandParameters@BarCodeWrapper@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV34@@Z
+
+    CMS.dll
+             1802D8630 Import Address Table
+             1803C1608 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          C4 ?TCMSDB_ProcIsICCProc@@YA_NV?$shared_ptr@VTCMSLibrary@@@std@@PEBD@Z
+                         442 ?TInk_GetLabValue@@YAHV?$shared_ptr@VTInk@@@std@@_NPEANPEAVTIlluminant@@@Z
+                         449 ?TInk_GetRGBValue@@YAHV?$shared_ptr@VTInk@@@std@@PEANW4RenderingIntent@TCMS@@@Z
+                         3F6 ?TIDB_GetInk@@YA?AV?$shared_ptr@VTInk@@@std@@V?$shared_ptr@VTCMSLibrary@@@2@PEBD1@Z
+                         3D9 ?TIDB_BookIsPantoneLIVEBook@@YA_NPEBD@Z
+                         3D8 ?TIDB_BookIsPantoneBook@@YA_NPEBD@Z
+                          BA ?TCMSDB_ProcGetPath@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VTCMSLibrary@@@2@PEBD@Z
+                          B2 ?TCMSDB_ProcGetCachedICCProcName@@YAHV?$shared_ptr@VTCMSLibrary@@@std@@PEBDPEAD@Z
+                         27A ?TCMS_GetLib@@YA?AV?$shared_ptr@VTCMSLibrary@@@std@@XZ
+                         28E ?TCMS_Init@@YAHPEAUTCMS_RootDirChangeHandlers@@PEAH@Z
+                         266 ?TCMS_End@@YAHH@Z
+                         3E9 ?TIDB_EGNameToPSNameOfInk@@YAHPEBD0PEAD@Z
+                         3CC ?TIDB_BGNameToGUINameOfBook@@YAHV?$shared_ptr@VTCMSLibrary@@@std@@PEBDPEAD@Z
+                         425 ?TIDB_PSNameToEGNameOfInk@@YAHV?$shared_ptr@VTCMSLibrary@@@std@@PEBDPEAD2@Z
+                          DC ?TCMSDB_ProcPresent@@YA_NV?$shared_ptr@VTCMSLibrary@@@std@@PEBD@Z
+                         3CE ?TIDB_BookExists@@YA_NV?$shared_ptr@VTCMSLibrary@@@std@@PEBD@Z
+
+    EGXMPlib.dll
+             1802D8970 Import Address Table
+             1803C1948 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         137 ?GetLayers@XMPlib@@QEBA_NAEAV?$vector@UXMPlLay@@V?$allocator@UXMPlLay@@@std@@@std@@@Z
+                         12C ?GetExtRefs@XMPlib@@QEBA_NAEAV?$vector@UXMPlExtRef@@V?$allocator@UXMPlExtRef@@@std@@@std@@@Z
+                         17D ?SetPDFNativeVersion@XMPlib@@QEAA_NH@Z
+                         178 ?SetNrPages@XMPlib@@QEAA_NH@Z
+                         172 ?SetIsTrapped@XMPlib@@QEAA_N_N@Z
+                         157 ?MergeNonEsko@XMPlib@@QEAA_NPEBV1@@Z
+                         153 ?MergeExtRefs@XMPlib@@QEAA_NAEBV?$vector@UXMPlExtRef@@V?$allocator@UXMPlExtRef@@@std@@@std@@@Z
+                         174 ?SetLayers@XMPlib@@QEAA_NAEBV?$vector@UXMPlLay@@V?$allocator@UXMPlLay@@@std@@@std@@@Z
+                         15C ?SetBarcodes@XMPlib@@QEAA_NAEBV?$vector@UXMPlBarcode@@V?$allocator@UXMPlBarcode@@@std@@@std@@@Z
+                         16D ?SetFonts@XMPlib@@QEAA_NAEBV?$vector@UXMPlFont@@V?$allocator@UXMPlFont@@@std@@@std@@@Z
+                         160 ?SetColorSpace@XMPlib@@QEAA_NAEBUXMPlColorSpace@@@Z
+                           0 ??0XMPlBarcode@@QEAA@$$QEAU0@@Z
+                         12E ?GetFonts@XMPlib@@QEBA_NAEAV?$vector@UXMPlFont@@V?$allocator@UXMPlFont@@@std@@@std@@@Z
+                         14E ?GetXML@XMPlib@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         166 ?SetDimDat@XMPlib@@QEAA_NAEBUXMPlDimDat@@@Z
+                           1 ??0XMPlBarcode@@QEAA@AEBU0@@Z
+                          85 ??1XMPlBarcode@@QEAA@XZ
+                           2 ??0XMPlBarcode@@QEAA@XZ
+                          D1 ??4XMPlFont@@QEAAAEAU0@$$QEAU0@@Z
+                          95 ??1XMPlFont@@QEAA@XZ
+                          2E ??0XMPlExtRef@@QEAA@$$QEAU0@@Z
+                          94 ??1XMPlExtRef@@QEAA@XZ
+                          31 ??0XMPlExtRef@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0H0H@Z
+                          4C ??0XMPlLay@@QEAA@$$QEAU0@@Z
+                          4D ??0XMPlLay@@QEAA@AEBU0@@Z
+                          9D ??1XMPlLay@@QEAA@XZ
+                          4E ??0XMPlLay@@QEAA@XZ
+                         17E ?SetPagRanges@XMPlib@@QEAA_NAEBV?$vector@UXMPlPagRange@@V?$allocator@UXMPlPagRange@@@std@@@std@@@Z
+                         170 ?SetInks@XMPlib@@QEAA_NAEBV?$vector@UXMPlInk@@V?$allocator@UXMPlInk@@@std@@@std@@_N@Z
+                         131 ?GetInkProperties@XMPlib@@QEBA_NAEAV?$vector@UXMPlInkProperty@@V?$allocator@UXMPlInkProperty@@@std@@@std@@@Z
+                         132 ?GetInks@XMPlib@@QEBA_NAEAV?$vector@UXMPlInk@@V?$allocator@UXMPlInk@@@std@@@std@@@Z
+                          5B ??0XMPlPagRange@@QEAA@$$QEAU0@@Z
+                          5C ??0XMPlPagRange@@QEAA@AEBU0@@Z
+                          A2 ??1XMPlPagRange@@QEAA@XZ
+                          5D ??0XMPlPagRange@@QEAA@XZ
+                          9B ??1XMPlInkProperty@@QEAA@XZ
+                          D7 ??4XMPlInk@@QEAAAEAU0@$$QEAU0@@Z
+                          3D ??0XMPlInk@@QEAA@$$QEAU0@@Z
+                          3E ??0XMPlInk@@QEAA@AEBU0@@Z
+                          3F ??0XMPlInk@@QEAA@XZ
+                         121 ?GetColorSpace@XMPlib@@QEBA_NAEAUXMPlColorSpace@@@Z
+                          87 ??1XMPlColorSpace@@QEAA@XZ
+                           8 ??0XMPlColorSpace@@QEAA@XZ
+                         133 ?GetInks@XMPlib@@QEBA_NAEAV?$vector@UXMPlInk@@V?$allocator@UXMPlInk@@@std@@@std@@_N@Z
+                          98 ??1XMPlInk@@QEAA@XZ
+                         127 ?GetDimDat@XMPlib@@QEBA_NAEAUXMPlDimDat@@@Z
+                         135 ?GetIsTrapped@XMPlib@@QEBA_NAEA_N@Z
+                         13E ?GetPDFNativeVersion@XMPlib@@QEBA_NAEAH@Z
+                         18D ?SetXML@XMPlib@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          AE ??1XMPlib@@QEAA@XZ
+                          84 ??0XMPlib@@QEAA@XZ
+                          8B ??1XMPlDimDat@@QEAA@XZ
+                          14 ??0XMPlDimDat@@QEAA@XZ
+
+    FontNDSLayer.dll
+             1802D8F18 Import Address Table
+             1803C1EF0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           3 ?Next@GFSystemFontIterator@@UEAA_NAEAVGPathName@@@Z
+                           1 ??1GFSystemFontIterator@@UEAA@XZ
+                           0 ??0GFSystemFontIterator@@QEAA@XZ
+                           4 ?Reset@GFSystemFontIterator@@UEAAXXZ
+
+    libpng16.dll
+             1802DC4D8 Import Address Table
+             1803C54B0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           B png_create_info_struct
+                          7E png_read_info
+                          BE png_set_palette_to_rgb
+                          D8 png_set_tRNS_to_alpha
+                          7D png_read_image
+                          7C png_read_end
+                          12 png_destroy_read_struct
+                          72 png_init_io
+                          5B png_get_valid
+                          18 png_get_IHDR
+                          3E png_get_pHYs
+                          19 png_get_PLTE
+                          32 png_get_iCCP
+                           C png_create_read_struct
+                          B6 png_set_longjmp_fn
+
+    Localization.dll
+             1802D9160 Import Address Table
+             1803C2138 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1E ??DLocalization@@YA?AVUnit@0@AEBV10@0@Z
+                          57 ?GetValue@Quantity@Localization@@QEBANXZ
+                           D ??1Unit@Localization@@QEAA@XZ
+                          51 ?GetSymbol@UnitManager@Localization@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVUnit@2@AEBV34@@Z
+                          5C ?HasUnit@UnitManager@Localization@@QEBA_NAEBVUnit@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          5F ?Instance@UnitManager@Localization@@SAAEAV12@XZ
+                          4F ?GetString@Localization@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVQuantity@1@AEBVUnit@1@_K_NAEBV23@43@Z
+                          50 ?GetString@Localization@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@N_KAEBV23@@Z
+                          64 ?LinesPerCentimeterUnit@Localization@@YA?AVUnit@1@XZ
+                          66 ?LinesPerMillimeterUnit@Localization@@YA?AVUnit@1@XZ
+                          65 ?LinesPerInchUnit@Localization@@YA?AVUnit@1@XZ
+                          76 ?PercentageUnit@Localization@@YA?AVUnit@1@XZ
+                          7D ?PointUnit@Localization@@YA?AVUnit@1@XZ
+                          5E ?InchUnit@Localization@@YA?AVUnit@1@XZ
+                          30 ?CentimeterUnit@Localization@@YA?AVUnit@1@XZ
+                          6E ?MillimeterUnit@Localization@@YA?AVUnit@1@XZ
+                          31 ?Convert@Localization@@YA?AVQuantity@1@AEBV21@AEBVUnit@1@@Z
+                           C ??1Quantity@Localization@@QEAA@XZ
+                           7 ??0Unit@Localization@@QEAA@XZ
+
+    PDFGeometryLayer.dll
+             1802D9CD0 Import Address Table
+             1803C2CA8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          38 ?ToYAGLJoin@GpgYAGLSupport@@YA?AW4Join@YAGL@@W4LineJoinType@GOLineState@@@Z
+                          32 ?ToYAGLCap@GpgYAGLSupport@@YA?AW4Cap@YAGL@@W4LineCapType@GOLineState@@@Z
+                          2D ?ToGOPath@GpgYAGLSupport@@YAXAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@_NAEAVGOPathBase@@@Z
+                          2B ?ToGMatrix@GpgYAGLSupport@@YA?AV?$GMatrixBase@N@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          3A ?ToYAGLTransformation@GpgYAGLSupport@@YA?AV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBV?$GMatrixBase@N@@@Z
+                          37 ?ToYAGLDash@GpgYAGLSupport@@YA?AUDash@YAGL@@AEBV?$GTable@N@@N@Z
+                          35 ?ToYAGLCompound@GpgYAGLSupport@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBVGOPathBase@@W4FillType@GOLineState@@_N@Z
+
+    tiff.dll
+             1802DC558 Import Address Table
+             1803C5530 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          AC TIFFWriteEncodedStrip
+                          68 TIFFReadEncodedTile
+                          80 TIFFSetField
+                          7E TIFFSetErrorHandler
+                          86 TIFFSetWarningHandler
+                          27 TIFFFieldWithTag
+                          1E TIFFFieldDataType
+                          35 TIFFGetField
+                          36 TIFFGetFieldDefaulted
+                          8A TIFFStripSize
+                          99 TIFFTileSize
+                          4A TIFFIsTiled
+                          5E TIFFRGBAImageOK
+                          5B TIFFRGBAImageBegin
+                          5D TIFFRGBAImageGet
+                          5C TIFFRGBAImageEnd
+                           B TIFFComputeTile
+                          67 TIFFReadEncodedStrip
+                          51 TIFFOpen
+                           9 TIFFClose
+
+    VariableEngine.dll
+             1802DBFF0 Import Address Table
+             1803C4FC8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          36 ?UpdateContextID@CDataCategory@VariableEngine@@UEAAXH@Z
+                          17 ?GetFieldValueStr@CDataCategory@VariableEngine@@UEAA_NPEAD_KHPEBD222W4Units@2@2@Z
+                          30 ?SendDocumentChangedNotification@CDataCategory@VariableEngine@@UEAA_NXZ
+                          26 ?IsPDFPlusCompatible@CDataCategory@VariableEngine@@UEBA_NPEBD@Z
+                          2E ?RegisterVarForChangeNotify@CDataCategory@VariableEngine@@UEAA_NHPEBD0@Z
+                          37 ?UpdateFieldValue@CDataCategory@VariableEngine@@UEAA_NPEBDAEBV?$set@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@Z
+                          16 ?GetFieldUnitSet@CDataCategory@VariableEngine@@UEAA?AV?$set@W4Units@VariableEngine@@U?$less@W4Units@VariableEngine@@@std@@V?$allocator@W4Units@VariableEngine@@@4@@std@@PEBD@Z
+                           2 ??0CDataCategory@VariableEngine@@QEAA@XZ
+                           3 ??1CDataCategory@VariableEngine@@UEAA@XZ
+                          1C ?GetRegisteredVarsForChangeNotify@CDataCategory@VariableEngine@@UEAAAEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@H@Z
+                          21 ?GetUnitsEnabled@CDataCategory@VariableEngine@@UEBA_NHPEBD@Z
+                          1B ?GetOnDemandFieldIds@CDataCategory@VariableEngine@@UEBAPEAPEBDXZ
+                          32 ?Shutdown@CDataCategory@VariableEngine@@UEAAXXZ
+
+    Logging.dll
+             1802D9200 Import Address Table
+             1803C21D8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 ??0Guard@Logging@@QEAA@XZ
+                           3 ??1Guard@Logging@@QEAA@XZ
+                           F ?HasLevel@Logging@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_K@Z
+
+    ExtraBoostFilesystem.dll
+             1802D8B20 Import Address Table
+             1803C1AF8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          45 ?MakeAbsoluteURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBV2234@0@Z
+                          42 ?IsRelativeURI@ExtraBoostFilesystem@@YA_NAEBVuri@2network@boost@@@Z
+                          5F ?ToFileURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBV2234@@Z
+                          26 ?ApplicationDirectory@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@XZ
+                          6D ?UserApplicationDataDirectory@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@XZ
+                          38 ?GetMimeType@MimeType@ExtraBoostFilesystem@@YA?AV?$basic_string_view@DU?$char_traits@D@std@@@std@@AEBVpath@filesystem@boost@@@Z
+                          60 ?ToFileURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBVpath@filesystem@4@@Z
+                          62 ?ToGenericUTF8String@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVpath@filesystem@boost@@@Z
+                          33 ?FromPercentEncoding@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV23@@Z
+                          47 ?MakeRelativeURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBV2234@0@Z
+                          49 ?MountURI@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBVuri@5network@4@@Z
+                          2A ?ApplicationResourcesDirectory@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@XZ
+                          66 ?ToPercentEncoding@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVpath@filesystem@boost@@@Z
+                          48 ?MountPath@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBV234@@Z
+                          68 ?ToURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBVpath@filesystem@4@@Z
+                          28 ?ApplicationName@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          4B ?ProcessSpecificTempDirectory@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@XZ
+                          6A ?ToUTF8String@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVpath@filesystem@boost@@@Z
+                          35 ?FromUTF8String@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+
+    boost_filesystem.dll
+             1802DC408 Import Address Table
+             1803C53E0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          36 ?filename_v3@path_algorithms@detail@filesystem@boost@@SA?AVpath@34@AEBV534@@Z
+                          6A ?stem_v3@path_algorithms@detail@filesystem@boost@@SA?AVpath@34@AEBV534@@Z
+                          34 ?extension_v3@path_algorithms@detail@filesystem@boost@@SA?AVpath@34@AEBV534@@Z
+                          1B ?convert@path_traits@detail@filesystem@boost@@YAXPEB_W0AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBV?$codecvt@_WDU_Mbstatet@@@6@@Z
+                          1A ?convert@path_traits@detail@filesystem@boost@@YAXPEBD0AEAV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@PEBV?$codecvt@_WDU_Mbstatet@@@6@@Z
+                          64 ?replace_extension_v3@path_algorithms@detail@filesystem@boost@@SAXAEAVpath@34@AEBV534@@Z
+                          18 ?compare_v3@path_algorithms@detail@filesystem@boost@@SAHAEBVpath@34@0@Z
+                          39 ?find_parent_path_size@path_algorithms@detail@filesystem@boost@@SA_KAEBVpath@34@@Z
+                          1E ?copy_file@detail@filesystem@boost@@YA_NAEBVpath@23@0IPEAVerror_code@system@3@@Z
+                          51 ?permissions@detail@filesystem@boost@@YAXAEBVpath@23@W4perms@23@PEAVerror_code@system@3@@Z
+                          5D ?remove@detail@filesystem@boost@@YA_NAEBVpath@23@PEAVerror_code@system@3@@Z
+                          63 ?rename@detail@filesystem@boost@@YAXAEBVpath@23@0PEAVerror_code@system@3@@Z
+                          6F ?unique_path@detail@filesystem@boost@@YA?AVpath@23@AEBV423@PEAVerror_code@system@3@@Z
+                          44 ?increment_v3@path_algorithms@detail@filesystem@boost@@SAXAEAVpath_iterator@path_detail@34@@Z
+                          4F ?make_preferred@path@filesystem@boost@@QEAAAEAV123@XZ
+                          14 ?begin@path@filesystem@boost@@QEBA?AVpath_iterator@path_detail@23@XZ
+                          12 ?append_v3@path_algorithms@detail@filesystem@boost@@SAXAEAVpath@34@PEB_W1@Z
+                          31 ?end@path@filesystem@boost@@QEBA?AVpath_iterator@path_detail@23@XZ
+                          10 ?absolute@detail@filesystem@boost@@YA?AVpath@23@AEBV423@0PEAVerror_code@system@3@@Z
+                          6C ?symlink_status@detail@filesystem@boost@@YA?AVfile_status@23@AEBVpath@23@PEAVerror_code@system@3@@Z
+                          69 ?status@detail@filesystem@boost@@YA?AVfile_status@23@AEBVpath@23@PEAVerror_code@system@3@@Z
+                          35 ?file_size@detail@filesystem@boost@@YA_KAEBVpath@23@PEAVerror_code@system@3@@Z
+                          49 ?last_write_time@detail@filesystem@boost@@YA_JAEBVpath@23@PEAVerror_code@system@3@@Z
+
+    WS2_32.dll
+             1802DC060 Import Address Table
+             1803C5038 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                             Ordinal   115
+                             Ordinal   116
+
+    PDFObjectLayer.dll
+             1802D9D10 Import Address Table
+             1803C2CE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         2A7 ??1?$GSharedObject@VGOFormResource@@@@QEAA@XZ
+                         4BE ??C?$GSharedObject@VGOFormResource@@@@QEBAPEAVGOFormResource@@XZ
+                         4A1 ??B?$GSharedObject@VGOFormResource@@@@QEBAPEAVGOFormResource@@XZ
+                        12F2 ?SetAIS@GOGraphicState@@QEAAX_N@Z
+                        13A3 ?SetFillAlpha@GOGraphicState@@QEAAXN@Z
+                        1509 ?SetStrokeAlpha@GOGraphicState@@QEAAXN@Z
+                        132B ?SetBlendMode@GOGraphicState@@QEAAXAEBVGBuffer@@@Z
+                         9D7 ?GetAIS@GOGraphicState@@QEBA_NXZ
+                         BA7 ?GetFillAlpha@GOGraphicState@@QEBANXZ
+                         EF7 ?GetStrokeAlpha@GOGraphicState@@QEBANXZ
+                         A35 ?GetBlendMode@GOGraphicState@@QEBAAEBVGBuffer@@XZ
+                         ED7 ?GetSoftMaskDict@GOGraphicState@@QEAAPEAVGOSoftMaskDict@@XZ
+                         ED8 ?GetSoftMaskDict@GOGraphicState@@QEBAPEBVGOSoftMaskDict@@XZ
+                        14F5 ?SetSoftMaskDict@GOGraphicState@@QEAAXPEBVGOSoftMaskDict@@@Z
+                        1556 ?SetTransparencyState@GOGraphicState@@QEAAXPEBVGOTransparencyState@@@Z
+                         8D5 ?CreatePostScriptStream@GOFunctionType4@@QEBAPEAVGInStream@@XZ
+                        12B8 ?SaveContent@GOSoftMaskDict@@QEAAX_N0@Z
+                        13E7 ?SetGraphicsStateParametersToContain@GOSoftMaskDict@@QEAAXV?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@@Z
+                         ED9 ?GetSoftMaskDict@GOObjectFactory@@QEBAPEAVGOSoftMaskDict@@AEBVGADict@@@Z
+                        164D ?WillCollect@GOResource@@UEAAXXZ
+                         DEB ?GetPage@GOFormResource@@UEAAPEAVGOPage@@XZ
+                         BDF ?GetForm@GOFormResource@@UEAAPEAVGOForm@@XZ
+                         B39 ?GetDataLength@GOXObjectResource@@UEBA_JXZ
+                         D75 ?GetObject@GOXObjectResource@@UEBAAEBVGAObject@@XZ
+                         8E6 ?CreateSimilar@GOXObjectResource@@MEBAPEAVGOResource@@AEBVGAObject@@@Z
+                        148D ?SetObjectSelf@GOXObjectResource@@EEAAXAEBVGAObject@@@Z
+                         85A ?CreateClone@GOFormResource@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         74A ?Accept@GOFormResource@@UEAAXAEAVGOVisitor@@@Z
+                         D95 ?GetObjectType@GOFormResource@@UEBAAEBVGOObjectType@@XZ
+                         A41 ?GetBoundingBox@GOFormResource@@UEBAXAEAV?$GRectBase@N@@@Z
+                         A0D ?GetBBox@GOFormResource@@UEBAXAEAV?$GRectBase@N@@@Z
+                         D61 ?GetOPI@GOFormResource@@UEAA?AVGAObject@@XZ
+                        1480 ?SetOPI@GOFormResource@@UEAAXVGADict@@@Z
+                        1258 ?RemoveOPI@GOFormResource@@UEAAXXZ
+                         C8B ?GetLastModified@GOFormResource@@UEBAXAEAVGDateTime@@@Z
+                        111A ?IsTransparencyGroup@GOFormResource@@UEBA_NXZ
+                        122B ?RemoveAllTransparency@GOFormResource@@UEAAXXZ
+                        1150 ?MakeTransparencyGroup@GOFormResource@@UEAAXXZ
+                         A31 ?GetBlendColorSpace@GOFormResource@@UEBAPEBVGOUniformColorSpace@@XZ
+                         C7C ?GetKnockout@GOFormResource@@UEBA_NXZ
+                        1425 ?SetKnockout@GOFormResource@@UEAAX_N@Z
+                         C72 ?GetIsolated@GOFormResource@@UEBA_NXZ
+                        1421 ?SetIsolated@GOFormResource@@UEAAX_N@Z
+                         7A8 ?All@GOGraphicsStateParameters@@2V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@B
+                        169F ?sBlendCompatible@GOTransparencyState@@2VGBuffer@@B
+                        16A8 ?sBlendNormal@GOTransparencyState@@2VGBuffer@@B
+                        16A7 ?sBlendMultiply@GOTransparencyState@@2VGBuffer@@B
+                        16AB ?sBlendScreen@GOTransparencyState@@2VGBuffer@@B
+                        16A9 ?sBlendOverlay@GOTransparencyState@@2VGBuffer@@B
+                        16A0 ?sBlendDarken@GOTransparencyState@@2VGBuffer@@B
+                        16A5 ?sBlendLighten@GOTransparencyState@@2VGBuffer@@B
+                        169E ?sBlendColorDodge@GOTransparencyState@@2VGBuffer@@B
+                        169D ?sBlendColorBurn@GOTransparencyState@@2VGBuffer@@B
+                        16A3 ?sBlendHardLight@GOTransparencyState@@2VGBuffer@@B
+                        16AC ?sBlendSoftLight@GOTransparencyState@@2VGBuffer@@B
+                        16A1 ?sBlendDifference@GOTransparencyState@@2VGBuffer@@B
+                        16A2 ?sBlendExclusion@GOTransparencyState@@2VGBuffer@@B
+                        16A4 ?sBlendHue@GOTransparencyState@@2VGBuffer@@B
+                        16AA ?sBlendSaturation@GOTransparencyState@@2VGBuffer@@B
+                        169C ?sBlendColor@GOTransparencyState@@2VGBuffer@@B
+                        16A6 ?sBlendLuminosity@GOTransparencyState@@2VGBuffer@@B
+                        1667 ?begin@GOContent@@QEAA?AV?$GTableIterator@PEAVGOContentObject@@@@XZ
+                        1689 ?end@GOContent@@QEAA?AV?$GTableIterator@PEAVGOContentObject@@@@XZ
+                        1154 ?MakeUnique@GOResource@@QEAAPEAV1@AEAVGACloneStrategy@@@Z
+                         819 ?CompareGraphicsStatePerParameter@GOGraphicsStateParameters@@SA_NAEBVGOGraphicState@@0V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@@Z
+                         FA0 ?GetUsedInitialGraphicsStateParameters@GOContainer@@QEAA?AV?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@XZ
+                        1039 ?HasUniqueID@GOXObjectResource@@QEBA_NXZ
+                         F90 ?GetUniqueID@GOXObjectResource@@QEBA?AVGBuffer@@XZ
+                        102B ?HasScope@GOXObjectResource@@QEBA_NXZ
+                         EB9 ?GetScope@GOXObjectResource@@QEBA?AW4Scope@1@XZ
+                         4DC ??D?$GSharedObject@VGOFormResource@@@@QEBAAEAVGOFormResource@@XZ
+                         15A ??0GOGraphicState@@QEAA@AEBV0@@Z
+                         862 ?CreateClone@GOImageResource@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        1501 ?SetStencilMask@GOImageResource@@UEAAXAEBV?$GSharedObject@VGOImageResource@@@@@Z
+                        14EF ?SetSoftMask@GOImageResource@@UEAAXAEBV?$GSharedObject@VGOImageResource@@@@@Z
+                        1346 ?SetColorRenderingIntent@GOImageResource@@UEAAXAEBVGBuffer@@@Z
+                         ACC ?GetColorRenderingIntent@GOImageResource@@UEBAPEAVGBuffer@@XZ
+                         85E ?CreateClone@GOImage@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         74C ?Accept@GOImage@@UEAAXAEAVGOVisitor@@@Z
+                         A42 ?GetBoundingBox@GOImage@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         D97 ?GetObjectType@GOImage@@UEBAAEBVGOObjectType@@XZ
+                        10A1 ?IsFineHitByRect@GOImage@@UEBA_NAEBV?$GQuadPointBase@N@@@Z
+                         C1A ?GetGraphicState@GOImage@@UEBAXAEAVGOGraphicState@@@Z
+                        13E1 ?SetGraphicState@GOImage@@UEAAXAEBVGOGraphicState@@@Z
+                        1455 ?SetMatrix@GOImage@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         CBD ?GetMatrix@GOImage@@UEBAAEBV?$GMatrixBase@N@@XZ
+                         E9A ?GetResource@GOObjectFactory@@QEBAPEAVGOResource@@AEBVGAObject@@@Z
+                         D3C ?GetOCGroup@GOOCProperties@@QEBAPEBVGOOCGroup@@AEBVGADict@@@Z
+                        1388 ?SetDefaultVisibility@GOOCConfigDict@@QEAAXAEAVGOOCGroup@@_N@Z
+                         B37 ?GetDataLength@GOImage@@UEBA_JXZ
+                        151A ?SetStrokeOverprint@GOImage@@EEAAX_N@Z
+                         7C0 ?ApplyFilter@GOImageInterface@@UEAA_NPEAVGOImageChainingFilter@@@Z
+                         AF7 ?GetCompressionRatio@GOImageInterface@@UEBANXZ
+                         D1B ?GetNumComponents@GOImageInterface@@UEBAJXZ
+                         B4A ?GetDefaultDecodeArray@GOImageInterface@@UEBAXAEAV?$GTable@N@@@Z
+                         B3F ?GetDecodedDataLength@GOImageInterface@@UEBA_JXZ
+                         C3E ?GetImageType@GOImageInterface@@UEBA?AW4ImageType@1@XZ
+                         E9E ?GetResource@GOXObject@@UEBAPEBVGOXObjectResource@@XZ
+                        11A1 ?ProcessColorResources@GOImage@@UEAAXAEAVGOVisitor@@@Z
+                         89B ?CreateData@GOImage@@UEBAPEAVGInStream@@_N@Z
+                         8D8 ?CreateRawData@GOImage@@UEBAPEAVGInStream@@XZ
+                        136F ?SetData@GOImage@@UEAAXAEAVGInStream@@AEAV?$GTable@VGAFilter@@@@AEBV?$GSizeBase@J@@JJPEBVGOColorSpaceResource@@_N4@Z
+                        1370 ?SetData@GOImage@@UEAAXAEAVGInStream@@AEAV?$GTable@VGAFilter@@@@AEBV?$GSizeBase@J@@JJ_N3@Z
+                         B6B ?GetDimensions@GOImage@@UEBA?AV?$GSizeBase@J@@XZ
+                         B6C ?GetDimensions@GOImage@@UEBAXAEAV?$GSizeBase@J@@@Z
+                         A22 ?GetBitsPerComponent@GOImage@@UEBAJXZ
+                         AD1 ?GetColorSpace@GOImage@@UEBAPEBVGOColorSpaceResource@@XZ
+                         ADF ?GetColorSpec@GOImage@@UEBAAEBVGOColorSpec@@XZ
+                        1349 ?SetColorSpace@GOImage@@UEAAXPEBVGOColorSpaceResource@@@Z
+                        1350 ?SetColorSpec@GOImage@@UEAAXAEBVGOColorSpec@@@Z
+                        10C4 ?IsMasked@GOImage@@UEBA_NXZ
+                         923 ?DisableMasking@GOImage@@UEAAXXZ
+                        1103 ?IsStencilMask@GOImage@@UEBA_NXZ
+                        114C ?MakeStencilMask@GOImage@@UEAAX_N@Z
+                        1109 ?IsStencilMasked@GOImage@@UEBA_NXZ
+                         EE9 ?GetStencilMask@GOImage@@UEAA?AV?$GSharedObject@VGOImageResource@@@@XZ
+                        1500 ?SetStencilMask@GOImage@@UEAAXAEBV?$GSharedObject@VGOImageResource@@@@@Z
+                        107E ?IsColorMasked@GOImage@@UEBA_NXZ
+                         AC5 ?GetColorMask@GOImage@@UEBA?AV?$GTable@J@@XZ
+                         AC6 ?GetColorMask@GOImage@@UEBA_NAEAV?$GTable@J@@@Z
+                        1340 ?SetColorMask@GOImage@@UEAAXAEBV?$GTable@J@@@Z
+                        10FC ?IsSoftMask@GOImage@@UEBA_NXZ
+                        10FE ?IsSoftMasked@GOImage@@UEBA_NXZ
+                         ED4 ?GetSoftMask@GOImage@@UEAA?AV?$GSharedObject@VGOImageResource@@@@XZ
+                        14EE ?SetSoftMask@GOImage@@UEAAXAEBV?$GSharedObject@VGOImageResource@@@@@Z
+                        10BF ?IsJPXSoftMasked@GOImage@@UEBA_NXZ
+                        116F ?MustIgnoreDecodeArray@GOImage@@UEBA_NXZ
+                         B3C ?GetDecodeArray@GOImage@@UEBA_NAEAV?$GTable@N@@@Z
+                        1378 ?SetDecodeArray@GOImage@@UEAAXAEBV?$GTable@N@@@Z
+                        1345 ?SetColorRenderingIntent@GOImage@@UEAAXAEBVGBuffer@@@Z
+                         ACB ?GetColorRenderingIntent@GOImage@@UEBAAEBVGBuffer@@XZ
+                        10BB ?IsInterpolated@GOImage@@UEBA_NXZ
+                        141B ?SetInterpolated@GOImage@@UEAAX_N@Z
+                         BB4 ?GetFilters@GOImage@@UEBAXAEAV?$GTable@VGAFilter@@@@@Z
+                         D62 ?GetOPI@GOImage@@UEAA?AVGAObject@@XZ
+                        1481 ?SetOPI@GOImage@@UEAAXVGADict@@@Z
+                        1259 ?RemoveOPI@GOImage@@UEAAXXZ
+                         FF8 ?HasAlternates@GOImage@@UEBA_N_N@Z
+                         9F9 ?GetAlternates@GOImage@@UEBA?AV?$GTable@VGAStream@@@@_N@Z
+                        130C ?SetAlternates@GOImage@@UEAAXAEBVGAStream@@@Z
+                        122D ?RemoveAlternates@GOImage@@UEAAXXZ
+                         B83 ?GetElement@GOImage@@UEAAAEAVGOElement@@XZ
+                         E96 ?GetResource@GOImage@@UEAAPEAVGOImageResource@@XZ
+                        13B4 ?SetFillOverprint@GOImage@@UEAAX_N@Z
+                        14DB ?SetResource@GOImage@@UEAAXPEAVGOXObjectResource@@@Z
+                        14A9 ?SetParentContent@GOImage@@UEAAXPEAVGOContent@@@Z
+                        14F1 ?SetSoftMaskDict@GOElement@@UEAAXPEBVGOSoftMaskDict@@AEBV?$GMatrixBase@N@@@Z
+                        14F0 ?SetSoftMaskDict@GOElement@@UEAAXPEBVGOSoftMaskDict@@@Z
+                        14F9 ?SetSoftMaskMatrix@GOElement@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                        1022 ?HasPieceInfo@GOForm@@QEBA_NXZ
+                        126C ?RemovePieceInfo@GOForm@@QEAAXAEBVGBuffer@@@Z
+                        165E ?WriteToBuffer@GOXMPMetadata@@QEBAXAEAVGBuffer@@@Z
+                         915 ?DeleteProperty@GOXMPMetadata@@QEAA_NAEBVGBuffer@@0@Z
+                        1027 ?HasProperty@GOXMPMetadata@@QEBA_NAEBVGBuffer@@0@Z
+                         A80 ?GetClassType@GOFormContent@@SAAEBVGOObjectType@@XZ
+                         1F4 ??0GOPageSignature@@QEAA@AEBVGOCompactPageSignature@@@Z
+                         D76 ?GetObjectAtIndex@GOPageSignature@@QEBAPEAVGOObject@@J@Z
+                         C40 ?GetIndex@GOPageSignature@@QEBAJQEBVGOObject@@@Z
+                        1169 ?Match@GOPageSignature@@SA_NAEBV1@0AEAV?$multimap@JJU?$less@J@std@@V?$GSTLAllocator@U?$pair@$$CBJJ@std@@@@@std@@_N@Z
+                         AF2 ?GetCompactSignature@GOPageSignature@@QEBAXAEAVGOCompactPageSignature@@@Z
+                         10A ??0GOCompactPageSignature@@QEAA@XZ
+                         2FD ??1GOCompactPageSignature@@QEAA@XZ
+                        1086 ?IsDirty@GOContent@@QEBA_NXZ
+                         CFC ?GetNextTextBlockID@GOContent@@QEAAKXZ
+                          FC ??0GOColorSpec@@QEAA@PEBVGOColorSpaceResource@@PEBVGOColorValue@@@Z
+                        13E6 ?SetGraphicsStateParametersToContain@GOContainer@@QEAAXV?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@@Z
+                        1562 ?SetUniqueID@GOXObjectResource@@QEAAXAEBVGBuffer@@@Z
+                        127F ?RemoveUniqueID@GOXObjectResource@@QEAAXXZ
+                        14E4 ?SetScope@GOXObjectResource@@QEAAXW4Scope@1@@Z
+                        1273 ?RemoveScope@GOXObjectResource@@QEAAXXZ
+                        1240 ?RemoveEncapsulated@GOXObjectResource@@QEAAXXZ
+                         E29 ?GetPieceInfo@GOFormResource@@QEBA?AVGAObject@@AEBVGBuffer@@@Z
+                        14B5 ?SetPieceInfo@GOFormResource@@QEAAXAEBVGBuffer@@AEBVGAObject@@@Z
+                        126D ?RemovePieceInfo@GOFormResource@@QEAAXAEBVGBuffer@@@Z
+                         1A7 ??0GOMarkedContentProperty@@QEAA@AEBVGBuffer@@@Z
+                         A6F ?GetClassType@GOClippingObject@@SAAEBVGOObjectType@@XZ
+                        133B ?SetClip@GOGraphicState@@QEAAXPEBVGOClippingObject@@@Z
+                        13B3 ?SetFillOverprint@GOGraphicState@@QEAAX_N@Z
+                        1497 ?SetOverprintMode@GOGraphicState@@QEAAXJ@Z
+                        1511 ?SetStrokeColorSpec@GOGraphicState@@QEAAXAEBVGOColorSpec@@@Z
+                        13AA ?SetFillColorSpec@GOGraphicState@@QEAAXAEBVGOColorSpec@@@Z
+                        1344 ?SetColorRenderingIntent@GOGraphicState@@QEAAXAEBVGBuffer@@@Z
+                        13ED ?SetHalftone@GOGraphicState@@QEAAXAEBV?$GSharedObject@VGOHalftone@@@@@Z
+                        1454 ?SetMatrix@GOGraphicState@@QEAAXAEBV?$GMatrixBase@N@@@Z
+                        1545 ?SetTextStroked@GOGraphicState@@QEAAX_N@Z
+                        1538 ?SetTextFillType@GOGraphicState@@QEAAXW4FillType@GOLineState@@@Z
+                        14B2 ?SetPathStroked@GOGraphicState@@QEAAX_N@Z
+                         D15 ?GetNumChildNodes@GODPartNode@@QEBAJXZ
+                        1441 ?SetLineWidth@GOGraphicState@@QEAAXN@Z
+                        1430 ?SetLineCap@GOGraphicState@@QEAAXW4LineCapType@GOLineState@@@Z
+                        143A ?SetLineJoin@GOGraphicState@@QEAAXW4LineJoinType@GOLineState@@@Z
+                        1434 ?SetLineDash@GOGraphicState@@QEAAXAEBV?$GTable@N@@N@Z
+                        1464 ?SetMiterLimit@GOGraphicState@@QEAAXN@Z
+                        153B ?SetTextKnockout@GOGraphicState@@QEAAX_N@Z
+                        14FE ?SetStartMatrix@GOTextBase@@QEAAXAEBV?$GMatrixBase@N@@@Z
+                          E3 ??0GOClipText@@QEAA@AEBVGOTextBase@@@Z
+                         73D ?Accept@GOClipText@@UEAAXAEAVGOVisitor@@@Z
+                         D81 ?GetObjectType@GOClipText@@UEBAAEBVGOObjectType@@XZ
+                        109D ?IsFineHitByRect@GOClipText@@UEBA_NAEBV?$GQuadPointBase@N@@_N@Z
+                        10F6 ?IsSelected@GOClipText@@UEBA_NXZ
+                        1360 ?SetContentDirty@GOClipText@@EEAAXXZ
+                         2EB ??1GOClipText@@UEAA@XZ
+                          DD ??0GOClipPath@@QEAA@AEBVGOPathBase@@@Z
+                         73C ?Accept@GOClipPath@@UEAAXAEAVGOVisitor@@@Z
+                         D80 ?GetObjectType@GOClipPath@@UEBAAEBVGOObjectType@@XZ
+                        10F5 ?IsSelected@GOClipPath@@UEBA_NXZ
+                        135F ?SetContentDirty@GOClipPath@@UEAAXXZ
+                        14A5 ?SetParentContent@GOClipPath@@UEAAXPEAVGOContent@@@Z
+                         2EA ??1GOClipPath@@UEAA@XZ
+                         256 ??0GOTextClippingGroup@@QEAA@XZ
+                         389 ??1GOTextClippingGroup@@UEAA@XZ
+                         AA5 ?GetClassType@GOTextClippingGroup@@SAAEBVGOObjectType@@XZ
+                         266 ??0GOTintValue@@QEAA@XZ
+                        12B6 ?SaveContent@GOForm@@QEAAX_N0@Z
+                        14B4 ?SetPieceInfo@GOForm@@QEAAXAEBVGBuffer@@AEBVGAObject@@@Z
+                        1227 ?RemoveAllPieceInfo@GOForm@@QEAAXXZ
+                        1314 ?SetBBox@GOForm@@QEAAXAEBV?$GRectBase@N@@@Z
+                        1408 ?SetInitialGraphicState@GOForm@@QEAAXAEBVGOGraphicState@@@Z
+                        13E8 ?SetGraphicsStateParametersToInherit@GOForm@@QEAAXV?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@@Z
+                         1A0 ??0GOMark@@QEAA@AEBVGBuffer@@AEBVGADict@@W4SubType@0@@Z
+                         1A2 ??0GOMark@@QEAA@AEBVGBuffer@@W4SubType@0@@Z
+                         33C ??1GOMark@@UEAA@XZ
+                         A8C ?GetClassType@GOMark@@SAAEBVGOObjectType@@XZ
+                         B5F ?GetDeviceGraySpace@GOObjectFactory@@QEBAPEAVGODeviceGraySpace@@XZ
+                         1F9 ??0GOPath@@QEAA@XZ
+                         1F8 ??0GOPath@@QEAA@AEBVGOPathBase@@AEBVGOGraphicState@@@Z
+                         75B ?Accept@GOPath@@UEAAXAEAVGOVisitor@@@Z
+                         A45 ?GetBoundingBox@GOPath@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         DA7 ?GetObjectType@GOPath@@UEBAAEBVGOObjectType@@XZ
+                         A93 ?GetClassType@GOPath@@SAAEBVGOObjectType@@XZ
+                         CC0 ?GetMatrix@GOPath@@UEBAAEBV?$GMatrixBase@N@@XZ
+                        10F8 ?IsSelected@GOPath@@UEBA_NXZ
+                        14AA ?SetParentContent@GOPath@@MEAAXPEAVGOContent@@@Z
+                        1363 ?SetContentDirty@GOPath@@EEAAXXZ
+                         360 ??1GOPath@@UEAA@XZ
+                         24E ??0GOText@@QEAA@XZ
+                         24B ??0GOText@@QEAA@AEBVGOTextBase@@AEBVGOGraphicState@@@Z
+                         387 ??1GOText@@UEAA@XZ
+                         767 ?Accept@GOText@@UEAAXAEAVGOVisitor@@@Z
+                         A49 ?GetBoundingBox@GOText@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         DB7 ?GetObjectType@GOText@@UEBAAEBVGOObjectType@@XZ
+                         AA3 ?GetClassType@GOText@@SAAEBVGOObjectType@@XZ
+                        10A7 ?IsFineHitByRect@GOText@@UEBA_NAEBV?$GQuadPointBase@N@@@Z
+                        13E4 ?SetGraphicState@GOText@@UEAAXAEBVGOGraphicState@@@Z
+                         C1D ?GetGraphicState@GOText@@UEBAXAEAVGOGraphicState@@@Z
+                         CC2 ?GetMatrix@GOText@@UEBAAEBV?$GMatrixBase@N@@XZ
+                        145A ?SetMatrix@GOText@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                        10FA ?IsSelected@GOText@@UEBA_NXZ
+                        1366 ?SetContentDirty@GOText@@EEAAXXZ
+                         A83 ?GetClassType@GOImage@@SAAEBVGOObjectType@@XZ
+                         A87 ?GetClassType@GOInlineImage@@SAAEBVGOObjectType@@XZ
+                         823 ?ContainsClipPathsOrTexts@GOClipText@@UEBA_NXZ
+                         826 ?ContainsClipTexts@GOClipText@@UEBA_NXZ
+                         B0E ?GetContentObject@GOClipText@@UEAAPEAVGOContentObject@@XZ
+                         B0F ?GetContentObject@GOClipText@@UEBAPEBVGOContentObject@@XZ
+                         822 ?ContainsClipPathsOrTexts@GOClipPath@@UEBA_NXZ
+                         825 ?ContainsClipTexts@GOClipPath@@UEBA_NXZ
+                         B0C ?GetContentObject@GOClipPath@@UEAAPEAVGOContentObject@@XZ
+                         B0D ?GetContentObject@GOClipPath@@UEBAPEBVGOContentObject@@XZ
+                        1458 ?SetMatrix@GOPath@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         B10 ?GetContentObject@GOPath@@UEAAPEAVGOContentObject@@XZ
+                         B11 ?GetContentObject@GOPath@@UEBAPEBVGOContentObject@@XZ
+                         B12 ?GetContentObject@GOText@@UEAAPEAVGOContentObject@@XZ
+                         B13 ?GetContentObject@GOText@@UEBAPEBVGOContentObject@@XZ
+                         A4A ?GetBoundingBox@GOTextBase@@UEBAXAEAV?$GQuadPointBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         A4B ?GetBoundingBox@GOTextBase@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                        10A9 ?IsFineHitByRect@GOTextBase@@UEBA_NAEBV?$GQuadPointBase@N@@_N@Z
+                        10A8 ?IsFineHitByRect@GOTextBase@@UEBA_NAEBV?$GQuadPointBase@N@@@Z
+                         A46 ?GetBoundingBox@GOPathBase@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         7B8 ?AppendSubPath@GOPathBase@@UEAAXPEAVGOSubPath@@@Z
+                        1294 ?ReplaceSubPath@GOPathBase@@UEAAXJV?$GAutoPtr@VGOSubPath@@UGDeletePtr@@@@@Z
+                         7B9 ?AppendSubPaths@GOPathBase@@UEAAXAEBVGOutline@@@Z
+                         D23 ?GetNumNodes@GOPathBase@@UEBAJXZ
+                         D30 ?GetNumSubPaths@GOPathBase@@UEBAJXZ
+                         F05 ?GetSubPath@GOPathBase@@UEBAAEBVGOSubPath@@J@Z
+                         F04 ?GetSubPath@GOPathBase@@UEAAAEAVGOSubPath@@J@Z
+                         F07 ?GetSubPathIndex@GOPathBase@@UEBAJAEBVGOSubPath@@@Z
+                        127B ?RemoveSubPath@GOPathBase@@UEAAPEAVGOSubPath@@J@Z
+                        127A ?RemoveSubPath@GOPathBase@@UEAAPEAVGOSubPath@@AEAV2@@Z
+                        1063 ?InsertSubPath@GOPathBase@@UEAAXJPEAVGOSubPath@@@Z
+                         919 ?DeleteSubPath@GOPathBase@@UEAAXJ@Z
+                         918 ?DeleteSubPath@GOPathBase@@UEAAXAEAVGOSubPath@@@Z
+                        14A7 ?SetParentContent@GOContentObject@@UEAAXPEAVGOContent@@@Z
+                         84C ?CreateClone@GOClipText@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        10AE ?IsHitByRect@GOClipText@@UEBA_NAEBV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         81D ?Contains@GOClipText@@UEBA_NPEBVGOClippingObject@@@Z
+                        13DE ?SetGraphicState@GOClipText@@UEAAXAEBVGOGraphicState@@@Z
+                         C17 ?GetGraphicState@GOClipText@@UEBAXAEAVGOGraphicState@@@Z
+                        1451 ?SetMatrix@GOClipText@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         CB9 ?GetMatrix@GOClipText@@UEBAAEBV?$GMatrixBase@N@@XZ
+                         C6E ?GetIntersectionBoundingBox@GOClipText@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         885 ?CreateClone@GOTextClippingGroup@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         768 ?Accept@GOTextClippingGroup@@UEAAXAEAVGOVisitor@@@Z
+                         821 ?Contains@GOTextClippingGroup@@UEBA_NPEBVGOClippingObject@@@Z
+                         C70 ?GetIntersectionBoundingBox@GOTextClippingGroup@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                        10AA ?IsFineHitByRect@GOTextClippingGroup@@UEBA_NAEBV?$GQuadPointBase@N@@_N@Z
+                         DB9 ?GetObjectType@GOTextClippingGroup@@UEBAAEBVGOObjectType@@XZ
+                         86D ?CreateClone@GOMark@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         754 ?Accept@GOMark@@UEAAXAEAVGOVisitor@@@Z
+                         DA0 ?GetObjectType@GOMark@@UEBAAEBVGOObjectType@@XZ
+                        1025 ?HasProperties@GOMark@@UEBA_NXZ
+                         F11 ?GetTag@GOMark@@UEBAAEBVGBuffer@@XZ
+                         E4B ?GetProperties@GOMark@@UEBA?AVGAObject@@XZ
+                         E98 ?GetResource@GOMark@@UEBAPEBVGOPropertiesResource@@XZ
+                         E97 ?GetResource@GOMark@@UEAAPEAVGOPropertiesResource@@XZ
+                        14BD ?SetProperties@GOMark@@UEAAXAEBVGAObject@@@Z
+                        14DC ?SetResource@GOMark@@UEAAXPEAVGOPropertiesResource@@@Z
+                         878 ?CreateClone@GOPath@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         8B2 ?CreateEmptyClone@GOPath@@UEBAPEAV1@AEAVGOCloneStrategy@@@Z
+                        11A4 ?ProcessColorResources@GOPath@@UEAAXAEAVGOVisitor@@@Z
+                        10A3 ?IsFineHitByRect@GOPath@@UEBA_NAEBV?$GQuadPointBase@N@@@Z
+                        13E3 ?SetGraphicState@GOPath@@UEAAXAEBVGOGraphicState@@@Z
+                         C1C ?GetGraphicState@GOPath@@UEBAXAEAVGOGraphicState@@@Z
+                        110B ?IsStroked@GOPath@@UEBA_NXZ
+                        109A ?IsFilled@GOPath@@UEBA_NXZ
+                         BB2 ?GetFillType@GOPath@@UEBA?AW4FillType@GOLineState@@XZ
+                        151C ?SetStroked@GOPath@@UEAAX_N@Z
+                        13B7 ?SetFillType@GOPath@@UEAAXW4FillType@GOLineState@@@Z
+                        1512 ?SetStrokeColorSpec@GOPath@@UEAAXAEBVGOColorSpec@@@Z
+                        150E ?SetStrokeColorSpace@GOPath@@UEAAXPEBVGOColorSpaceResource@@@Z
+                        1516 ?SetStrokeColorValue@GOPath@@UEAAXPEAVGOColorValue@@@Z
+                        13AB ?SetFillColorSpec@GOPath@@UEAAXAEBVGOColorSpec@@@Z
+                        13A7 ?SetFillColorSpace@GOPath@@UEAAXPEBVGOColorSpaceResource@@@Z
+                        13AF ?SetFillColorValue@GOPath@@UEAAXPEAVGOColorValue@@@Z
+                        1443 ?SetLineWidth@GOPath@@UEAAXN@Z
+                        1576 ?SetVisualLineWidth@GOPath@@UEAAXN@Z
+                        1432 ?SetLineCap@GOPath@@UEAAXW4LineCapType@GOLineState@@@Z
+                        143C ?SetLineJoin@GOPath@@UEAAXW4LineJoinType@GOLineState@@@Z
+                        1436 ?SetLineDash@GOPath@@UEAAXAEBV?$GTable@N@@N@Z
+                        1466 ?SetMiterLimit@GOPath@@UEAAXN@Z
+                        13C0 ?SetFlatness@GOPath@@UEAAXN@Z
+                        1505 ?SetStrokeAdjustment@GOPath@@UEAAX_N@Z
+                         EFB ?GetStrokeColorSpec@GOPath@@UEBAAEBVGOColorSpec@@XZ
+                         BAB ?GetFillColorSpec@GOPath@@UEBAAEBVGOColorSpec@@XZ
+                         CA7 ?GetLineWidth@GOPath@@UEBANXZ
+                         FBB ?GetVisualLineWidth@GOPath@@UEBANXZ
+                         C94 ?GetLineCap@GOPath@@UEBA?AW4LineCapType@GOLineState@@XZ
+                         CA2 ?GetLineJoin@GOPath@@UEBA?AW4LineJoinType@GOLineState@@XZ
+                         C98 ?GetLineDashArray@GOPath@@UEBAAEBV?$GTable@N@@XZ
+                         C9C ?GetLineDashPhase@GOPath@@UEBANXZ
+                         CCE ?GetMiterLimit@GOPath@@UEBANXZ
+                         BBF ?GetFlatness@GOPath@@UEBANXZ
+                         EF3 ?GetStrokeAdjustment@GOPath@@UEBA_NXZ
+                         84B ?CreateClone@GOClipPath@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        109C ?IsFineHitByRect@GOClipPath@@UEBA_NAEBV?$GQuadPointBase@N@@_N@Z
+                         81C ?Contains@GOClipPath@@UEBA_NPEBVGOClippingObject@@@Z
+                         BB1 ?GetFillType@GOClipPath@@UEBA?AW4FillType@GOLineState@@XZ
+                        13B6 ?SetFillType@GOClipPath@@UEAAXW4FillType@GOLineState@@@Z
+                        13DD ?SetGraphicState@GOClipPath@@UEAAXAEBVGOGraphicState@@@Z
+                         C16 ?GetGraphicState@GOClipPath@@UEBAXAEAVGOGraphicState@@@Z
+                        1450 ?SetMatrix@GOClipPath@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         CB8 ?GetMatrix@GOClipPath@@UEBAAEBV?$GMatrixBase@N@@XZ
+                         C6D ?GetIntersectionBoundingBox@GOClipPath@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         884 ?CreateClone@GOText@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        11A6 ?ProcessColorResources@GOText@@UEAAXAEAVGOVisitor@@@Z
+                         A4D ?GetBounds@GOFunctionType3@@QEBAAEBV?$GTable@N@@XZ
+                        150F ?SetStrokeColorSpace@GOText@@UEAAXPEBVGOColorSpaceResource@@@Z
+                        1517 ?SetStrokeColorValue@GOText@@UEAAXPEAVGOColorValue@@@Z
+                        13AC ?SetFillColorSpec@GOText@@UEAAXAEBVGOColorSpec@@@Z
+                        13A8 ?SetFillColorSpace@GOText@@UEAAXPEBVGOColorSpaceResource@@@Z
+                        13B0 ?SetFillColorValue@GOText@@UEAAXPEAVGOColorValue@@@Z
+                        1444 ?SetLineWidth@GOText@@UEAAXN@Z
+                        1577 ?SetVisualLineWidth@GOText@@UEAAXN@Z
+                        1433 ?SetLineCap@GOText@@UEAAXW4LineCapType@GOLineState@@@Z
+                        143D ?SetLineJoin@GOText@@UEAAXW4LineJoinType@GOLineState@@@Z
+                        1437 ?SetLineDash@GOText@@UEAAXAEBV?$GTable@N@@N@Z
+                        1467 ?SetMiterLimit@GOText@@UEAAXN@Z
+                        13C1 ?SetFlatness@GOText@@UEAAXN@Z
+                        1506 ?SetStrokeAdjustment@GOText@@UEAAX_N@Z
+                         EFC ?GetStrokeColorSpec@GOText@@UEBAAEBVGOColorSpec@@XZ
+                         BAC ?GetFillColorSpec@GOText@@UEBAAEBVGOColorSpec@@XZ
+                         CA8 ?GetLineWidth@GOText@@UEBANXZ
+                         FBC ?GetVisualLineWidth@GOText@@UEBANXZ
+                         C95 ?GetLineCap@GOText@@UEBA?AW4LineCapType@GOLineState@@XZ
+                         CA3 ?GetLineJoin@GOText@@UEBA?AW4LineJoinType@GOLineState@@XZ
+                         C99 ?GetLineDashArray@GOText@@UEBAAEBV?$GTable@N@@XZ
+                         C9D ?GetLineDashPhase@GOText@@UEBANXZ
+                         CCF ?GetMiterLimit@GOText@@UEBANXZ
+                         BC0 ?GetFlatness@GOText@@UEBANXZ
+                         EF4 ?GetStrokeAdjustment@GOText@@UEBA_NXZ
+                        153C ?SetTextKnockout@GOText@@UEAAX_N@Z
+                         F29 ?GetTextKnockout@GOText@@UEBA_NXZ
+                        110C ?IsStroked@GOText@@UEBA_NXZ
+                        109B ?IsFilled@GOText@@UEBA_NXZ
+                         BB3 ?GetFillType@GOText@@UEBA?AW4FillType@GOLineState@@XZ
+                        151D ?SetStroked@GOText@@UEAAX_N@Z
+                        13B8 ?SetFillType@GOText@@UEAAXW4FillType@GOLineState@@@Z
+                         978 ?FillColor@GOGraphicsStateParameters@@2V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@B
+                         979 ?FillColorSpace@GOGraphicsStateParameters@@2V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@B
+                        1184 ?OverprintMode@GOGraphicsStateParameters@@2V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@B
+                        117C ?None@GOGraphicsStateParameters@@2V?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@B
+                         CA6 ?GetLineWidth@GOLineState@@QEBANXZ
+                         C93 ?GetLineCap@GOLineState@@QEBA?AW4LineCapType@1@XZ
+                         CA1 ?GetLineJoin@GOLineState@@QEBA?AW4LineJoinType@1@XZ
+                         C97 ?GetLineDashArray@GOLineState@@QEBAAEBV?$GTable@N@@XZ
+                         C9B ?GetLineDashPhase@GOLineState@@QEBANXZ
+                         CCD ?GetMiterLimit@GOLineState@@QEBANXZ
+                         AB8 ?GetClip@GOGraphicState@@QEAAPEAVGOClippingObject@@XZ
+                         EFF ?GetStrokeOverprint@GOGraphicState@@QEBA_NXZ
+                         EFA ?GetStrokeColorSpec@GOGraphicState@@QEBAAEBVGOColorSpec@@XZ
+                         CBC ?GetMatrix@GOGraphicState@@QEBAAEBV?$GMatrixBase@N@@XZ
+                         F28 ?GetTextKnockout@GOGraphicState@@QEBA_NXZ
+                         CA4 ?GetLineState@GOGraphicState@@QEBAPEBVGOLineState@@XZ
+                         AFD ?GetContainer@GOContent@@QEBAPEBVGOContainer@@XZ
+                         A7B ?GetClassType@GOElement@@SAAEBVGOObjectType@@XZ
+                        1038 ?HasUniqueID@GOXObject@@QEBA_NXZ
+                        102A ?HasScope@GOXObject@@QEBA_NXZ
+                          21 ??0?$GSharedObject@VGOFormResource@@@@QEAA@AEBV0@@Z
+                         A92 ?GetClassType@GOPageContent@@SAAEBVGOObjectType@@XZ
+                        10C7 ?IsMetadataUpdated@GODPartNode@@QEBA_NXZ
+                        141F ?SetIsMetadataUpdated@GODPartNode@@QEAAX_N@Z
+                        1463 ?SetMetadata@GODPartNode@@QEAAXAEBVGADict@@@Z
+                         779 ?AddChildNode@GODPartNode@@QEAA?AV?$GSharedObject@VGODPartNode@@@@XZ
+                        1393 ?SetDocumentPageRange@GODPartNode@@QEAAXJJ@Z
+                        12B7 ?SaveContent@GOPage@@QEAAX_N@Z
+                        149A ?SetPageBox@GOPage@@QEAAXW4PageBoxType@1@AEBV?$GRectBase@N@@_N@Z
+                        1267 ?RemovePageBox@GOPage@@QEAAXW4PageBoxType@1@@Z
+                        14E2 ?SetRotation@GOPage@@QEAAXJ@Z
+                        1271 ?RemoveRotation@GOPage@@QEAAXXZ
+                        126E ?RemovePieceInfo@GOPage@@QEAAXAEBVGBuffer@@@Z
+                        15F4 ?UpdateLastModified@GOPage@@QEAAXXZ
+                        156B ?SetUserUnit@GOPage@@QEAAXN@Z
+                        1282 ?RemoveUserUnit@GOPage@@QEAA_NXZ
+                        122C ?RemoveAllTransparency@GOPage@@UEAAXXZ
+                        1327 ?SetBlendColorSpace@GOPage@@UEAAXPEBVGOUniformColorSpace@@@Z
+                        1426 ?SetKnockout@GOPage@@UEAAX_N@Z
+                        14D1 ?SetRecordLevel@GODPartTree@@QEAAXK@Z
+                        1476 ?SetNodeNameList@GODPartTree@@QEAAXAEBV?$GTable@VGString@@@@@Z
+                        1405 ?SetInfoString@GODocument@@QEAAXAEBVGName@@AEBVGString@@@Z
+                        1557 ?SetTrappedFlag@GODocument@@QEAAXW4GOTrappedFlag@1@@Z
+                         89A ?CreateDPartTree@GODocument@@QEAA?AV?$GSharedObject@VGODPartTree@@@@XZ
+                        123B ?RemoveDPartTree@GODocument@@QEAAXXZ
+                         E9F ?GetResourceDict@GOResourceManager@@QEAAAEAVGADict@@XZ
+                        12A1 ?ResourceDictCreated@GOResourceManager@@QEBA_NXZ
+                        1535 ?SetText@GOXMPMetadata@@QEAAXAEBVGBuffer@@0AEBVGString@@@Z
+                        1472 ?SetNamespacePrefix@GOXMPMetadata@@QEAA_NAEBVGBuffer@@0@Z
+                          EC ??0GOCloneStrategyDeepRes@@QEAA@AEBVGADoc@@_N@Z
+                         2F1 ??1GOCloneStrategyDeepRes@@UEAA@XZ
+                           C ??0?$GSharedObject@VGOColorSpaceResource@@@@QEAA@$$QEAV0@@Z
+                         49C ??B?$GSharedObject@VGOColorSpaceResource@@@@QEBAPEAVGOColorSpaceResource@@XZ
+                          FD ??0GOColorSpec@@QEAA@XZ
+                          FB ??0GOColorSpec@@QEAA@PEBVGOColorSpaceResource@@@Z
+                          F9 ??0GOColorSpec@@QEAA@AEBV0@@Z
+                        12E2 ?Set@GOColorSpec@@QEAAXPEBVGOColorSpaceResource@@PEBVGOColorValue@@@Z
+                         40F ??4GOColorSpec@@QEAAAEAV0@AEBV0@@Z
+                         4EF ??D?$GSharedObject@VGOUniformColorSpace@@@@QEBAAEAVGOUniformColorSpace@@XZ
+                        1519 ?SetStrokeOverprint@GOGraphicState@@QEAAX_N@Z
+                         F3B ?GetTilingResource@GOObjectFactory@@QEBAPEAVGOTilingPatternResource@@AEBVGAStream@@@Z
+                         F87 ?GetUncoloredTilingColorSpace@GOObjectFactory@@QEBAPEAVGOUncoloredTilingColorSpace@@AEBVGOTilingBaseSpace@@@Z
+                         8DB ?CreateSeparationSpace@GOObjectFactory@@QEAAPEAVGOSeparationSpace@@AEBVGADoc@@AEBVGBuffer@@N@Z
+                         F36 ?GetTilingBaseSpace@GOObjectFactory@@QEAAPEAVGOTilingBaseSpace@@AEBVGADoc@@PEBVGOUniformColorSpace@@@Z
+                         889 ?CreateClone@GOTilingPatternResource@@UEBAPEAV1@AEAVGOCloneStrategy@@@Z
+                         D72 ?GetObject@GOTilingPatternResource@@UEAAAEAVGAObject@@XZ
+                         F39 ?GetTilingPatternContent@GOTilingColorSpace@@QEAAPEAVGOTilingPatternContent@@XZ
+                        12B9 ?SaveContent@GOTilingColorSpace@@QEAAPEAV1@_N0PEAVGOProcessingStrategy@@@Z
+                        1548 ?SetTilingResource@GOTilingColorSpace@@QEAAXPEBVGOTilingPatternResource@@@Z
+                        1459 ?SetMatrix@GOShadingColorSpace@@QEAAXAEBV?$GMatrixBase@N@@@Z
+                         850 ?CreateClone@GOColoredTilingColorSpace@@UEBAPEAV1@AEAVGOCloneStrategy@@@Z
+                         3B6 ??4?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAAAEAV0@$$QEAV0@@Z
+                         3B8 ??4?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAAAEAV0@PEBVGOColoredTilingColorSpace@@@Z
+                         49E ??B?$GSharedObject@VGOColoredTilingColorSpace@@@@QEBAPEAVGOColoredTilingColorSpace@@XZ
+                        100D ?HasFont@GOFontResource@@QEBA_NXZ
+                         BD8 ?GetFontResource@GOObjectFactory@@QEBAPEAVGOFontResource@@AEBVGADict@@@Z
+                         1F7 ??0GOPath@@QEAA@AEBVGOGraphicState@@AEBVGOutline@@AEBV?$GMatrixBase@N@@@Z
+                         A9E ?GetClassType@GOSimpleFontResource@@SAAEBVGOObjectType@@XZ
+                         FCE ?GetWritingMode@GOType0FontResource@@UEBAJXZ
+                         FC3 ?GetWidth@GOType0FontResource@@QEBANJ@Z
+                         FAF ?GetVWidth@GOType0FontResource@@QEBANJ@Z
+                         FAE ?GetVPos@GOType0FontResource@@QEBAXJAEAN0@Z
+                         C0A ?GetGlyphBBox@GOType0FontResource@@QEBAXJAEAV?$GRectBase@N@@@Z
+                        1696 ?sAscentKey@GOFontResource@@2VGName@@B
+                        16C8 ?sDescentKey@GOFontResource@@2VGName@@B
+                        11BF ?Push@GOFontFileManager@@QEAAXV?$GAutoPtr@VGFFileManager@@UGDeletePtr@@@@_N@Z
+                        118F ?Pop@GOFontFileManager@@QEAAXXZ
+                         B1E ?GetCount@GOFontFileManager@@QEBAKXZ
+                        12E3 ?Set@GOFontFileManager@@QEAAXV?$GAutoPtr@VGFFileManager@@UGDeletePtr@@@@K@Z
+                         CA5 ?GetLineWidth@GOGraphicState@@QEBANXZ
+                         C92 ?GetLineCap@GOGraphicState@@QEBA?AW4LineCapType@GOLineState@@XZ
+                         CA0 ?GetLineJoin@GOGraphicState@@QEBA?AW4LineJoinType@GOLineState@@XZ
+                         C96 ?GetLineDashArray@GOGraphicState@@QEBAAEBV?$GTable@N@@XZ
+                         C9A ?GetLineDashPhase@GOGraphicState@@QEBANXZ
+                         CCC ?GetMiterLimit@GOGraphicState@@QEBANXZ
+                         166 ??0GOImageBitExpander@@QEAA@AEBVGOImageInterface@@_N@Z
+                         325 ??1GOImageBitExpander@@UEAA@XZ
+                        11F1 ?Read@GOImageBitExpander@@UEAAJAEAVGBuffer@@J@Z
+                         259 ??0GOTextIterator@@QEAA@AEBVGOTextBase@@@Z
+                         38B ??1GOTextIterator@@QEAA@XZ
+                        1178 ?Next@GOTextIterator@@QEAA_NXZ
+                         C10 ?GetGlyphRenderMatrix@GOTextIterator@@QEBAAEBV?$GMatrixBase@N@@XZ
+                         C0F ?GetGlyphOutLine@GOTextIterator@@QEBAPEBVGOutline@@XZ
+                        1714 ?sRenderingIntentAbsoluteColorimetric@GOTransparencyState@@2VGBuffer@@B
+                        1716 ?sRenderingIntentRelativeColorimetric@GOTransparencyState@@2VGBuffer@@B
+                        1717 ?sRenderingIntentSaturation@GOTransparencyState@@2VGBuffer@@B
+                        1715 ?sRenderingIntentPerceptual@GOTransparencyState@@2VGBuffer@@B
+                          26 ??0?$GSharedObject@VGOFunction@@@@QEAA@PEBVGOFunction@@@Z
+                         BF5 ?GetFunctions@GOFunctionType3@@QEBAAEBV?$GTable@V?$GSharedObject@VGOFunction@@@@@@XZ
+                         CC9 ?GetMetadata@GODPartNode@@QEBA?AVGADict@@XZ
+                        1016 ?HasMetadata@GODPartNode@@QEBA_NXZ
+                         C73 ?GetIsolated@GOPage@@UEBA_NXZ
+                         C7D ?GetKnockout@GOPage@@UEBA_NXZ
+                         A32 ?GetBlendColorSpace@GOPage@@UEBAPEBVGOUniformColorSpace@@XZ
+                         FAC ?GetUserUnit@GOPage@@QEBA_NAEAN@Z
+                         EB0 ?GetRotation@GOPage@@QEBAJXZ
+                         E18 ?GetParentDocument@GOPage@@QEAAPEAVGODocument@@XZ
+                         BFB ?GetGADict@GOPage@@QEBAAEBVGADict@@XZ
+                        101F ?HasPageBox@GOPage@@QEBA_NW4PageBoxType@1@@Z
+                         DED ?GetPageBox@GOPage@@QEBA?AV?$GRectBase@N@@W4PageBoxType@1@_NW4Type@GOCoordinateSystem@@@Z
+                         DF1 ?GetPageContent@GOPage@@QEAAPEAVGOPageContent@@XZ
+                         4A8 ??B?$GSharedObject@VGOPage@@@@QEBAPEAVGOPage@@XZ
+                         4E3 ??D?$GSharedObject@VGOPage@@@@QEBAAEAVGOPage@@XZ
+                         4C5 ??C?$GSharedObject@VGOPage@@@@QEBAPEAVGOPage@@XZ
+                         2AE ??1?$GSharedObject@VGOPage@@@@QEAA@XZ
+                         339 ??1GOLocation@@QEAA@XZ
+                         199 ??0GOLocation@@QEAA@PEAVGOPage@@@Z
+                         197 ??0GOLocation@@QEAA@PEAVGODocument@@@Z
+                         7CC ?Black@GOColorSpaceSupport@@3VGBuffer@@B
+                        1664 ?Yellow@GOColorSpaceSupport@@3VGBuffer@@B
+                        113A ?Magenta@GOColorSpaceSupport@@3VGBuffer@@B
+                         902 ?Cyan@GOColorSpaceSupport@@3VGBuffer@@B
+                         A7F ?GetClassType@GOForm@@SAAEBVGOObjectType@@XZ
+                         A99 ?GetClassType@GOSeparationSpace@@SAAEBVGOObjectType@@XZ
+                         AA0 ?GetClassType@GOSpecialColorSpace@@SAAEBVGOObjectType@@XZ
+                         A75 ?GetClassType@GODeviceCMYKSpace@@SAAEBVGOObjectType@@XZ
+                         320 ??1GOGraphicState@@QEAA@XZ
+                         F50 ?GetTransparencyState@GOGraphicState@@QEBAPEBVGOTransparencyState@@XZ
+                         C26 ?GetHalftone@GOGraphicState@@QEBA?BV?$GSharedObject@VGOHalftone@@@@XZ
+                         BAA ?GetFillColorSpec@GOGraphicState@@QEBAAEBVGOColorSpec@@XZ
+                         BAF ?GetFillOverprint@GOGraphicState@@QEBA_NXZ
+                         15C ??0GOGraphicState@@QEAA@XZ
+                         FDC ?GetXObjectStream@GOXObjectResource@@UEBAAEBVGAStream@@XZ
+                         EDF ?GetSoftMaskMatrix@GOTransparencyState@@QEBAAEBV?$GMatrixBase@N@@XZ
+                         AD0 ?GetColorSpace@GOColorSpec@@QEBAPEBVGOColorSpaceResource@@XZ
+                         4D7 ??D?$GSharedObject@VGOColorSpaceResource@@@@QEBAAEAVGOColorSpaceResource@@XZ
+                         4B9 ??C?$GSharedObject@VGOColorSpaceResource@@@@QEBAPEAVGOColorSpaceResource@@XZ
+                         2A2 ??1?$GSharedObject@VGOColorSpaceResource@@@@QEAA@XZ
+                           E ??0?$GSharedObject@VGOColorSpaceResource@@@@QEAA@PEBVGOColorSpaceResource@@@Z
+                         ADC ?GetColorSpaceResource@GOObjectFactory@@QEBAPEAVGOColorSpaceResource@@AEBVGAObject@@_N@Z
+                         C27 ?GetHalftone@GOObjectFactory@@QEBA?AV?$GSharedObject@VGOHalftone@@@@AEBVGAObject@@@Z
+                         C29 ?GetHalftoneDict@GOHalftone@@QEBA?AVGADict@@XZ
+                        155B ?SetType5HalftoneForColorant@GOHalftone@@QEAAXAEBVGBuffer@@V?$GSharedObject@VGOHalftone@@@@@Z
+                         F62 ?GetType5HalftoneForColorant@GOHalftone@@QEBA?AV?$GSharedObject@VGOHalftone@@@@AEBVGBuffer@@@Z
+                         F61 ?GetType5ColorantNames@GOHalftone@@QEBAXAEAV?$GTable@VGBuffer@@@@@Z
+                         F70 ?GetType@GOHalftone@@QEBAJXZ
+                         980 ?Finalize@GOPDFObjectLayer@@SAXXZ
+                        104A ?Initialize@GOPDFObjectLayer@@SA_NXZ
+                         13A ??0GOErrorReporter@@QEAA@XZ
+                         311 ??1GOErrorReporter@@UEAA@XZ
+                        1410 ?SetInstance@GOErrorReporter@@SAXPEAV1@@Z
+                         FA8 ?GetUserFlags@GOUserFlags@@UEBAJXZ
+                         7FE ?ClearUserFlags@GOUserFlags@@UEAAXJ@Z
+                        156A ?SetUserFlags@GOUserFlags@@UEAAXJ@Z
+                        15E3 ?UnSubscribe@?$GReceiver@VGAOCDidChangeMessage@@@@MEAAXJ@Z
+                        15A5 ?Subscribe@?$GReceiver@VGAOCDidChangeMessage@@@@MEAAXJ@Z
+                        15E1 ?UnSubscribe@?$GReceiver@V?$GPair@VGADoc@@J@@@@MEAAXJ@Z
+                        15A3 ?Subscribe@?$GReceiver@V?$GPair@VGADoc@@J@@@@MEAAXJ@Z
+                        12AB ?RollSelection@GOSelectable@@UEAAXKK@Z
+                         931 ?DupSelection@GOSelectable@@UEAAXXZ
+                        1196 ?PopSelection@GOSelectable@@UEAAXXZ
+                        10F9 ?IsSelected@GOSelectable@@UEBA_NXZ
+                        1073 ?InvertSelection@GOSelectable@@UEAAXXZ
+                        1663 ?XorSelection@GOSelectable@@UEAAXXZ
+                        1183 ?OrSelection@GOSelectable@@UEAAXXZ
+                         7AF ?AndSelection@GOSelectable@@UEAAXXZ
+                        11C7 ?PushSelection@GOSelectable@@UEAAX_N@Z
+                         855 ?CreateClone@GODocument@@EEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        120B ?Redo@GODocument@@UEAAXK@Z
+                        15E5 ?Undo@GODocument@@UEAAXK@Z
+                         778 ?AddCheckpoint@GODocument@@UEAAKXZ
+                        13A0 ?SetFileType@GODocument@@UEAA_NAEBVGFileType@@@Z
+                         BA4 ?GetFileTypePtr@GODocument@@UEBAPEBVGFileType@@XZ
+                         96A ?EnsureMinimalPDF@GODocument@@UEAAXXZ
+                        11BD ?PropagateInheritableAttributesToLeafNodes@GODocument@@UEAA_NXZ
+                         BFC ?GetGADoc@GODocument@@UEAAAEAVGADoc@@XZ
+                         BFD ?GetGADoc@GODocument@@UEBAAEBVGADoc@@XZ
+                         E23 ?GetPathName@GODocument@@UEBAAEBVGPathName@@XZ
+                        158B ?SignOnSave@GODocument@@UEAAXAEBVGODocSignParams@@@Z
+                         836 ?CopyPagesFrom@GODocument@@UEAAXJAEAV1@JJ_NAEAVGACloneStrategy@@@Z
+                        116D ?MovePage@GODocument@@UEAAXJJ@Z
+                        1060 ?InsertPageNative@GODocument@@UEAAXJAEBV?$GSharedObject@VGOPage@@@@@Z
+                        105E ?InsertPage@GODocument@@UEAAXJAEBV?$GRectBase@N@@@Z
+                         DF3 ?GetPageFromDest@GODocument@@UEBA?AV?$GSharedObject@VGOPage@@@@AEBVGAObject@@@Z
+                         DE9 ?GetPage@GODocument@@UEBA?AV?$GSharedObject@VGOPage@@@@J@Z
+                        149F ?SetPageIndexMap@GODocument@@UEAAXPEBVGOPageIndexMapBase@@@Z
+                        15EA ?Update@GODocument@@UEAAXPEAV?$GSubjectT@$$V@@J@Z
+                        11FE ?Receive@GODocument@@UEAAXJAEBVGADoc@@@Z
+                        1205 ?Receive@GODocument@@UEAAXJAEBVGADocWillSaveMessage@@@Z
+                        1201 ?Receive@GODocument@@UEAAXJAEBVGADocDidSaveMessage@@@Z
+                        11FD ?Receive@GODocument@@UEAAXJAEBV?$GPair@VGADoc@@J@@@Z
+                        1202 ?Receive@GODocument@@UEAAXJAEBVGADocInsertPagesMessage@@@Z
+                        1203 ?Receive@GODocument@@UEAAXJAEBVGADocMovePagesMessage@@@Z
+                        11FF ?Receive@GODocument@@UEAAXJAEBVGADocDeletePagesMessage@@@Z
+                        1200 ?Receive@GODocument@@UEAAXJAEBVGADocDidChangePagesMessage@@@Z
+                        1204 ?Receive@GODocument@@UEAAXJAEBVGADocReplacePagesMessage@@@Z
+                        1206 ?Receive@GODocument@@UEAAXJAEBVGAOCDidChangeMessage@@@Z
+                         D8E ?GetObjectType@GODocument@@UEBAAEBVGOObjectType@@XZ
+                         744 ?Accept@GODocument@@UEAAXAEAVGOVisitor@@@Z
+                         7FC ?ClearSelectionStack@GOSelectable@@UEAAXXZ
+                         838 ?CopySelectionStack@GOSelectable@@UEAAXAEBV1@@Z
+                         F23 ?GetText@GOXMPMetadata@@QEBA?AW4ErrorCode@GOXMPMetadataResult@@AEBVGBuffer@@0AEAV4@@Z
+                        11F6 ?ReadFromBuffer@GOXMPMetadata@@QEAAXAEBVGBuffer@@@Z
+                         816 ?CollectPageLimitedResources@GOObjectFactory@@QEAAXAEBVGADoc@@@Z
+                         FCF ?GetXMP@GODocument@@AEBAPEAVGOXMPMetadata@@_N@Z
+                        15F5 ?UpdateNumPagesCache@GODocument@@AEBAXXZ
+                          22 ??0?$GSharedObject@VGOFormResource@@@@QEAA@PEBVGOFormResource@@@Z
+                          23 ??0?$GSharedObject@VGOFormResource@@@@QEAA@XZ
+                         319 ??1GOFormResource@@UEAA@XZ
+                        1326 ?SetBlendColorSpace@GOFormResource@@UEAAXPEBVGOUniformColorSpace@@@Z
+                        1315 ?SetBBox@GOFormResource@@QEAAXAEBV?$GRectBase@N@@@Z
+                        13D1 ?SetFormMatrix@GOFormResource@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         BE7 ?GetFormMatrix@GOFormResource@@UEBAXAEAV?$GMatrixBase@N@@@Z
+                         14F ??0GOFormResource@@QEAA@PEBVGODocument@@AEBV?$GRectBase@N@@@Z
+                         4B2 ??B?$GSharedObject@VGOTransparencyState@@@@QEBAPEAVGOTransparencyState@@XZ
+                         4CF ??C?$GSharedObject@VGOTransparencyState@@@@QEBAPEAVGOTransparencyState@@XZ
+                         3F4 ??4?$GSharedObject@VGOTransparencyState@@@@QEAAAEAV0@PEBVGOTransparencyState@@@Z
+                         2B8 ??1?$GSharedObject@VGOTransparencyState@@@@QEAA@XZ
+                          67 ??0?$GSharedObject@VGOTransparencyState@@@@QEAA@XZ
+                        14F7 ?SetSoftMaskDict@GOTransparencyState@@QEAAXPEBVGOSoftMaskDict@@AEBV?$GMatrixBase@N@@@Z
+                         A36 ?GetBlendMode@GOTransparencyState@@QEBAAEBVGBuffer@@XZ
+                         EF8 ?GetStrokeAlpha@GOTransparencyState@@QEBANXZ
+                         BA8 ?GetFillAlpha@GOTransparencyState@@QEBANXZ
+                         9D8 ?GetAIS@GOTransparencyState@@QEBA_NXZ
+                         88B ?CreateClone@GOTransparencyState@@QEBAPEAV1@AEAVGOCloneStrategy@@@Z
+                         393 ??1GOTransparencyState@@UEAA@XZ
+                         26A ??0GOTransparencyState@@QEAA@XZ
+                         2F4 ??1GOCloneStrategyShallow@@UEAA@XZ
+                          EF ??0GOCloneStrategyShallow@@QEAA@XZ
+                         AAC ?GetClassType@GOType0FontResource@@SAAEBVGOObjectType@@XZ
+                         F2E ?GetTextRise@GOTextBase@@QEBANXZ
+                         BDB ?GetFontSize@GOTextBase@@QEBANXZ
+                         BC7 ?GetFont@GOTextBase@@QEBAPEBVGOFontResource@@XZ
+                         C8E ?GetLeading@GOTextBase@@QEBANXZ
+                         C36 ?GetHorizontalScale@GOTextBase@@QEBANXZ
+                         FCA ?GetWordSpacing@GOTextBase@@QEBANXZ
+                         A60 ?GetCharSpacing@GOTextBase@@QEBANXZ
+                        1540 ?SetTextRise@GOTextBase@@QEAAXN@Z
+                        13CE ?SetFontSize@GOTextBase@@QEAAXN@Z
+                        13C3 ?SetFont@GOTextBase@@QEAAXPEBVGOFontResource@@@Z
+                        142E ?SetLeading@GOTextBase@@QEAAXN@Z
+                        13FF ?SetHorizontalScale@GOTextBase@@QEAAXN@Z
+                        157F ?SetWordSpacing@GOTextBase@@QEAAXN@Z
+                        1335 ?SetCharSpacing@GOTextBase@@QEAAXN@Z
+                         F31 ?GetTextRunBuffer@GOTextBase@@QEAAAEAVGBuffer@@J@Z
+                        1542 ?SetTextRun@GOTextBase@@QEAAXJAEBVGBuffer@@@Z
+                         D12 ?GetNrTextRuns@GOTextBase@@QEBAJXZ
+                        1423 ?SetKerning@GOTextBase@@QEAAXJN@Z
+                         C79 ?GetKerning@GOTextBase@@QEBANJ@Z
+                         789 ?AddKerning@GOTextBase@@QEAAXN@Z
+                        11B5 ?ProcessSoftMask@GOElement@@MEAAXAEAVGOVisitor@@@Z
+                        119B ?ProcessClip@GOElement@@MEAAXAEAVGOVisitor@@@Z
+                        14A8 ?SetParentContent@GOElement@@UEAAXPEAVGOContent@@@Z
+                         EDD ?GetSoftMaskMatrix@GOElement@@UEBAAEBV?$GMatrixBase@N@@XZ
+                         ED6 ?GetSoftMaskDict@GOElement@@UEBAPEBVGOSoftMaskDict@@XZ
+                         A34 ?GetBlendMode@GOElement@@UEBAAEBVGBuffer@@XZ
+                         9D6 ?GetAIS@GOElement@@UEBA_NXZ
+                        132D ?SetBlendModes@GOElement@@UEAAXAEBV?$GTable@VGBuffer@@@@@Z
+                        1329 ?SetBlendMode@GOElement@@UEAAXAEBVGBuffer@@@Z
+                        12F0 ?SetAIS@GOElement@@UEAAX_N@Z
+                         CBA ?GetMatrix@GOElement@@UEBAAEBV?$GMatrixBase@N@@XZ
+                         AC9 ?GetColorRenderingIntent@GOElement@@UEBAAEBVGBuffer@@XZ
+                         DE3 ?GetOverprintMode@GOElement@@UEBAJXZ
+                         BAD ?GetFillOverprint@GOElement@@UEBA_NXZ
+                         EFD ?GetStrokeOverprint@GOElement@@UEBA_NXZ
+                        1343 ?SetColorRenderingIntent@GOElement@@UEAAXAEBVGBuffer@@@Z
+                        1495 ?SetOverprintMode@GOElement@@UEAAXJ@Z
+                        13B1 ?SetFillOverprint@GOElement@@UEAAX_N@Z
+                        1518 ?SetStrokeOverprint@GOElement@@UEAAX_N@Z
+                        1237 ?RemoveClippingObject@GOElement@@UEAA_NAEAVGOClippingObject@@@Z
+                         77C ?AddClippingObject@GOElement@@UEAAXPEBVGOClippingObject@@@Z
+                        133A ?SetClip@GOElement@@UEAAXPEBVGOClippingObject@@@Z
+                         AB7 ?GetClip@GOElement@@UEBAPEBVGOClippingObject@@XZ
+                        10AF ?IsHitByRect@GOElement@@UEBA_NAEBV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                        144D ?SetMarkedContentState@GOMarkable@@UEAAXAEBV?$GSharedObject@VGOMarkedContentState@@@@@Z
+                         CB5 ?GetMarkedContentState@GOMarkable@@UEBA?AV?$GSharedObject@VGOMarkedContentState@@@@XZ
+                        1449 ?SetMarkedContentProperties@GOMarkable@@UEAAXV?$GTable@V?$GSharedObject@VGOMarkedContentProperty@@@@@@@Z
+                         CB1 ?GetMarkedContentProperties@GOMarkable@@UEBAAEBV?$GTable@V?$GSharedObject@VGOMarkedContentProperty@@@@@@XZ
+                        1362 ?SetContentDirty@GOForm@@EEAAXXZ
+                        10A0 ?IsFineHitByRect@GOForm@@EEBA_NAEBV?$GQuadPointBase@N@@@Z
+                        15EB ?Update@GOForm@@EEAAXPEAV?$GSubjectT@$$V@@@Z
+                        140D ?SetInitialGraphicsStateParametersUsage@GOForm@@UEAAXV?$GBitMaskType@W4Bits@GOGraphicsStateParameters@@X@@00@Z
+                        14DA ?SetResource@GOForm@@UEAAXPEAVGOXObjectResource@@@Z
+                         E95 ?GetResource@GOForm@@UEBAPEBVGOFormResource@@XZ
+                         E94 ?GetResource@GOForm@@UEAAPEAVGOFormResource@@XZ
+                        1420 ?SetIsolated@GOForm@@UEAAX_N@Z
+                         C71 ?GetIsolated@GOForm@@UEBA_NXZ
+                        1424 ?SetKnockout@GOForm@@UEAAX_N@Z
+                         C7B ?GetKnockout@GOForm@@UEBA_NXZ
+                        1325 ?SetBlendColorSpace@GOForm@@UEAAXPEBVGOUniformColorSpace@@@Z
+                         A30 ?GetBlendColorSpace@GOForm@@UEBAPEBVGOUniformColorSpace@@XZ
+                        114F ?MakeTransparencyGroup@GOForm@@UEAAXXZ
+                        122A ?RemoveAllTransparency@GOForm@@UEAAXXZ
+                        1119 ?IsTransparencyGroup@GOForm@@UEBA_NXZ
+                         C19 ?GetGraphicState@GOForm@@UEBAXAEAVGOGraphicState@@@Z
+                        13E0 ?SetGraphicState@GOForm@@UEAAXAEBVGOGraphicState@@@Z
+                         C51 ?GetInitialGraphicState@GOForm@@UEBAXAEAVGOGraphicState@@_N@Z
+                        14FA ?SetSoftMaskMatrix@GOForm@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                        14F3 ?SetSoftMaskDict@GOForm@@UEAAXPEBVGOSoftMaskDict@@@Z
+                        14F4 ?SetSoftMaskDict@GOForm@@UEAAXPEBVGOSoftMaskDict@@AEBV?$GMatrixBase@N@@@Z
+                         EA2 ?GetResourceManager@GOForm@@UEAAPEAVGOResourceManager@@XZ
+                         C8A ?GetLastModified@GOForm@@UEBAXAEAVGDateTime@@@Z
+                        1257 ?RemoveOPI@GOForm@@UEAAXXZ
+                        147F ?SetOPI@GOForm@@UEAAXVGADict@@@Z
+                         D60 ?GetOPI@GOForm@@UEAA?AVGAObject@@XZ
+                        1453 ?SetMatrix@GOForm@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                        13D0 ?SetFormMatrix@GOForm@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         BE6 ?GetFormMatrix@GOForm@@UEBAXAEAV?$GMatrixBase@N@@@Z
+                         A0C ?GetBBox@GOForm@@UEBAXAEAV?$GRectBase@N@@@Z
+                         B02 ?GetContent@GOForm@@UEAAPEAVGOContent@@XZ
+                         A40 ?GetBoundingBox@GOForm@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         858 ?CreateClone@GOForm@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         BDE ?GetForm@GOForm@@UEAAPEAV1@XZ
+                         DEA ?GetPage@GOForm@@UEAAPEAVGOPage@@XZ
+                         D93 ?GetObjectType@GOForm@@UEBAAEBVGOObjectType@@XZ
+                         748 ?Accept@GOForm@@UEAAXAEAVGOVisitor@@@Z
+                         317 ??1GOForm@@UEAA@XZ
+                         14A ??0GOForm@@QEAA@PEBVGOFormResource@@@Z
+                         147 ??0GOForm@@QEAA@PEBVGODocument@@AEBV?$GRectBase@N@@@Z
+                         BE8 ?GetFormResource@GOObjectFactory@@QEBAPEAVGOFormResource@@AEBVGAStream@@@Z
+                         E28 ?GetPieceInfo@GOForm@@QEBA?AVGAObject@@AEBVGBuffer@@@Z
+                        14DD ?SetResource@GOMarkedContentProperty@@UEAAXAEBV?$GSharedObject@VGOPropertiesResource@@@@@Z
+                        14BE ?SetProperties@GOMarkedContentProperty@@UEAAXAEBVGAObject@@@Z
+                         E99 ?GetResource@GOMarkedContentProperty@@UEBA?BV?$GSharedObject@VGOPropertiesResource@@@@XZ
+                         E4C ?GetProperties@GOMarkedContentProperty@@UEBA?AVGAObject@@XZ
+                        1026 ?HasProperties@GOMarkedContentProperty@@UEBA_NXZ
+                         F12 ?GetTag@GOMarkedContentProperty@@UEBAAEBVGBuffer@@XZ
+                         33E ??1GOMarkedContentProperty@@UEAA@XZ
+                         1A9 ??0GOMarkedContentProperty@@QEAA@AEBVGBuffer@@AEBVGADict@@@Z
+                         E2A ?GetPieceInfoAppNames@GOForm@@QEBAXAEAV?$GTable@VGBuffer@@@@@Z
+                         A1D ?GetBaseColorSpace@GOUncoloredTilingColorSpace@@UEBAPEBVGOUniformColorSpace@@XZ
+                         4D9 ??D?$GSharedObject@VGOColoredTilingColorSpace@@@@QEBAAEAVGOColoredTilingColorSpace@@XZ
+                          15 ??0?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAA@AEBV0@@Z
+                          16 ??0?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAA@PEBVGOColoredTilingColorSpace@@@Z
+                         373 ??1GOShading@@UEAA@XZ
+                         AD8 ?GetColorSpace@GOShading@@QEBAPEBVGOUniformColorSpace@@XZ
+                         226 ??0GOShading@@QEAA@PEBVGOShadingResource@@@Z
+                        13DF ?SetGraphicState@GOElement@@UEAAXAEBVGOGraphicState@@@Z
+                        1452 ?SetMatrix@GOElement@@UEAAXAEBV?$GMatrixBase@N@@@Z
+                         CC1 ?GetMatrix@GOShadingColorSpace@@UEBAXAEAV?$GMatrixBase@N@@@Z
+                         EC0 ?GetShadingResource@GOShadingColorSpace@@QEBAPEBVGOShadingResource@@XZ
+                         D71 ?GetObject@GOShadingResource@@UEBAAEBVGAObject@@XZ
+                         ECA ?GetShadingType@GOShadingResource@@UEBA?AW4ShadingType@1@XZ
+                         4EB ??D?$GSharedObject@VGOTilingColorSpace@@@@QEBAAEAVGOTilingColorSpace@@XZ
+                         4CD ??C?$GSharedObject@VGOTilingColorSpace@@@@QEBAPEAVGOTilingColorSpace@@XZ
+                         2B6 ??1?$GSharedObject@VGOTilingColorSpace@@@@QEAA@XZ
+                         FDF ?GetYStep@GOTilingColorSpace@@QEBANXZ
+                         FDD ?GetXStep@GOTilingColorSpace@@QEBANXZ
+                         F3C ?GetTilingResource@GOTilingColorSpace@@QEAAPEAVGOTilingPatternResource@@XZ
+                         ACA ?GetColorRenderingIntent@GOGraphicState@@QEBAAEBVGBuffer@@XZ
+                         DE4 ?GetOverprintMode@GOGraphicState@@QEBAJXZ
+                         991 ?Get@?$GSharedObject@VGOColoredTilingColorSpace@@@@QEBAPEAVGOColoredTilingColorSpace@@XZ
+                         4BB ??C?$GSharedObject@VGOColoredTilingColorSpace@@@@QEBAPEAVGOColoredTilingColorSpace@@XZ
+                          14 ??0?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAA@$$QEAV0@@Z
+                          17 ??0?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAA@XZ
+                         B06 ?GetContent@GOTilingColorSpace@@UEAAPEAVGOContent@@XZ
+                         D74 ?GetObject@GOXObjectResource@@UEAAAEAVGAObject@@XZ
+                         B78 ?GetDocument@GODPartTree@@QEBAAEAVGODocument@@XZ
+                         E6C ?GetRealPageIndex@GOPage@@QEBAJXZ
+                         99B ?Get@?$GSharedObject@VGOPage@@@@QEBAPEAVGOPage@@XZ
+                          3D ??0?$GSharedObject@VGOPage@@@@QEAA@AEBV0@@Z
+                         FDB ?GetXObjectResource@GOResourceManager@@QEBAPEAVGOXObjectResource@@AEBVGBuffer@@@Z
+                         EA0 ?GetResourceDict@GOResourceManager@@QEBAAEBVGADict@@XZ
+                         36E ??1GOResourceManager@@UEAA@XZ
+                         21A ??0GOResourceManager@@QEAA@AEBVGADict@@@Z
+                         A85 ?GetClassType@GOImageResource@@SAAEBVGOObjectType@@XZ
+                         A81 ?GetClassType@GOFormResource@@SAAEBVGOObjectType@@XZ
+                         EA4 ?GetResourceManager@GOPage@@UEAAPEAVGOResourceManager@@XZ
+                         B51 ?GetDefaultVisibility@GOOCConfigDict@@QEBA_NAEBVGOOCGroup@@@Z
+                         CE2 ?GetName@GOOCConfigDict@@QEBA?AVGString@@XZ
+                         910 ?DeleteOCGroup@GOOCProperties@@QEAAXAEAVGOOCGroup@@@Z
+                         8CA ?CreateOCGroup@GOOCProperties@@QEAAPEAVGOOCGroup@@AEBVGADict@@_N@Z
+                         D4C ?GetOCGroups@GOOCProperties@@QEBAXAEAV?$GTable@PEBVGOOCGroup@@@@@Z
+                         D49 ?GetOCGroups@GOOCProperties@@QEAAXAEAV?$GTable@PEAVGOOCGroup@@@@@Z
+                        1381 ?SetDefaultConfigDict@GOOCProperties@@QEAAXAEBVGADict@@@Z
+                         B46 ?GetDefaultConfigDict@GOOCProperties@@QEAAAEAVGOOCConfigDict@@XZ
+                         B47 ?GetDefaultConfigDict@GOOCProperties@@QEBAAEBVGOOCConfigDict@@XZ
+                         D5B ?GetOCProperties@GODocument@@QEBAPEBVGOOCProperties@@XZ
+                         D5A ?GetOCProperties@GODocument@@QEAAPEAVGOOCProperties@@_N@Z
+                         FDA ?GetXObjectResource@GOObjectFactory@@QEBAPEAVGOXObjectResource@@AEBVGAStream@@@Z
+                         324 ??1GOImage@@UEAA@XZ
+                         CC8 ?GetMatteColor@GOImage@@QEBA?AVGOColorSpec@@XZ
+                         164 ??0GOImage@@QEAA@PEBVGOImageResource@@@Z
+                         2F8 ??1GOColorSpec@@QEAA@XZ
+                         A25 ?GetBitsPerComponent@GOImageResource@@UEBAJXZ
+                         B71 ?GetDimensions@GOImageResource@@UEBAXAEAV?$GSizeBase@J@@@Z
+                         89D ?CreateData@GOXObjectResource@@UEBAPEAVGInStream@@XZ
+                        117B ?None@GOColorSpaceSupport@@3VGBuffer@@B
+                         8FB ?CreateType5Halftone@GOObjectFactory@@QEBA?AV?$GSharedObject@VGOHalftone@@@@AEBVGADoc@@NNAEBVGBuffer@@@Z
+                         8F9 ?CreateType1Halftone@GOObjectFactory@@QEBA?AV?$GSharedObject@VGOHalftone@@@@AEBVGADoc@@NNAEBVGBuffer@@@Z
+                         2F2 ??1GOCloneStrategyMergeRes@@UEAA@XZ
+                          ED ??0GOCloneStrategyMergeRes@@QEAA@AEBVGADoc@@@Z
+                         85C ?CreateClone@GOHalftone@@QEBAPEAV1@AEAVGOCloneStrategy@@@Z
+                         F5A ?GetType10SquareY@GOHalftone@@QEBAJXZ
+                         F59 ?GetType10SquareX@GOHalftone@@QEBAJXZ
+                         F5B ?GetType16Size2@GOHalftone@@QEBA?AV?$GSizeBase@J@@XZ
+                        15DB ?Type16HasSize2Info@GOHalftone@@QEBA_NXZ
+                         F63 ?GetType6or16Size@GOHalftone@@QEBA?AV?$GSizeBase@J@@XZ
+                        155A ?SetType1SpotFunctionName@GOHalftone@@QEAAXAEBVGBuffer@@@Z
+                         F60 ?GetType1SpotFunctionName@GOHalftone@@QEBA?AVGBuffer@@XZ
+                        15DC ?Type1HasCustomSpotFunction@GOHalftone@@QEBA_NXZ
+                         B35 ?GetDPartTree@GODocument@@QEAA?AV?$GSharedObject@VGODPartTree@@@@XZ
+                        164C ?WasRepaired@GODocument@@QEBA_NXZ
+                        156E ?SetVersion@GODocument@@QEAAXJJ@Z
+                         FB1 ?GetVersion@GODocument@@QEBAXAEAJ0@Z
+                         E27 ?GetPermissions@GODocument@@QEBAJXZ
+                        108D ?IsEncrypted@GODocument@@QEBA_NXZ
+                        12BE ?SaveMetadataStream@GODocument@@QEAAXXZ
+                         F51 ?GetTrappedFlag@GODocument@@QEBA?AW4GOTrappedFlag@1@XZ
+                         C4D ?GetInfoString@GODocument@@QEBA?AVGString@@AEBVGName@@@Z
+                        12B0 ?Save@GODocument@@UEAAXAEBVGADocSaveParams@@@Z
+                        1266 ?RemovePage@GODocument@@UEAAXJ@Z
+                         30D ??1GODocument@@UEAA@XZ
+                         12F ??0GODocument@@QEAA@AEBVGADoc@@_N@Z
+                         131 ??0GODocument@@QEAA@AEBVGPathName@@AEBVGBuffer@@@Z
+                         132 ??0GODocument@@QEAA@_N@Z
+                         2A4 ??1?$GSharedObject@VGOColoredTilingColorSpace@@@@QEAA@XZ
+                         94D ?EndVisit@GOVDefault@@UEAAXAEAVGOClippingGroup@@@Z
+                         954 ?EndVisit@GOVDefault@@UEAAXAEAVGOTextClippingGroup@@@Z
+                         94E ?EndVisit@GOVDefault@@UEAAXAEAVGOContent@@@Z
+                         950 ?EndVisit@GOVDefault@@UEAAXAEAVGOForm@@@Z
+                         951 ?EndVisit@GOVDefault@@UEAAXAEAVGOFormContent@@@Z
+                         94F ?EndVisit@GOVDefault@@UEAAXAEAVGODocument@@@Z
+                         952 ?EndVisit@GOVDefault@@UEAAXAEAVGOPage@@@Z
+                         953 ?EndVisit@GOVDefault@@UEAAXAEAVGOPageContent@@@Z
+                         957 ?EndVisit@GOVDefault@@UEAAXAEAVGOType3GlyphContent@@@Z
+                         956 ?EndVisit@GOVDefault@@UEAAXAEAVGOType3FontResource@@@Z
+                         955 ?EndVisit@GOVDefault@@UEAAXAEAVGOTilingPatternContent@@@Z
+                        160E ?Visit@GOVDefault@@UEAAXAEAVGOClippingObject@@@Z
+                        160D ?Visit@GOVDefault@@UEAAXAEAVGOClippingGroup@@@Z
+                        162D ?Visit@GOVDefault@@UEAAXAEAVGOTextClippingGroup@@@Z
+                        160B ?Visit@GOVDefault@@UEAAXAEAVGOClipPath@@@Z
+                        160C ?Visit@GOVDefault@@UEAAXAEAVGOClipText@@@Z
+                        1611 ?Visit@GOVDefault@@UEAAXAEAVGOContentObject@@@Z
+                        1625 ?Visit@GOVDefault@@UEAAXAEAVGOPathBase@@@Z
+                        162C ?Visit@GOVDefault@@UEAAXAEAVGOTextBase@@@Z
+                        1613 ?Visit@GOVDefault@@UEAAXAEAVGOElement@@@Z
+                        1635 ?Visit@GOVDefault@@UEAAXAEAVGOXObject@@@Z
+                        1615 ?Visit@GOVDefault@@UEAAXAEAVGOForm@@@Z
+                        1616 ?Visit@GOVDefault@@UEAAXAEAVGOFormContent@@@Z
+                        1620 ?Visit@GOVDefault@@UEAAXAEAVGOObject@@@Z
+                        1612 ?Visit@GOVDefault@@UEAAXAEAVGODocument@@@Z
+                        1622 ?Visit@GOVDefault@@UEAAXAEAVGOPage@@@Z
+                        1623 ?Visit@GOVDefault@@UEAAXAEAVGOPageContent@@@Z
+                        1624 ?Visit@GOVDefault@@UEAAXAEAVGOPath@@@Z
+                        1621 ?Visit@GOVDefault@@UEAAXAEAVGOPSXObject@@@Z
+                        162A ?Visit@GOVDefault@@UEAAXAEAVGOSubPath@@@Z
+                        162B ?Visit@GOVDefault@@UEAAXAEAVGOText@@@Z
+                        1618 ?Visit@GOVDefault@@UEAAXAEAVGOImage@@@Z
+                        161A ?Visit@GOVDefault@@UEAAXAEAVGOInlineImage@@@Z
+                        161B ?Visit@GOVDefault@@UEAAXAEAVGOInlinePS@@@Z
+                        161D ?Visit@GOVDefault@@UEAAXAEAVGOMark@@@Z
+                        161E ?Visit@GOVDefault@@UEAAXAEAVGOMarkable@@@Z
+                        1628 ?Visit@GOVDefault@@UEAAXAEAVGOShading@@@Z
+                        1633 ?Visit@GOVDefault@@UEAAXAEAVGOType3GlyphContent@@@Z
+                        1627 ?Visit@GOVDefault@@UEAAXAEAVGOResource@@@Z
+                        160F ?Visit@GOVDefault@@UEAAXAEAVGOColorSpaceResource@@@Z
+                        1614 ?Visit@GOVDefault@@UEAAXAEAVGOFontResource@@@Z
+                        161C ?Visit@GOVDefault@@UEAAXAEAVGOMMFontResource@@@Z
+                        162F ?Visit@GOVDefault@@UEAAXAEAVGOTrueTypeFontResource@@@Z
+                        1630 ?Visit@GOVDefault@@UEAAXAEAVGOType0FontResource@@@Z
+                        1631 ?Visit@GOVDefault@@UEAAXAEAVGOType1FontResource@@@Z
+                        1632 ?Visit@GOVDefault@@UEAAXAEAVGOType3FontResource@@@Z
+                        1626 ?Visit@GOVDefault@@UEAAXAEAVGOPropertiesResource@@@Z
+                        1629 ?Visit@GOVDefault@@UEAAXAEAVGOShadingResource@@@Z
+                        1636 ?Visit@GOVDefault@@UEAAXAEAVGOXObjectResource@@@Z
+                        1617 ?Visit@GOVDefault@@UEAAXAEAVGOFormResource@@@Z
+                        1619 ?Visit@GOVDefault@@UEAAXAEAVGOImageResource@@@Z
+                        162E ?Visit@GOVDefault@@UEAAXAEAVGOTilingPatternContent@@@Z
+                        160A ?Visit@GOVDefault@@UEAAXAEAVGOAnnotation@@@Z
+                        161F ?Visit@GOVDefault@@UEAAXAEAVGOOCGroup@@@Z
+                        1634 ?Visit@GOVDefault@@UEAAXAEAVGOUnknownObject@@@Z
+                         7E0 ?ChangedResources@GOProcessingStrategyDefault@@UEBA_NXZ
+                         949 ?EndProcessingDocument@GOProcessingStrategyDefault@@UEAAXXZ
+                         94B ?EndProcessingPage@GOProcessingStrategyDefault@@UEAAXXZ
+                        14BB ?SetProcessOnce@GOProcessingStrategyDefault@@UEAAX_N@Z
+                         E46 ?GetProcessOnce@GOProcessingStrategyDefault@@UEBA_NXZ
+                         DC9 ?GetObjectTypes@GOProcessingStrategyDefault@@UEBAAEBVGOObjectType@@XZ
+                        125D ?RemoveObjectTypes@GOProcessingStrategyDefault@@UEAAXAEBVGOObjectType@@@Z
+                         78E ?AddObjectTypes@GOProcessingStrategyDefault@@UEAAXAEBVGOObjectType@@@Z
+                        11AB ?ProcessContentObjects@GOProcessingStrategyDefault@@UEAAXAEAVGOContent@@AEAVGOVisitor@@@Z
+                        11B7 ?ProcessSoftMask@GOProcessingStrategyDefault@@UEAAXAEBV?$GSharedObject@VGOSoftMaskDict@@@@AEAVGOVisitor@@@Z
+                        11B9 ?ProcessedClippingObject@GOProcessingStrategyDefault@@UEAAXPEAVGOClippingObject@@0_N@Z
+                        119D ?ProcessClippingObject@GOProcessingStrategyDefault@@UEAAPEAVGOClippingObject@@PEAV2@AEAVGOVisitor@@@Z
+                        11B4 ?ProcessResource@GOProcessingStrategyDefault@@UEAA_NPEBVGOResource@@AEAVGOVisitor@@@Z
+                         922 ?DidReplaceResources@GOProcessingStrategyDefault@@UEAAXXZ
+                        1199 ?ProcessAgainLater@GOProcessingStrategyDefault@@UEAAXPEBVGOResource@@@Z
+                        11BB ?ProcessedResource@GOProcessingStrategyDefault@@UEAAXAEBVGOResource@@0_N@Z
+                         E91 ?GetReplacementResource@GOProcessingStrategyDefault@@UEAA?AV?$GSharedObject@VGOResource@@@@AEBVGOResource@@@Z
+                         FC7 ?GetWillProcess@GOProcessingStrategyDefault@@UEBAAEBVGOObjectType@@XZ
+                        12FA ?SetAllowProcessBlendingColorSpace@GOProcessingStrategy@@UEAAX_N@Z
+                        12FC ?SetAllowProcessStroke@GOProcessingStrategy@@UEAAX_N@Z
+                        12FB ?SetAllowProcessFill@GOProcessingStrategy@@UEAAX_N@Z
+                         7A9 ?AllowProcessBlendingColorSpace@GOProcessingStrategy@@UEBA_NXZ
+                         7AB ?AllowProcessStroke@GOProcessingStrategy@@UEBA_NXZ
+                         7AA ?AllowProcessFill@GOProcessingStrategy@@UEBA_NXZ
+                         27F ??0GOVDefault@@QEAA@XZ
+                         39D ??1GOVDefault@@UEAA@XZ
+                         368 ??1GOProcessingStrategyDefault@@UEAA@XZ
+                         20E ??0GOProcessingStrategyDefault@@QEAA@XZ
+                         83C ?CreateAnnotation@GOObjectFactory@@SAPEAVGOAnnotation@@AEBVGADict@@@Z
+                         C5E ?GetInstance@GOObjectFactory@@SAPEAV1@XZ
+                         305 ??1GODefaultExHandler@@UEAA@XZ
+                         11E ??0GODefaultExHandler@@QEAA@XZ
+                         A67 ?GetClassType@GOAppearanceContent@@SAAEBVGOObjectType@@XZ
+                         A03 ?GetAppearanceMatrix@GOAnnotationAppearance@@QEBAXAEAV?$GMatrixBase@N@@@Z
+                         AFC ?GetContainer@GOContent@@QEAAPEAVGOContainer@@XZ
+                         EE7 ?GetState@GOAnnotation@@QEBA_NAEAVGBuffer@@@Z
+                         BBA ?GetFlags@GOAnnotation@@QEBAJXZ
+                         F08 ?GetSubType@GOAnnotation@@QEBA?AW4Types@GOAnnotationTypes@@XZ
+                         7D0 ?BuildCache@GOFunctionType2@@AEBAXXZ
+                         A51 ?GetC1@GOFunctionType2@@QEBAAEBV?$GTable@N@@XZ
+                         A50 ?GetC0@GOFunctionType2@@QEBAAEBV?$GTable@N@@XZ
+                        1558 ?SetType1Angle@GOHalftone@@QEAAXN@Z
+                         F5D ?GetType1Angle@GOHalftone@@QEBANXZ
+                         4A2 ??B?$GSharedObject@VGOFunction@@@@QEBAPEAVGOFunction@@XZ
+                         4DD ??D?$GSharedObject@VGOFunction@@@@QEBAAEAVGOFunction@@XZ
+                         E6A ?GetRangeFromObject@GOFunction@@QEBAPEBV?$GTable@N@@XZ
+                         3D4 ??4?$GSharedObject@VGOPage@@@@QEAAAEAV0@$$QEAV0@@Z
+                          3C ??0?$GSharedObject@VGOPage@@@@QEAA@$$QEAV0@@Z
+                         A74 ?GetClassType@GOContentObject@@SAAEBVGOObjectType@@XZ
+                        1610 ?Visit@GOVDefault@@UEAAXAEAVGOContent@@@Z
+                         35F ??1GOPageSignature@@QEAA@XZ
+                         1F5 ??0GOPageSignature@@QEAA@XZ
+                         E00 ?GetPageSignature@GOPage@@QEBAXAEAVGOPageSignature@@@Z
+                         DF5 ?GetPageIndex@GOPage@@QEBAJXZ
+                         A10 ?GetBBox@GOShadingResource@@UEBA?AV?$GRectBase@N@@XZ
+                         A6E ?GetClassType@GOClippingGroup@@SAAEBVGOObjectType@@XZ
+                         AE2 ?GetColorTable@GOIndexedSpace@@QEBA?AVGAObject@@XZ
+                         AE5 ?GetColorValue@GOIndexedSpace@@QEBAPEBVGOColorNValue@@J@Z
+                         C34 ?GetHival@GOIndexedSpace@@QEBAJXZ
+                         A1A ?GetBaseColorSpace@GOIndexedSpace@@UEBAPEBVGOUniformColorSpace@@XZ
+                         9AF ?Get@GOIndexedValue@@QEBAJXZ
+                         996 ?Get@?$GSharedObject@VGOICCSpace@@@@QEBAPEAVGOICCSpace@@XZ
+                         2A9 ??1?$GSharedObject@VGOICCSpace@@@@QEAA@XZ
+                          28 ??0?$GSharedObject@VGOICCSpace@@@@QEAA@$$QEAV0@@Z
+                        1559 ?SetType1Frequency@GOHalftone@@QEAAXN@Z
+                          2A ??0?$GSharedObject@VGOICCSpace@@@@QEAA@PEBVGOICCSpace@@@Z
+                         8D6 ?CreateProfileStream@GOICCSpace@@QEBAPEAVGInStream@@XZ
+                         9F7 ?GetAlternateSpace@GOICCSpace@@QEBAPEBVGOColorSpaceResource@@XZ
+                         E43 ?GetProcessDict@GODeviceNSpace@@QEBA?AVGAObject@@XZ
+                         E42 ?GetProcessComponents@GODeviceNSpace@@QEBA_NAEAV?$GTable@VGBuffer@@@@@Z
+                        10C8 ?IsNChannel@GODeviceNSpace@@QEBA_NXZ
+                         AEB ?GetColorantSpace@GODeviceNSpace@@UEBAPEAVGOSeparationSpace@@AEBVGBuffer@@@Z
+                         AE7 ?GetColorantNames@GODeviceNSpace@@UEBAXAEAV?$GTable@VGBuffer@@@@@Z
+                         D06 ?GetNrComponents@GODeviceNSpace@@UEBAJXZ
+                         AE6 ?GetColorantName@GOSeparationSpace@@QEBAXAEAVGBuffer@@@Z
+                         4BF ??C?$GSharedObject@VGOFunction@@@@QEBAPEAVGOFunction@@XZ
+                         2A8 ??1?$GSharedObject@VGOFunction@@@@QEAA@XZ
+                         7A7 ?All@GOColorSpaceSupport@@3VGBuffer@@B
+                         F80 ?GetType@GOTintValue@@UEBA?AW4ColorValueType@GOColorValue@@XZ
+                         9D3 ?Get@GOTintValue@@UEBAXAEAV?$GTable@N@@@Z
+                        12EF ?Set@GOTintValue@@UEAAXAEBVGOColorValue@@@Z
+                         48D ??8GOTintValue@@UEBA_NAEBVGOColorValue@@@Z
+                         88A ?CreateClone@GOTintValue@@UEBAPEAVGOColorValue@@XZ
+                         F7C ?GetType@GORGBValue@@UEBA?AW4ColorValueType@GOColorValue@@XZ
+                         9D0 ?Get@GORGBValue@@UEBAXAEAV?$GTable@N@@@Z
+                        12ED ?Set@GORGBValue@@UEAAXAEBVGOColorValue@@@Z
+                         489 ??8GORGBValue@@UEBA_NAEBVGOColorValue@@@Z
+                         87B ?CreateClone@GORGBValue@@UEBAPEAVGOColorValue@@XZ
+                         F67 ?GetType@GOColorNValue@@UEBA?AW4ColorValueType@GOColorValue@@XZ
+                         D18 ?GetNumComponents@GOColorNValue@@UEBAJXZ
+                         9AD ?Get@GOColorNValue@@UEBAXAEAV?$GTable@N@@@Z
+                        12E1 ?Set@GOColorNValue@@UEAAXAEBVGOColorValue@@@Z
+                         47B ??8GOColorNValue@@UEBA_NAEBVGOColorValue@@@Z
+                         84E ?CreateClone@GOColorNValue@@UEBAPEAVGOColorValue@@XZ
+                         F76 ?GetType@GOLabValue@@UEBA?AW4ColorValueType@GOColorValue@@XZ
+                         9B3 ?Get@GOLabValue@@UEBAXAEAV?$GTable@N@@@Z
+                        12E8 ?Set@GOLabValue@@UEAAXAEBVGOColorValue@@@Z
+                         487 ??8GOLabValue@@UEBA_NAEBVGOColorValue@@@Z
+                         86A ?CreateClone@GOLabValue@@UEBAPEAVGOColorValue@@XZ
+                         D1E ?GetNumComponents@GOLabValue@@UEBAJXZ
+                         D1F ?GetNumComponents@GORGBValue@@UEBAJXZ
+                         D20 ?GetNumComponents@GOTintValue@@UEBAJXZ
+                        14CC ?SetRange@GOLabSpace@@QEAAXNNNN@Z
+                         337 ??1GOLabValue@@UEAA@XZ
+                         18E ??0GOLabValue@@QEAA@NNN@Z
+                         2F5 ??1GOColorNValue@@UEAA@XZ
+                          F2 ??0GOColorNValue@@QEAA@AEBV?$GTable@N@@@Z
+                         C7E ?GetLabSpace@GOObjectFactory@@QEAAPEAVGOLabSpace@@AEBVGADoc@@AEBV?$GTable@N@@1@Z
+                         A5B ?GetCalibratedRGBSpace@GOObjectFactory@@QEAAPEAVGOCalibratedRGBSpace@@AEBVGADoc@@AEBV?$GTable@N@@111@Z
+                         A59 ?GetCalibratedGraySpace@GOObjectFactory@@QEAAPEAVGOCalibratedGraySpace@@AEBVGADoc@@AEBV?$GTable@N@@1N@Z
+                         8DD ?CreateSeparationSpace@GOObjectFactory@@QEAAPEAVGOSeparationSpace@@AEBVGADoc@@AEBVGBuffer@@NNNN@Z
+                         CA9 ?GetLinearFunction@GOObjectFactory@@QEAAPEAVGOFunction@@AEBVGADoc@@AEBV?$GTable@V?$GPair@NN@@@@@Z
+                         36A ??1GORGBValue@@UEAA@XZ
+                         213 ??0GORGBValue@@QEAA@NNN@Z
+                         391 ??1GOTintValue@@UEAA@XZ
+                         265 ??0GOTintValue@@QEAA@N@Z
+                         4B4 ??B?$GSharedObject@VGOUniformColorSpace@@@@QEBAPEAVGOUniformColorSpace@@XZ
+                         4D1 ??C?$GSharedObject@VGOUniformColorSpace@@@@QEBAPEAVGOUniformColorSpace@@XZ
+                         3F8 ??4?$GSharedObject@VGOUniformColorSpace@@@@QEAAAEAV0@$$QEAV0@@Z
+                         3F9 ??4?$GSharedObject@VGOUniformColorSpace@@@@QEAAAEAV0@AEBV0@@Z
+                         2BA ??1?$GSharedObject@VGOUniformColorSpace@@@@QEAA@XZ
+                          6C ??0?$GSharedObject@VGOUniformColorSpace@@@@QEAA@$$QEAV0@@Z
+                          6D ??0?$GSharedObject@VGOUniformColorSpace@@@@QEAA@AEBV0@@Z
+                          6E ??0?$GSharedObject@VGOUniformColorSpace@@@@QEAA@PEBVGOUniformColorSpace@@@Z
+                          6F ??0?$GSharedObject@VGOUniformColorSpace@@@@QEAA@XZ
+                         B08 ?GetContent@GOType3FontResource@@QEBAPEAVGOType3GlyphContent@@E@Z
+                         AF3 ?GetCompatibilityBlockLevel@GOMarkable@@UEBAJXZ
+                        135A ?SetCompatibilityBlockLevel@GOMarkable@@UEAAXJ@Z
+                        1361 ?SetContentDirty@GOContentObject@@MEAAXXZ
+                         E12 ?GetParentContent@GOContentObject@@UEAAPEAVGOContent@@XZ
+                         E13 ?GetParentContent@GOContentObject@@UEBAPEBVGOContent@@XZ
+                        109F ?IsFineHitByRect@GOClippingObject@@UEBA_NAEBV?$GQuadPointBase@N@@@Z
+                        1152 ?MakeUnique@GOClippingObject@@UEAAPEAV1@XZ
+                        144C ?SetMarkedContentState@GOClippingGroup@@UEAAXAEBV?$GSharedObject@VGOMarkedContentState@@@@@Z
+                         CB4 ?GetMarkedContentState@GOClippingGroup@@UEBA?AV?$GSharedObject@VGOMarkedContentState@@@@XZ
+                        1448 ?SetMarkedContentProperties@GOClippingGroup@@UEAAXV?$GTable@V?$GSharedObject@VGOMarkedContentProperty@@@@@@@Z
+                         CB0 ?GetMarkedContentProperties@GOClippingGroup@@UEBAAEBV?$GTable@V?$GSharedObject@VGOMarkedContentProperty@@@@@@XZ
+                        14A6 ?SetParentContent@GOClippingGroup@@UEAAXPEAVGOContent@@@Z
+                         C6F ?GetIntersectionBoundingBox@GOClippingGroup@@UEBAXAEAV?$GRectBase@N@@W4Type@GOCoordinateSystem@@@Z
+                         827 ?ContainsClipTexts@GOClippingGroup@@UEBA_NXZ
+                         824 ?ContainsClipPathsOrTexts@GOClippingGroup@@UEBA_NXZ
+                         D82 ?GetObjectType@GOClippingGroup@@UEBAAEBVGOObjectType@@XZ
+                         81E ?Contains@GOClippingGroup@@UEBA_NPEBVGOClippingObject@@@Z
+                        109E ?IsFineHitByRect@GOClippingGroup@@UEBA_NAEBV?$GQuadPointBase@N@@_N@Z
+                         73E ?Accept@GOClippingGroup@@UEAAXAEAVGOVisitor@@@Z
+                          20 ??0?$GSharedObject@VGOFormResource@@@@QEAA@$$QEAV0@@Z
+                         F5F ?GetType1Frequency@GOHalftone@@QEBANXZ
+                         8B8 ?CreateFont@GOObjectFactory@@QEBAPEAVGOFontResource@@AEBVGString@@AEBVGFEncoding@@AEBVGADoc@@W4EmbedType@1@@Z
+                         AEF ?GetCombinedMgr@GOFontFileManager@@QEBAAEBVGFParsedStreamManager@@XZ
+                         C5D ?GetInstance@GOFontFileManager@@SAAEAV1@XZ
+                         BED ?GetFunction@GOObjectFactory@@QEBAPEAVGOFunction@@AEBVGAObject@@@Z
+                         A9F ?GetClassType@GOSoftMaskContent@@SAAEBVGOObjectType@@XZ
+                         B8C ?GetEncode@GOFunctionType3@@QEBAAEBV?$GTable@N@@XZ
+                         B1D ?GetCount@GOClippingGroup@@UEBAJXZ
+                        133C ?SetClipObject@GOClippingGroup@@UEAAXJAEBV?$GSharedObject@VGOClippingObject@@@@@Z
+                         ABA ?GetClipObject@GOClippingGroup@@UEAAPEAVGOClippingObject@@J@Z
+                         ABB ?GetClipObject@GOClippingGroup@@UEBAPEBVGOClippingObject@@J@Z
+                        1236 ?RemoveClipObject@GOClippingGroup@@UEAA_NAEAVGOClippingObject@@@Z
+                         77B ?AddClipObject@GOClippingGroup@@UEAAXPEBVGOClippingObject@@_N@Z
+                         84D ?CreateClone@GOClippingGroup@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                         2EC ??1GOClippingGroup@@UEAA@XZ
+                          E5 ??0GOClippingGroup@@QEAA@XZ
+                         A6C ?GetClassType@GOClipPath@@SAAEBVGOObjectType@@XZ
+                         A6D ?GetClassType@GOClipText@@SAAEBVGOObjectType@@XZ
+                         EE5 ?GetStartMatrix@GOTextBase@@QEBAAEBV?$GMatrixBase@N@@XZ
+                         49B ??B?$GSharedObject@VGOClippingObject@@@@QEBAPEAVGOClippingObject@@XZ
+                         4D6 ??D?$GSharedObject@VGOClippingObject@@@@QEBAAEAVGOClippingObject@@XZ
+                         4B8 ??C?$GSharedObject@VGOClippingObject@@@@QEBAPEAVGOClippingObject@@XZ
+                         3AF ??4?$GSharedObject@VGOClippingObject@@@@QEAAAEAV0@PEBVGOClippingObject@@@Z
+                         3AD ??4?$GSharedObject@VGOClippingObject@@@@QEAAAEAV0@$$QEAV0@@Z
+                         3AE ??4?$GSharedObject@VGOClippingObject@@@@QEAAAEAV0@AEBV0@@Z
+                         2A1 ??1?$GSharedObject@VGOClippingObject@@@@QEAA@XZ
+                           8 ??0?$GSharedObject@VGOClippingObject@@@@QEAA@$$QEAV0@@Z
+                           9 ??0?$GSharedObject@VGOClippingObject@@@@QEAA@AEBV0@@Z
+                           A ??0?$GSharedObject@VGOClippingObject@@@@QEAA@PEBVGOClippingObject@@@Z
+                           B ??0?$GSharedObject@VGOClippingObject@@@@QEAA@XZ
+                         1D4 ??0GOObjectType@@QEAA@W4Type@0@@Z
+                         E67 ?GetRange@GOLabSpace@@UEBAJAEAV?$GTable@UGOColorSpaceRange@@@@@Z
+                         A2F ?GetBlackPoint@GOLabSpace@@QEBAXAEAN00@Z
+                         FC0 ?GetWhitePoint@GOLabSpace@@QEBAXAEAN00@Z
+                         A2C ?GetBlackPoint@GOCalibratedGraySpace@@QEBAXAEAN00@Z
+                         FBD ?GetWhitePoint@GOCalibratedGraySpace@@QEBAXAEAN00@Z
+                         C00 ?GetGamma@GOCalibratedGraySpace@@QEBANXZ
+                         CB7 ?GetMatrix@GOCalibratedRGBSpace@@QEBAXAEAV?$GTable@N@@@Z
+                         A2D ?GetBlackPoint@GOCalibratedRGBSpace@@QEBAXAEAN00@Z
+                         FBE ?GetWhitePoint@GOCalibratedRGBSpace@@QEBAXAEAN00@Z
+                         C01 ?GetGamma@GOCalibratedRGBSpace@@QEBAXAEAN00@Z
+                        11FC ?Receive@GOAnnotation@@UEAAXJAEBV?$GPair@VGADoc@@VGADict@@@@@Z
+                         D7A ?GetObjectType@GOAnnotation@@UEBAAEBVGOObjectType@@XZ
+                         736 ?Accept@GOAnnotation@@UEAAXAEAVGOVisitor@@@Z
+                         845 ?CreateClone@GOAnnotation@@UEBAPEAVGOObject@@AEAVGOCloneStrategy@@@Z
+                        15E2 ?UnSubscribe@?$GReceiver@V?$GPair@VGADoc@@VGADict@@@@@@MEAAXJ@Z
+                        15A4 ?Subscribe@?$GReceiver@V?$GPair@VGADoc@@VGADict@@@@@@MEAAXJ@Z
+                         907 ?DeleteAnnotation@GOPage@@QEAA_NAEAVGOAnnotation@@@Z
+                         776 ?AddAnnotation@GOPage@@QEAAXPEAVGOAnnotation@@@Z
+                         9FE ?GetAnnotation@GOPage@@QEBAAEAVGOAnnotation@@J@Z
+                         D13 ?GetNumAnnotations@GOPage@@QEAAJXZ
+                         2D9 ??1GOAnnotText@@UEAA@XZ
+                          B7 ??0GOAnnotText@@AEAA@AEBVGADoc@@AEBV?$GRectBase@N@@@Z
+                        1532 ?SetText@GOAnnotText@@QEAAXAEBVGString@@@Z
+                         F22 ?GetText@GOAnnotText@@QEBAXAEAVGString@@@Z
+                         2D0 ??1GOAnnotPopup@@UEAA@XZ
+                          A5 ??0GOAnnotPopup@@AEAA@AEBVGADoc@@AEBV?$GRectBase@N@@@Z
+                        1406 ?SetInitialDisplayFlag@GOAnnotPopup@@QEAAX_N@Z
+                         C4E ?GetInitialDisplayFlag@GOAnnotPopup@@QEBA_NXZ
+                         2C3 ??1GOAnnot3D@@UEAA@XZ
+                          8A ??0GOAnnot3D@@AEAA@AEBVGADoc@@AEBV?$GRectBase@N@@@Z
+                         BF7 ?GetGADict@GOAnnotation@@QEBAAEBVGADict@@XZ
+                        14B8 ?SetPopup@GOAnnotation@@QEAAXPEAVGOAnnotPopup@@@Z
+                         E3D ?GetPopup@GOAnnotation@@QEBAPEAVGOAnnotPopup@@XZ
+                        154B ?SetTitle@GOAnnotation@@QEAAXAEBVGString@@@Z
+                         F40 ?GetTitle@GOAnnotation@@QEBA_NAEAVGString@@@Z
+                        142B ?SetLastModified@GOAnnotation@@QEAAXAEBVGBuffer@@@Z
+                        14D2 ?SetRect@GOAnnotation@@QEAAXAEBV?$GRectBase@N@@@Z
+                         E72 ?GetRect@GOAnnotation@@QEBAXAEAV?$GRectBase@N@@@Z
+                         EAE ?GetRootNode@GODPartTree@@QEAA?AV?$GSharedObject@VGODPartNode@@@@XZ
+                         E70 ?GetRecordLevel@GODPartTree@@QEBAKXZ
+                        1028 ?HasRecordLevel@GODPartTree@@QEBA_NXZ
+                         CFE ?GetNodeNameList@GODPartTree@@QEBAAEBV?$GTable@VGString@@@@XZ
+                         B7B ?GetDocumentPageRange@GODPartNode@@QEBAXAEAJ0@Z
+                        1513 ?SetStrokeColorSpec@GOText@@UEAAXAEBVGOColorSpec@@@Z
+                         A65 ?GetChildNode@GODPartNode@@QEBA?AV?$GSharedObject@VGODPartNode@@@@J@Z
+                        14B0 ?SetPathFillType@GOGraphicState@@QEAAXW4FillType@GOLineState@@@Z
+
+    FontLayer.dll
+             1802D8BC0 Import Address Table
+             1803C1B98 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         203 ?GetLength@GFEncodingComposite@@UEBAJPEBE@Z
+                         133 ?Clear@GFEncodingComposite@@UEAAXXZ
+                         14E ?CreateClone@GFEncodingComposite@@UEBA?AV?$GSharedObject@VGFEncoding@@@@XZ
+                         148 ?Create@GFEncodingCreator@@SAXAEBVGFParsedStreamManager@@AEBVGFFont@@_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAVGFEncodingComposite@@@Z
+                          97 ??1GFEncodingComposite@@UEAA@XZ
+                          EE ??4GFParsedStream@@QEAAAEAV0@AEBV0@@Z
+                         189 ?GetCIDMap@GFEncodingComposite@@QEBAAEBVGFCMapCID@@XZ
+                          28 ??0GFEncodingComposite@@QEAA@XZ
+                         20E ?GetName@GFCMap@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         2D2 ?cType@GFFontType1@@2AEBVGName@@EB
+                         2D1 ?cType@GFFontTrueType@@2AEBVGName@@EB
+                         2D0 ?cType@GFFontOTFCFF@@2AEBVGName@@EB
+                         2CD ?cType@GFFontCFF@@2AEBVGName@@EB
+                         165 ?Execute@GFFileManager@@EEAA_NXZ
+                         234 ?GetType@GFFileIterator@@UEBA?AW4Type@1@AEBVGPathName@@@Z
+                         1CF ?GetFont@GFParsedStreamManager@@QEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEAVGFFont@@W4AllowCIDFonts@1@@Z
+                         1FB ?GetInfo@GFParsedStreamManagerIterator@@QEBAAEBVGFFileInfo@@XZ
+                         28D ?Next@GFParsedStreamManagerIterator@@QEAA_NXZ
+                          B1 ??1GFParsedStreamManagerIterator@@QEAA@XZ
+                          85 ??0GFParsedStreamManagerIterator@@QEAA@AEBVGFParsedStreamManager@@_N@Z
+                         166 ?Finalize@GFFontLayer@@SAXXZ
+                         257 ?Initialize@GFFontLayer@@SAXXZ
+                         11D ?Add@GFFileManager@@QEAAXV?$GAutoPtr@VGFFileIterator@@UGDeletePtr@@@@@Z
+                         11C ?Add@GFFileManager@@QEAAXAEBVGPathName@@@Z
+                          A0 ??1GFFileManager@@UEAA@XZ
+                         170 ?GetASCIIDescription@GFEncodingComposite@@UEBAAEBVGBuffer@@XZ
+                          3D ??0GFFileManager@@QEAA@XZ
+                         233 ?GetType@GFFileInfo@@QEBAAEBVGName@@XZ
+                         20F ?GetNames@GFFileInfo@@QEBAAEBV?$GTable@VGString@@@@XZ
+                         228 ?GetStyle@GFFont@@QEBA_NAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         1C6 ?GetFamily@GFFont@@QEBA_NAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         17F ?GetBoundingBox@GFFont@@QEBAXAEAV?$GRectBase@N@@@Z
+                         1BD ?GetDescent@GFFont@@QEBANXZ
+                         179 ?GetAscent@GFFont@@QEBANXZ
+                         180 ?GetBoundingBox@GFGlyph@@QEBAAEBV?$GRectBase@N@@XZ
+                         214 ?GetOutline@GFGlyph@@QEBAAEBVGOutline@@XZ
+                         243 ?GetVPosY@GFGlyph@@QEBANXZ
+                         242 ?GetVPosX@GFGlyph@@QEBANXZ
+                         175 ?GetAdvanceVWidth@GFGlyph@@QEBANXZ
+                         176 ?GetAdvanceWidth@GFGlyph@@QEBANXZ
+                          AC ??1GFGlyph@@QEAA@XZ
+                          77 ??0GFGlyph@@QEAA@PEAVGFGlyphImp@@@Z
+                         218 ?GetPathNames@GFParsedStream@@QEBAAEBV?$vector@VGPathName@@V?$allocator@VGPathName@@@std@@@std@@XZ
+                         2A4 ?Reset@GFEncodingNormalizerPDF@@MEAAXXZ
+                          B3 ??1GFSubsetPrefixTracker@@QEAA@XZ
+                         286 ?MarkUsed@GFSubsetPrefixTracker@@QEAA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          88 ??0GFSubsetPrefixTracker@@QEAA@XZ
+                         155 ?CreateSubset@GFSubsetter@@QEBA?AV?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AEAVGName@@@Z
+                         287 ?MarkUsed@GFSubsetter@@QEAA_NAEBVGBuffer@@AEBVGFEncoding@@@Z
+                          B4 ??1GFSubsetter@@QEAA@XZ
+                          8A ??0GFSubsetter@@QEAA@AEBVGFFont@@PEAVGFSubsetPrefixTracker@@@Z
+                         29C ?RegisterEncoding@GFEncodingNormalizerPDF@@QEAAXV?$GSharedObject@VGFEncoding@@@@_N@Z
+                          99 ??1GFEncodingNormalizerPDF@@UEAA@XZ
+                          2C ??0GFEncodingNormalizerPDF@@QEAA@W4AllowedEncodingTypes@0@AEBVGFParsedStreamManager@@@Z
+                         192 ?GetCharCode@GFEncodingIterator@@QEBAAEBVGCharCode@@XZ
+                         28A ?Next@GFEncodingIterator@@QEAA_NXZ
+                          98 ??1GFEncodingIterator@@QEAA@XZ
+                          2A ??0GFEncodingIterator@@QEAA@AEBVGBuffer@@AEBVGFEncoding@@@Z
+                         1CE ?GetFont@GFEncoding@@QEBA_NAEAVGFFont@@@Z
+                         1CD ?GetFont@GFEncoding@@QEBAAEBVGFFont@@XZ
+                          42 ??0GFFont@@QEAA@$$QEAV0@@Z
+                          43 ??0GFFont@@QEAA@AEBV0@@Z
+                          A4 ??1GFFont@@UEAA@XZ
+                         1D6 ?GetFontImp@GFFont@@QEAAAEAVGFFontImp@@XZ
+                         1D7 ?GetFontImp@GFFont@@QEBAAEBVGFFontImp@@XZ
+                         1C3 ?GetFSTypeLicense@GFFont@@QEBA_NAEAK@Z
+                         27E ?LicenseAllows@GFFont@@QEBA_NW4Permissions@GFLicense@@@Z
+                         219 ?GetPostScriptFontName@GFFont@@QEBAXAEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          45 ??0GFFont@@QEAA@AEBVGInStream@@@Z
+                          49 ??0GFFont@@QEAA@XZ
+                          F8 ??9GFParsedStream@@QEBA_NAEBV0@@Z
+                          3C ??0GFFileManager@@QEAA@AEBVGPathName@@@Z
+                         291 ?Normalize@GFEncodingNormalizerPDF@@QEAAXAEBVGBuffer@@V?$GSharedObject@VGFEncoding@@@@_N2@Z
+                         26B ?IsOfType@GFEncodingComposite@@UEBA_NAEBVGBuffer@@@Z
+                         1BC ?GetDefaultUnicode@GFEncoding@@MEBAXAEAG@Z
+                         191 ?GetCharCode@GFEncoding@@UEBAXAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1F1 ?GetGlyphName@GFEncoding@@UEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         142 ?ConvertTo@GFEncoding@@UEBAJAEBVGBuffer@@PEBVGUnicodeEncoding@@AEAV2@@Z
+                         13C ?ConvertFrom@GFEncoding@@UEBAJAEBVGBuffer@@PEBVGEncoding@@AEAV2@@Z
+                         259 ?IsBufferCompatible@GFEncoding@@UEBA_NAEBVGBuffer@@@Z
+                         177 ?GetAllCharCodesForGID@GFEncoding@@UEBA_NJAEAV?$GTable@VGCharCode@@@@@Z
+                         1EC ?GetGlyphForCharCode@GFEncoding@@UEBA_NAEBVGCharCode@@AEAVGFGlyph@@@Z
+                         1EB ?GetGlyphForCharCode@GFEncoding@@UEBA?AVGFGlyph@@AEBVGCharCode@@@Z
+                         1A6 ?GetCharStringForCharCode@GFEncoding@@UEBAXAEBVGCharCode@@AEAVGBuffer@@@Z
+                         195 ?GetCharCodeForCharString@GFEncoding@@UEBA_NAEBVGBuffer@@AEAVGCharCode@@@Z
+                         138 ?ClearFont@GFEncoding@@UEAAXXZ
+                         2B1 ?SetFont@GFEncoding@@UEAAXAEBVGFFont@@@Z
+                         121 ?ApplyGSUB@GFEncodingComposite@@MEBAXAEAVGBuffer@@@Z
+                         1B8 ?GetDefaultCharCode@GFEncodingComposite@@MEBA_NAEAVGCharCode@@@Z
+                         13E ?ConvertFromInternal@GFEncodingComposite@@MEBAJAEBVGBuffer@@AEBVGFEncoding@@AEAV2@@Z
+                         19A ?GetCharCodeInternal@GFEncodingComposite@@MEBAXAEBVGBuffer@@AEAVGCharCode@@@Z
+                         1F4 ?GetGlyphNameInternal@GFEncodingComposite@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         1AB ?GetCharStringForUnicodeInternal@GFEncodingComposite@@MEBA_NGAEAVGBuffer@@@Z
+                         23B ?GetUnicodeForCharCodeInternal@GFEncodingComposite@@MEBA_NAEBVGCharCode@@AEAVGBuffer@@@Z
+                         1DC ?GetGIDForCID@GFEncodingComposite@@UEBA_NJAEAJ@Z
+                         196 ?GetCharCodeForGID@GFEncodingComposite@@UEBA_NJAEAVGCharCode@@@Z
+                         1DD ?GetGIDForCharCode@GFEncodingComposite@@UEBA_NAEBVGCharCode@@AEAJ@Z
+                         248 ?GetWritingMode@GFEncodingComposite@@UEBA?AW4WritingMode@GFEncoding@@XZ
+                         19D ?GetCharCodeRanges@GFEncodingComposite@@UEBAXAEAV?$GTable@VGCharCodeRange@@@@@Z
+                         264 ?IsNotDefined@GFEncodingComposite@@UEBA?AW4GTriState@@AEBVGCharCode@@@Z
+                         238 ?GetUnicodeForCID@GFEncodingComposite@@UEBA_NJAEAVGBuffer@@@Z
+                         194 ?GetCharCodeForCID@GFEncodingComposite@@UEBA_NJAEAVGCharCode@@@Z
+                         185 ?GetCIDForCharCode@GFEncodingComposite@@UEBA_NAEBVGCharCode@@AEAJ@Z
+                         1EA ?GetGlyphForCID@GFEncodingComposite@@UEBA_NJAEAVGFGlyph@@@Z
+                         1E9 ?GetGlyphForCID@GFEncodingComposite@@UEBA?AVGFGlyph@@J@Z
+                         1A2 ?GetCharCodesForCharString@GFEncodingComposite@@UEBA_NAEBVGBuffer@@AEAV?$GTable@VGCharCode@@@@@Z
+
+    PDFAccessLayer.dll
+             1802D96B8 Import Address Table
+             1803C2690 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         282 ?ArrayToRect@GAObjectSupport@@SAXAEBVGAArray@@AEAV?$GRectBase@N@@@Z
+                          B1 ??0GAObject@@QEAA@AEBV0@@Z
+                         12C ??1GAArray@@QEAA@XZ
+                         34E ?GetDict@GAStream@@QEBA?AVGADict@@XZ
+                         13C ??1GADict@@QEAA@XZ
+                         570 ?UnSubscribe@?$GReceiver@VGADocMovePagesMessage@@@@MEAAXJ@Z
+                         1E6 ??4GAObject@@QEAAXAEBV0@@Z
+                         158 ??1GAJPXFilter@@QEAA@XZ
+                          95 ??0GAJPXFilter@@QEAA@AEBV?$GSizeBase@J@@JJN_N@Z
+                         499 ?MatrixToArray@GAObjectSupport@@SAXAEBV?$GMatrixBase@N@@AEAVGAArray@@@Z
+                         4C7 ?RectToArray@GAObjectSupport@@SAXAEBV?$GRectBase@N@@AEAVGAArray@@@Z
+                         446 ?IsDirect@GAObject@@QEBA_NXZ
+                         29E ?CloneContentsTo@GAObjectSupport@@SAXAEBVGADict@@AEAV2@AEAVGACloneStrategy@@@Z
+                         4A0 ?NewStartpoint@GACloneStrategy@@QEAAXXZ
+                         3F9 ?GetStream@GAArray@@QEBA?AVGAStream@@J@Z
+                         206 ??4GAStream@@QEAAXAEBV0@@Z
+                          F1 ??0GAStream@@QEAA@AEBVGADoc@@AEAVGADict@@AEAVGInStream@@AEBV?$GTable@VGAFilter@@@@_N@Z
+                          76 ??0GAException@@QEAA@AEBV0@@Z
+                          EE ??0GASimpleException@@QEAA@AEBV0@@Z
+                         179 ??1GASimpleException@@UEAA@XZ
+                          EF ??0GASimpleException@@QEAA@J@Z
+                         390 ?GetInt64@GANumber@@QEBA_JXZ
+                         4D7 ?RemoveAll@GADict@@QEAAXXZ
+                         3C3 ?GetObjectForID@GADoc@@QEBA?AVGAObject@@K@Z
+                         31D ?GetBool@GAArray@@QEBA?AVGABool@@J@Z
+                         217 ??8GAName@@QEBA_NAEBVGBuffer@@@Z
+                         4A8 ?NextValue@GADictIterator@@QEAA_NAEAVGAObject@@@Z
+                         4A7 ?NextKey@GADictIterator@@QEAA_NAEAVGName@@@Z
+                         484 ?IsString@GAObject@@QEBA_NXZ
+                          F0 ??0GAStream@@QEAA@AEBV0@@Z
+                         4BB ?PrepareForInsert@GAObjectSupport@@SA_NAEAVGAObject@@AEBVGADoc@@_N@Z
+                         4D6 ?RemoveAll@GAArray@@QEAAXXZ
+                         382 ?GetHex@GAString@@QEBA_NXZ
+                         46F ?IsInteger@GANumber@@QEBA_NXZ
+                         28A ?Cast@GABool@@SA?AV1@AEBVGAObject@@@Z
+                         40A ?GetType@GAObject@@QEBA?AW4GAObjectTypes@@XZ
+                          44 ??0GADoc@@QEAA@AEBV0@@Z
+                         151 ??1GAFlateFilter@@QEAA@XZ
+                          83 ??0GAFlateFilter@@QEAA@JJJJ@Z
+                          7C ??0GAFilter@@QEAA@AEBV0@@Z
+                         2C4 ?CreateStream@GAStream@@QEBAPEAVGInStream@@_N@Z
+                          F2 ??0GAStream@@QEAA@AEBVGADoc@@AEAVGADict@@AEBVGBuffer@@AEBV?$GTable@VGAFilter@@@@_N@Z
+                         150 ??1GAFilter@@QEAA@XZ
+                         21B ??9GAName@@QEBA_NPEBD@Z
+                         218 ??8GAName@@QEBA_NPEBD@Z
+                          1E ??0GABool@@QEAA@AEBVGADoc@@_NW4GAPersistenceType@GAPersistentObject@@@Z
+                         26E ?Add@GAArray@@QEAAXAEBVGAObject@@@Z
+                          19 ??0GAArray@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         3FA ?GetStream@GADict@@QEBA?AVGAStream@@AEBVGName@@@Z
+                         384 ?GetID@GAObject@@QEBAKXZ
+                         30E ?Get@GAString@@QEBAXAEAVGString@@@Z
+                         291 ?Cast@GAString@@SA?AV1@AEBVGAObject@@@Z
+                         391 ?GetInt@GANumber@@QEBAJXZ
+                         4A2 ?Next@GAArrayIterator@@QEAA_NAEAVGAObject@@@Z
+                         12D ??1GAArrayIterator@@UEAA@XZ
+                          1C ??0GAArrayIterator@@QEAA@AEBVGAArray@@_N@Z
+                          18 ??0GAArray@@QEAA@AEBV0@@Z
+                         15B ??1GANull@@QEAA@XZ
+                          A2 ??0GANull@@QEAA@XZ
+                         28F ?Cast@GANumber@@SA?AV1@AEBVGAObject@@@Z
+                         28D ?Cast@GAName@@SA?AV1@AEBVGAObject@@@Z
+                         307 ?Get@GABool@@QEBA_NXZ
+                         317 ?GetArray@GAArray@@QEBA?AV1@J@Z
+                         3A1 ?GetName@GAArray@@QEBA?AVGAName@@J@Z
+                         306 ?Get@GAArray@@QEBA?AVGAObject@@J@Z
+                         289 ?Cast@GAArray@@SA?AV1@AEBVGAObject@@@Z
+                         3BB ?GetNumber@GADict@@QEBA?AVGANumber@@AEBVGName@@@Z
+                         476 ?IsName@GAObject@@QEBA_NXZ
+                         47A ?IsNumber@GAObject@@QEBA_NXZ
+                         478 ?IsNull@GAObject@@QEBA_NXZ
+                         44F ?IsEqual@GAObject@@QEBA_NAEBV1@@Z
+                          42 ??0GADict@@QEAA@XZ
+                         398 ?GetLength@GADict@@QEBAJXZ
+                         30D ?Get@GAString@@QEBAXAEAVGBuffer@@@Z
+                         3FE ?GetString@GADict@@QEBA?AVGAString@@AEBVGName@@@Z
+                         31E ?GetBool@GADict@@QEBA?AVGABool@@AEBVGName@@@Z
+                         12E ??1GABool@@QEAA@XZ
+                          F8 ??0GAString@@QEAA@AEBVGADoc@@AEBVGString@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          9C ??0GAName@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         177 ??1GAShallowCloneStrategy@@UEAA@XZ
+                          E9 ??0GAShallowCloneStrategy@@QEAA@XZ
+                         43D ?IsArray@GAObject@@QEBA_NXZ
+                         43F ?IsBool@GAObject@@QEBA_NXZ
+                         17B ??1GAString@@QEAA@XZ
+                          F7 ??0GAString@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          A4 ??0GANumber@@QEAA@AEBVGADoc@@NW4GAPersistenceType@GAPersistentObject@@@Z
+                         2CD ?DelayedUpdateLastModified@GADoc@@QEAAXAEBVGADict@@AEBVGName@@@Z
+                          40 ??0GADict@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         3DD ?GetPersistenceType@GAObject@@QEBA?AW4GAPersistenceType@GAPersistentObject@@XZ
+                         15A ??1GAName@@QEAA@XZ
+                         309 ?Get@GAName@@QEBAXAEAVGBuffer@@@Z
+                         3A2 ?GetName@GADict@@QEBA?AVGAName@@AEBVGName@@@Z
+                         4D4 ?Remove@GADict@@QEAAXAEBVGName@@@Z
+                         1AE ??4GADict@@QEAAXAEBV0@@Z
+                          3F ??0GADict@@QEAA@AEBV0@@Z
+                         45C ?IsEquivalent@GAObject@@QEBA_NAEBV1@@Z
+                         29A ?Clone@GAObject@@QEAAXAEAVGACloneStrategy@@AEBVGADoc@@@Z
+                         56C ?UnSubscribe@?$GReceiver@VGADocDidChangePagesMessage@@@@MEAAXJ@Z
+                         560 ?Subscribe@?$GReceiver@VGADocDidChangePagesMessage@@@@MEAAXJ@Z
+                         318 ?GetArray@GADict@@QEBA?AVGAArray@@AEBVGName@@@Z
+                         564 ?Subscribe@?$GReceiver@VGADocMovePagesMessage@@@@MEAAXJ@Z
+                         56D ?UnSubscribe@?$GReceiver@VGADocDidSaveMessage@@@@MEAAXJ@Z
+                         561 ?Subscribe@?$GReceiver@VGADocDidSaveMessage@@@@MEAAXJ@Z
+                         56F ?UnSubscribe@?$GReceiver@VGADocInsertPagesMessage@@@@MEAAXJ@Z
+                         563 ?Subscribe@?$GReceiver@VGADocInsertPagesMessage@@@@MEAAXJ@Z
+                         571 ?UnSubscribe@?$GReceiver@VGADocReplacePagesMessage@@@@MEAAXJ@Z
+                         565 ?Subscribe@?$GReceiver@VGADocReplacePagesMessage@@@@MEAAXJ@Z
+                         572 ?UnSubscribe@?$GReceiver@VGADocWillSaveMessage@@@@MEAAXJ@Z
+                         566 ?Subscribe@?$GReceiver@VGADocWillSaveMessage@@@@MEAAXJ@Z
+                         56B ?UnSubscribe@?$GReceiver@VGADocDeletePagesMessage@@@@MEAAXJ@Z
+                         55F ?Subscribe@?$GReceiver@VGADocDeletePagesMessage@@@@MEAAXJ@Z
+                         56A ?UnSubscribe@?$GReceiver@VGADoc@@@@MEAAXJ@Z
+                         55E ?Subscribe@?$GReceiver@VGADoc@@@@MEAAXJ@Z
+                         2EB ?EndVisit@GAVisitor@@UEAAXAEAVGAArray@@@Z
+                         2EC ?EndVisit@GAVisitor@@UEAAXAEAVGADict@@@Z
+                         2EE ?EndVisit@GAVisitor@@UEAAXAEAVGAStream@@@Z
+                         2ED ?EndVisit@GAVisitor@@UEAAXAEAVGADoc@@@Z
+                         5A1 ?Visit@GAVisitor@@UEAAXAEAVGANull@@@Z
+                         59D ?Visit@GAVisitor@@UEAAXAEAVGABool@@@Z
+                         5A2 ?Visit@GAVisitor@@UEAAXAEAVGANumber@@@Z
+                         5A0 ?Visit@GAVisitor@@UEAAXAEAVGAName@@@Z
+                         5A5 ?Visit@GAVisitor@@UEAAXAEAVGAString@@@Z
+                         59C ?Visit@GAVisitor@@UEAAXAEAVGAArray@@@Z
+                         59E ?Visit@GAVisitor@@UEAAXAEAVGADict@@@Z
+                         5A4 ?Visit@GAVisitor@@UEAAXAEAVGAStream@@@Z
+                         59F ?Visit@GAVisitor@@UEAAXAEAVGADoc@@@Z
+                         5A6 ?Visit@GAVisitor@@UEAAXAEBVGName@@@Z
+                         5A7 ?Visit@GAVisitor@@UEAAXJ@Z
+                         17A ??1GAStream@@QEAA@XZ
+                         30C ?Get@GAStream@@QEBAXAEAVGBuffer@@@Z
+                         290 ?Cast@GAStream@@SA?AV1@AEBVGAObject@@@Z
+                         18C ??1GAVisitor@@UEAA@XZ
+                         116 ??0GAVisitor@@QEAA@XZ
+                         15C ??1GANumber@@QEAA@XZ
+                         30A ?Get@GANumber@@QEBANXZ
+                         4A3 ?Next@GADictIterator@@QEAA_NAEAVGName@@AEAVGAObject@@@Z
+                         13D ??1GADictIterator@@UEAA@XZ
+                          43 ??0GADictIterator@@QEAA@AEBVGADict@@@Z
+                         138 ??1GADeepProcessingStrategy@@UEAA@XZ
+                          35 ??0GADeepProcessingStrategy@@QEAA@XZ
+                         29F ?CloneModDateInfoFrom@GADoc@@QEAAXAEBV1@AEAVGACloneStrategy@@@Z
+                         3C2 ?GetObjectFactory@GADoc@@QEBAAEAVGAObjectFactory@@XZ
+                         35F ?GetEncryptionType@GADoc@@QEBAJXZ
+                         548 ?SetUniqueID@GADoc@@QEAAXAEBVGBuffer@@0@Z
+                         413 ?GetUniqueID@GADoc@@QEBAXAEAVGBuffer@@0@Z
+                         2B7 ?CreateInfoDict@GADoc@@QEAA?AVGADict@@XZ
+                         430 ?HasInfoDict@GADoc@@QEBA_NXZ
+                         38C ?GetInfoDict@GADoc@@QEBA?AVGAObject@@XZ
+                         329 ?GetCatalog@GADoc@@QEBA?AVGADict@@XZ
+                         549 ?SetVersion@GADoc@@QEAAXJJ@Z
+                         417 ?GetVersion@GADoc@@QEBAXAEAJ0@Z
+                         2A1 ?Close@GADoc@@QEAAXXZ
+                         4A9 ?Open@GADoc@@QEAAXXZ
+                         366 ?GetFile@GADoc@@QEAAAEAVGAPDFFile@@XZ
+                         1AF ??4GADoc@@QEAAXAEBV0@@Z
+                          45 ??0GADoc@@QEAA@AEBVGPathName@@@Z
+                          48 ??0GADoc@@QEAA@XZ
+                         527 ?SetNewEncryptionParams@GADocSaveParams@@QEAAXAEBVGADocEncryptionParams@@@Z
+                         529 ?SetNewOwnerPassword@GADocSaveParams@@QEAAXAEBVGBuffer@@@Z
+                         52B ?SetNewUserPassword@GADocSaveParams@@QEAAXAEBVGBuffer@@@Z
+                         148 ??1GADocSaveParams@@QEAA@XZ
+                          64 ??0GADocSaveParams@@QEAA@JAEBVGPathName@@JJ@Z
+                          55 ??0GADocEncryptionParams@@QEAA@W4EncryptionType@0@W4ChangePermissions@0@W4PrintPermissions@0@W4GeneralPermissions@0@W4EncryptMetadata@0@@Z
+                         133 ??1GACloneStrategy@@UEAA@XZ
+                          2A ??0GACloneStrategy@@QEAA@XZ
+                         34C ?GetDict@GAArray@@QEBA?AVGADict@@J@Z
+                         3BA ?GetNumber@GAArray@@QEBA?AVGANumber@@J@Z
+                         397 ?GetLength@GAArray@@QEBAJXZ
+                         34D ?GetDict@GADict@@QEBA?AV1@AEBVGName@@@Z
+                         42D ?Has@GADict@@QEBA_NAEBVGName@@@Z
+                         308 ?Get@GADict@@QEBA?AVGAObject@@AEBVGName@@@Z
+                         4C4 ?Put@GADict@@QEAAXAEBVGName@@AEBVGAObject@@@Z
+                         28B ?Cast@GADict@@SA?AV1@AEBVGAObject@@@Z
+                         483 ?IsStream@GAObject@@QEBA_NXZ
+                         445 ?IsDict@GAObject@@QEBA_NXZ
+                         26D ?Accept@GAObject@@QEAAXAEAVGAVisitor@@AEAVGAProcessingStrategy@@@Z
+                         46C ?IsIndirect@GAObject@@QEBA_NXZ
+                          B2 ??0GAObject@@QEAA@PEAVGAObjectImp@@@Z
+                         3EB ?GetReplacement@GADeepCloneStrategy@@UEAA?AVGAObject@@AEBV2@@Z
+                         3EC ?GetReplacement@GADeepCloneStrategy@@UEAA?AVGAObject@@AEBVGName@@AEBV2@@Z
+                         335 ?GetCloneAction@GADeepCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGAObject@@@Z
+                         336 ?GetCloneAction@GADeepCloneStrategy@@UEAA?AW4CloneAction@GACloneStrategy@@AEBVGName@@AEBVGAObject@@@Z
+                         3E4 ?GetRegisteredClones@GACloneStrategy@@UEAAAEBV?$GDict@VGAObjectProxy@@V1@@@XZ
+                         32F ?GetClone@GACloneStrategy@@UEAA_NAEBVGAObject@@AEAV2@@Z
+                         57C ?UnregisterClone@GACloneStrategy@@UEAAXAEBVGAObject@@@Z
+                         4D0 ?RegisterClone@GACloneStrategy@@UEAAXAEBVGAObject@@0@Z
+                         137 ??1GADeepCloneStrategy@@UEAA@XZ
+                          32 ??0GADeepCloneStrategy@@QEAA@XZ
+                         13E ??1GADoc@@QEAA@XZ
+                         350 ?GetDoc@GAObject@@QEBA?AVGADoc@@XZ
+                         490 ?IsValid@GAObject@@QEBA_NXZ
+                         4E1 ?Reset@GAObject@@QEAAXXZ
+                         29C ?CloneAndMerge@GAObject@@QEAAXAEAVGACloneStrategy@@AEBVGADoc@@@Z
+                         161 ??1GAObject@@QEAA@XZ
+
+    BasicFrameworkCoreLayer.dll
+             1802D8208 Import Address Table
+             1803C11E0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          BF ??0GFileInStream@@QEAA@AEBVGPathName@@@Z
+                         1DD ??1GFileInStream@@UEAA@XZ
+                          4F ??0GBuffer@@QEAA@AEBV0@@Z
+                         339 ??9@YA_NAEBVGBuffer@@0@Z
+                         10F ??0GName@@QEAA@PEBD@Z
+                          27 ??0?$GRectBase@N@@QEAA@XZ
+                         23A ??2GFastAllocatable@@SAPEAX_K@Z
+                          56 ??0GBuffer@@QEAA@XZ
+                          54 ??0GBuffer@@QEAA@PEBD@Z
+                         679 ?GetInt32@GBuffer@@QEBAJXZ
+                         810 ?IsEmpty@GBuffer@@QEBA_NXZ
+                          B4 ??0GExceptionLocation@@QEAA@AEBVGPathName@@@Z
+                         1DB ??1GExceptionLocation@@QEAA@XZ
+                         661 ?GetInstance@GASCIIEncoding@@SAPEAV1@XZ
+                         674 ?GetInstance@GUTF8Encoding@@SAPEAV1@XZ
+                         5B6 ?GetBuffer@GString@@QEBAJAEAVGBuffer@@PEBVGEncoding@@@Z
+                         122 ??0GPathName@@QEAA@XZ
+                         2C4 ??4GPathName@@QEAAAEAV0@AEBV0@@Z
+                         33F ??9@YA_NAEBVGPathName@@0@Z
+                         62A ?GetFullDescription@GException@@QEBA?BVGString@@XZ
+                         8EE ?Reopen@PWin32FileImp@@IEAAXJ@Z
+                         A87 ?ToGBuffer@GStdSupport@@YA?AVGBuffer@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         A8C ?ToStdString@GStdSupport@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGBuffer@@@Z
+                         A8D ?ToStdString@GStdSupport@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGString@@PEBVGEncoding@@@Z
+                          8E ??0GDateTime@@QEAA@_N@Z
+                         99D ?SetFromPDFDateTime@GDateTime@@QEAAJAEBVGBuffer@@@Z
+                         ADF ?Update@?$GObserverT@$$V@@UEAAXPEAV?$GSubjectT@$$V@@@Z
+                         432 ?AddSpecialPath@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXJAEBVGPathName@@@Z
+                         9B3 ?SetInstance@GCallbackAssert@@SAXPEAV1@@Z
+                          66 ??0GCallbackAssert@@QEAA@XZ
+                         1C2 ??1GCallbackAssert@@UEAA@XZ
+                         1F6 ??1GMemoryInStream@@UEAA@XZ
+                         541 ?Finalize@GBasicFrameworkCoreLayer@@SAXXZ
+                         1FF ??1GPathName@@UEAA@XZ
+                         322 ??8@YA_NAEBVGBuffer@@0@Z
+                         973 ?SetBuffer@GName@@QEAAXAEBVGBuffer@@@Z
+                          55 ??0GBuffer@@QEAA@PEBEJ@Z
+                         23C ??3GFastAllocatable@@SAXPEAX0@Z
+                         10E ??0GName@@QEAA@AEBVGBuffer@@@Z
+                           8 ??0?$GMatrixBase@N@@QEAA@XZ
+                         71C ?GetPtr@GBuffer@@QEBAPEBEXZ
+                         15E ??0GString@@QEAA@AEBV0@@Z
+                         99E ?SetFromStatic@GBuffer@@QEAAXPEBD@Z
+                         5B5 ?GetBuffer@GString@@QEBA?AVGBuffer@@PEBVGEncoding@@@Z
+                         74F ?GetStreamLength@GStreamSupport@@SA_KAEAVGInStream@@@Z
+                         105 ??0GMemoryInStream@@QEAA@PEAVGBuffer@@@Z
+                         4F6 ?CreateClone@GMemoryInStream@@UEBAPEAVGInStream@@XZ
+                         904 ?Reset@GMemoryInStream@@UEAAXXZ
+                         A41 ?Skip@GMemoryInStream@@UEAA_J_J@Z
+                         8A8 ?Read@GMemoryInStream@@UEAAJAEAVGBuffer@@J@Z
+                         ADE ?Unread@GMemoryInStream@@UEAAJJ@Z
+                         9FB ?SetRollBackPoint@GMemoryInStream@@UEAAXXZ
+                         913 ?RollBack@GMemoryInStream@@UEAAJXZ
+                          14 ??0?$GPointBase@N@@QEAA@XZ
+                         47E ?Clear@?$GRectBase@N@@QEAAXXZ
+                         820 ?IsInfinite@?$GRectBase@N@@QEBA_NXZ
+                         417 ?Add@?$GRectBase@N@@QEAAXNN@Z
+                         31D ??8?$GRectBase@N@@QEBA_NAEBV0@@Z
+                         846 ?IsSingleRect@GOutline@@QEBA_NAEAV?$GQuadPointBase@N@@@Z
+                          4E ??0GBuffer@@QEAA@$$QEAV0@@Z
+                          6C ??0GCharCode@@QEAA@PEBEJ@Z
+                         1C3 ??1GCharCode@@QEAA@XZ
+                         584 ?Get@GCharCode@@QEBAPEBEXZ
+                         A10 ?SetToHexBuffer@GHexSupport@@YAXAEBVGBuffer@@AEAV2@@Z
+                         104 ??0GMemoryInStream@@QEAA@AEBVGBuffer@@@Z
+                         21A ??1GString@@QEAA@XZ
+                         16A ??0GString@@QEAA@XZ
+                         99F ?SetFromStatic@GBuffer@@QEAAXPEBDJJ@Z
+                         7C8 ?Initialize@GBasicFrameworkCoreLayer@@SA_NXZ
+                          AD ??0GException@@QEAA@AEBV0@@Z
+                         AE0 ?Update@?$GObserverT@$$V@@UEAAXPEAV?$GSubjectT@$$V@@J@Z
+                         445 ?AppendByteArray@GBuffer@@QEAAXPEBEJ@Z
+                         72D ?GetRefCount@GRefCount@@QEBAJXZ
+                          26 ??0?$GRectBase@N@@QEAA@NNNN@Z
+                         455 ?Attach@?$GSubjectT@$$V@@UEAAXPEAV?$GObserverT@$$V@@J@Z
+                         50E ?Detach@?$GSubjectT@$$V@@UEAAXPEAV?$GObserverT@$$V@@@Z
+                         345 ??AGString@@QEBAGJ@Z
+                         8D9 ?Remove@GString@@QEAAXJJ@Z
+                         531 ?EnsureUnicode@GString@@QEBAXXZ
+                         982 ?SetDIPathString@GPathName@@QEAAXAEBVGString@@@Z
+                          E4 ??0GInStreamConnector@@QEAA@AEAV?$GTable@PEAVGInStream@@@@_N@Z
+                         1EA ??1GInStreamConnector@@UEAA@XZ
+                         A40 ?Skip@GInStream@@UEAA_J_J@Z
+                         4F5 ?CreateClone@GInStreamConnector@@UEBAPEAVGInStream@@XZ
+                         8A7 ?Read@GInStreamConnector@@UEAAJAEAVGBuffer@@J@Z
+                         903 ?Reset@GInStreamConnector@@UEAAXXZ
+                         32E ??9?$GMatrixBase@N@@QEBA_NAEBV0@@Z
+                         334 ??9?$GRectBase@N@@QEBA_NAEBV0@@Z
+                         18C ??0GUniqueID@@QEAA@XZ
+                         653 ?GetHex@GUniqueID@@QEAAXAEAVGBuffer@@@Z
+                         229 ??1GUniqueID@@QEAA@XZ
+                         166 ??0GString@@QEAA@PEBD@Z
+                         A88 ?ToGString@GStdSupport@@YA?AVGString@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBVGEncoding@@@Z
+                          E0 ??0GInStream@@QEAA@XZ
+                         1E9 ??1GInStream@@UEAA@XZ
+                         695 ?GetLength@GBuffer@@QEBAJXZ
+                         721 ?GetRawData@GBuffer@@QEBAPEBEXZ
+                         38F ??YGBuffer@@QEAAAEAV0@G@Z
+                          6E ??0GCharCodeRange@@QEAA@AEBV0@@Z
+                         1C4 ??1GCharCodeRange@@QEAA@XZ
+                         675 ?GetInstance@GUnicodeEncoding@@SAPEAV1@XZ
+                         167 ??0GString@@QEAA@PEBDPEBVGEncoding@@_N@Z
+                         796 ?GetWidth@?$GRectBase@N@@QEBANXZ
+                         64F ?GetHeight@?$GRectBase@N@@QEBANXZ
+                         82E ?IsNull@?$GRectBase@N@@QEBA_NXZ
+                         ABE ?Translate@?$GRectBase@N@@QEAAAEAV1@NN@Z
+                         66A ?GetInstance@GPDFDocEncoding@@SAPEAV1@XZ
+                         8D5 ?Remove@GBuffer@@QEAAXJJ@Z
+                         563 ?FindSubBuffer@GBuffer@@QEBAJAEBV1@J_N@Z
+                         160 ??0GString@@QEAA@AEBVGBuffer@@PEBVGEncoding@@_N@Z
+                         4C9 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGPDFDocEncoding@@AEAV2@@Z
+                         4C7 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGCustomEncoding@@AEAV2@@Z
+                         4CA ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGWinAnsiEncoding@@AEAV2@@Z
+                         4C6 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGASCIIEncoding@@AEAV2@@Z
+                         4C8 ?ConvertTo@GEncoding@@UEBAJAEBVGBuffer@@PEBVGMacRomanEncoding@@AEAV2@@Z
+                         87D ?Normalize@GEncoding@@UEBAXAEAVGBuffer@@@Z
+                         88F ?PostConcat@?$GMatrixBase@N@@QEAAXAEBV1@@Z
+                         168 ??0GString@@QEAA@PEBEJPEBVGEncoding@@_N@Z
+                         60D ?GetEncodedBuffer@GString@@QEBAAEBVGBuffer@@XZ
+                          8C ??0GDateTime@@QEAA@JJJJJJ_N@Z
+                         5A9 ?GetAsPDFDateTime@GDateTime@@QEBAXAEAVGBuffer@@@Z
+                         6D5 ?GetNativePathString@GPathName@@QEBA?AVGString@@XZ
+                         9E3 ?SetNativePathString@GPathName@@QEAAXAEBVGString@@@Z
+                         93A ?Set@?$GRectBase@N@@QEAAXNNNN@Z
+                         40E ?Acquire@GRefCount@@QEBAXXZ
+                         23D ??3GFastAllocatable@@SAXPEAX_K@Z
+                         579 ?Free@GAllocator@@QEAAXPEAX_K@Z
+                         43D ?Alloc@GAllocator@@QEAAPEAX_K@Z
+                         663 ?GetInstance@GAllocator@@SAAEAV1@XZ
+                         1BD ??1GBuffer@@QEAA@XZ
+                         5FA ?GetDescription@GException@@QEBA?BVGString@@XZ
+                         8D1 ?Release@GRefCount@@QEBAXXZ
+
+    boost_nowide.dll
+             1802DC4C8 Import Address Table
+             1803C54A0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1E ?fopen@nowide@boost@@YAPEAU_iobuf@@PEBD0@Z
+
+    YAGL.dll
+             1802DC078 Import Address Table
+             1803C5050 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          68 ?BackMinusFront@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          88 ?Exclude@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          D5 ?HasStarted@SubpathFactory@YAGL@@QEBA_NXZ
+                          84 ?End@SubpathFactory@YAGL@@QEAA?AV?$shared_ptr@$$CBVSubpath@YAGL@@@std@@XZ
+                          7F ?CurveTo@SubpathFactory@YAGL@@QEAAAEAV12@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@2@00@Z
+                          7C ?CrossProduct@YAGL@@YANAEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@0@Z
+                          8A ?FeedToContourEngine@YAGL@@YAXAEBVCompound@1@AEAVTContourEngine@ADT@@_NAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@1@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                         124 ?UniteAndClip@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@AEBV34@@Z
+                          1A ??1CompoundFactory@YAGL@@QEAA@XZ
+                          C8 ?GetResult@CompoundFactory@YAGL@@QEAA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                         114 ?SetWindingRule@CompoundFactory@YAGL@@QEAAAEAV12@W4WindingRule@2@@Z
+                          64 ?AddSubpath@CompoundFactory@YAGL@@QEAAAEAV12@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@Z
+                           6 ??0CompoundFactory@YAGL@@QEAA@XZ
+                          71 ?Close@SubpathFactory@YAGL@@QEAA?AV?$shared_ptr@$$CBVSubpath@YAGL@@@std@@XZ
+                          FA ?LineTo@SubpathFactory@YAGL@@QEAAAEAV12@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@2@@Z
+                          6B ?BeginAt@SubpathFactory@YAGL@@QEAAAEAV12@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@2@@Z
+                          B3 ?GetLength@YAGL@@YA?AV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          16 ??0SubpathFactory@YAGL@@QEAA@XZ
+                          F3 ?IsRectangle@YAGL@@YA_NAEBVCompound@1@@Z
+                          CF ?GetUnityPdfRectangleCompound@YAGL@@YAAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                          CE ?GetTransformationOfTransformedUnityRectangle@YAGL@@YA?AV?$optional@V?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@boost@@AEBVCompound@1@@Z
+                          D6 ?Intersect@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                         126 ?VectorPoints@Subpath@YAGL@@QEBAPEBV?$vector@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@V?$allocator@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@std@@@std@@XZ
+                          A2 ?GetDistance@YAGL@@YA?AV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@0@Z
+                          CC ?GetSubpaths@Compound@YAGL@@QEBAAEBV?$vector@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@2@@std@@XZ
+                          6A ?Begin@Compound@YAGL@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@std@@@std@@@std@@XZ
+                         11B ?Stroke@YAGL@@YA?AV?$tuple@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@std@@AEBVCompound@1@V?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@W4Cap@1@W4Join@1@NAEBUDash@1@1_KAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          57 ??DYAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@0@V12@@Z
+                          99 ?GetBoundingBox@Compound@YAGL@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@2@XZ
+                          C5 ?GetRectangleCompound@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                         122 ?Unite@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          D8 ?Intersect@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV23@0@Z
+                          11 ??0RotatedRectangle@YAGL@@QEAA@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@N@Z
+                          47 ??6YAGL@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV12@AEBV?$shared_ptr@$$CBVCompound@YAGL@@@2@@Z
+                          D2 ?GetWindingRule@Compound@YAGL@@QEBA?AW4WindingRule@2@XZ
+                         11C ?ToCircleSubpath@YAGL@@YA?AV?$shared_ptr@$$CBVSubpath@YAGL@@@std@@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@V?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          1F ??1SubpathFactory@YAGL@@QEAA@XZ
+                          EC ?IsEmpty@Compound@YAGL@@QEBA_NXZ
+
+    CurveApprox.dll
+             1802D8918 Import Address Table
+             1803C18F0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           1 ??0TData@CurveApprox@@QEAA@NN_N0@Z
+                           3 ??0TInputEngine@CurveApprox@@QEAA@AEAVTVectorContourEngine@ADT@@AEAVTData@1@AEBV?$TBox@N@3@@Z
+                           C ??1TInputEngine@CurveApprox@@UEAA@XZ
+                          40 ?UpScale@TData@CurveApprox@@QEBANXZ
+                           2 ??0TInputEngine@CurveApprox@@QEAA@AEAVTVectorContourEngine@ADT@@AEAVTData@1@@Z
+                           6 ??0TIntersectionEngine@CurveApprox@@QEAA@AEAVTData@1@@Z
+                           D ??1TIntersectionEngine@CurveApprox@@UEAA@XZ
+                          2F ?MaxBezierDeviation@TData@CurveApprox@@QEBANXZ
+                          1E ?ForeseeCurveOutput@TData@CurveApprox@@QEBA_NXZ
+                           B ??1TData@CurveApprox@@QEAA@XZ
+
+    GeoMapper.dll
+             1802D8F40 Import Address Table
+             1803C1F18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         216 ??4TGroupAttribute@GeoMapper@@QEAAAEAV01@AEBV01@@Z
+                         13A ??1TStack@Input@GeoMapper@@UEAA@XZ
+                         491 ?Root@TStack@Input@GeoMapper@@QEAAAEAVTGroup@23@XZ
+                         43F ?NewPath@TStack@Input@GeoMapper@@QEAAAEAVTPath@23@XZ
+                         2D7 ?CreateClip@TGraphicsObject@Input@GeoMapper@@QEAAXAEAVTPath@23@@Z
+                         440 ?NewSoftMask@TGraphicsObject@Input@GeoMapper@@QEAAAEAVTGroup@23@AEBVTSoftMaskAttribute@3@@Z
+                         2D8 ?CreateElement@TGroup@Input@GeoMapper@@QEAAPEAVTElement@23@AEAVTPath@23@AEBVTElementAttribute@3@_N@Z
+                         43E ?NewGroupOnTop@TGroup@Input@GeoMapper@@QEAAAEAV123@XZ
+                         43A ?NewGroup@TGroup@Input@GeoMapper@@QEAAAEAV123@_N@Z
+                         43D ?NewGroupOnTop@TGroup@Input@GeoMapper@@QEAAAEAV123@AEBVTGroupAttribute@3@@Z
+                         439 ?NewGroup@TGroup@Input@GeoMapper@@QEAAAEAV123@AEBVTGroupAttribute@3@_N@Z
+                         4C5 ?ToFixedGraph@GeoMapperFixed@@YA?AV?$shared_ptr@$$CBVGraph@GeoMapperFixed@@@std@@AEBVTGraph@GeoMapper@@@Z
+                          C4 ??0TOptions@GeoMapper@@QEAA@XZ
+                         127 ??1TOptions@GeoMapper@@QEAA@XZ
+                          AC ??0TGroupAttribute@GeoMapper@@QEAA@AEBV01@@Z
+                         116 ??1TGraph@GeoMapper@@QEAA@XZ
+                         2F9 ?DoUserIntersections@TGraph@GeoMapper@@QEAAXAEAVTIntersectionEngine@2@@Z
+                         232 ??8TGroupAttribute@GeoMapper@@UEBA_NAEBV01@@Z
+                         436 ?NElements@TFill@GeoMapper@@QEBAHXZ
+                         2BE ?AttributeAtIndex@TFill@GeoMapper@@QEBAPEBVTElementAttribute@2@H@Z
+                         301 ?End@TPath@Input@GeoMapper@@QEAAXXZ
+                          AD ??0TGroupAttribute@GeoMapper@@QEAA@XZ
+                         11C ??1TGroupAttribute@GeoMapper@@UEAA@XZ
+                          E5 ??0TSoftMaskAttribute@GeoMapper@@QEAA@AEBV01@@Z
+                         229 ??4TSoftMaskAttribute@GeoMapper@@QEAAAEAV01@AEBV01@@Z
+                         234 ??8TSoftMaskAttribute@GeoMapper@@UEBA_NAEBV01@@Z
+                          E6 ??0TSoftMaskAttribute@GeoMapper@@QEAA@XZ
+                         138 ??1TSoftMaskAttribute@GeoMapper@@UEAA@XZ
+                         20A ??4TElementAttribute@GeoMapper@@QEAAAEAV01@AEBV01@@Z
+                          79 ??0TElementAttribute@GeoMapper@@QEAA@AEBV01@@Z
+                         10D ??1TElementAttribute@GeoMapper@@UEAA@XZ
+                          EB ??0TStack@Input@GeoMapper@@QEAA@XZ
+                          7A ??0TElementAttribute@GeoMapper@@QEAA@XZ
+                          9C ??0TGraph@GeoMapper@@QEAA@AEAVTStack@Input@1@PEBVTOptions@1@PEAVTRatGraphEditor@1@@Z
+
+    ADT.dll
+             1802D8000 Import Address Table
+             1803C0FD8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         28D ?GetBox@TDoublePointMeasureEngine@ADT@@QEBA_NPEAV?$TBox@N@2@@Z
+                          D3 ??1TDoublePointMeasureEngine@ADT@@UEAA@XZ
+                          55 ??0TDoublePoint@ADT@@QEAA@NN@Z
+                         35F ?MoveTo@TVectorContourEngine@ADT@@QEAAXAEBVTDoublePoint@2@@Z
+                         30A ?LineTo@TVectorContourEngine@ADT@@QEAAXAEBVTDoublePoint@2@@Z
+                          5B ??0TDoublePointMeasureEngine@ADT@@QEAA@AEAVTContourEngine@1@@Z
+
+    KERNEL32.dll
+             1802D9058 Import Address Table
+             1803C2030 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         3CD LeaveCriticalSection
+                         114 DeleteCriticalSection
+                          CE CreateFileW
+                         119 DeleteFileW
+                         303 GetTempFileNameW
+                         307 GetTempPathW
+                          89 CloseHandle
+                         4C2 ReleaseSRWLockExclusive
+                           0 AcquireSRWLockExclusive
+                         600 WakeAllConditionVariable
+                         59F SleepConditionVariableSRW
+                         378 InitializeSListHead
+                         4DF RtlCaptureContext
+                         4E7 RtlLookupFunctionEntry
+                         4EE RtlVirtualUnwind
+                         5CE UnhandledExceptionFilter
+                         58D SetUnhandledExceptionFilter
+                         221 GetCurrentProcess
+                         5AC TerminateProcess
+                         395 IsProcessorFeaturePresent
+                         38E IsDebuggerPresent
+                         45B QueryPerformanceCounter
+                         222 GetCurrentProcessId
+                         226 GetCurrentThreadId
+                         2F8 GetSystemTimeAsFileTime
+                         373 InitializeCriticalSection
+                         3DF LocalFree
+                         1B1 FormatMessageW
+                         1B0 FormatMessageA
+                         139 EnterCriticalSection
+                         61F WideCharToMultiByte
+                         125 DisableThreadLibraryCalls
+
+    MSVCP140.dll
+             1802D9220 Import Address Table
+             1803C21F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         132 ??Bios_base@std@@QEBA_NXZ
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+                         28C ?_Xbad_function_call@std@@YAXXZ
+                         104 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z
+                         103 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@M@Z
+                         10C ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_K@Z
+                         100 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@I@Z
+                         368 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
+                         244 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                         361 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ
+                         487 ?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+                         50A ?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         4E1 ?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z
+                         4DE ?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z
+                         53D ?width@ios_base@std@@QEAA_J_J@Z
+                         53E ?width@ios_base@std@@QEBA_JXZ
+                         367 ?flags@ios_base@std@@QEBAHXZ
+                         3C5 ?good@ios_base@std@@QEBA_NXZ
+                         51F ?uncaught_exceptions@std@@YAHXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         34D ?eback@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         3C6 ?gptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         350 ?egptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4BA ?setg@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                          FF ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+                          1A ??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                          D1 ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAN@Z
+                         376 ?get@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         16C ??_D?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                         3F6 ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z
+                         4FD ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         35C ?exceptions@ios_base@std@@QEAAXH@Z
+                         51B ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         520 ?underflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         526 ?unsetf@ios_base@std@@QEAAXH@Z
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                         28D ?_Xinvalid_argument@std@@YAXPEBD@Z
+                         5CC _Xtime_get_ticks
+                         590 _Query_perf_counter
+                         591 _Query_perf_frequency
+                         5B6 _Thrd_sleep
+                         584 _Mtx_init_in_situ
+                         581 _Mtx_destroy_in_situ
+                         585 _Mtx_lock
+                         589 _Mtx_unlock
+                         275 ?_Throw_Cpp_error@std@@YAXH@Z
+                         131 ??Bid@locale@std@@QEAA_KXZ
+                         20F ?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z
+                         1D5 ?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ
+                         29D ?always_noconv@codecvt_base@std@@QEBA_NXZ
+                         50F ?tolower@?$ctype@D@std@@QEBADD@Z
+                         1B6 ?_Getcat@?$ctype@D@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z
+                         3FA ?in@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                         43B ?pbackfail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHH@Z
+                         527 ?unshift@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEAD1AEAPEAD@Z
+                         1B1 ?_Getcat@?$codecvt@DDU_Mbstatet@@@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z
+                         35F ?fail@ios_base@std@@QEBA_NXZ
+                         3C0 ?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ
+                         447 ?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         36B ?gbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         359 ?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         1E5 ?_Gndec@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         1E8 ?_Gninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         1E2 ?_Gnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         441 ?pbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         24A ?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         247 ?_Pnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         1F5 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXXZ
+                         1F4 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAPEAD0PEAH001@Z
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         44A ?precision@ios_base@std@@QEAA_J_J@Z
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         2A6 ?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         534 ?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         106 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
+                         10B ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_J@Z
+                         461 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z
+                         1AD ?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z
+                          13 ??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z
+                          80 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         3CF ?id@?$ctype@D@std@@2V0locale@2@A
+                         3C9 ?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A
+                         2AF ?clog@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                         2A4 ?classic@locale@std@@SAAEBV12@XZ
+                         366 ?flags@ios_base@std@@QEAAHH@Z
+                         4B9 ?setf@ios_base@std@@QEAAHHH@Z
+                         43E ?pbase@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4BF ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD0@Z
+                         4BE ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         3F3 ?imbue@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAA?AVlocale@2@AEBV32@@Z
+                         360 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAADD@Z
+                          25 ??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                          86 ??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         108 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAVios_base@1@AEAV21@@Z@Z
+                          FE ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@G@Z
+                         10A ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@PEBX@Z
+                         4CE ?setw@std@@YA?AU?$_Smanip@_J@1@_J@Z
+                         4B5 ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z
+                         101 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@J@Z
+                         4C4 ?setprecision@std@@YA?AU?$_Smanip@_J@1@_J@Z
+                         4B8 ?setf@ios_base@std@@QEAAHH@Z
+                         10D ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_N@Z
+                         102 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@K@Z
+                         515 ?toupper@?$ctype@D@std@@QEBADD@Z
+                          B1 ??4?$_Yarn@D@std@@QEAAAEAV01@PEBD@Z
+                         242 ?_New_Locimp@_Locimp@locale@std@@CAPEAV123@AEBV123@@Z
+                         221 ?_Locimp_Addfac@_Locimp@locale@std@@CAXPEAV123@PEAVfacet@23@_K@Z
+                         435 ?out@?$codecvt@_SDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEB_S1AEAPEB_SPEAD3AEAPEAD@Z
+                          3C ??0?$codecvt@_SDU_Mbstatet@@@std@@QEAA@_K@Z
+                          8E ??1?$codecvt@_SDU_Mbstatet@@@std@@MEAA@XZ
+                         1F2 ?_Incref@facet@locale@std@@UEAAXXZ
+                         19E ?_Decref@facet@locale@std@@UEAAPEAV_Facet_base@3@XZ
+                         53F ?write@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEBD_J@Z
+                         130 ??7ios_base@std@@QEBA_NXZ
+                          83 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         48D ?read@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z
+                         49F ?seekg@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@_JH@Z
+                         503 ?tellg@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA?AV?$fpos@U_Mbstatet@@@2@XZ
+                         297 ?__ExceptionPtrCreate@@YAXPEAX@Z
+                         299 ?__ExceptionPtrDestroy@@YAXPEAX@Z
+                         295 ?__ExceptionPtrCopy@@YAXPEAXPEBX@Z
+                         293 ?__ExceptionPtrAssign@@YAXPEAXPEBX@Z
+                         29C ?__ExceptionPtrToBool@@YA_NPEBX@Z
+                         298 ?__ExceptionPtrCurrentException@@YAXPEAX@Z
+                         29A ?__ExceptionPtrRethrow@@YAXPEBX@Z
+                         550 _Cnd_init_in_situ
+                         54D _Cnd_destroy_in_situ
+                         555 _Cnd_wait
+                         54B _Cnd_broadcast
+                         5B5 _Thrd_join
+                         5B4 _Thrd_id
+                         552 _Cnd_signal
+                         54E _Cnd_do_broadcast_at_thread_exit
+                         438 ?overflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHH@Z
+                         27F ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         433 ?out@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                         228 ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+
+    MSVCP140_CODECVT_IDS.dll
+             1802D96A8 Import Address Table
+             1803C2680 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 ?id@?$codecvt@_SDU_Mbstatet@@@std@@2V0locale@2@A
+
+    VCRUNTIME140.dll
+             1802DBF38 Import Address Table
+             1803C4F10 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1D __intrinsic_setjmp
+                          25 __std_type_info_destroy_list
+                          1C __current_exception_context
+                          1B __current_exception
+                          39 longjmp
+                          27 __std_type_info_name
+                          19 __RTtypeid
+                          3A memchr
+                           8 __C_specific_handler
+                          18 __RTDynamicCast
+                          24 __std_type_info_compare
+                          3E memset
+                          23 __std_terminate
+                          3D memmove
+                          3C memcpy
+                          3B memcmp
+                           1 _CxxThrowException
+                          22 __std_exception_destroy
+                          21 __std_exception_copy
+                          36 _purecall
+
+    VCRUNTIME140_1.dll
+             1802DBFE0 Import Address Table
+             1803C4FB8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             1802DC298 Import Address Table
+             1803C5270 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          22 _execute_onexit_table
+                          3C _register_onexit_function
+                          34 _initialize_onexit_table
+                          1E _crt_atexit
+                          55 exit
+                          54 abort
+                          67 terminate
+                          14 _beginthreadex
+                          33 _initialize_narrow_environment
+                          18 _configure_narrow_argv
+                          37 _initterm_e
+                          39 _invalid_parameter_noinfo_noreturn
+                          36 _initterm
+                          3F _seh_filter_dll
+                          16 _cexit
+                          21 _errno
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1802DC1E8 Import Address Table
+             1803C51C0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          19 malloc
+                           8 _callnewh
+                          18 free
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             1802DC320 Import Address Table
+             1803C52F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          87 fseek
+                           0 __acrt_iob_func
+                           3 __stdio_common_vfprintf
+                          39 _get_stream_buffer_pointers
+                          74 fclose
+                          77 fflush
+                          78 fgetc
+                          79 fgetpos
+                          7F fputc
+                          83 fread
+                          88 fsetpos
+                          2F _fseeki64
+                          8A fwrite
+                          98 setvbuf
+                          9D ungetc
+                          4A _open_osfhandle
+                          10 __stdio_common_vsscanf
+                           D __stdio_common_vsprintf
+                          17 _close
+
+    api-ms-win-crt-string-l1-1-0.dll
+             1802DC3C0 Import Address Table
+             1803C5398 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          64 isalnum
+                          7E isxdigit
+                          68 isdigit
+                          8F strncpy
+                          65 isalpha
+
+    api-ms-win-crt-math-l1-1-0.dll
+             1802DC208 Import Address Table
+             1803C51E0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          10 _dclass
+                          CC hypot
+                          55 atan2
+                          90 cos
+                         116 sqrt
+                         109 round
+                          7D ceilf
+                          21 _fdopen
+                         112 sin
+                         10A roundf
+                          BE floor
+                          D0 ldexp
+                          7C ceil
+                          DA log
+                          8D copysign
+                          B2 exp
+                          FE pow
+
+    api-ms-win-crt-time-l1-1-0.dll
+             1802DC3F0 Import Address Table
+             1803C53C8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          30 _time64
+                          1F _gmtime64
+
+    api-ms-win-crt-filesystem-l1-1-0.dll
+             1802DC1D0 Import Address Table
+             1803C51A8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          24 _unlock_file
+                          16 _lock_file
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             1802DC1B0 Import Address Table
+             1803C5188 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          61 strtol
+
+    api-ms-win-crt-environment-l1-1-0.dll
+             1802DC1C0 Import Address Table
+             1803C5198 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          10 getenv
+
+  Summary
+
+       31000 .data
+       21000 .pdata
+      10B000 .rdata
+        7000 .reloc
+        1000 .rsrc
+      2D7000 .text

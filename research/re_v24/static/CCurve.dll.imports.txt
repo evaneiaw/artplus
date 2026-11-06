@@ -1,0 +1,486 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\CCurve.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    XercesC.dll
+             1800815E8 Import Address Table
+             1800A0880 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          89 ??0DOMLSOutputImpl@xercesc_3_2@@QEAA@QEAVMemoryManager@1@@Z
+                        1D43 ?transcode@XMLString@xercesc_3_2@@SA_NQEBDQEA_W_KQEAVMemoryManager@2@@Z
+                         C6B ?fgMemoryManager@XMLPlatformUtils@xercesc_3_2@@2PEAVMemoryManager@2@EA
+                         B98 ?fgDOMWRTFormatPrettyPrint@XMLUni@xercesc_3_2@@2QB_WB
+                        1DCF ?writeChars@MemBufFormatTarget@xercesc_3_2@@UEAAXQEBE_KQEAVXMLFormatter@2@@Z
+                        1930 ?resolveEntity@XercesDOMParser@xercesc_3_2@@UEAAPEAVInputSource@2@PEAVXMLResourceIdentifier@2@@Z
+                        1913 ?resetErrors@XercesDOMParser@xercesc_3_2@@UEAAXXZ
+                         ACD ?error@XercesDOMParser@xercesc_3_2@@UEAAXIQEB_WW4ErrTypes@XMLErrorReporter@2@000_K2@Z
+                         316 ??1DOMLSOutputImpl@xercesc_3_2@@UEAA@XZ
+                         965 ?createAttr@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMAttr@2@PEB_W@Z
+                         983 ?createElementNS@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMElement@2@PEB_W000@Z
+                         981 ?createElement@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMElement@2@PEB_W@Z
+                         9F8 ?createText@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMText@2@PEB_W_K@Z
+                         96B ?createCDATASection@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMCDATASection@2@PEB_W_K@Z
+                         739 ?TextDecl@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                        1CBF ?startExtSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1CC6 ?startIntSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1C9F ?startAttList@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@@Z
+                        1775 ?notationDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLNotationDecl@2@_N@Z
+                        18FC ?resetDocType@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         ABE ?entityDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDEntityDecl@2@_N1@Z
+                         AA3 ?endExtSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         AAA ?endIntSubset@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         A83 ?endAttList@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@@Z
+                         A6B ?elementDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@_N@Z
+                         A49 ?doctypeWhitespace@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K@Z
+                         A46 ?doctypePI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                         A43 ?doctypeDecl@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@QEB_W1_N2@Z
+                         A40 ?doctypeComment@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W@Z
+                         7C4 ?attDef@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVDTDElementDecl@2@AEBVDTDAttDef@2@_N@Z
+                         73F ?XMLDecl@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W000@Z
+                        1CBA ?startEntityReference@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLEntityDecl@2@@Z
+                        1CAE ?startElement@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLElementDecl@2@IQEB_WAEBV?$RefVectorOf@VXMLAttr@xercesc_3_2@@@2@_K_N4@Z
+                        1CA4 ?startDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        1902 ?resetDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                        14B6 ?ignorableWhitespace@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K_N@Z
+                         A9F ?endEntityReference@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLEntityDecl@2@@Z
+                         A91 ?endElement@AbstractDOMParser@xercesc_3_2@@UEAAXAEBVXMLElementDecl@2@I_NQEB_W@Z
+                         A88 ?endDocument@AbstractDOMParser@xercesc_3_2@@UEAAXXZ
+                         A3C ?docPI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0@Z
+                         A37 ?docComment@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W@Z
+                         A32 ?docCharacters@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W_K_N@Z
+                        147C ?handleAttributesPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIAttributeList@2@@Z
+                        147F ?handlePartialElementPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIElement@2@@Z
+                        147E ?handleElementPSVI@AbstractDOMParser@xercesc_3_2@@UEAAXQEB_W0PEAVPSVIElement@2@@Z
+                        1B85 ?setPSVIHandler@AbstractDOMParser@xercesc_3_2@@UEAAXQEAVPSVIHandler@2@@Z
+                         DC3 ?flush@XMLFormatTarget@xercesc_3_2@@UEAAXXZ
+                        1CC5 ?startInputSource@XercesDOMParser@xercesc_3_2@@UEAAXAEBVInputSource@2@@Z
+                        190C ?resetEntities@XercesDOMParser@xercesc_3_2@@UEAAXXZ
+                         E7A ?getByteStream@DOMLSOutputImpl@xercesc_3_2@@UEBAPEAVXMLFormatTarget@2@XZ
+                         F8E ?getEncoding@DOMLSOutputImpl@xercesc_3_2@@UEBAPEB_WXZ
+                        1385 ?getSystemId@DOMLSOutputImpl@xercesc_3_2@@UEBAPEB_WXZ
+                        1A34 ?setByteStream@DOMLSOutputImpl@xercesc_3_2@@UEAAXPEAVXMLFormatTarget@2@@Z
+                        1A9A ?setEncoding@DOMLSOutputImpl@xercesc_3_2@@UEAAXQEB_W@Z
+                        1BF8 ?setSystemId@DOMLSOutputImpl@xercesc_3_2@@UEAAXQEB_W@Z
+                         459 ??2XMemory@xercesc_3_2@@SAPEAX_K@Z
+                        186C ?release@DOMLSOutputImpl@xercesc_3_2@@UEAAXXZ
+                        1D41 ?transcode@XMLString@xercesc_3_2@@SAPEADQEB_WQEAVMemoryManager@2@@Z
+                         1B6 ??0SAXParseException@xercesc_3_2@@QEAA@AEBV01@@Z
+                         EC9 ?getColumnNumber@SAXParseException@xercesc_3_2@@QEBA_KXZ
+                        10D5 ?getLineNumber@SAXParseException@xercesc_3_2@@QEBA_KXZ
+                         1A6 ??0SAXException@xercesc_3_2@@QEAA@AEBV01@@Z
+                         3B9 ??1SAXParseException@xercesc_3_2@@UEAA@XZ
+                         723 ?Initialize@XMLPlatformUtils@xercesc_3_2@@SAXQEBD0QEAVPanicHandler@2@QEAVMemoryManager@2@@Z
+                         738 ?Terminate@XMLPlatformUtils@xercesc_3_2@@SAXXZ
+                         D99 ?fgXercescDefaultLocale@XMLUni@xercesc_3_2@@2QBDB
+                        1C4F ?setValidationScheme@AbstractDOMParser@xercesc_3_2@@QEAAXW4ValSchemes@12@@Z
+                         F54 ?getDocument@AbstractDOMParser@xercesc_3_2@@QEAAPEAVDOMDocument@2@XZ
+                         45E ??3XMemory@xercesc_3_2@@SAXPEAX@Z
+                         966 ?createAttrNS@AbstractDOMParser@xercesc_3_2@@MEAAPEAVDOMAttr@2@PEB_W000@Z
+                        178C ?parse@AbstractDOMParser@xercesc_3_2@@QEAAXAEBVInputSource@2@@Z
+                         2B0 ??0XercesDOMParser@xercesc_3_2@@QEAA@QEAVXMLValidator@1@QEAVMemoryManager@1@QEAVXMLGrammarPool@1@@Z
+                         451 ??1XercesDOMParser@xercesc_3_2@@UEAA@XZ
+                        1ABB ?setErrorHandler@XercesDOMParser@xercesc_3_2@@QEAAXQEAVErrorHandler@2@@Z
+                         F10 ?getDOMImplementation@DOMImplementationRegistry@xercesc_3_2@@SAPEAVDOMImplementation@2@PEB_W@Z
+                          FF ??0ErrorHandler@xercesc_3_2@@QEAA@XZ
+                         361 ??1ErrorHandler@xercesc_3_2@@UEAA@XZ
+                         157 ??0MemBufFormatTarget@xercesc_3_2@@QEAA@_KQEAVMemoryManager@1@@Z
+                         389 ??1MemBufFormatTarget@xercesc_3_2@@UEAA@XZ
+                        12FA ?getRawBuffer@MemBufFormatTarget@xercesc_3_2@@QEBAPEBEXZ
+                         159 ??0MemBufInputSource@xercesc_3_2@@QEAA@QEBE_KQEB_W_NQEAVMemoryManager@1@@Z
+                         38A ??1MemBufInputSource@xercesc_3_2@@UEAA@XZ
+                         AA9 ?endInputSource@XercesDOMParser@xercesc_3_2@@UEAAXAEBVInputSource@2@@Z
+                         AE1 ?expandSystemId@XercesDOMParser@xercesc_3_2@@UEAA_NQEB_WAEAVXMLBuffer@2@@Z
+
+    REUSE.dll
+             180081480 Import Address Table
+             1800A0718 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           A ?GetError@FilePacker@@QEBAHPEAD@Z
+                          17 ?WriteString@FilePacker@@QEAAHPEBD@Z
+                           9 ?GetDescription@FilePacker@@QEBAHPEAD@Z
+                          14 ?UnpackFileAsBuffer@FilePacker@@QEAAHPEAPEADPEA_KPEAD@Z
+                           7 ?AddFileAsBuffer@FilePacker@@QEAAHPEBDH0@Z
+                           6 ?AddFile@FilePacker@@QEAAHPEBD0@Z
+                           3 ??1FilePacker@@QEAA@XZ
+                           1 ??0FilePacker@@QEAA@PEBDH0@Z
+                           E ?ReadString@FilePacker@@QEAAHPEAD@Z
+                           F ?ReadUpTo@FilePacker@@QEAAHPEADHPEBD@Z
+                          7C strcmp_ci
+                          76 poly_bezier_get
+                          79 poly_bezier_nr_sections
+                          75 poly_bezier_fit
+                          77 poly_bezier_kill
+                          78 poly_bezier_new
+                          20 bezier_get_y
+
+    RDB.dll
+             180081440 Import Address Table
+             1800A06D8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           2 rdb_close
+                          2C rdb_search_double
+                          30 rdb_search_qstring
+                          27 rdb_push_rdata
+                          2B rdb_search
+                          2D rdb_search_int
+                          21 rdb_open
+
+    ExtraBoostFilesystem.dll
+             180081040 Import Address Table
+             1800A02D8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          35 ?FromUTF8String@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+
+    CDL.dll
+             180081000 Import Address Table
+             1800A0298 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          60 lognam
+                          49 fparse
+                          55 fsearch
+                          57 fsfree
+                          58 fsinit
+                          31 ffspec
+                          63 sepstr
+
+    UTF8FS.dll
+             180081510 Import Address Table
+             1800A07A8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1A UTF8ToUnicode
+                          1C UnicodeToUTF8
+                           E IsValidUTF8String
+                           F LocalEncodingToUTF8
+                          2C stat64i32_utf8
+                          20 fopen_utf8
+
+    boost_filesystem.dll
+             180081AE0 Import Address Table
+             1800A0D78 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          5D ?remove@detail@filesystem@boost@@YA_NAEBVpath@23@PEAVerror_code@system@3@@Z
+                          69 ?status@detail@filesystem@boost@@YA?AVfile_status@23@AEBVpath@23@PEAVerror_code@system@3@@Z
+
+    MSVCP140.dll
+             1800810D0 Import Address Table
+             1800A0368 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         219 ?_Ipfx@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA_N_N@Z
+                          FD ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@F@Z
+                         108 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAVios_base@1@AEAV21@@Z@Z
+                         3F3 ?imbue@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAA?AVlocale@2@AEBV32@@Z
+                         4D8 ?snextc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         4CF ?sgetc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         495 ?sbumpc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHXZ
+                         44A ?precision@ios_base@std@@QEAA_J_J@Z
+                         4B9 ?setf@ios_base@std@@QEAAHHH@Z
+                         130 ??7ios_base@std@@QEBA_NXZ
+                         20F ?_Init@locale@std@@CAPEAV_Locimp@12@_N@Z
+                         23A ?_Makeloc@_Locimp@locale@std@@CAPEAV123@AEBV_Locinfo@3@HPEAV123@PEBV23@@Z
+                         221 ?_Locimp_Addfac@_Locimp@locale@std@@CAXPEAV123@PEAVfacet@23@_K@Z
+                         242 ?_New_Locimp@_Locimp@locale@std@@CAPEAV123@AEBV123@@Z
+                         243 ?_New_Locimp@_Locimp@locale@std@@CAPEAV123@_N@Z
+                          AB ??1facet@locale@std@@MEAA@XZ
+                          75 ??0facet@locale@std@@IEAA@_K@Z
+                          B1 ??4?$_Yarn@D@std@@QEAAAEAV01@PEBD@Z
+                         1E1 ?_Gettrue@_Locinfo@std@@QEBAPEBDXZ
+                         1CB ?_Getfalse@_Locinfo@std@@QEBAPEBDXZ
+                         1DE ?_Getname@_Locinfo@std@@QEBAPEBDXZ
+                          A4 ??1_Locinfo@std@@QEAA@XZ
+                          6B ??0_Locinfo@std@@QEAA@HPEBD@Z
+                          6C ??0_Locinfo@std@@QEAA@PEBD@Z
+                         292 ?_Xruntime_error@std@@YAXPEBD@Z
+                         461 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z
+                         106 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
+                         534 ?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z
+                         104 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z
+                          FF ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@H@Z
+                         228 ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         27F ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                          D1 ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAN@Z
+                         4B5 ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z
+                         4FD ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         3F6 ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z
+                         503 ?tellg@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA?AV?$fpos@U_Mbstatet@@@2@XZ
+                         49F ?seekg@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@_JH@Z
+                         48D ?read@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z
+                          83 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          1A ??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                         53F ?write@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEBD_J@Z
+                         1AB ?_Fiopen@std@@YAPEAU_iobuf@@PEBDHH@Z
+                         4BE ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         4BF ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD0@Z
+                         43E ?pbase@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         132 ??Bios_base@std@@QEBA_NXZ
+                         2B4 ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                         3C9 ?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         1AD ?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z
+                         368 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
+                         244 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                          86 ??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          25 ??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         361 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ
+                         487 ?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+                         50A ?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                         1F4 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAPEAD0PEAH001@Z
+                         1F5 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXXZ
+                         247 ?_Pnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         24A ?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         441 ?pbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         1E2 ?_Gnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         1E8 ?_Gninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         1E5 ?_Gndec@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         359 ?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4BA ?setg@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         36B ?gbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         350 ?egptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         447 ?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         3C6 ?gptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         34D ?eback@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4E1 ?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z
+                         4DE ?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z
+                         3C0 ?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         1F2 ?_Incref@facet@locale@std@@UEAAXXZ
+                         19E ?_Decref@facet@locale@std@@UEAAPEAV_Facet_base@3@XZ
+                         3E7 ?id@?$numpunct@D@std@@2V0locale@2@A
+                         2A3 ?cin@std@@3V?$basic_istream@DU?$char_traits@D@std@@@1@A
+                         100 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@I@Z
+                          CD ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAI@Z
+                         10C ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_K@Z
+                         51B ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         53D ?width@ios_base@std@@QEAA_J_J@Z
+                         53E ?width@ios_base@std@@QEBA_JXZ
+                         367 ?flags@ios_base@std@@QEBAHXZ
+                         3C5 ?good@ios_base@std@@QEBA_NXZ
+                         1B1 ?_Getcat@?$codecvt@DDU_Mbstatet@@@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z
+                         527 ?unshift@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEAD1AEAPEAD@Z
+                         433 ?out@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                         3FA ?in@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                         29D ?always_noconv@codecvt_base@std@@QEBA_NXZ
+                         1D5 ?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                         51F ?uncaught_exceptions@std@@YAHXZ
+                         28B ?_Xbad_alloc@std@@YAXXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+                         1C8 ?_Getcvt@_Locinfo@std@@QEBA?AU_Cvtvec@@XZ
+                         131 ??Bid@locale@std@@QEAA_KXZ
+
+    VCRUNTIME140.dll
+             180081548 Import Address Table
+             1800A07E0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          25 __std_type_info_destroy_list
+                          23 __std_terminate
+                           8 __C_specific_handler
+                          1C __current_exception_context
+                          1B __current_exception
+                          41 strrchr
+                          3A memchr
+                          18 __RTDynamicCast
+                          36 _purecall
+                          3E memset
+                          3D memmove
+                          3C memcpy
+                          3B memcmp
+                           1 _CxxThrowException
+                          22 __std_exception_destroy
+                          21 __std_exception_copy
+                          40 strchr
+
+    VCRUNTIME140_1.dll
+             1800815D8 Import Address Table
+             1800A0870 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             180081978 Import Address Table
+             1800A0C10 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          16 _cexit
+                          22 _execute_onexit_table
+                          39 _invalid_parameter_noinfo_noreturn
+                          34 _initialize_onexit_table
+                          33 _initialize_narrow_environment
+                          36 _initterm
+                          37 _initterm_e
+                          3C _register_onexit_function
+                          67 terminate
+                          1E _crt_atexit
+                          3F _seh_filter_dll
+                          18 _configure_narrow_argv
+
+    api-ms-win-crt-string-l1-1-0.dll
+             180081A80 Import Address Table
+             1800A0D18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          98 toupper
+                          68 isdigit
+                          97 tolower
+                          8E strncmp
+                          8F strncpy
+                          65 isalpha
+                          2A _stricmp
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             1800819E0 Import Address Table
+             1800A0C78 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          39 _get_stream_buffer_pointers
+                          74 fclose
+                          77 fflush
+                          10 __stdio_common_vsscanf
+                          78 fgetc
+                          89 ftell
+                          87 fseek
+                          79 fgetpos
+                          9D ungetc
+                          7F fputc
+                          83 fread
+                          88 fsetpos
+                          2F _fseeki64
+                           F __stdio_common_vsprintf_s
+                          8A fwrite
+                           3 __stdio_common_vfprintf
+                           D __stdio_common_vsprintf
+                          98 setvbuf
+                           0 __acrt_iob_func
+
+    api-ms-win-crt-filesystem-l1-1-0.dll
+             1800818A8 Import Address Table
+             1800A0B40 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          24 _unlock_file
+                          16 _lock_file
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1800818C0 Import Address Table
+             1800A0B58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          18 free
+                          19 malloc
+                           8 _callnewh
+                          17 calloc
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             180081890 Import Address Table
+             1800A0B28 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          50 atoi
+                          4F atof
+
+    api-ms-win-crt-math-l1-1-0.dll
+             1800818F8 Import Address Table
+             1800A0B90 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         112 sin
+                          BE floor
+                          C9 fmod
+                          DB log10
+                          D0 ldexp
+                          4F asin
+                         118 tan
+                          FE pow
+                          17 _dsign
+                          4A acos
+                          90 cos
+                         116 sqrt
+                          54 atan
+                          EA lround
+                          DA log
+
+    api-ms-win-crt-locale-l1-1-0.dll
+             1800818E8 Import Address Table
+             1800A0B80 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          12 localeconv
+
+    api-ms-win-crt-time-l1-1-0.dll
+             180081AC0 Import Address Table
+             1800A0D58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          46 strftime
+                          30 _time64
+                          23 _localtime64
+
+    KERNEL32.dll
+             180081050 Import Address Table
+             1800A02E8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         395 IsProcessorFeaturePresent
+                         5AC TerminateProcess
+                         221 GetCurrentProcess
+                         5CE UnhandledExceptionFilter
+                         4EE RtlVirtualUnwind
+                         4E7 RtlLookupFunctionEntry
+                         4DF RtlCaptureContext
+                         45B QueryPerformanceCounter
+                         222 GetCurrentProcessId
+                         226 GetCurrentThreadId
+                         2F8 GetSystemTimeAsFileTime
+                         125 DisableThreadLibraryCalls
+                         378 InitializeSListHead
+                         38E IsDebuggerPresent
+                         58D SetUnhandledExceptionFilter
+
+  Summary
+
+        3000 .data
+        5000 .pdata
+       24000 .rdata
+        1000 .reloc
+        1000 .rsrc
+       80000 .text

@@ -1,0 +1,62 @@
+#pragma once
+#include <QString>
+#include <QVector>
+#include <QObject>
+#include "artplus/pdf/PdfDocument.h" // Para PageObjectKind
+namespace artplus::preflight {
+
+enum class CheckCategory {
+    PageBoxes,
+    Separations,
+    Font,
+    Image,
+    Color,
+    Resolution
+};
+
+enum class Severity { Warning, Error, Info };
+
+struct CheckResult {
+    CheckCategory category;
+    Severity severity;
+    QString title;
+    QString description;
+    QString suggestion;
+    QString details; // e.g., page number, ink names, TAC value
+};
+
+struct Profile {
+    int tacLimit = 300; // default TAC limit in%
+    QVector<CheckCategory> enabledChecks;
+};
+
+// Níveis de precisão do TAC
+enum class TacPrecision {
+    Exact,          // Cálculo com valores CMYK reais dos objetos
+    Estimated,      // Cálculo considerando transparência/overprint
+    Unsupported     // Não possível calcular com APIs disponíveis
+};
+
+// Resultado de TAC por objeto
+struct TacObjectResult {
+    int objectIndex;           // Índice no snapshot
+    PageObjectKind kind;       // Tipo do objeto
+    QString name;              // Nome descritivo do tipo
+    double coverage;           // Cobertura desse objeto (0-100%)
+    TacPrecision precision;    // Nível de precisão
+    bool hasAlpha;             // Tem canal alpha conhecido
+    bool hasOverprint;         // Overprint ativo
+    QRectF bounds;             // Bounds do objeto
+};
+
+// Resultado agregado de TAC document-level
+struct TacAggregatedResult {
+    double totalTac = 0.0;           // TAC total calculado (0-400%)
+    int tacLimit = 300;              // Limite configurado
+    TacPrecision precision = TacPrecision::Unsupported; // Precisão geral
+    QVector<TacObjectResult> objectResults; // Resultados por objeto
+    QString calculationMethod;       // Método usado
+    QString limitations;             // Limitações detectadas
+};
+
+} // namespace artplus::preflight

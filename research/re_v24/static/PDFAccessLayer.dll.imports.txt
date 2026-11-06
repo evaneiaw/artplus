@@ -1,0 +1,897 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\PDFAccessLayer.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    JPEGSupportLayer.dll
+             180194D48 Import Address Table
+             180257EA0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1E ?WriteMarkers@GDCTEncode@@MEAAXPEAUjpeg_compress_struct@@@Z
+                          19 ?InitializeMarkers@GDCTEncode@@MEAAXPEAUjpeg_compress_struct@@@Z
+                          18 ?Initialize@GJPEGSupportLayer@@SA_NXZ
+                          1D ?Reset@GDCTEncode@@UEAAXXZ
+                          11 ?CreateClone@GDCTEncode@@UEBAPEAVGInStream@@XZ
+                          1A ?Read@GDCTDecode@@UEAAJAEAVGBuffer@@J@Z
+                          1C ?Reset@GDCTDecode@@UEAAXXZ
+                          10 ?CreateClone@GDCTDecode@@UEBAPEAVGInStream@@XZ
+                           8 ??1GDCTEncode@@UEAA@XZ
+                           5 ??0GDCTEncode@@QEAA@PEAVGInStream@@JJJW4ColorTransform@GDCTEnums@@J_N@Z
+                           3 ??0GDCTEncode@@QEAA@AEAVGInStream@@JJJW4ColorTransform@GDCTEnums@@J_N@Z
+                           7 ??1GDCTDecode@@UEAA@XZ
+                           2 ??0GDCTDecode@@QEAA@PEAVGInStream@@W4ColorTransform@GDCTEnums@@@Z
+                           1 ??0GDCTDecode@@QEAA@AEAVGInStream@@W4ColorTransform@GDCTEnums@@@Z
+                          12 ?Finalize@GJPEGSupportLayer@@SAXXZ
+                          1B ?Read@GDCTEncode@@UEAAJAEAVGBuffer@@J@Z
+
+    JPXSupportLayer.dll
+             180194DD0 Import Address Table
+             180257F28 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           A ??0GJPXEncode@@QEAA@PEAVGInStream@@V?$GSmartPtr@UGJPXImageInfo@@@@UGJPXEncOptions@@@Z
+                           9 ??0GJPXEncode@@QEAA@AEBV0@@Z
+                          15 ??1GJPXEncode@@UEAA@XZ
+                          3A ?Initialize@GJPXSupportLayer@@SA_NXZ
+                          2C ?Finalize@GJPXSupportLayer@@SAXXZ
+                           7 ??0GJPXEncOptions@@QEAA@N@Z
+                           E ??0GJPXImageInfo@@QEAA@XZ
+                          4F ?SetColourSpace@GJPXImageInfo@@QEAAXW4ColourSpace@GJPXEnums@@AEBVGBuffer@@@Z
+                           2 ??0GJPXDecode@@QEAA@AEAVGInStream@@@Z
+                           4 ??0GJPXDecode@@QEAA@PEAVGInStream@@@Z
+                           3 ??0GJPXDecode@@QEAA@AEBV0@@Z
+                          13 ??1GJPXDecode@@UEAA@XZ
+                          32 ?GetImageInfo@GJPXDecode@@QEAA?AV?$GSmartPtr@UGJPXImageInfo@@@@XZ
+                           C ??0GJPXImageInfo@@QEAA@AEBU0@@Z
+                           6 ??0GJPXEncOptions@@QEAA@AEBU0@@Z
+                          14 ??1GJPXEncOptions@@QEAA@XZ
+                          16 ??1GJPXImageInfo@@QEAA@XZ
+                          31 ?GetICCProfileData@GJPXImageInfo@@QEBAAEBVGBuffer@@XZ
+                          30 ?GetColourSpaceType@GJPXImageInfo@@QEBA?AW4ColourSpace@GJPXEnums@@XZ
+                           8 ??0GJPXEncode@@QEAA@AEAVGInStream@@V?$GSmartPtr@UGJPXImageInfo@@@@UGJPXEncOptions@@@Z
+
+    MD5SupportLayer.dll
+             180195038 Import Address Table
+             180258190 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           A ?Initialize@GMD5SupportLayer@@SA_NXZ
+                           9 ?Finalize@GMD5SupportLayer@@SAXXZ
+                           6 ?DigestToBuffer@GMD5Digest@@SAXAEBVGBuffer@@AEAV2@@Z
+
+    FlateSupportLayer.dll
+             180194A10 Import Address Table
+             180257B68 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          18 ?CreateClone@GFlateEncode@@UEBAPEAVGInStream@@XZ
+                          25 ?Initialize@GFlateSupportLayer@@SA_NXZ
+                          1B ?Finalize@GFlateSupportLayer@@SAXXZ
+                           1 ??0GFlateDecode@@QEAA@AEAVGInStream@@@Z
+                           2 ??0GFlateDecode@@QEAA@PEAVGInStream@@@Z
+                           8 ??1GFlateDecode@@UEAA@XZ
+                           3 ??0GFlateEncode@@QEAA@AEAVGInStream@@J@Z
+                           5 ??0GFlateEncode@@QEAA@PEAVGInStream@@J@Z
+                           9 ??1GFlateEncode@@UEAA@XZ
+                          14 ?CommonConstructor@GFlateEncode@@EEAAXJ@Z
+                          17 ?CreateClone@GFlateDecode@@UEBAPEAVGInStream@@XZ
+                          28 ?Reset@GFlateDecode@@UEAAXXZ
+                          26 ?Read@GFlateDecode@@UEAAJAEAVGBuffer@@J@Z
+                          29 ?Reset@GFlateEncode@@UEAAXXZ
+                          27 ?Read@GFlateEncode@@UEAAJAEAVGBuffer@@J@Z
+
+    AESSupportLayer.dll
+             180194080 Import Address Table
+             1802571D8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           B ?Finalize@GAESSupportLayer@@SAXXZ
+                           E ?Initialize@GAESSupportLayer@@SA_NXZ
+                          11 ?Reset@GAESEnDeCrypt@@UEAAXXZ
+                           8 ?CreateClone@GAESEnDeCrypt@@UEBAPEAVGInStream@@XZ
+                           C ?GetInitVector@GAESEnDeCrypt@@QEAAXAEAVGBuffer@@@Z
+                           F ?Read@GAESEnDeCrypt@@UEAAJAEAVGBuffer@@J@Z
+                           3 ??1GAESEnDeCrypt@@UEAA@XZ
+                           1 ??0GAESEnDeCrypt@@QEAA@PEAVGInStream@@AEBVGBuffer@@W4AESDirection@0@W4AESMode@0@1_N@Z
+                           0 ??0GAESEnDeCrypt@@QEAA@AEAVGInStream@@AEBVGBuffer@@W4AESDirection@0@W4AESMode@0@1_N@Z
+
+    TIFFSupportLayer.dll
+             180195210 Import Address Table
+             180258368 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           F ??1GTIFFPred2Decode@@UEAA@XZ
+                           9 ??0GTIFFPred2Encode@@QEAA@AEAVGInStream@@JJJ@Z
+                           B ??0GTIFFPred2Encode@@QEAA@PEAVGInStream@@JJJ@Z
+                          10 ??1GTIFFPred2Encode@@UEAA@XZ
+                          1D ?CreateClone@GTIFFPred2Decode@@UEBAPEAVGInStream@@XZ
+                          2C ?Reset@GTIFFPred2Decode@@UEAAXXZ
+                          28 ?Read@GTIFFPred2Decode@@UEAAJAEAVGBuffer@@J@Z
+                           E ??1GCCITTEncode@@UEAA@XZ
+                          2D ?Reset@GTIFFPred2Encode@@UEAAXXZ
+                          29 ?Read@GTIFFPred2Encode@@UEAAJAEAVGBuffer@@J@Z
+                          1B ?CreateClone@GCCITTDecode@@UEBAPEAVGInStream@@XZ
+                          2A ?Reset@GCCITTDecode@@UEAAXXZ
+                          26 ?Read@GCCITTDecode@@UEAAJAEAVGBuffer@@J@Z
+                          1C ?CreateClone@GCCITTEncode@@UEBAPEAVGInStream@@XZ
+                          2B ?Reset@GCCITTEncode@@UEAAXXZ
+                          27 ?Read@GCCITTEncode@@UEAAJAEAVGBuffer@@J@Z
+                           8 ??0GTIFFPred2Decode@@QEAA@PEAVGInStream@@JJJ@Z
+                           5 ??0GCCITTEncode@@QEAA@PEAVGInStream@@J_N1JJ11J@Z
+                           3 ??0GCCITTEncode@@QEAA@AEAVGInStream@@J_N1JJ11J@Z
+                           D ??1GCCITTDecode@@UEAA@XZ
+                           2 ??0GCCITTDecode@@QEAA@PEAVGInStream@@J_N1JJ11J@Z
+                           0 ??0GCCITTDecode@@QEAA@AEAVGInStream@@J_N1JJ11J@Z
+                          21 ?Finalize@GTIFFSupportLayer@@SAXXZ
+                          1E ?CreateClone@GTIFFPred2Encode@@UEBAPEAVGInStream@@XZ
+                          24 ?Initialize@GTIFFSupportLayer@@SA_NXZ
+
+    RC4SupportLayer.dll
+             1801951D0 Import Address Table
+             180258328 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           B ?Initialize@GRC4SupportLayer@@SA_NXZ
+                           C ?Read@GRC4EnDeCrypt@@UEAAJAEAVGBuffer@@J@Z
+                           D ?Reset@GRC4EnDeCrypt@@UEAAXXZ
+                           9 ?CreateClone@GRC4EnDeCrypt@@UEBAPEAVGInStream@@XZ
+                           4 ??1GRC4EnDeCrypt@@UEAA@XZ
+                           2 ??0GRC4EnDeCrypt@@QEAA@PEAVGInStream@@AEBVGBuffer@@@Z
+                           A ?Finalize@GRC4SupportLayer@@SAXXZ
+
+    ImageSupportLayer.dll
+             180194A90 Import Address Table
+             180257BE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         146 ?Reset@GLZWDecode@@UEAAXXZ
+                          D6 ?CreateClone@GLZWDecode@@UEBAPEAVGInStream@@XZ
+                         130 ?Read@GRunLengthDecode@@UEAAJAEAVGBuffer@@J@Z
+                         154 ?Reset@GRunLengthDecode@@UEAAXXZ
+                          E4 ?CreateClone@GRunLengthDecode@@UEBAPEAVGInStream@@XZ
+                         12F ?Read@GPNGUpEncode@@UEAAJAEAVGBuffer@@J@Z
+                         153 ?Reset@GPNGUpEncode@@UEAAXXZ
+                          E3 ?CreateClone@GPNGUpEncode@@UEBAPEAVGInStream@@XZ
+                         129 ?Read@GPNGOptiDecode@@UEAAJAEAVGBuffer@@J@Z
+                         14D ?Reset@GPNGOptiDecode@@UEAAXXZ
+                          DD ?CreateClone@GPNGOptiDecode@@UEBAPEAVGInStream@@XZ
+                         131 ?Read@GRunLengthEncode@@UEAAJAEAVGBuffer@@J@Z
+                         155 ?Reset@GRunLengthEncode@@UEAAXXZ
+                          E5 ?CreateClone@GRunLengthEncode@@UEBAPEAVGInStream@@XZ
+                         139 ?Reset@GASCII85Decode@@UEAAXXZ
+                          C9 ?CreateClone@GASCII85Decode@@UEBAPEAVGInStream@@XZ
+                         115 ?Read@GASCII85Decode@@UEAAJAEAVGBuffer@@J@Z
+                         13A ?Reset@GASCII85Encode@@UEAAXXZ
+                          CA ?CreateClone@GASCII85Encode@@UEBAPEAVGInStream@@XZ
+                         116 ?Read@GASCII85Encode@@UEAAJAEAVGBuffer@@J@Z
+                         128 ?Read@GPNGNoneEncode@@UEAAJAEAVGBuffer@@J@Z
+                         14C ?Reset@GPNGNoneEncode@@UEAAXXZ
+                          DC ?CreateClone@GPNGNoneEncode@@UEBAPEAVGInStream@@XZ
+                         147 ?Reset@GLZWEncode@@UEAAXXZ
+                          D7 ?CreateClone@GLZWEncode@@UEBAPEAVGInStream@@XZ
+                         123 ?Read@GLZWEncode@@UEAAJAEAVGBuffer@@J@Z
+                         12B ?Read@GPNGPaethEncode@@UEAAJAEAVGBuffer@@J@Z
+                         14F ?Reset@GPNGPaethEncode@@UEAAXXZ
+                          DF ?CreateClone@GPNGPaethEncode@@UEBAPEAVGInStream@@XZ
+                          7C ??1GRunLengthEncode@@UEAA@XZ
+                          E1 ?CreateClone@GPNGSubEncode@@UEBAPEAVGInStream@@XZ
+                          54 ??0GRunLengthEncode@@QEAA@PEAVGInStream@@@Z
+                          53 ??0GRunLengthEncode@@QEAA@AEAVGInStream@@@Z
+                          7B ??1GRunLengthDecode@@UEAA@XZ
+                          51 ??0GRunLengthDecode@@QEAA@PEAVGInStream@@@Z
+                          50 ??0GRunLengthDecode@@QEAA@AEAVGInStream@@@Z
+                          7A ??1GPNGUpEncode@@UEAA@XZ
+                          4E ??0GPNGUpEncode@@QEAA@PEAVGInStream@@JJJ@Z
+                         151 ?Reset@GPNGSubEncode@@UEAAXXZ
+                          78 ??1GPNGSubEncode@@UEAA@XZ
+                          48 ??0GPNGSubEncode@@QEAA@PEAVGInStream@@JJJ@Z
+                          46 ??0GPNGSubEncode@@QEAA@AEAVGInStream@@JJJ@Z
+                          76 ??1GPNGPaethEncode@@UEAA@XZ
+                          4C ??0GPNGUpEncode@@QEAA@AEAVGInStream@@JJJ@Z
+                          40 ??0GPNGPaethEncode@@QEAA@AEAVGInStream@@JJJ@Z
+                          74 ??1GPNGOptiDecode@@UEAA@XZ
+                          3C ??0GPNGOptiDecode@@QEAA@PEAVGInStream@@JJJ@Z
+                          73 ??1GPNGNoneEncode@@UEAA@XZ
+                          39 ??0GPNGNoneEncode@@QEAA@PEAVGInStream@@JJJ@Z
+                          37 ??0GPNGNoneEncode@@QEAA@AEAVGInStream@@JJJ@Z
+                          71 ??1GPNGAvgEncode@@UEAA@XZ
+                          33 ??0GPNGAvgEncode@@QEAA@PEAVGInStream@@JJJ@Z
+                          31 ??0GPNGAvgEncode@@QEAA@AEAVGInStream@@JJJ@Z
+                          6E ??1GLZWEncode@@UEAA@XZ
+                          2A ??0GLZWEncode@@QEAA@PEAVGInStream@@@Z
+                          29 ??0GLZWEncode@@QEAA@AEAVGInStream@@@Z
+                          6D ??1GLZWDecode@@UEAA@XZ
+                          27 ??0GLZWDecode@@QEAA@PEAVGInStream@@_N@Z
+                          25 ??0GLZWDecode@@QEAA@AEAVGInStream@@_N@Z
+                          61 ??1GASCII85Encode@@UEAA@XZ
+                           8 ??0GASCII85Encode@@QEAA@PEAVGInStream@@@Z
+                           6 ??0GASCII85Encode@@QEAA@AEAVGInStream@@@Z
+                          60 ??1GASCII85Decode@@UEAA@XZ
+                           5 ??0GASCII85Decode@@QEAA@PEAVGInStream@@@Z
+                           4 ??0GASCII85Decode@@QEAA@AEAVGInStream@@@Z
+                         13D ?Reset@GBitExpander@@UEAAXXZ
+                         119 ?Read@GBitExpander@@UEAAJAEAVGBuffer@@J@Z
+                          CD ?CreateClone@GBitExpander@@UEBAPEAVGInStream@@XZ
+                          64 ??1GBitExpander@@UEAA@XZ
+                          10 ??0GBitExpander@@QEAA@AEAVGInStream@@J@Z
+                         122 ?Read@GLZWDecode@@UEAAJAEAVGBuffer@@J@Z
+                         12D ?Read@GPNGSubEncode@@UEAAJAEAVGBuffer@@J@Z
+                          DA ?CreateClone@GPNGAvgEncode@@UEBAPEAVGInStream@@XZ
+                         14A ?Reset@GPNGAvgEncode@@UEAAXXZ
+                         126 ?Read@GPNGAvgEncode@@UEAAJAEAVGBuffer@@J@Z
+                          42 ??0GPNGPaethEncode@@QEAA@PEAVGInStream@@JJJ@Z
+
+    JBIG2SupportLayer.dll
+             180194CF8 Import Address Table
+             180257E50 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           E ?Reset@GJBIG2Decode@@UEAAXXZ
+                           D ?Read@GJBIG2Decode@@UEAAJAEAVGBuffer@@J@Z
+                           C ?Initialize@GJBIG2SupportLayer@@SA_NXZ
+                           B ?Finalize@GJBIG2SupportLayer@@SAXXZ
+                           0 ??0GJBIG2Decode@@QEAA@AEAVGInStream@@0@Z
+                           1 ??0GJBIG2Decode@@QEAA@AEAVGInStream@@@Z
+                           3 ??0GJBIG2Decode@@QEAA@PEAVGInStream@@0@Z
+                           5 ??1GJBIG2Decode@@UEAA@XZ
+                           A ?CreateClone@GJBIG2Decode@@UEBAPEAVGInStream@@XZ
+
+    WS2_32.dll
+             1801953B8 Import Address Table
+             180258510 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                             Ordinal    16
+                             Ordinal   111
+                             Ordinal   116
+                             Ordinal    19
+                             Ordinal   112
+                             Ordinal     3
+
+    ADVAPI32.dll
+             180194000 Import Address Table
+             180257158 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          D0 CryptExportKey
+                          CF CryptEnumProvidersW
+                          E5 CryptSignHashW
+                          C7 CryptDestroyHash
+                          C4 CryptCreateHash
+                          C5 CryptDecrypt
+                          D8 CryptGetUserKey
+                          D7 CryptGetProvParam
+                          DD CryptSetHashParam
+                          C8 CryptDestroyKey
+                          DC CryptReleaseContext
+                          C2 CryptAcquireContextW
+                         2CA ReportEventW
+                         2B8 RegisterEventSourceW
+                          ED DeregisterEventSource
+
+    CRYPT32.dll
+             1801949D0 Import Address Table
+             180257B28 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          25 CertDuplicateCertificateContext
+                          46 CertGetCertificateContextProperty
+                          2C CertEnumCertificatesInStore
+                          12 CertCloseStore
+                          59 CertOpenStore
+                          35 CertFindCertificateInStore
+                          40 CertFreeCertificateContext
+
+    USER32.dll
+             1801952E0 Import Address Table
+             180258438 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         1D9 GetUserObjectInformationW
+                         28B MessageBoxW
+                         267 LoadStringA
+                         1AF GetProcessWindowStation
+
+    bcrypt.dll
+             180195610 Import Address Table
+             180258768 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1D BCryptGenRandom
+
+    BasicFrameworkCoreLayer.dll
+             1801940D0 Import Address Table
+             180257228 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         905 ?Reset@GOutStream@@UEAAXXZ
+                         A42 ?Skip@GOutStream@@UEAA_J_J@Z
+                         1FA ??1GOutStream@@UEAA@XZ
+                         113 ??0GOutStream@@QEAA@XZ
+                         157 ??0GSimpleException@@QEAA@AEBV0@@Z
+                         217 ??1GSimpleException@@UEAA@XZ
+                         158 ??0GSimpleException@@QEAA@J@Z
+                         879 ?NextByteBoundary@GBitWriter@@QEAAXXZ
+                         B0F ?WriteNIdenticalBits@GBitWriter@@QEAAXKK@Z
+                         B0D ?WriteNBits@GBitWriter@@QEAAXKK@Z
+                         B0E ?WriteNBits@GBitWriter@@QEAAX_KK@Z
+                         1B9 ??1GBitWriter@@QEAA@XZ
+                          46 ??0GBitWriter@@QEAA@AEAVGOutStream@@@Z
+                         11C ??0GPartialInStream@@QEAA@AEAVGInStream@@_J1@Z
+                         75B ?GetSubBuffer@GBuffer@@QEBAXAEAV1@JJ@Z
+                         569 ?Flush@GOutStream@@UEAAXXZ
+                         A10 ?SetToHexBuffer@GHexSupport@@YAXAEBVGBuffer@@AEAV2@@Z
+                         973 ?SetBuffer@GName@@QEAAXAEBVGBuffer@@@Z
+                         A65 ?StripTrailingWhiteSpace@GBufferSupport@@SAAEAVGBuffer@@AEAV2@@Z
+                         5B5 ?GetBuffer@GString@@QEBA?AVGBuffer@@PEBVGEncoding@@@Z
+                         A77 ?Swap@GBuffer@@QEAAXAEAV1@@Z
+                         67C ?GetInt64@GBuffer@@QEBA_JXZ
+                         B20 ?cEmptyString@GString@@2V1@B
+                         69A ?GetLength@GFileOutStream@@UEBA_JXZ
+                         900 ?Reset@GFileOutStream@@UEAAXXZ
+                         A3F ?Skip@GFileOutStream@@UEAA_J_J@Z
+                         568 ?Flush@GFileOutStream@@UEAAXXZ
+                         B01 ?Write@GFileOutStream@@UEAAJAEBVGBuffer@@@Z
+                         85F ?Match@GRegExpSupport@@YA_NAEBVGBuffer@@0@Z
+                         986 ?SetDefault@GPreferences@@SAXJAEBVGBuffer@@0AEBVGString@@@Z
+                         67A ?GetInt32@GPreferences@@SAJAEBVGBuffer@@0@Z
+                         58A ?Get@GPreferences@@SAAEBVGString@@AEBVGBuffer@@0@Z
+                         8F0 ?Replace@GBuffer@@QEAAXJJAEBV1@@Z
+                         9C4 ?SetInt@GString@@QEAAXJJ@Z
+                         A6F ?SubstituteParams@GString@@QEAAAEAV1@AEBV1@00@Z
+                         A71 ?SubstituteParams@GString@@QEAAAEAV1@AEBV1@@Z
+                          B5 ??0GExceptionLocation@@QEAA@AEBVGString@@@Z
+                         AFE ?Write@GBufferedOutStreamDecorator@@UEAAJAEBVGBuffer@@@Z
+                         9EB ?SetPartialLength@GPartialInStream@@QEAAX_J@Z
+                         74F ?GetStreamLength@GStreamSupport@@SA_KAEAVGInStream@@@Z
+                         725 ?GetReal@GBuffer@@QEBANXZ
+                         670 ?GetInstance@GShiftJISEncoding@@SAPEAVGPlatformEncoding@@XZ
+                         99F ?SetFromStatic@GBuffer@@QEAAXPEBDJJ@Z
+                         997 ?SetFilePosition@PWin32FileImp@@IEBAXXZ
+                         B06 ?Write@PWin32FileImp@@QEAAJAEBVGBuffer@@@Z
+                         8AB ?Read@PWin32FileImp@@QEBAJAEAVGBuffer@@J@Z
+                         889 ?Open@PWin32FileImp@@QEAAXJ@Z
+                         AD0 ?UnSubscribe@?$GReceiver@VGEmptyMessage@@@@MEAAXJ@Z
+                         A43 ?Skip@GPartialInStream@@UEAA_J_J@Z
+                         8AA ?Read@GPartialInStream@@UEAAJAEAVGBuffer@@J@Z
+                         907 ?Reset@GPartialInStream@@UEAAXXZ
+                         4F8 ?CreateClone@GPartialInStream@@UEBAPEAVGInStream@@XZ
+                         20D ??1GRecursionLock@@QEAA@XZ
+                         1FE ??1GPartialInStream@@UEAA@XZ
+                         11E ??0GPartialInStream@@QEAA@PEAVGInStream@@_J1@Z
+                          16 ??0?$GReceiver@VGEmptyMessage@@@@QEAA@XZ
+                         A69 ?Subscribe@?$GReceiver@VGEmptyMessage@@@@MEAAXJ@Z
+                         1AD ??1?$GReceiver@VGEmptyMessage@@@@UEAA@XZ
+                         B02 ?Write@GMemoryOutStream@@UEAAJAEBVGBuffer@@@Z
+                         1F7 ??1GMemoryOutStream@@UEAA@XZ
+                         106 ??0GMemoryOutStream@@QEAA@AEAVGBuffer@@@Z
+                         9E0 ?SetMoreMemoryFree@GAllocator@@QEAAX_N@Z
+                         944 ?Set@GBuffer@@QEAAXPEBEJ@Z
+                          F6 ??0GLngString@@QEAA@J@Z
+                         699 ?GetLength@GFileInStream@@UEBA_JXZ
+                         8A4 ?Read@GFileInStream@@UEAAJAEAVGBuffer@@J@Z
+                         A3E ?Skip@GFileInStream@@UEAA_J_J@Z
+                         8FF ?Reset@GFileInStream@@UEAAXXZ
+                         4F2 ?CreateClone@GFileInStream@@UEBAPEAVGInStream@@XZ
+                         4E9 ?CopyStream@GStreamSupport@@SA_JAEAVGInStream@@AEAVGOutStream@@@Z
+                         209 ??1GProgress@@QEAA@XZ
+                         12F ??0GProgress@@QEAA@N@Z
+                          C2 ??0GFileOutStream@@QEAA@PEAV?$GFileBase@VPWin32FileImp@@@@@Z
+                         1DD ??1GFileInStream@@UEAA@XZ
+                          BE ??0GFileInStream@@QEAA@AEBV?$GSmartPtr@V?$GFileBase@VPWin32FileImp@@@@@@@Z
+                          BF ??0GFileInStream@@QEAA@AEBVGPathName@@@Z
+                         1DE ??1GFileOutStream@@UEAA@XZ
+                          C1 ??0GFileOutStream@@QEAA@AEBVGPathName@@_N@Z
+                         74A ?GetSpecialPath@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA?AVGPathName@@J@Z
+                         504 ?CreateUniqueFolder@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEBVGPathName@@AEAV2@@Z
+                         8DD ?RemoveFolder@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@JJ@Z
+                         46F ?CheckForErrors@PWin32SystemException@@SAXJ@Z
+                         370 ??K@YA?AVGPathName@@AEBV0@0@Z
+                         5B3 ?GetBranch@GPathName@@QEBA?AV1@XZ
+                         6D5 ?GetNativePathString@GPathName@@QEBA?AVGString@@XZ
+                         980 ?SetCrossPlatformString@GPathName@@UEAAXAEBVGString@@@Z
+                         5DA ?GetCrossPlatformString@GPathName@@UEBAAEBVGString@@XZ
+                         1D1 ??1GDelayedMessageBase@@UEAA@XZ
+                         453 ?AssignEncoding@GStringSupport@@YA_NAEBVGBuffer@@AEAVGString@@@Z
+                         531 ?EnsureUnicode@GString@@QEBAXXZ
+                         36C ??H@YA?BVGString@@AEBV0@0@Z
+                         393 ??YGString@@QEAAAEAV0@AEBV0@@Z
+                         2EB ??4GString@@QEAAAEAV0@AEBV0@@Z
+                         A70 ?SubstituteParams@GString@@QEAAAEAV1@AEBV1@0@Z
+                         814 ?IsEmpty@GString@@QEBA_NXZ
+                         163 ??0GString@@QEAA@N@Z
+                         161 ??0GString@@QEAA@J@Z
+                         15E ??0GString@@QEAA@AEBV0@@Z
+                         166 ??0GString@@QEAA@PEBD@Z
+                         167 ??0GString@@QEAA@PEBDPEBVGEncoding@@_N@Z
+                         390 ??YGBuffer@@QEAAAEAV0@PEBD@Z
+                          51 ??0GBuffer@@QEAA@K@Z
+                         541 ?Finalize@GBasicFrameworkCoreLayer@@SAXXZ
+                         7C8 ?Initialize@GBasicFrameworkCoreLayer@@SA_NXZ
+                         70B ?GetPlatformCode@PSystem@@SAJXZ
+                         92B ?Set@?$GMatrixBase@N@@QEAAXNNNNNN@Z
+                         66B ?GetInstance@GPlatformEncoding@@SAPEAV1@XZ
+                         83F ?IsRelative@GPathName@@QEBA_NXZ
+                         39E ??_0GPathName@@QEAAAEAV0@AEBV0@@Z
+                         982 ?SetDIPathString@GPathName@@QEAAXAEBVGString@@@Z
+                         5E8 ?GetDIPathString@GPathName@@QEBA?AVGString@@XZ
+                         9E3 ?SetNativePathString@GPathName@@QEAAXAEBVGString@@@Z
+                         485 ?Clear@GPathName@@QEAAXXZ
+                         454 ?AssignEncoding@GStringSupport@@YA_NAEBVGBuffer@@AEAVGString@@AEBV?$GTable@PEAVGEncoding@@@@@Z
+                         329 ??8@YA_NAEBVGString@@0@Z
+                         488 ?Clear@GString@@QEAAXXZ
+                         B1C ?cDefaultSeparators@GInStreamTokenizer@@2V?$GTable@E@@B
+                         5E1 ?GetCurrentToken@GInStreamTokenizer@@QEBAJXZ
+                          E9 ??0GInStreamTokenizer@@QEAA@PEAVGInStream@@AEBV?$GDict@VGBuffer@@K@@AEBV?$GTable@E@@@Z
+                         558 ?FindFirstOccurrence@GBuffer@@QEBAJEJ@Z
+                          57 ??0GBuffer@@QEAA@_J@Z
+                         6B7 ?GetMachineByteOrder@PSystem@@SAJXZ
+                         66A ?GetInstance@GPDFDocEncoding@@SAPEAV1@XZ
+                         A7C ?SwapUnicodeBytes@GBufferSupport@@SAXAEAVGBuffer@@@Z
+                         72D ?GetRefCount@GRefCount@@QEBAJXZ
+                         8C1 ?RealToBuffer@GBufferSupport@@SAXNAEAVGBuffer@@_N@Z
+                         942 ?Set@GBuffer@@QEAAXN@Z
+                         945 ?Set@GBuffer@@QEAAX_J@Z
+                         646 ?GetHash@GBuffer@@QEBAKXZ
+                         2A9 ??4GInStream@@IEAAAEAV0@AEBV0@@Z
+                          DF ??0GInStream@@IEAA@AEBV0@@Z
+                         1E9 ??1GInStream@@UEAA@XZ
+                          E0 ??0GInStream@@QEAA@XZ
+                         903 ?Reset@GInStreamConnector@@UEAAXXZ
+                         8A7 ?Read@GInStreamConnector@@UEAAJAEAVGBuffer@@J@Z
+                         4F5 ?CreateClone@GInStreamConnector@@UEBAPEAVGInStream@@XZ
+                         1EA ??1GInStreamConnector@@UEAA@XZ
+                          E3 ??0GInStreamConnector@@QEAA@$$QEAV?$vector@V?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@V?$allocator@V?$unique_ptr@VGInStream@@U?$default_delete@VGInStream@@@std@@@std@@@2@@std@@@Z
+                         753 ?GetString@GStringPool@@SAAEBVGString@@J@Z
+                         436 ?AddStringPoolData@GStringPoolSupport@@SAXAEBVGBuffer@@PEBDPEAUGStringPoolDataStruct@@J_N@Z
+                          AE ??0GException@@QEAA@J@Z
+                         726 ?GetReal@GInStreamTokenizer@@QEBANXZ
+                         67D ?GetInt64@GInStreamTokenizer@@QEBA_JXZ
+                         76B ?GetTokenBuffer@GInStreamTokenizer@@QEBAAEBVGBuffer@@XZ
+                         6DB ?GetNextToken@GInStreamTokenizer@@QEAAJXZ
+                         1EB ??1GInStreamTokenizer@@QEAA@XZ
+                          E6 ??0GInStreamTokenizer@@QEAA@AEAVGInStream@@AEBV?$GDict@VGBuffer@@K@@AEBV?$GTable@E@@@Z
+                         913 ?RollBack@GMemoryInStream@@UEAAJXZ
+                         9FB ?SetRollBackPoint@GMemoryInStream@@UEAAXXZ
+                         ADE ?Unread@GMemoryInStream@@UEAAJJ@Z
+                         8A8 ?Read@GMemoryInStream@@UEAAJAEAVGBuffer@@J@Z
+                         A41 ?Skip@GMemoryInStream@@UEAA_J_J@Z
+                         904 ?Reset@GMemoryInStream@@UEAAXXZ
+                         4F6 ?CreateClone@GMemoryInStream@@UEBAPEAVGInStream@@XZ
+                         912 ?RollBack@GBufferedInStreamDecorator@@UEAAJXZ
+                         9FA ?SetRollBackPoint@GBufferedInStreamDecorator@@UEAAXXZ
+                         ADD ?Unread@GBufferedInStreamDecorator@@UEAAJJ@Z
+                         8A2 ?Read@GBufferedInStreamDecorator@@UEAAJAEAVGBuffer@@J@Z
+                         8FC ?Reset@GBufferedInStreamDecorator@@UEAAXXZ
+                         4F0 ?CreateClone@GBufferedInStreamDecorator@@UEBAPEAVGInStream@@XZ
+                         A40 ?Skip@GInStream@@UEAA_J_J@Z
+                         892 ?PrepareString@GSASLPrep@@YA_NAEBVGBuffer@@AEAV2@_N@Z
+                         1BF ??1GBufferedInStreamDecorator@@UEAA@XZ
+                         566 ?Flush@GBufferedOutStreamDecorator@@UEAAXXZ
+                         1C0 ??1GBufferedOutStreamDecorator@@UEAA@XZ
+                          61 ??0GBufferedOutStreamDecorator@@QEAA@PEAVGOutStream@@J@Z
+                          5F ??0GBufferedOutStreamDecorator@@QEAA@AEAVGOutStream@@J@Z
+                         61E ?GetFilePosition@PWin32FileImp@@IEBA_JXZ
+                         8EE ?Reopen@PWin32FileImp@@IEAAXJ@Z
+                         69E ?GetLength@PWin32FileImp@@QEBA_JXZ
+                         48C ?Close@PWin32FileImp@@QEAAXXZ
+                         19E ??0PWin32FileImp@@QEAA@XZ
+                         843 ?IsSameFileOrFolder@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@0_N@Z
+                         998 ?SetFileType@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEAVGPathName@@AEBVGFileType@@_N@Z
+                         53D ?FileInUse@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         6F8 ?GetObjectLocked@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA?AW4LockedStatus@PWin32FileSystemImp@@AEBVGPathName@@@Z
+                         4DA ?CopyAndRenameFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEBVGPathName@@0_N1@Z
+                         A20 ?SetWritable@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEBVGPathName@@_N@Z
+                         853 ?IsWritable@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         AC8 ?TryToRemoveFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         8DB ?RemoveFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         53B ?FileExists@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         5FA ?GetDescription@GException@@QEBA?BVGString@@XZ
+                         5B8 ?GetBuffer@GStringSupport@@YA_NAEBVGString@@AEAVGBuffer@@@Z
+                         693 ?GetLeafWithoutExtension@GPathName@@QEBA?AVGString@@XZ
+                          9C ??0GDelayedMessageBase@@QEAA@XZ
+                         85C ?MarkConsolidatePending@GSignalBase@@IEAAXXZ
+                         89C ?QueueDelayedSignal@GSignalBase@@KAXPEAVGDelayedMessageBase@@@Z
+                         67F ?GetInt@GInStreamTokenizer@@QEBAJXZ
+                         120 ??0GPathName@@QEAA@AEBVGString@@@Z
+                          B4 ??0GExceptionLocation@@QEAA@AEBVGPathName@@@Z
+                         1DB ??1GExceptionLocation@@QEAA@XZ
+                         AC2 ?TryFileExists@?$GFileSystemBase@VPWin32FileSystemImp@@@@SA_NAEBVGPathName@@@Z
+                         503 ?CreateUniqueFile@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAXAEBVGPathName@@AEAV2@PEBVGFileType@@_N@Z
+                         961 ?Set@GString@@QEAAXAEBVGBuffer@@PEBVGEncoding@@_N@Z
+                          D8 ??0GHexEncode@@QEAA@AEAVGInStream@@_N@Z
+                          DA ??0GHexEncode@@QEAA@PEAVGInStream@@_N@Z
+                         1E6 ??1GHexEncode@@UEAA@XZ
+                          D5 ??0GHexDecode@@QEAA@AEAVGInStream@@@Z
+                          D7 ??0GHexDecode@@QEAA@PEAVGInStream@@@Z
+                         121 ??0GPathName@@QEAA@PEBD@Z
+                          5E ??0GBufferedInStreamDecorator@@QEAA@PEAVGInStream@@J@Z
+                         675 ?GetInstance@GUnicodeEncoding@@SAPEAV1@XZ
+                         ACC ?UInt128ModuloUInt64@GMathLib@@YA_K_K00@Z
+                         1F6 ??1GMemoryInStream@@UEAA@XZ
+                         104 ??0GMemoryInStream@@QEAA@AEBVGBuffer@@@Z
+                         160 ??0GString@@QEAA@AEBVGBuffer@@PEBVGEncoding@@_N@Z
+                         674 ?GetInstance@GUTF8Encoding@@SAPEAV1@XZ
+                         445 ?AppendByteArray@GBuffer@@QEAAXPEBEJ@Z
+                         8F3 ?Replace@GString@@QEAA_NJGG@Z
+                         8A6 ?Read@GHexEncode@@UEAAJAEAVGBuffer@@J@Z
+                         902 ?Reset@GHexEncode@@UEAAXXZ
+                         4F4 ?CreateClone@GHexEncode@@UEBAPEAVGInStream@@XZ
+                         8A5 ?Read@GHexDecode@@UEAAJAEAVGBuffer@@J@Z
+                         901 ?Reset@GHexDecode@@UEAAXXZ
+                         4F3 ?CreateClone@GHexDecode@@UEBAPEAVGInStream@@XZ
+                         23A ??2GFastAllocatable@@SAPEAX_K@Z
+                         23D ??3GFastAllocatable@@SAXPEAX_K@Z
+                         139 ??0GRefCount@@QEAA@XZ
+                         20E ??1GRefCount@@UEAA@XZ
+                         40E ?Acquire@GRefCount@@QEBAXXZ
+                         8D1 ?Release@GRefCount@@QEBAXXZ
+                         23C ??3GFastAllocatable@@SAXPEAX0@Z
+                         663 ?GetInstance@GAllocator@@SAAEAV1@XZ
+                         43D ?Alloc@GAllocator@@QEAAPEAX_K@Z
+                         579 ?Free@GAllocator@@QEAAXPEAX_K@Z
+                         371 ??M@YA_NAEBVGBuffer@@0@Z
+                         5A1 ?GetAllocation@GDictUtil@@YAJJ@Z
+                         214 ??1GSignalBase@@UEAA@XZ
+                         14F ??0GSignalBase@@IEAA@J@Z
+                         8D0 ?RegisterSignal@GSignalBase@@KAXPEAV1@@Z
+                         745 ?GetSignal@GSignalBase@@KAPEAV1@J@Z
+                         2B2 ??4GLngString@@QEAAAEAV0@AEBV0@@Z
+                          AD ??0GException@@QEAA@AEBV0@@Z
+                         1D8 ??1GException@@UEAA@XZ
+                         6A7 ?GetLngDescription@GException@@UEBA?BVGLngString@@XZ
+                         6AB ?GetLngFullDescription@GException@@UEBA?BVGLngString@@XZ
+                         615 ?GetExceptionID@GException@@UEBAJXZ
+                         10F ??0GName@@QEAA@PEBD@Z
+                          4F ??0GBuffer@@QEAA@AEBV0@@Z
+                          54 ??0GBuffer@@QEAA@PEBD@Z
+                         1BD ??1GBuffer@@QEAA@XZ
+                          50 ??0GBuffer@@QEAA@J@Z
+                         38C ??YGBuffer@@QEAAAEAV0@AEBV0@@Z
+                         36A ??H@YA?AVGBuffer@@AEBV0@0@Z
+                         B1D ?cEmptyBuffer@GBuffer@@2V1@B
+                         322 ??8@YA_NAEBVGBuffer@@0@Z
+                         711 ?GetPrecision@GLocalPrecisionSetter@@SANXZ
+                         712 ?GetPrecisionType@GLocalPrecisionSetter@@SA?AW4PrecisionType@1@XZ
+                         452 ?AreEqual@GMathLib@@YA_NNNNW4PrecisionType@GLocalPrecisionSetter@@@Z
+                         238 ??1ScopeGuardImplBase@@IEAA@XZ
+                         1A6 ??0ScopeGuardImplBase@@IEAA@XZ
+                         A60 ?StreamsAreEqual@GStreamSupport@@SA_NAEAVGInStream@@0@Z
+                         1DA ??1GExceptionHandler@@UEAA@XZ
+                         7B2 ?Handle@GExceptionHandler@@UEBAXXZ
+                          B2 ??0GExceptionHandler@@QEAA@XZ
+                          B1 ??0GExceptionHandler@@QEAA@AEBV0@@Z
+                         297 ??4GExceptionHandler@@QEAAAEAV0@AEBV0@@Z
+                          8E ??0GDateTime@@QEAA@_N@Z
+                         99D ?SetFromPDFDateTime@GDateTime@@QEAAJAEBVGBuffer@@@Z
+                         5A9 ?GetAsPDFDateTime@GDateTime@@QEBAXAEAVGBuffer@@@Z
+                         71C ?GetPtr@GBuffer@@QEBAPEBEXZ
+                         563 ?FindSubBuffer@GBuffer@@QEBAJAEBV1@J_N@Z
+                         266 ??4GBuffer@@QEAAAEAV0@$$QEAV0@@Z
+                         38E ??YGBuffer@@QEAAAEAV0@E@Z
+                         267 ??4GBuffer@@QEAAAEAV0@AEBV0@@Z
+                         122 ??0GPathName@@QEAA@XZ
+                         1FF ??1GPathName@@UEAA@XZ
+                         2C4 ??4GPathName@@QEAAAEAV0@AEBV0@@Z
+                         11F ??0GPathName@@QEAA@AEBV0@@Z
+                         661 ?GetInstance@GASCIIEncoding@@SAPEAV1@XZ
+                         16A ??0GString@@QEAA@XZ
+                         21A ??1GString@@QEAA@XZ
+                         5B6 ?GetBuffer@GString@@QEBAJAEAVGBuffer@@PEBVGEncoding@@@Z
+                         813 ?IsEmpty@GPathName@@QEBA_NXZ
+                         629 ?GetFromUserID@GFileType@@SAPEBV1@J@Z
+                         620 ?GetFileTypePtr@?$GFileSystemBase@VPWin32FileSystemImp@@@@SAPEBVGFileType@@AEBVGPathName@@@Z
+                          56 ??0GBuffer@@QEAA@XZ
+                          4E ??0GBuffer@@QEAA@$$QEAV0@@Z
+                          55 ??0GBuffer@@QEAA@PEBEJ@Z
+                         9C9 ?SetLength@GBuffer@@QEAAXJ@Z
+                         43E ?Allocate@GBuffer@@QEAAXJ@Z
+                         79D ?GetWritePtr@GBuffer@@QEAAPEAEXZ
+                         75A ?GetSubBuffer@GBuffer@@QEBA?AV1@JJ@Z
+                         268 ??4GBuffer@@QEAAAEAV0@PEBD@Z
+                         339 ??9@YA_NAEBVGBuffer@@0@Z
+                         1E5 ??1GHexDecode@@UEAA@XZ
+
+    KERNEL32.dll
+             180194E78 Import Address Table
+             180257FD0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         18A FindFirstFileW
+                         17F FindClose
+                         3D4 LoadLibraryW
+                          A4 ConvertFiberToThread
+                         61F WideCharToMultiByte
+                         115 DeleteFiber
+                         3FF MultiByteToWideChar
+                         2BC GetProcAddress
+                         282 GetModuleHandleW
+                         633 WriteFile
+                         259 GetFileType
+                         2E1 GetStdHandle
+                         281 GetModuleHandleExW
+                         2F8 GetSystemTimeAsFileTime
+                         222 GetCurrentProcessId
+                         196 FindNextFileW
+                         5BF TlsFree
+                         5C1 TlsSetValue
+                         5C0 TlsGetValue
+                         5BE TlsAlloc
+                         226 GetCurrentThreadId
+                         114 DeleteCriticalSection
+                         374 InitializeCriticalSectionAndSpinCount
+                         3CD LeaveCriticalSection
+                         139 EnterCriticalSection
+                         54D SetLastError
+                         26B GetLastError
+                         3D1 LoadLibraryA
+                         327 GetUserDefaultLCID
+                         2E4 GetStringTypeExA
+                         3BF LCMapStringA
+                         1B5 FreeLibrary
+                          E8 CreateProcessW
+                          89 CloseHandle
+                         244 GetEnvironmentVariableW
+                         206 GetConsoleMode
+                         515 SetConsoleMode
+                         476 ReadConsoleA
+                         480 ReadConsoleW
+                         4C2 ReleaseSRWLockExclusive
+                           0 AcquireSRWLockExclusive
+                         378 InitializeSListHead
+                         600 WakeAllConditionVariable
+                         59F SleepConditionVariableSRW
+                         4DF RtlCaptureContext
+                         4E7 RtlLookupFunctionEntry
+                         4EE RtlVirtualUnwind
+                         5CE UnhandledExceptionFilter
+                         58D SetUnhandledExceptionFilter
+                         221 GetCurrentProcess
+                         5AC TerminateProcess
+                         395 IsProcessorFeaturePresent
+                         38E IsDebuggerPresent
+                         125 DisableThreadLibraryCalls
+                         45B QueryPerformanceCounter
+
+    MSVCP140.dll
+             180195058 Import Address Table
+             1802581B0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         581 _Mtx_destroy_in_situ
+                         585 _Mtx_lock
+                         589 _Mtx_unlock
+                         275 ?_Throw_Cpp_error@std@@YAXH@Z
+                         297 ?__ExceptionPtrCreate@@YAXPEAX@Z
+                         299 ?__ExceptionPtrDestroy@@YAXPEAX@Z
+                         295 ?__ExceptionPtrCopy@@YAXPEAXPEBX@Z
+                         293 ?__ExceptionPtrAssign@@YAXPEAXPEBX@Z
+                         29C ?__ExceptionPtrToBool@@YA_NPEBX@Z
+                         298 ?__ExceptionPtrCurrentException@@YAXPEAX@Z
+                         29A ?__ExceptionPtrRethrow@@YAXPEBX@Z
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         34D ?eback@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         3C6 ?gptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         447 ?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         350 ?egptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         584 _Mtx_init_in_situ
+                         4BA ?setg@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         359 ?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4BF ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD0@Z
+                         4BE ?setp@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         24A ?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                          1A ??0?$basic_istream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                          83 ??1?$basic_istream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          D4 ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEA_J@Z
+                          D1 ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAN@Z
+                         3F6 ?imbue@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAXAEBVlocale@2@@Z
+                         4FD ?sync@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         4B5 ?setbuf@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAPEAV12@PEAD_J@Z
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                         51B ?uflow@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAAHXZ
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         27F ?_Unlock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                         228 ?_Lock@?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAAXXZ
+                          CA ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAF@Z
+                          CE ??5?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@AEAJ@Z
+                          13 ??0?$basic_iostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@@Z
+                          80 ??1?$basic_iostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         36B ?gbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         25D ?_Random_device@std@@YAIXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+
+    VCRUNTIME140.dll
+             180195308 Import Address Table
+             180258460 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          25 __std_type_info_destroy_list
+                          1C __current_exception_context
+                          1B __current_exception
+                          3A memchr
+                          42 strstr
+                          41 strrchr
+                          40 strchr
+                           8 __C_specific_handler
+                          36 _purecall
+                          46 wcsstr
+                          23 __std_terminate
+                           1 _CxxThrowException
+                          3C memcpy
+                          3D memmove
+                          21 __std_exception_copy
+                          22 __std_exception_destroy
+                          24 __std_type_info_compare
+                          3B memcmp
+                          3E memset
+
+    VCRUNTIME140_1.dll
+             1801953A8 Import Address Table
+             180258500 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             180195468 Import Address Table
+             1802585C0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          39 _invalid_parameter_noinfo_noreturn
+                          37 _initterm_e
+                          36 _initterm
+                          16 _cexit
+                          21 _errno
+                          55 exit
+                          61 raise
+                          1E _crt_atexit
+                          22 _execute_onexit_table
+                          3C _register_onexit_function
+                          34 _initialize_onexit_table
+                          33 _initialize_narrow_environment
+                          18 _configure_narrow_argv
+                          3F _seh_filter_dll
+                          65 strerror_s
+                          63 signal
+                          67 terminate
+                          23 _exit
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             180195430 Import Address Table
+             180258588 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1A realloc
+                          18 free
+                          19 malloc
+                           8 _callnewh
+
+    api-ms-win-crt-math-l1-1-0.dll
+             180195458 Import Address Table
+             1802585B0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          7C ceil
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             180195500 Import Address Table
+             180258658 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __acrt_iob_func
+                          10 __stdio_common_vsscanf
+                           3 __stdio_common_vfprintf
+                          11 __stdio_common_vswprintf
+                          7D fopen
+                          62 _wfopen
+                           D __stdio_common_vsprintf
+                          57 _setmode
+                          8A fwrite
+                          89 ftell
+                          87 fseek
+                          80 fputs
+                          83 fread
+                          26 _fileno
+                          74 fclose
+                          75 feof
+                          76 ferror
+                          77 fflush
+                          7A fgets
+
+    api-ms-win-crt-time-l1-1-0.dll
+             1801955E8 Import Address Table
+             180258740 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          30 _time64
+                          20 _gmtime64_s
+
+    api-ms-win-crt-string-l1-1-0.dll
+             1801955A0 Import Address Table
+             1802586F8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          86 strcmp
+                          93 strspn
+                          2A _stricmp
+                          34 _strnicmp
+                          8A strcspn
+                          6E isspace
+                          8E strncmp
+                          8F strncpy
+
+    api-ms-win-crt-utility-l1-1-0.dll
+             180195600 Import Address Table
+             180258758 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          19 qsort
+
+    api-ms-win-crt-environment-l1-1-0.dll
+             180195410 Import Address Table
+             180258568 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          10 getenv
+
+    api-ms-win-crt-convert-l1-1-0.dll
+             1801953F0 Import Address Table
+             180258548 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          61 strtol
+                          64 strtoul
+                          50 atoi
+
+    api-ms-win-crt-filesystem-l1-1-0.dll
+             180195420 Import Address Table
+             180258578 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          20 _stat64i32
+
+  Summary
+
+        E000 .data
+       15000 .pdata
+       CB000 .rdata
+        7000 .reloc
+        1000 .rsrc
+      193000 .text

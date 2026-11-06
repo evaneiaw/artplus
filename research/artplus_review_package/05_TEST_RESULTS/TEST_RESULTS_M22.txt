@@ -1,0 +1,25 @@
+ArtPlus M22 test run — 2026-11-02 23:30:54
+=== pdf_smoke (C:\Arquivos de Programas RFB\IRPF2026\help\AtalhosIRPF.pdf) ===
+Result: 12 checks, 0 failure(s)
+=== pageview ===
+Result: 14 checks, 0 failure(s)
+=== mainwindow ===
+Result: 21 checks, 0 failure(s)
+=== import (T1 multipagina) ===
+  pages          : 15
+  objects        : 946
+  text/path/img  : 946 / 0 / 0
+  form/shading   : 0 / 0
+Objects:
+  [PASS] page objects were imported
+  [PASS] page objects were classified by kind
+Result: 18 checks, 0 failure(s)
+=== import (T2 1 pagina / forms) ===
+  pages          : 1
+  objects        : 2
+  text/path/img  : 0 / 0 / 0
+  form/shading   : 2 / 0
+Objects:
+  [PASS] page objects were imported
+  [PASS] page objects were classified by kind
+Result: 17 checks, 0 failure(s)

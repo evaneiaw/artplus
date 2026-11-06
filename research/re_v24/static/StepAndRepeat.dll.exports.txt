@@ -1,0 +1,54 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\StepAndRepeat.dll
+
+File Type: DLL
+
+  Section contains the following exports for StepAndRepeat.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          29 number of functions
+          29 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00008850 ??0PDFParameters@StepAndRepeat@@QEAA@$$QEAU01@@Z
+          2    1 00008930 ??0PDFParameters@StepAndRepeat@@QEAA@AEAVBG_TMutex@@PEAPEAVBG_TThread@@AEA_N@Z
+          3    2 000089D0 ??0PDFParameters@StepAndRepeat@@QEAA@AEBU01@@Z
+          4    3 00008AA0 ??0SNRException@StepAndRepeat@@QEAA@AEBV01@@Z
+          5    4 00008B50 ??0SNRException@StepAndRepeat@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+          6    5 00008BC0 ??0SNRException@StepAndRepeat@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVBG_TAny@@11@Z
+          7    6 00008C60 ??0SNRException@StepAndRepeat@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVBG_TAny@@1@Z
+          8    7 00008CF0 ??0SNRException@StepAndRepeat@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVBG_TAny@@@Z
+          9    8 00009BF0 ??1PDFParameters@StepAndRepeat@@QEAA@XZ
+         10    9 00009C60 ??1SNRException@StepAndRepeat@@UEAA@XZ
+         11    A 00009E80 ??4SNRException@StepAndRepeat@@QEAAAEAV01@AEBV01@@Z
+         12    B 00031EE8 ??_7SNRException@StepAndRepeat@@6B@
+         13    C 00012960 ?CheckIteratorBoxes@StepAndRepeat@@YAXAEAVIterator@SheetIterator@@AEAVTaskReporter@DocumentMarks@@@Z
+         14    D 0001EA90 ?ConvertMISXMLToRunlist@StepAndRepeat@@YAXAEBVBG_TString@@AEAVInputRunList@SheetIterator@@AEAV?$vector@VSNR_GridParameters@SheetIterator@@V?$allocator@VSNR_GridParameters@SheetIterator@@@std@@@std@@AEAVSheetParameters@4@@Z
+         15    E 00010C60 ?ConvertPdfList2RunList@StepAndRepeat@@YAXAEBVBG_TArray@@_NAEBV?$vector@VInputRunListGroupParams@SheetIterator@@V?$allocator@VInputRunListGroupParams@SheetIterator@@@std@@@std@@AEAVBG_TDict@@AEAVInputRunList@SheetIterator@@@Z
+         16    F 00014800 ?ConvertXmlList2RunList@StepAndRepeat@@YAXAEBVBG_TArray@@_N1AEBV?$vector@VInputRunListGroupParams@SheetIterator@@V?$allocator@VInputRunListGroupParams@SheetIterator@@@std@@@std@@AEAVBG_TDict@@AEAVInputRunList@SheetIterator@@@Z
+         17   10 00012AE0 ?GetCachedPageInfo@StepAndRepeat@@YAHAEBVBG_TURL@@AEAVBG_TDict@@AEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEAN3@Z
+         18   11 000131E0 ?GetErrorCodeMsg@StepAndRepeat@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4ErrorCode@SheetIterator@@@Z
+         19   12 0000AA70 ?Iterator2Pdf@StepAndRepeat@@YA_NAEAVIterator@SheetIterator@@PEAV23@AEAVTaskMarkSets@DocumentMarks@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@3AEBUPDFParameters@1@AEAVStatusReporting@ArtSys@@AEAVTaskReporter@5@_NNN@Z
+         20   13 000133C0 ?Jdf2Iterator@StepAndRepeat@@YA?AV?$shared_ptr@VIterator@SheetIterator@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AEBVInputRunList@SheetIterator@@W4SheetSide@6@_NAEAVStatusReporting@ArtSys@@AEAVTaskReporter@DocumentMarks@@@Z
+         21   14 00013610 ?MIS2Iterator@StepAndRepeat@@YA?AV?$shared_ptr@VIterator@SheetIterator@@@std@@AEBVInputRunList@SheetIterator@@AEBV?$vector@VSNR_GridParameters@SheetIterator@@V?$allocator@VSNR_GridParameters@SheetIterator@@@std@@@3@AEBVSheetParameters@5@W4SheetSide@5@_NAEAVTaskReporter@DocumentMarks@@@Z
+         22   15 00013880 ?Template2Iterator@StepAndRepeat@@YA?AV?$shared_ptr@VIterator@SheetIterator@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@AEBVInputRunList@SheetIterator@@W4SheetSide@6@_N33AEAVStatusReporting@ArtSys@@AEAVTaskReporter@DocumentMarks@@3@Z
+         23   16 00013EA0 ?checkTrimMediaBoxes@StepAndRepeat@@YAXAEBVSheetParameters@SheetIterator@@@Z
+         24   17 0000F4E0 ?getNumParams@SNRException@StepAndRepeat@@QEBAHXZ
+         25   18 0000F4F0 ?getParam1@SNRException@StepAndRepeat@@QEBAAEBVBG_TAny@@XZ
+         26   19 0000F500 ?getParam2@SNRException@StepAndRepeat@@QEBAAEBVBG_TAny@@XZ
+         27   1A 0000F510 ?getParam3@SNRException@StepAndRepeat@@QEBAAEBVBG_TAny@@XZ
+         28   1B 000263A0 ?isMISXmlFile@StepAndRepeat@@YA_NAEBVBG_TURL@@@Z
+         29   1C 000101B0 ?what@SNRException@StepAndRepeat@@UEBAPEBDXZ
+
+  Summary
+
+        4000 .data
+        3000 .pdata
+       15000 .rdata
+        1000 .reloc
+        1000 .rsrc
+       2F000 .text

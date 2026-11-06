@@ -1,0 +1,14 @@
+ArtPlus suite after v24 reference switch — 2026-11-03 00:34:39
+=== pdf_smoke ===
+Result: 12 checks, 0 failure(s)
+=== pageview ===
+Result: 14 checks, 0 failure(s)
+=== mainwindow ===
+Result: 21 checks, 0 failure(s)
+=== import ===
+Result: 18 checks, 0 failure(s)
+=== edit ===
+Result: 43 checks, 0 failure(s)
+=== command ===
+Result: 58 checks, 0 failure(s)
+TOTAL CHECKS: 166

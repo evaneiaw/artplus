@@ -1,0 +1,1299 @@
+
+Dump of file C:\Esko\bg_prog_artpro+_v240\ArtPro+.app\Contents\Windows\DocumentEdit.dll
+
+File Type: DLL
+
+  Section contains the following imports:
+
+    DocumentScanConverter.dll
+             1800E7988 Import Address Table
+             180139610 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1C ?CollectMesh@ArtSc@@YA?AU?$pair@UObjectCollection@ArtSc@@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@std@@AEBVEnvironment@1@AEBVOptions@1@AEBV?$Rectangle@_J@ArtMath@@AEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@3@AEBVFillable@9@AEBV?$shared_ptr@$$CBVMeshPaint@ArtPaint@@@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBV?$shared_ptr@$$CBVCompound@YAGL@@@3@7@Z
+                          2E ?GetLine255PlaneInterleaved@ScanConverter@ArtSc@@QEAA_NPEAE00_K0@Z
+                          21 ?Factor@ResampleEnvironment@ArtSc@@QEBA_KXZ
+                          42 ?SetScanConversionRule@Options@ArtSc@@QEAAXW4ScanConversionRule@2@@Z
+                          43 ?TargetToWorld@Environment@ArtSc@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBV?$Rectangle@_J@ArtMath@@@Z
+                          2F ?GetLine255PlaneInterleaved@ScanConverter@ArtSc@@QEAA_NPEAE_K@Z
+                          11 ??1ScanConverter@ArtSc@@QEAA@XZ
+                           C ??0ScanConverter@ArtSc@@QEAA@UObjectCollection@1@@Z
+                          1A ?AddLine@Resampler@ArtSc@@QEAAXPEBE@Z
+                          10 ??1Resampler@ArtSc@@QEAA@XZ
+                           B ??0Resampler@ArtSc@@QEAA@AEBVResampleEnvironment@1@AEBV?$Rectangle@_J@ArtMath@@_KPEAE2@Z
+                          1D ?CollectObjects@ArtSc@@YA?AUObjectCollection@1@AEBVEnvironment@1@AEBVOptions@1@AEBV?$Rectangle@_J@ArtMath@@AEBVContent@ArtDoc@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBUObjectSelection@1@W4AnnotationAppearanceSelection@8@@Z
+                           E ??1ObjectCollection@ArtSc@@QEAA@XZ
+                           3 ??0ObjectCollection@ArtSc@@QEAA@$$QEAU01@@Z
+                          41 ?SetNoiseForShadings@Options@ArtSc@@QEAAX_K@Z
+                           F ??1Options@ArtSc@@QEAA@XZ
+                           7 ??0Options@ArtSc@@QEAA@V?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@@Z
+                          2A ?GetInitialFromFinalPixelBox@ResampleEnvironment@ArtSc@@QEBA?AV?$Rectangle@_J@ArtMath@@AEBV34@@Z
+                          28 ?GetInitialEnvironment@ResampleEnvironment@ArtSc@@QEBA?AVEnvironment@2@AEBV32@@Z
+                           9 ??0ResampleEnvironment@ArtSc@@QEAA@W4ResampleMode@1@@Z
+                          39 ?InternalToWorld@Environment@ArtSc@@QEBA?AV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBV?$Point@N@2@@Z
+                          46 ?WorldToInternal@Environment@ArtSc@@QEBA?AV?$Rectangle@N@ArtMath@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          45 ?WorldToInternal@Environment@ArtSc@@QEBA?AV?$Point@N@2@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          49 ?WorldToInternalY@Environment@ArtSc@@QEBANAEBV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          47 ?WorldToInternalX@Environment@ArtSc@@QEBANAEBV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                           D ??1Environment@ArtSc@@QEAA@XZ
+                          3A ?InternalToWorld@Environment@ArtSc@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBV?$Rectangle@N@ArtMath@@@Z
+                          4B ?WorldToTarget@Environment@ArtSc@@QEBA?AV?$Rectangle@_J@ArtMath@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                           2 ??0Environment@ArtSc@@QEAA@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@_J1@Z
+
+    Document.dll
+             1800E60D8 Import Address Table
+             180137D60 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         97A ?RegisterContentPostReader@ArtDoc@@YA_KV?$function@$$A6AXAEAVContent@ArtDoc@@AEBVPostReadContext@2@@Z@std@@@Z
+                         87C ?GetXMPInfo@Document@ArtDoc@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         ABC ?SetXMPInfo@Document@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         675 ?GetDefault@Factory@Transparency@ArtBlend@@SAAEBV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@XZ
+                         AB3 ?SetTransparency@Blendable@ArtDoc@@QEAAXV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@@Z
+                         856 ?GetTransparency@Blendable@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@XZ
+                         A11 ?SetFillPaint@Fillable@ArtDoc@@QEAAXV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@@Z
+                         6DC ?GetFillPaint@Fillable@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@XZ
+                         A93 ?SetStrokeWidth@Strokable@ArtDoc@@QEAAXV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         838 ?GetStrokeWidth@Strokable@ArtDoc@@QEBA?AV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         A90 ?SetStrokeJoin@Strokable@ArtDoc@@QEAAXW4Join@YAGL@@@Z
+                         835 ?GetStrokeJoin@Strokable@ArtDoc@@QEBA?AW4Join@YAGL@@XZ
+                         A91 ?SetStrokeMiter@Strokable@ArtDoc@@QEAAXN@Z
+                         836 ?GetStrokeMiter@Strokable@ArtDoc@@QEBANXZ
+                         A8E ?SetStrokeCap@Strokable@ArtDoc@@QEAAXW4Cap@YAGL@@@Z
+                         833 ?GetStrokeCap@Strokable@ArtDoc@@QEBA?AW4Cap@YAGL@@XZ
+                         A8F ?SetStrokeDash@Strokable@ArtDoc@@QEAAXUDash@YAGL@@@Z
+                         834 ?GetStrokeDash@Strokable@ArtDoc@@QEBAAEBUDash@YAGL@@XZ
+                         A92 ?SetStrokePaint@Strokable@ArtDoc@@QEAAXV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@@Z
+                         837 ?GetStrokePaint@Strokable@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@XZ
+                         373 ??8ArtPaint@@YA_NAEBVPaint@0@0@Z
+                         858 ?GetType@ArtPaint@@YA?AW4Type@Paint@1@AEBV?$shared_ptr@$$CBVPaint@ArtPaint@@@std@@@Z
+                         5ED ?GetBoundingBox@ShadingPaint@ArtPaint@@QEBAAEBV?$RectangleBase@UPdfCoordinateSystem@YAGL@@@YAGL@@XZ
+                         7F2 ?GetRadii@RadialShadingPaint@ArtPaint@@QEBAAEBV?$array@V?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@XZ
+                         AAD ?SetTransformation@?$Factory@VRadialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@RadialShadingPaint@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         9E1 ?SetBoundingBox@?$Factory@VRadialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@RadialShadingPaint@3@AEBV?$RectangleBase@UPdfCoordinateSystem@YAGL@@@YAGL@@@Z
+                          BC ??0Factory@RadialShadingPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@AEBV?$shared_ptr@$$CBVRadialShadingPaint@ArtPaint@@@std@@@Z
+                         1EF ??1Factory@RadialShadingPaint@ArtPaint@@QEAA@XZ
+                         9E6 ?SetCenters@Factory@RadialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$array@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@@Z
+                         A70 ?SetRadii@Factory@RadialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$array@V?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@@Z
+                         5B1 ?Get@Factory@RadialShadingPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVRadialShadingPaint@ArtPaint@@@std@@XZ
+                         AAB ?SetTransformation@?$Factory@VFunctionShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@FunctionShadingPaint@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          AB ??0Factory@FunctionShadingPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@AEBV?$shared_ptr@$$CBVFunctionShadingPaint@ArtPaint@@@std@@@Z
+                         1E8 ??1Factory@FunctionShadingPaint@ArtPaint@@QEAA@XZ
+                         5AB ?Get@Factory@FunctionShadingPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVFunctionShadingPaint@ArtPaint@@@std@@XZ
+                         AAC ?SetTransformation@?$Factory@VGouraudShadedTriangleMeshPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@GouraudShadedTriangleMeshPaint@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          AD ??0Factory@GouraudShadedTriangleMeshPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@AEBV?$shared_ptr@$$CBVGouraudShadedTriangleMeshPaint@ArtPaint@@@std@@@Z
+                         1E9 ??1Factory@GouraudShadedTriangleMeshPaint@ArtPaint@@QEAA@XZ
+                         5AC ?Get@Factory@GouraudShadedTriangleMeshPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVGouraudShadedTriangleMeshPaint@ArtPaint@@@std@@XZ
+                         AAA ?SetTransformation@?$Factory@VCoonsTensorProductPatchMeshPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@CoonsTensorProductPatchMeshPaint@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                          A2 ??0Factory@CoonsTensorProductPatchMeshPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@AEBV?$shared_ptr@$$CBVCoonsTensorProductPatchMeshPaint@ArtPaint@@@std@@@Z
+                         1E3 ??1Factory@CoonsTensorProductPatchMeshPaint@ArtPaint@@QEAA@XZ
+                         5A6 ?Get@Factory@CoonsTensorProductPatchMeshPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVCoonsTensorProductPatchMeshPaint@ArtPaint@@@std@@XZ
+                         AA9 ?SetTransformation@?$Factory@VAxialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@AxialShadingPaint@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         9DD ?SetBoundingBox@?$Factory@VAxialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@AxialShadingPaint@3@AEBV?$RectangleBase@UPdfCoordinateSystem@YAGL@@@YAGL@@@Z
+                          A0 ??0Factory@AxialShadingPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@AEBV?$shared_ptr@$$CBVAxialShadingPaint@ArtPaint@@@std@@@Z
+                         1E2 ??1Factory@AxialShadingPaint@ArtPaint@@QEAA@XZ
+                         A68 ?SetPoints@Factory@AxialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$array@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@@Z
+                         5A5 ?Get@Factory@AxialShadingPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVAxialShadingPaint@ArtPaint@@@std@@XZ
+                         5EC ?GetBoundingBox@ContentObject@ArtDoc@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4BoxKind@2@@Z
+                         260 ??1VisitorBase@ArtDoc@@UEAA@XZ
+                         186 ??0VisitorBase@ArtDoc@@QEAA@XZ
+                         722 ?GetID@ContentObject@ArtDoc@@QEBA_KXZ
+                         63C ?GetContent@ContentObject@ArtDoc@@QEAAPEAVContent@2@XZ
+                         694 ?GetDocument@Content@ArtDoc@@QEAAAEAVDocument@2@XZ
+                         6A7 ?GetDynamicObjects@Document@ArtDoc@@QEAAAEAVDynamicObjectController@2@XZ
+                         6B4 ?GetErrorReporter@Document@ArtDoc@@QEBAAEAVErrorReporter@Core@ArtSys@@XZ
+                         4A0 ?AssociateObjectWithError@ArtDoc@@YAXAEAVError@Core@ArtSys@@AEBVContentObject@1@@Z
+                         8A6 ?InksChanged@DynamicObjectController@ArtDoc@@UEAAXXZ
+                         6DF ?GetFlags@Group@ArtDoc@@QEBA?AW4Flags@12@XZ
+                          64 ??0ContentAction@ArtDoc@@QEAA@AEAVContent@1@V?$Flags@W4Permission@Security@ArtDoc@@@Core@ArtSys@@@Z
+                         1C6 ??1ContentAction@ArtDoc@@UEAA@XZ
+                         8BC ?InvalidateObject@ContentAction@ArtDoc@@QEAAXAEBVContentObject@2@W4WhatFlags@ContentChanges@2@@Z
+                         696 ?GetDocument@ContentAction@ArtDoc@@QEBAAEAVDocument@2@XZ
+                         956 ?PostActionSelf@ContentAction@ArtDoc@@UEBAXXZ
+                         8C0 ?IsAllowed@ContentAction@ArtDoc@@UEBA_NXZ
+                         B2F ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVImageMask@2@@Z
+                         B37 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVText@2@@Z
+                         B35 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPath@2@@Z
+                         B36 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVStrokable@2@@Z
+                         B2C ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVFillable@2@@Z
+                         B2E ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVImage@2@@Z
+                         B28 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVClippable@2@@Z
+                         B39 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVTransformable@2@@Z
+                         B2A ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVContentObject@2@@Z
+                         B32 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPageContent@2@@Z
+                         B29 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVContent@2@@Z
+                         B31 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPage@2@@Z
+                         B33 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVPart@2@@Z
+                         B34 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVParts@2@@Z
+                         B2B ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVDocument@2@@Z
+                         574 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVTextGroup@2@@Z
+                         56C ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVLayer@2@@Z
+                         569 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVGroup@2@@Z
+                         56B ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVImageMask@2@@Z
+                         573 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVText@2@@Z
+                         571 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPath@2@@Z
+                         572 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVStrokable@2@@Z
+                         568 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVFillable@2@@Z
+                         56A ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVImage@2@@Z
+                         563 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVBlendable@2@@Z
+                         564 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVClippable@2@@Z
+                         575 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVTransformable@2@@Z
+                         566 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVContentObject@2@@Z
+                         56E ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPageContent@2@@Z
+                         565 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVContent@2@@Z
+                         56D ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPage@2@@Z
+                         56F ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVPart@2@@Z
+                         570 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVParts@2@@Z
+                         567 ?EndVisit@VisitorBase@ArtDoc@@UEAAXAEAVDocument@2@@Z
+                          C4 ??0Factory@Transparency@ArtBlend@@QEAA@V?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@@Z
+                         1F2 ??1Factory@Transparency@ArtBlend@@QEAA@XZ
+                         A10 ?SetFillAlpha@Factory@Transparency@ArtBlend@@QEAAAEAV123@VComponent@ArtColor@@@Z
+                         A8D ?SetStrokeAlpha@Factory@Transparency@ArtBlend@@QEAAAEAV123@VComponent@ArtColor@@@Z
+                         5B6 ?Get@Factory@Transparency@ArtBlend@@QEAA?AV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@PEBVDocument@ArtDoc@@@Z
+                         52D ?DoAction@ActionList@ArtDoc@@AEAAPEBVAction@2@V?$unique_ptr@VAction@ArtDoc@@U?$default_delete@VAction@ArtDoc@@@std@@@std@@@Z
+                         5BB ?GetActionList@Action@ArtDoc@@AEAAAEAVActionList@2@XZ
+                         70D ?GetGroupColorSpace@Content@ArtDoc@@QEBAAEBV?$variant@Umonostate@std@@UDeviceGray@ArtColor@@UDeviceRGB@4@UDeviceCMYK@ArtBlend@@UCalGray@4@UCalRGB@4@UICCGray@4@UICCRGB@4@UICCCMYK@4@@std@@XZ
+                         644 ?GetContent@SoftMask@ArtBlend@@QEBAAEAVContent@ArtDoc@@XZ
+                         8C3 ?IsAlpha@SoftMask@ArtBlend@@QEBA_NXZ
+                         849 ?GetTransferFunction@SoftMask@ArtBlend@@QEBAAEBV?$variant@_NV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@@std@@XZ
+                          C0 ??0Factory@SoftMask@ArtBlend@@QEAA@PEAVCloneStrategy@ArtDoc@@V?$shared_ptr@$$CBVSoftMask@ArtBlend@@@std@@AEBV?$variant@Umonostate@std@@UDeviceGray@ArtColor@@UDeviceRGB@4@UDeviceCMYK@ArtBlend@@UCalGray@4@UCalRGB@4@UICCGray@4@UICCRGB@4@UICCCMYK@4@@6@@Z
+                         1F0 ??1Factory@SoftMask@ArtBlend@@QEAA@XZ
+                         9D5 ?SetBackdropColor@Factory@SoftMask@ArtBlend@@QEAAAEAV123@V?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@@Z
+                         5B2 ?Get@Factory@SoftMask@ArtBlend@@QEAA?AV?$shared_ptr@$$CBVSoftMask@ArtBlend@@@std@@XZ
+                         A84 ?SetSoftMask@Factory@Transparency@ArtBlend@@QEAAAEAV123@V?$shared_ptr@$$CBVSoftMask@ArtBlend@@@std@@@Z
+                         AA4 ?SetTransferFunction@Factory@SoftMask@ArtBlend@@QEAAAEAV123@AEBV?$variant@_NV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@@std@@@Z
+                         796 ?GetOutsideAlpha@ArtBlend@@YA?AVComponent@ArtColor@@AEBVSoftMask@1@@Z
+                         A35 ?SetIsolated@Factory@Transparency@ArtBlend@@QEAAAEAV123@_N@Z
+                         A38 ?SetKnockout@Factory@Transparency@ArtBlend@@QEAAAEAV123@_N@Z
+                         A39 ?SetKnockoutShape@Factory@Transparency@ArtBlend@@QEAAAEAV123@_N@Z
+                         90E ?IsWhitePreserving@ArtBlend@@YA_NW4BlendMode@1@@Z
+                         9DC ?SetBlendMode@Factory@Transparency@ArtBlend@@QEAAAEAV123@W4BlendMode@3@@Z
+                         802 ?GetRepresentation@ArtColor@@YAAEBVRepresentation@1@W4Type@CmykIndex@1@@Z
+                         74F ?GetList@Separations@ArtDoc@@QEBA?AUList@12@_N@Z
+                         81C ?GetSeparations@Content@ArtDoc@@QEAAAEAVSeparations@2@XZ
+                          90 ??0Entry@Separation@ArtDoc@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4InkType@12@AEBVRepresentation@ArtColor@@AEBV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@4@AEBV?$variant@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4PredefinedPrintingMethod@Separation@ArtDoc@@@4@AEBV?$optional@_K@4@@Z
+                         1DA ??1Entry@Separation@ArtDoc@@QEAA@XZ
+                          8F ??0Entry@Separation@ArtDoc@@QEAA@AEBV012@@Z
+                         925 ?MergeSeparationInfo@Separation@ArtDoc@@YA?AV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@AEBV34@0@Z
+                         816 ?GetSeparationInfo@Document@ArtDoc@@QEBAAEBV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@XZ
+                          37 ??0ActionGroupCreator@ArtDoc@@QEAA@AEAVDocument@1@_N1@Z
+                         1A9 ??1ActionGroupCreator@ArtDoc@@QEAA@XZ
+                         8F7 ?IsProcessColorName@ArtDoc@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         8A7 ?InsertAfter@ContentObject@ArtDoc@@QEAAAEAV12@AEAV12@@Z
+                         57F ?ExtractFromParent@ContentObject@ArtDoc@@QEAAPEAV12@XZ
+                         7AF ?GetParent@ContentObject@ArtDoc@@QEAAPEAVGroup@2@XZ
+                         481 ?AddOnTop@Content@ArtDoc@@QEAAXPEAVContentObject@2@@Z
+                         482 ?AddOnTop@Group@ArtDoc@@QEAAXPEAVContentObject@2@@Z
+                         63A ?GetContent@ContentAction@ArtDoc@@QEBAAEAVContent@2@XZ
+                         785 ?GetOnDocumentCreated@ArtDoc@@YAAEAV?$signal@$$A6AXAEAVDocument@ArtDoc@@@ZV?$optional_last_value@X@signals2@boost@@HU?$less@H@std@@V?$function@$$A6AXAEAVDocument@ArtDoc@@@Z@5@V?$function@$$A6AXAEBVconnection@signals2@boost@@AEAVDocument@ArtDoc@@@Z@5@Vdummy_mutex@45@@signals2@boost@@XZ
+                         721 ?GetID@Content@ArtDoc@@QEBA_KXZ
+                         784 ?GetObjectWithID@Content@ArtDoc@@QEBAPEAVContentObject@2@_K@Z
+                         647 ?GetContentTracker@Document@ArtDoc@@QEBAAEAVContentTracker@2@XZ
+                         5FE ?GetChangeCollector@Document@ArtDoc@@QEBAAEAVChangeCollector@2@XZ
+                         63E ?GetContent@ContentTracker@ArtDoc@@QEBAPEBUValue@12@_K@Z
+                         63F ?GetContent@FormPaint@ArtPaint@@QEBAAEAVContent@ArtDoc@@XZ
+                          9F ??0Extension@ChangeCollector@ArtDoc@@QEAA@AEBV12@@Z
+                         1E1 ??1Extension@ChangeCollector@ArtDoc@@UEAA@XZ
+                         699 ?GetDocument@Extension@ChangeCollector@ArtDoc@@IEBAAEAVDocument@3@XZ
+                         5FF ?GetChangeCollectorExtension@ChangeCollector@ArtDoc@@QEBAAEAVExtension@12@AEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@@Z
+                         979 ?RegisterChangeCollectorExtension@ChangeCollector@ArtDoc@@QEAAXAEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@V?$unique_ptr@VExtension@ChangeCollector@ArtDoc@@U?$default_delete@VExtension@ChangeCollector@ArtDoc@@@std@@@4@@Z
+                         7E4 ?GetProperties@Document@ArtDoc@@QEAAAEAVProperties@2@XZ
+                         9C1 ?ReplaceObject@ArtDoc@@YAPEAVContentObject@1@PEAV21@0@Z
+                         9FE ?SetDefiningCompound@Path@ArtDoc@@QEAAXV?$shared_ptr@$$CBVCompound@YAGL@@@std@@@Z
+                         528 ?DefiningCompound@Path@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                         8BE ?IsActionDone@Action@ArtDoc@@IEBA_NXZ
+                         8C4 ?IsAtomic@ArtDoc@@YA_NAEBVGroup@1@@Z
+                         B38 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVTextGroup@2@@Z
+                         B30 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVLayer@2@@Z
+                         B27 ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVBlendable@2@@Z
+                         5CC ?GetAppearance@Annotation@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@XZ
+                         5CD ?GetAppearanceTransformation@Annotation@ArtDoc@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         8F6 ?IsPrinted@Annotation@ArtDoc@@QEBA_NW4AnnotationAppearanceSelection@2@@Z
+                         1C4 ??1ConstVisitorBase@ArtDoc@@UEAA@XZ
+                          61 ??0ConstVisitorBase@ArtDoc@@QEAA@XZ
+                         AB1 ?SetTransformation@Transformable@ArtDoc@@QEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4TransformationMode@2@@Z
+                         850 ?GetTransformation@Transformable@ArtDoc@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         57C ?Evaluate@ArtDoc@@YA_NAEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@AEBV?$function@$$A6A_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z@3@@Z
+                         6C0 ?GetExpression@Layer@ArtDoc@@QEBAAEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@XZ
+                         614 ?GetChildren@Content@ArtDoc@@QEBAAEBV?$List@VContentObject@ArtDoc@@@Detail@2@XZ
+                         5C9 ?GetAnnotationsBegin@Page@ArtDoc@@QEBA?AV?$indirect_iterator@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VAnnotation@ArtDoc@@U?$default_delete@VAnnotation@ArtDoc@@@std@@@std@@@std@@@std@@@std@@$$CBVAnnotation@ArtDoc@@Uuse_default@boost@@U56@U56@@iterators@boost@@XZ
+                         5CB ?GetAnnotationsEnd@Page@ArtDoc@@QEBA?AV?$indirect_iterator@V?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VAnnotation@ArtDoc@@U?$default_delete@VAnnotation@ArtDoc@@@std@@@std@@@std@@@std@@@std@@$$CBVAnnotation@ArtDoc@@Uuse_default@boost@@U56@U56@@iterators@boost@@XZ
+                         8DC ?IsFilled@Fillable@ArtDoc@@QEBA_NXZ
+                         79C ?GetPage@PageContent@ArtDoc@@QEBAAEBVPage@2@XZ
+                         8FF ?IsStroked@Strokable@ArtDoc@@QEBA_NXZ
+                         13C ??0Path@ArtDoc@@QEAA@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@Z
+                         236 ??1Path@ArtDoc@@UEAA@XZ
+                         AE5 ?TransformedCompound@Path@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@PEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         AC9 ?StrokedCompound@Path@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@PEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         8C8 ?IsClippingObject@Path@ArtDoc@@UEBA_NXZ
+                         AE6 ?TransformedCompounds@Text@ArtDoc@@QEBAAEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@std@@PEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         ACA ?StrokedCompounds@Text@ArtDoc@@QEBAAEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@std@@PEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         8C9 ?IsClippingObject@TextGroup@ArtDoc@@UEBA_NXZ
+                         85E ?GetType@Paint@ArtPaint@@QEBA?AW4Type@12@XZ
+                         6F3 ?GetFormTransformation@FormPaint@ArtPaint@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         6F1 ?GetFormBBox@FormPaint@ArtPaint@@QEBAAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         84C ?GetTransformation@PatternPaint@ArtPaint@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         643 ?GetContent@PatternPaint@ArtPaint@@QEBAAEAVContent@ArtDoc@@XZ
+                         5FC ?GetCellClip@PatternPaint@ArtPaint@@QEBAAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         82B ?GetStep@PatternPaint@ArtPaint@@QEBAAEBV?$DimensionBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         84E ?GetTransformation@ShadingPaint@ArtPaint@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         5DA ?GetBackground@ShadingPaint@ArtPaint@@QEBAAEBV?$optional@V?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@@std@@XZ
+                         446 ?Accept@Path@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         447 ?Accept@Path@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         4D4 ?Clone@Path@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         949 ?OriginalOutlineChangedSelf@Path@ArtDoc@@EEAAXXZ
+                         AE1 ?TransformationChangedSelf@Path@ArtDoc@@EEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4TransformationMode@2@@Z
+                         AC7 ?StrokePropertiesChangedSelf@Path@ArtDoc@@EEAAXXZ
+                         5F1 ?GetBoundingBoxSelf@Path@ArtDoc@@EEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4BoxKind@2@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@4@@Z
+                         546 ?DumpInfo@Path@ArtDoc@@EEBA?AU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@XZ
+                         A4F ?SetName@ContentObject@ArtDoc@@UEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         770 ?GetName@ContentObject@ArtDoc@@UEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         4E3 ?ContentChangedSelf@ContentObject@ArtDoc@@MEAAXPEAVContent@2@0@Z
+                         968 ?PropagateVisitorSelf@Visitable@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         967 ?PropagateVisitorSelf@Visitable@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         4C0 ?ClippingObjectChangedSelf@Clippable@ArtDoc@@MEAAXXZ
+                         B24 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVText@2@@Z
+                         B23 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVStrokable@2@@Z
+                         B19 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVFillable@2@@Z
+                         B14 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVBlendable@2@@Z
+                         B15 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVClippable@2@@Z
+                         B26 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVTransformable@2@@Z
+                         B17 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVContentObject@2@@Z
+                         B1F ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVPageContent@2@@Z
+                         B1E ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVPage@2@@Z
+                         B20 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVPart@2@@Z
+                         B21 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVParts@2@@Z
+                         B18 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVDocument@2@@Z
+                         561 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVTextGroup@2@@Z
+                         559 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVLayer@2@@Z
+                         556 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVGroup@2@@Z
+                         560 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVText@2@@Z
+                         558 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVImageMask@2@@Z
+                         55E ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVPath@2@@Z
+                         55F ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVStrokable@2@@Z
+                         555 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVFillable@2@@Z
+                         557 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVImage@2@@Z
+                         550 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVBlendable@2@@Z
+                         551 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVClippable@2@@Z
+                         562 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVTransformable@2@@Z
+                         553 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVContentObject@2@@Z
+                         552 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVContent@2@@Z
+                         55A ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVPage@2@@Z
+                         55C ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVPart@2@@Z
+                         55D ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVParts@2@@Z
+                         554 ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVDocument@2@@Z
+                          60 ??0ConstVisitorBase@ArtDoc@@QEAA@AEBV01@@Z
+                         2EF ??4ConstVisitorBase@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         185 ??0VisitorBase@ArtDoc@@QEAA@AEBV01@@Z
+                         335 ??4VisitorBase@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         B2D ?Visit@VisitorBase@ArtDoc@@UEAA_NAEAVGroup@2@@Z
+                         B25 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVTextGroup@2@@Z
+                         B1A ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVGroup@2@@Z
+                         B1C ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVImageMask@2@@Z
+                         B22 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVPath@2@@Z
+                         B1B ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVImage@2@@Z
+                         B16 ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVContent@2@@Z
+                         55B ?EndVisit@ConstVisitorBase@ArtDoc@@UEAAXAEBVPageContent@2@@Z
+                          54 ??0CloneStrategy@ArtDoc@@QEAA@AEAVDocument@1@W4CloneFlags@01@@Z
+                         1B9 ??1CloneStrategy@ArtDoc@@QEAA@XZ
+                         7B0 ?GetParent@ContentObject@ArtDoc@@QEBAPEBVGroup@2@XZ
+                         8C7 ?IsClippingObject@ContentObject@ArtDoc@@UEBA_NXZ
+                         4EB ?ContourizeText@ArtDocUtils@@YA?AV?$unique_ptr@VBlendable@ArtDoc@@U?$default_delete@VBlendable@ArtDoc@@@std@@@std@@AEBVText@ArtDoc@@AEAVCloneStrategy@5@@Z
+                         4EC ?ContourizeText@ArtDocUtils@@YA?AV?$unique_ptr@VBlendable@ArtDoc@@U?$default_delete@VBlendable@ArtDoc@@@std@@@std@@AEBVTextGroup@ArtDoc@@AEAVCloneStrategy@5@@Z
+                         740 ?GetLayers@Document@ArtDoc@@QEAAAEAVLayers@2@XZ
+                         105 ??0Layer@ArtDoc@@QEAA@AEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@@Z
+                         21A ??1Layer@ArtDoc@@UEAA@XZ
+                         A6E ?SetProcessingStep@LayerProperties@ArtDoc@@QEAAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z
+                         11F ??0Node@LayerConfiguration@ArtDoc@@QEAA@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+                         228 ??1Node@LayerConfiguration@ArtDoc@@QEAA@XZ
+                         108 ??0LayerConfiguration@ArtDoc@@QEAA@_N@Z
+                         8AA ?InsertLayerBefore@LayerConfiguration@ArtDoc@@QEAA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBUNode@12@AEBV34@@Z
+                         8A9 ?InsertLayerAfter@LayerConfiguration@ArtDoc@@QEAA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBUNode@12@AEBV34@@Z
+                         21B ??1LayerConfiguration@ArtDoc@@QEAA@XZ
+                         107 ??0LayerConfiguration@ArtDoc@@QEAA@AEBV01@@Z
+                         30E ??4LayerConfiguration@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         73C ?GetLayerPositionForInsertingBefore@ArtDoc@@YA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBVLayerConfiguration@1@AEBVContent@1@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@3@@Z
+                         73B ?GetLayerPositionForInsertingAfter@ArtDoc@@YA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBVLayerConfiguration@1@AEBVContent@1@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@3@@Z
+                         478 ?AddLayer@Layers@ArtDoc@@QEAA?AV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@4@@Z
+                         479 ?AddLayer@Layers@ArtDoc@@QEAAXAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+                         9B3 ?RemoveLayer@Layers@ArtDoc@@QEAAXAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+                         678 ?GetDefaultConfiguration@Layers@ArtDoc@@QEAAAEAVLayerConfiguration@2@XZ
+                         9F7 ?SetDefaultConfiguration@Layers@ArtDoc@@QEAAXAEBVLayerConfiguration@2@@Z
+                         70F ?GetGroupName@Key@ProcessingSteps@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         860 ?GetTypeName@Key@ProcessingSteps@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         214 ??1Key@ProcessingSteps@ArtDoc@@QEAA@XZ
+                          FC ??0Key@ProcessingSteps@ArtDoc@@QEAA@AEBV012@@Z
+                         43B ?Accept@Layer@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         43C ?Accept@Layer@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         4D0 ?Clone@Layer@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         A51 ?SetName@Layer@ArtDoc@@UEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         776 ?GetName@Layer@ArtDoc@@UEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         545 ?DumpInfo@Layer@ArtDoc@@EEBA?AU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@XZ
+                         4E5 ?ContentChangedSelf@Layer@ArtDoc@@EEAAXPEAVContent@2@0@Z
+                         94B ?OriginalOutlineChangedSelf@Transformable@ArtDoc@@MEAAXXZ
+                         960 ?PropagateVisitorSelf@Group@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         95F ?PropagateVisitorSelf@Group@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         AE0 ?TransformationChangedSelf@Group@ArtDoc@@MEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4TransformationMode@2@@Z
+                         4C1 ?ClippingObjectChangedSelf@Group@ArtDoc@@MEAAXXZ
+                         5EE ?GetBoundingBoxSelf@Group@ArtDoc@@MEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4BoxKind@2@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@4@@Z
+                         4B5 ?ChildChangedSelf@Group@ArtDoc@@EEAAXAEAVContentObject@2@W4WhatChangedFlags@32@@Z
+                          67 ??0ContentChanges@ArtDoc@@QEAA@AEBVContent@1@@Z
+                          68 ??0ContentChanges@ArtDoc@@QEAA@AEBVContent@1@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4WhatFlags@01@@Z
+                         48E ?AddToChangedInfo@ContentChanges@ArtDoc@@QEAAXAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4WhatFlags@12@@Z
+                         1C7 ??1ContentChanges@ArtDoc@@QEAA@XZ
+                         8B9 ?Instance@ChangesDispatcher@ArtDoc@@SAAEAV12@XZ
+                         92F ?Notify@ChangesDispatcher@ArtDoc@@QEAAXAEBVContentChanges@2@@Z
+                          E6 ??0GroupChanges@ArtDoc@@QEAA@XZ
+                         20A ??1GroupChanges@ArtDoc@@QEAA@XZ
+                         8A8 ?InsertBefore@ContentObject@ArtDoc@@QEAAAEAV12@AEAV12@@Z
+                         940 ?ObjectWillBeDeleted@DynamicObjectController@ArtDoc@@UEAAXAEAVContentObject@2@@Z
+                         93D ?ObjectInserted@DynamicObjectController@ArtDoc@@UEAAXAEAVContentObject@2@@Z
+                         93A ?ObjectExtracted@DynamicObjectController@ArtDoc@@UEAAXAEAVContentObject@2@V?$variant@PEBVContentObject@ArtDoc@@PEBVContent@2@@std@@@Z
+                         17D ??0TransformationRestorer@ArtDocUtils@@QEAA@PEAVContentObject@ArtDoc@@@Z
+                         25B ??1TransformationRestorer@ArtDocUtils@@QEAA@XZ
+                         9C7 ?RestoreTransformation@TransformationRestorer@ArtDocUtils@@QEAAXXZ
+                          7A ??0DocumentAction@ArtDoc@@QEAA@AEAVDocument@1@V?$Flags@W4Permission@Security@ArtDoc@@@Core@ArtSys@@@Z
+                         1D2 ??1DocumentAction@ArtDoc@@UEAA@XZ
+                         669 ?GetCrosshair@Page@ArtDoc@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         9F2 ?SetCrosshair@Page@ArtDoc@@QEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         7A7 ?GetPagesBegin@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         7A9 ?GetPagesEnd@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         955 ?PostActionSelf@Action@ArtDoc@@MEBAXXZ
+                         8C1 ?IsAllowed@DocumentAction@ArtDoc@@UEBA_NXZ
+                         6A8 ?GetDynamicObjects@Document@ArtDoc@@QEBAAEBVDynamicObjectController@2@XZ
+                         B3A ?VisitContent@ArtDoc@@YAXAEAVContent@1@_NAEBV?$function@$$A6A_NAEBUValue@ContentTracker@ArtDoc@@@Z@std@@@Z
+                         683 ?GetDependentObjects@DynamicObjectController@ArtDoc@@UEBA?AV?$map@U?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@PEAVContentObject@ArtDoc@@U?$less@U?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@V?$allocator@U?$pair@$$CBU?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@PEAVContentObject@ArtDoc@@@std@@@2@@std@@PEAVContentObject@2@@Z
+                         9A5 ?RelinkDependentObjects@DynamicObjectController@ArtDoc@@UEAAX_NAEBV?$map@U?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@PEAVContentObject@ArtDoc@@U?$less@U?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@V?$allocator@U?$pair@$$CBU?$pair@PEAVContentObject@ArtDoc@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@PEAVContentObject@ArtDoc@@@std@@@2@@std@@@Z
+                         866 ?GetUsedLayerProperties@ArtDoc@@YA?AV?$vector@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@V?$allocator@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@2@@std@@AEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@3@@Z
+                         8EB ?IsLayerUsed@Layers@ArtDoc@@QEBA_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+                         B1D ?Visit@ConstVisitorBase@ArtDoc@@UEAA_NAEBVLayer@2@@Z
+                         692 ?GetDistortion@Document@ArtDoc@@QEBAAEBV?$array@N$01@std@@XZ
+                         A00 ?SetDistortion@Document@ArtDoc@@QEAAXAEBV?$array@N$01@std@@@Z
+                         697 ?GetDocument@DocumentAction@ArtDoc@@QEBAAEAVDocument@2@XZ
+                         72C ?GetInfoFlag@Document@ArtDoc@@QEBA_NW4DocumentInfoFlagKey@2@@Z
+                         A2D ?SetInfoFlag@Document@ArtDoc@@QEAAXW4DocumentInfoFlagKey@2@_N@Z
+                         B5A ?kNothing@Security@ArtDoc@@2V?$Flags@W4Permission@Security@ArtDoc@@@Core@ArtSys@@B
+                         63D ?GetContent@ContentObject@ArtDoc@@QEBAPEBVContent@2@XZ
+                         5B9 ?GetAbsoluteTransformation@ArtDoc@@YA?AV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBVTransformable@1@@Z
+                         7AD ?GetPaintedPicture@Image@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVPaintedPicture@ArtImg@@@std@@XZ
+                         7C5 ?GetPictureData@ImageMask@ArtDoc@@QEBAAEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@XZ
+                         1B7 ??1ChannelInfo@ArtImg@@QEAA@XZ
+                          4F ??0ChannelInfo@ArtImg@@QEAA@AEBV01@@Z
+                         84D ?GetTransformation@PictureSource@ArtImg@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                          45 ??0BufferedPictureSource@ArtImg@@QEAA@V?$shared_ptr@$$CBVPictureBuffer@ArtImg@@@std@@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@V?$vector@VChannelInfo@ArtImg@@V?$allocator@VChannelInfo@ArtImg@@@std@@@3@V?$shared_ptr@$$CBVColorTable@ArtColor@@@3@V?$optional@UResolution@ArtImg@@@3@V?$shared_ptr@$$CBVCompound@YAGL@@@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         1B1 ??1BufferedPictureSource@ArtImg@@UEAA@XZ
+                         7C6 ?GetPictureData@PaintedPicture@ArtImg@@QEBAAEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@_N@Z
+                         75F ?GetMaskKind@PaintedPicture@ArtImg@@QEBA?AW4MaskKind@2@_N@Z
+                         75C ?GetMaskData@PaintedPicture@ArtImg@@QEBAAEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@_N@Z
+                         824 ?GetSoftMaskMapping@PaintedPicture@ArtImg@@QEBAAEBVValue@ChannelMappingPolicy@ArtColor@@_N@Z
+                          B4 ??0Factory@PaintedPicture@ArtImg@@QEAA@AEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVPaintedPicture@ArtImg@@@std@@_N@Z
+                         1EB ??1Factory@PaintedPicture@ArtImg@@QEAA@XZ
+                         A64 ?SetPictureData@Factory@PaintedPicture@ArtImg@@QEAAAEAV123@V?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@@Z
+                         A45 ?SetMaskData@Factory@PaintedPicture@ArtImg@@QEAAAEAV123@V?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@@Z
+                         5AE ?Get@Factory@PaintedPicture@ArtImg@@QEAA?AV?$shared_ptr@$$CBVPaintedPicture@ArtImg@@@std@@XZ
+                         238 ??1PictureBuffer@ArtImg@@QEAA@XZ
+                         813 ?GetRowPtr@PictureBuffer@ArtImg@@QEBAPEBE_K@Z
+                          B9 ??0Factory@PictureBuffer@ArtImg@@QEAA@_K000@Z
+                         1ED ??1Factory@PictureBuffer@ArtImg@@QEAA@XZ
+                         80A ?GetResult@Factory@PictureBuffer@ArtImg@@QEAA?AV?$unique_ptr@$$CBVPictureBuffer@ArtImg@@U?$default_delete@$$CBVPictureBuffer@ArtImg@@@std@@@std@@XZ
+                         812 ?GetRowPtr@Factory@PictureBuffer@ArtImg@@QEAAPEAE_K@Z
+                          BB ??0Factory@PictureData@ArtImg@@QEAA@AEBVDocument@ArtDoc@@V?$shared_ptr@$$CBVPictureSource@ArtImg@@@std@@@Z
+                         1EE ??1Factory@PictureData@ArtImg@@QEAA@XZ
+                         A77 ?SetResolution@Factory@PictureData@ArtImg@@QEAAAEAV123@V?$optional@UResolution@ArtImg@@@std@@@Z
+                         5B0 ?Get@Factory@PictureData@ArtImg@@QEAA?AV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@XZ
+                         806 ?GetResolution@PictureData@ArtImg@@QEBAAEBV?$optional@UResolution@ArtImg@@@std@@XZ
+                         877 ?GetWidth@PictureData@ArtImg@@QEBA_KXZ
+                         71D ?GetHeight@PictureData@ArtImg@@QEBA_KXZ
+                         7C0 ?GetPictureBuffer@PictureData@ArtImg@@QEBA?AV?$shared_ptr@$$CBVPictureBuffer@ArtImg@@@std@@_N@Z
+                         5A3 ?Get8BitPictureBuffer@PictureData@ArtImg@@QEBA?AV?$shared_ptr@$$CBVPictureBuffer@ArtImg@@@std@@XZ
+                         7C8 ?GetPictureSource@PictureData@ArtImg@@QEBAAEBV?$shared_ptr@$$CBVPictureSource@ArtImg@@@std@@XZ
+                         635 ?GetCombinedClippingObject@Group@ArtDoc@@QEBA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                         61B ?GetClippingObject@ArtDoc@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$List@VContentObject@ArtDoc@@@Detail@1@@Z
+                         75B ?GetMapping@ImageImpersonator@DocumentIO@@QEBAAEBV?$ColorList@UImpersonatorMappingPolicy@DocumentIO@@@ArtColor@@_N@Z
+                         823 ?GetSoftMaskMapping@ImageImpersonator@DocumentIO@@QEBAAEBVValue@ImpersonatorMappingPolicy@2@_N@Z
+                          B0 ??0Factory@ImageImpersonator@DocumentIO@@QEAA@AEBV12@_N@Z
+                         1EA ??1Factory@ImageImpersonator@DocumentIO@@QEAA@XZ
+                         A44 ?SetMapping@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@AEBV?$ColorList@UImpersonatorMappingPolicy@DocumentIO@@@ArtColor@@@Z
+                         A85 ?SetSoftMaskMapping@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@AEBVValue@ImpersonatorMappingPolicy@3@@Z
+                         AAE ?SetTransformation@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         5AD ?Get@Factory@ImageImpersonator@DocumentIO@@QEAA?AV?$unique_ptr@VBlendable@ArtDoc@@U?$default_delete@VBlendable@ArtDoc@@@std@@@std@@AEAVDocument@ArtDoc@@@Z
+                         7BF ?GetPictureBuffer@BufferedPictureSource@ArtImg@@UEBA?AV?$shared_ptr@$$CBVPictureBuffer@ArtImg@@@std@@XZ
+                         630 ?GetColorTable@BufferedPictureSource@ArtImg@@UEBA?AV?$shared_ptr@$$CBVColorTable@ArtColor@@@std@@XZ
+                         60C ?GetChannelInfoMapping@BufferedPictureSource@ArtImg@@UEBAAEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@XZ
+                         872 ?GetWidth@BufferedPictureSource@ArtImg@@UEBA_KXZ
+                         718 ?GetHeight@BufferedPictureSource@ArtImg@@UEBA_KXZ
+                         805 ?GetResolution@BufferedPictureSource@ArtImg@@UEBA?AV?$optional@UResolution@ArtImg@@@std@@XZ
+                         5DF ?GetBitsPerChannel@BufferedPictureSource@ArtImg@@UEBA_KXZ
+                         60D ?GetChannelInfos@BufferedPictureSource@ArtImg@@UEBAAEBV?$vector@VChannelInfo@ArtImg@@V?$allocator@VChannelInfo@ArtImg@@@std@@@std@@XZ
+                         61C ?GetClippingPath@BufferedPictureSource@ArtImg@@UEBA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                         7C9 ?GetPictureStream@PictureSource@ArtImg@@UEBA?AV?$unique_ptr@VPictureStream@ArtImg@@U?$default_delete@VPictureStream@ArtImg@@@std@@@std@@XZ
+                         82F ?GetStreamType@PictureSource@ArtImg@@UEBA?AW4Type@PictureStream@2@XZ
+                         905 ?IsUsingLayerProperties@ArtDoc@@YA_NAEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@3@@Z
+                         9C0 ?ReplaceLayerProperties@ArtDoc@@YA?AV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@AEBV23@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@3@1@Z
+                         A0A ?SetExpression@Layer@ArtDoc@@QEAAXAEBV?$variant@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@ULogicalLayerExpression@ArtDoc@@@std@@@Z
+                         915 ?LayersChanged@DynamicObjectController@ArtDoc@@UEAAXXZ
+                         A3C ?SetLayerPrinting@LayerConfiguration@ArtDoc@@QEAAXAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@_N@Z
+                         8EA ?IsLayerPrinting@LayerConfiguration@ArtDoc@@QEBA_NAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@Z
+                         4DA ?CloneLayer@Layers@ArtDoc@@QEAA?AV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@AEBV34@@Z
+                         127 ??0OpenFileHandler@DocumentIO@@QEAA@XZ
+                         22B ??1OpenFileHandler@DocumentIO@@UEAA@XZ
+                         731 ?GetInstance@FileDispatcher@DocumentIO@@SAAEAV12@XZ
+                         984 ?RegisterFileHandler@FileDispatcher@DocumentIO@@QEAAXAEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@V?$unique_ptr@VOpenFileHandler@DocumentIO@@U?$default_delete@VOpenFileHandler@DocumentIO@@@std@@@4@@Z
+                         11C ??0Module@ArtDoc@@QEAA@XZ
+                         227 ??1Module@ArtDoc@@UEAA@XZ
+                         4B1 ?Cancel@OpenFileHandler@DocumentIO@@UEAAXXZ
+                         9CB ?Rewind@ErrorRecorder@ArtDoc@@QEBAXXZ
+                         952 ?Playback@ErrorRecorder@ArtDoc@@QEBAXXZ
+                         1DD ??1ErrorRecorder@ArtDoc@@QEAA@XZ
+                          96 ??0ErrorRecorder@ArtDoc@@QEAA@AEBV01@@Z
+                         613 ?GetChildren@Content@ArtDoc@@QEAAAEAV?$List@VContentObject@ArtDoc@@@Detail@2@XZ
+                         504 ?CopyBlendableMetadata@ArtDoc@@YAXAEBVBlendable@1@AEAV21@AEAVCloneStrategy@1@@Z
+                         505 ?CopyFillableMetadata@ArtDoc@@YAXAEBVFillable@1@AEAV21@AEAVCloneStrategy@1@@Z
+                         8A3 ?HasTransparency@Blendable@ArtDoc@@QEBA_NXZ
+                         9E9 ?SetClippingObject@Path@ArtDoc@@QEAAX_N@Z
+                          E3 ??0Group@ArtDoc@@QEAA@W4Flags@01@@Z
+                         208 ??1Group@ArtDoc@@UEAA@XZ
+                         4D8 ?CloneAsSingleFilledPaths@ArtDocUtils@@YA?AV?$unique_ptr@VBlendable@ArtDoc@@U?$default_delete@VBlendable@ArtDoc@@@std@@@std@@AEBVPath@ArtDoc@@AEAVCloneStrategy@5@@Z
+                         433 ?Accept@Group@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         434 ?Accept@Group@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         4CA ?Clone@Group@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         541 ?DumpInfo@Group@ArtDoc@@UEBA?AU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@XZ
+                         4E4 ?ContentChangedSelf@Group@ArtDoc@@MEAAXPEAVContent@2@0@Z
+                         1A7 ??1Action@ArtDoc@@UEAA@XZ
+                          35 ??0Action@ArtDoc@@IEAA@AEAVActionList@1@V?$Flags@W4Permission@Security@ArtDoc@@@Core@ArtSys@@@Z
+                         A09 ?SetErrorReporter@Action@ArtDoc@@QEAAXPEAVErrorReporter@Core@ArtSys@@@Z
+                         5BC ?GetActionList@Document@ArtDoc@@QEBAAEAVActionList@2@XZ
+                         48D ?AddSublayerOnTop@LayerConfiguration@ArtDoc@@QEAA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBUNode@12@AEBV34@@Z
+                         73D ?GetLayerPositions@ArtDoc@@YA?AV?$vector@V?$vector@_KV?$allocator@_K@std@@@std@@V?$allocator@V?$vector@_KV?$allocator@_K@std@@@std@@@2@@std@@AEBVLayerConfiguration@1@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@3@@Z
+                         8DB ?IsFillable@Fillable@ArtDoc@@QEBA_NXZ
+                         A12 ?SetFillable@Fillable@ArtDoc@@QEAAX_N@Z
+                         8FE ?IsStrokable@Strokable@ArtDoc@@QEBA_NXZ
+                         A8C ?SetStrokable@Strokable@ArtDoc@@QEAAX_N@Z
+                         693 ?GetDocument@CloneStrategy@ArtDoc@@QEBAAEAVDocument@2@XZ
+                         741 ?GetLayers@Document@ArtDoc@@QEBAAEBVLayers@2@XZ
+                         70E ?GetGroupColorSpace@Group@ArtDoc@@QEBAAEBV?$variant@Umonostate@std@@UDeviceGray@ArtColor@@UDeviceRGB@4@UDeviceCMYK@ArtBlend@@UCalGray@4@UCalRGB@4@UICCGray@4@UICCRGB@4@UICCCMYK@4@@std@@XZ
+                         A25 ?SetGroupColorSpace@Group@ArtDoc@@QEAAXAEBV?$variant@Umonostate@std@@UDeviceGray@ArtColor@@UDeviceRGB@4@UDeviceCMYK@ArtBlend@@UCalGray@4@UCalRGB@4@UICCGray@4@UICCRGB@4@UICCCMYK@4@@std@@@Z
+                         69C ?GetDocument@LayerProperties@ArtDoc@@QEBAAEBVDocument@2@XZ
+                         679 ?GetDefaultConfiguration@Layers@ArtDoc@@QEBAAEBVLayerConfiguration@2@XZ
+                         4D7 ?Clone@TextGroup@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                          A9 ??0Factory@FormPaint@ArtPaint@@QEAA@AEAVDocument@ArtDoc@@@Z
+                         1E7 ??1Factory@FormPaint@ArtPaint@@QEAA@XZ
+                         A15 ?SetFormTransformation@Factory@FormPaint@ArtPaint@@QEAAAEAV123@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         A14 ?SetFormBBox@Factory@FormPaint@ArtPaint@@QEAAAEAV123@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         5AA ?Get@Factory@FormPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@XZ
+                         716 ?GetHalftones@Document@ArtDoc@@QEAAAEAVHalftones@2@XZ
+                         67C ?GetDefaultHalftone@Halftones@ArtDoc@@QEBA?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@XZ
+                         257 ??1Text@ArtDoc@@UEAA@XZ
+                         4D6 ?Clone@Text@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         842 ?GetTextTransformation@Text@ArtDoc@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         178 ??0TextGroup@ArtDoc@@QEAA@XZ
+                         9EA ?SetClippingObject@TextGroup@ArtDoc@@QEAAX_N@Z
+                         258 ??1TextGroup@ArtDoc@@UEAA@XZ
+                         57D ?ExpandPatternPaint@ArtDocUtils@@YA?AV?$unique_ptr@VGroup@ArtDoc@@U?$default_delete@VGroup@ArtDoc@@@std@@@std@@AEBV?$shared_ptr@$$CBVPatternPaint@ArtPaint@@@3@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         44C ?Accept@TextGroup@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         44D ?Accept@TextGroup@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         5F3 ?GetBoundingBoxSelf@TextGroup@ArtDoc@@MEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4BoxKind@2@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@4@@Z
+                         548 ?DumpInfo@TextGroup@ArtDoc@@EEBA?AU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@XZ
+                         61F ?GetCmyk@Representation@ArtColor@@QEBAAEBV?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@XZ
+                         804 ?GetRepresentation@Entry@Separation@ArtDoc@@QEBAAEBVRepresentation@ArtColor@@XZ
+                         58F ?Find@Separation@ArtDoc@@YA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@VEntry@Separation@ArtDoc@@@std@@@std@@@std@@AEBV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@4@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@4@@Z
+                         846 ?GetTitle@Document@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         82A ?GetStatusReporter@Document@ArtDoc@@QEBAAEAVStatusReporting@ArtSys@@XZ
+                         20F ??1Image@ArtDoc@@UEAA@XZ
+                         4CC ?Clone@Image@ArtDoc@@UEBAPEAV12@AEAVCloneStrategy@2@@Z
+                         695 ?GetDocument@Content@ArtDoc@@QEBAAEBVDocument@2@XZ
+                          F4 ??0ImageException@ArtImg@@QEAA@W4Error@01@AEBVpath@filesystem@boost@@@Z
+                          AA ??0Factory@FormPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@V?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@@Z
+                         80F ?GetRotatedBoundingBox@ArtDocUtils@@YA?AVRotatedRectangle@YAGL@@AEBVContentObject@ArtDoc@@NW4BoxKind@1@@Z
+                         853 ?GetTransformedBoundingBox@ArtDocUtils@@YA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBVContent@ArtDoc@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@3@W4BoxKind@1@@Z
+                          F3 ??0ImageException@ArtImg@@QEAA@AEBV01@@Z
+                         210 ??1ImageException@ArtImg@@UEAA@XZ
+                         938 ?ObjectChangedByUser@DynamicObjectController@ArtDoc@@UEBAXAEAVContentObject@2@@Z
+                         368 ??8ArtColor@@YA_NAEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@0@Z
+                         655 ?GetConvertedColor@FlatPaint@ArtPaint@@QEBAAEBV?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@XZ
+                         657 ?GetConvertedColor@PatternPaint@ArtPaint@@QEBAAEBV?$optional@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@@std@@XZ
+                         81D ?GetSeparations@Content@ArtDoc@@QEBAAEBVSeparations@2@XZ
+                         A16 ?SetFrequency@Halftone@ArtDoc@@QEAAXN@Z
+                         9D3 ?SetAngle@Halftone@ArtDoc@@QEAAXN@Z
+                         A05 ?SetDotShape@Halftone@ArtDoc@@QEAAXAEBVDotShape@2@@Z
+                         A04 ?SetDotGainCompensation@Halftone@ArtDoc@@QEAAXAEBV?$variant@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UPressSync@ArtDoc@@@std@@@Z
+                         20B ??1Halftone@ArtDoc@@QEAA@XZ
+                          E8 ??0Halftone@ArtDoc@@QEAA@AEBV01@@Z
+                          E7 ??0Halftone@ArtDoc@@QEAA@$$QEAV01@@Z
+                         309 ??4Halftone@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         308 ??4Halftone@ArtDoc@@QEAAAEAV01@$$QEAV01@@Z
+                         B5E ?shared_from_this@?$enable_shared_from_this@VHalftoneSet@ArtDoc@@@std@@QEAA?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@2@XZ
+                         69A ?GetDocument@HalftoneSet@ArtDoc@@QEAAAEAVDocument@2@XZ
+                         725 ?GetID@HalftoneSet@ArtDoc@@QEBA_KXZ
+                         A50 ?SetName@HalftoneSet@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         775 ?GetName@HalftoneSet@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         9F9 ?SetDefaultHalftone@HalftoneSet@ArtDoc@@QEAAXAEBVHalftone@2@@Z
+                         67B ?GetDefaultHalftone@HalftoneSet@ArtDoc@@QEBAAEBVHalftone@2@XZ
+                         A26 ?SetHalftone@HalftoneSet@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVHalftone@2@@Z
+                         710 ?GetHalftone@HalftoneSet@ArtDoc@@QEBA?AVHalftone@2@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         893 ?HasHalftone@HalftoneSet@ArtDoc@@QEBA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         9B0 ?RemoveHalftone@HalftoneSet@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          7D ??0DocumentChanges@ArtDoc@@QEAA@AEBVDocument@1@@Z
+                         490 ?AddToChangedInfo@DocumentChanges@ArtDoc@@QEAAXW4WhatFlags@12@_N@Z
+                         1D3 ??1DocumentChanges@ArtDoc@@QEAA@XZ
+                         930 ?Notify@ChangesDispatcher@ArtDoc@@QEAAXAEBVDocumentChanges@2@@Z
+                         42F ?Accept@Document@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         A28 ?SetHalftoneSet@Fillable@ArtDoc@@QEAAXV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         713 ?GetHalftoneSet@Fillable@ArtDoc@@QEBAAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@XZ
+                         473 ?AddHalftone@Halftones@ArtDoc@@QEAA?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@AEBV34@@Z
+                         480 ?AddNewHalftone@Halftones@ArtDoc@@QEAAXAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         8AB ?InsertNewHalftoneBefore@Halftones@ArtDoc@@QEAAXAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@0@Z
+                         9B1 ?RemoveHalftone@Halftones@ArtDoc@@QEAAXAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         917 ?MakeDefaultHalftone@Halftones@ArtDoc@@QEAAXAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         591 ?FindByID@Halftones@ArtDoc@@QEBA?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@_K@Z
+                         5DD ?GetBegin@Halftones@ArtDoc@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@std@@@std@@@std@@XZ
+                         6AE ?GetEnd@Halftones@ArtDoc@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@std@@@std@@@std@@XZ
+                         A29 ?SetHalftoneSet@Image@ArtDoc@@QEAAXV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         714 ?GetHalftoneSet@Image@ArtDoc@@QEBAAEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@XZ
+                         93C ?ObjectHalftoneSetChanged@PDF@ArtDoc@@YAXAEBVContentObject@2@@Z
+                         A27 ?SetHalftoneSet@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@AEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@Z
+                         625 ?GetColor@PatternPaint@ArtPaint@@QEBAAEBV?$optional@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@@std@@XZ
+                         6B3 ?GetErrorReporter@Action@ArtDoc@@QEBAAEAVErrorReporter@Core@ArtSys@@XZ
+                         A5B ?SetPaintedPicture@Image@ArtDoc@@QEAAXV?$shared_ptr@$$CBVPaintedPicture@ArtImg@@@std@@@Z
+                         A65 ?SetPictureData@ImageMask@ArtDoc@@QEAAXV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@@Z
+                         859 ?GetType@ChannelInfo@ArtImg@@QEBA?AW4Type@12@XZ
+                         18C ??1?$ConstVisitor@VImageImpersonator@DocumentIO@@@ArtDoc@@MEAA@XZ
+                           1 ??0?$ConstVisitor@VImageImpersonator@DocumentIO@@@ArtDoc@@QEAA@XZ
+                         54C ?EndVisit@?$ConstVisitor@VImageImpersonator@DocumentIO@@@ArtDoc@@UEAAXAEBVImageImpersonator@DocumentIO@@@Z
+                         48F ?AddToChangedInfo@DocumentChanges@ArtDoc@@QEAAXW4WhatFlags@12@AEBU?$pair@_K_K@std@@@Z
+                         22E ??1Page@ArtDoc@@UEAA@XZ
+                         77F ?GetNumberOfPages@Document@ArtDoc@@QEBA_KXZ
+                         581 ?ExtractPage@Document@ArtDoc@@QEAA?AV?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@V?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@@Z
+                         8AE ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEAVPart@2@@Z
+                         8B0 ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@AEAVPart@2@@Z
+                         8AF ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@V345@@Z
+                         8B1 ?InsertPage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@V345@@Z
+                         7B5 ?GetParts@Document@ArtDoc@@QEAAPEAVParts@2@XZ
+                         857 ?GetTreePathForPart@ArtDoc@@YA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBVPart@1@@Z
+                         599 ?FindPartForTreePath@ArtDoc@@YAPEAVPart@1@AEAVParts@1@AEBV?$vector@_KV?$allocator@_K@std@@@std@@@Z
+                         7A4 ?GetPageRange@Part@ArtDoc@@QEAA?AV?$iterator_range@V?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@@boost@@XZ
+                         7B7 ?GetParts@Part@ArtDoc@@QEAAAEAVParts@2@XZ
+                         A53 ?SetName@LayerProperties@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         778 ?GetName@LayerProperties@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         7D8 ?GetProcessingStepGroup@LayerProperties@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         7D9 ?GetProcessingStepType@LayerProperties@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         5C5 ?GetAllLayers@Layers@ArtDoc@@QEBAAEBV?$vector@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@V?$allocator@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@2@@std@@XZ
+                         5C0 ?GetActiveErrors@Content@ArtDoc@@QEBAAEAVErrors@2@XZ
+                         87A ?GetWorkingSpaceProfile@ArtDoc@@YA?AV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@AEBVDocument@1@@Z
+                         6BA ?GetErrorsForObject@ArtDoc@@YA?AV?$vector@V?$shared_ptr@VError@Core@ArtSys@@@std@@V?$allocator@V?$shared_ptr@VError@Core@ArtSys@@@std@@@2@@std@@AEBVContentObject@1@@Z
+                          95 ??0ErrorRecorder@ArtDoc@@QEAA@AEAVErrors@1@@Z
+                         9AB ?RemoveError@ErrorRecorder@ArtDoc@@QEAAXAEBV?$shared_ptr@VError@Core@ArtSys@@@std@@@Z
+                         8ED ?IsLinked@ArtDoc@@YA_NAEBVImage@1@@Z
+                         8EE ?IsLinked@ArtDoc@@YA_NAEBVImageMask@1@@Z
+                         8CC ?IsDeviceIndependentColorSpace@ArtImg@@YA_NAEBV?$variant@UDeviceN@ArtColor@@UAll@2@UDeviceGray@2@UCalGray@2@UICCGray@2@UDeviceRGB@2@UCalRGB@2@UICCRGB@2@ULab@2@UICCLab@2@UICCCMYK@2@@std@@@Z
+                         60F ?GetChannelMapping@PaintedPicture@ArtImg@@QEBAAEBV?$ColorList@UChannelMappingPolicy@ArtColor@@@ArtColor@@_N@Z
+                          B5 ??0Factory@PaintedPicture@ArtImg@@QEAA@AEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@_N@Z
+                         9E7 ?SetChannelMapping@Factory@PaintedPicture@ArtImg@@QEAAAEAV123@V?$ColorList@UChannelMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         A47 ?SetMaskKind@Factory@PaintedPicture@ArtImg@@QEAAAEAV123@W4MaskKind@3@@Z
+                         A86 ?SetSoftMaskMapping@Factory@PaintedPicture@ArtImg@@QEAAAEAV123@AEBVValue@ChannelMappingPolicy@ArtColor@@@Z
+                         76F ?GetName@ChannelInfo@ArtImg@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         672 ?GetDecode@ChannelInfo@ArtImg@@QEBAAEBV?$array@N$01@std@@XZ
+                         23A ??1PictureLink@ArtImg@@QEAA@XZ
+                         143 ??0PictureLink@ArtImg@@QEAA@AEBU01@@Z
+                         6C4 ?GetExternalIndex@ArtImg@@YA_KAEBUPictureLink@1@_K@Z
+                         6C3 ?GetExternalDecode@ArtImg@@YA?AV?$optional@V?$array@N$01@std@@@std@@AEBUPictureLink@1@_K@Z
+                         91A ?MakePictureLink@ArtImg@@YA?AUPictureLink@1@AEBVpath@filesystem@boost@@@Z
+                         91B ?MakePictureLink@ArtImg@@YA?AUPictureLink@1@AEBVpath@filesystem@boost@@AEBV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@Z
+                         46A ?AddErrorForObject@ArtDoc@@YAXAEAVContentObject@1@AEBV?$shared_ptr@VError@Core@ArtSys@@@std@@@Z
+                         A66 ?SetPictureLink@Factory@PictureData@ArtImg@@QEAAAEAV123@V?$optional@UPictureLink@ArtImg@@@std@@@Z
+                         74B ?GetLink@PictureData@ArtImg@@QEBAAEBV?$optional@UPictureLink@ArtImg@@@std@@XZ
+                         60E ?GetChannelInfos@PictureData@ArtImg@@QEBAAEBV?$vector@VChannelInfo@ArtImg@@V?$allocator@VChannelInfo@ArtImg@@@std@@@std@@XZ
+                         676 ?GetDefaultChannelMapping@PictureData@ArtImg@@QEBA?AV?$ColorList@UChannelMappingPolicy@ArtColor@@@ArtColor@@_N@Z
+                         74D ?GetLinkedChannelInfos@ArtImg@@YA?AV?$vector@VChannelInfo@ArtImg@@V?$allocator@VChannelInfo@ArtImg@@@std@@@std@@AEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@3@@Z
+                         7C4 ?GetPictureData@DocumentIO@@YA?AV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@AEBVDocument@ArtDoc@@AEBVpath@filesystem@boost@@AEBV?$optional@UPictureLink@ArtImg@@@3@@Z
+                         8EF ?IsLinked@DocumentIO@@YA_NAEBVImageImpersonator@1@@Z
+                          B2 ??0Factory@ImageImpersonator@DocumentIO@@QEAA@AEBVImage@ArtDoc@@_N@Z
+                          B3 ??0Factory@ImageImpersonator@DocumentIO@@QEAA@AEBVImageMask@ArtDoc@@@Z
+                          B1 ??0Factory@ImageImpersonator@DocumentIO@@QEAA@AEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@PEBVBlendable@ArtDoc@@@Z
+                          AF ??0Factory@ImageImpersonator@DocumentIO@@QEAA@$$QEAV012@@Z
+                         75A ?GetMapping@Factory@ImageImpersonator@DocumentIO@@QEBAAEBV?$ColorList@UImpersonatorMappingPolicy@DocumentIO@@@ArtColor@@_N@Z
+                         75D ?GetMaskKind@Factory@ImageImpersonator@DocumentIO@@QEBA?AW4MaskKind@ArtImg@@_N@Z
+                         822 ?GetSoftMaskMapping@Factory@ImageImpersonator@DocumentIO@@QEBAAEBVValue@ImpersonatorMappingPolicy@3@_N@Z
+                         A46 ?SetMaskKind@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@W4MaskKind@ArtImg@@@Z
+                         584 ?ExtractSeparationInfo@DocumentIO@@YA?AV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@AEBVBlendable@ArtDoc@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@3@@Z
+                         517 ?CreateFactory@DocumentIO@@YA?AVFactory@ImageImpersonator@1@AEBV?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@AEBUMappingData@1@PEBVBlendable@ArtDoc@@@Z
+                         4AD ?CalculateMD5Hash@ArtDocUtils@@YA?AV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@AEBVpath@filesystem@boost@@@Z
+                         4E1 ?ContainsClippingObject@ArtDoc@@YA_NAEBVGroup@1@@Z
+                         50A ?CopyStrokableMetadata@ArtDoc@@YAXAEBVStrokable@1@AEAV21@AEAVCloneStrategy@1@@Z
+                         1A0 ??1?$Visitor@VImageImpersonator@DocumentIO@@@ArtDoc@@MEAA@XZ
+                          28 ??0?$Visitor@VImageImpersonator@DocumentIO@@@ArtDoc@@QEAA@XZ
+                         54D ?EndVisit@?$Visitor@VImageImpersonator@DocumentIO@@@ArtDoc@@UEAAXAEAVImageImpersonator@DocumentIO@@@Z
+                         487 ?AddSeparation@Separations@ArtDoc@@QEAAXV?$basic_string_view@DU?$char_traits@D@std@@@std@@@Z
+                          BF ??0Factory@SoftMask@ArtBlend@@QEAA@AEAVDocument@ArtDoc@@AEBV?$variant@Umonostate@std@@UDeviceGray@ArtColor@@UDeviceRGB@4@UDeviceCMYK@ArtBlend@@UCalGray@4@UCalRGB@4@UICCGray@4@UICCRGB@4@UICCCMYK@4@@std@@@Z
+                         AB4 ?SetTransparency@Factory@ImageImpersonator@DocumentIO@@QEAAAEAV123@AEBV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@@Z
+                         623 ?GetColor@FlatPaint@ArtPaint@@QEBAAEBV?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@XZ
+                         62E ?GetColorSpace@PatternPaint@ArtPaint@@UEBA?AV?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@XZ
+                          B6 ??0Factory@PatternPaint@ArtPaint@@QEAA@AEAVDocument@ArtDoc@@V?$optional@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@@std@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@6@@Z
+                          B7 ??0Factory@PatternPaint@ArtPaint@@QEAA@PEAVCloneStrategy@ArtDoc@@V?$shared_ptr@$$CBVPatternPaint@ArtPaint@@@std@@@Z
+                         1EC ??1Factory@PatternPaint@ArtPaint@@QEAA@XZ
+                         9E5 ?SetCellClip@Factory@PatternPaint@ArtPaint@@QEAAAEAV123@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         A89 ?SetStep@Factory@PatternPaint@ArtPaint@@QEAAAEAV123@AEBV?$DimensionBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         9EC ?SetColor@Factory@PatternPaint@ArtPaint@@QEAAAEAV123@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@@Z
+                         5AF ?Get@Factory@PatternPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVPatternPaint@ArtPaint@@@std@@XZ
+                         58B ?FillIsNormalOpaque@ArtBlend@@YA_NAEBV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@@Z
+                         AC5 ?StrokeIsNormalOpaque@ArtBlend@@YA_NAEBV?$shared_ptr@$$CBVTransparency@ArtBlend@@@std@@@Z
+                         85A ?GetType@Content@ArtDoc@@QEBA?AW4Type@12@XZ
+                         5FD ?GetCenters@RadialShadingPaint@ArtPaint@@QEBAAEBV?$array@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@XZ
+                         6C2 ?GetExtends@RadialShadingPaint@ArtPaint@@QEBAAEBV?$array@_N$01@std@@XZ
+                         A82 ?SetSeparationMapping@?$Factory@VRadialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@RadialShadingPaint@3@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         A0C ?SetExtends@Factory@RadialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$array@_N$01@std@@@Z
+                         A1A ?SetFunction@Factory@RadialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@@Z
+                         1FE ??1FunctionEditor@ArtPaint@@QEAA@XZ
+                         764 ?GetMidpointPercentage@FunctionEditor@ArtPaint@@QEBAN_K@Z
+                         89E ?HasReverseEncode@FunctionEditor@ArtPaint@@QEBA_N_K@Z
+                         82D ?GetStopCount@FunctionEditor@ArtPaint@@QEBA_KXZ
+                         82E ?GetStopLocation@FunctionEditor@ArtPaint@@QEBAN_K@Z
+                         A8A ?SetStopColor@FunctionEditor@ArtPaint@@QEAA_N_KAEBV?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@@Z
+                         82C ?GetStopColor@FunctionEditor@ArtPaint@@QEBAAEBV?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@_K@Z
+                         5B8 ?Get@FunctionEditor@ArtPaint@@QEBA?AV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@XZ
+                         817 ?GetSeparationMapping@FunctionEditor@ArtPaint@@QEBAAEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@XZ
+                         6FA ?GetFunctionEditor@ArtPaint@@YA?AV?$unique_ptr@VFunctionEditor@ArtPaint@@U?$default_delete@VFunctionEditor@ArtPaint@@@std@@@std@@AEBVPaint@1@@Z
+                          A8 ??0Factory@FlatPaint@ArtPaint@@QEAA@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@PEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@@Z
+                         1E6 ??1Factory@FlatPaint@ArtPaint@@QEAA@XZ
+                         5A9 ?Get@Factory@FlatPaint@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVFlatPaint@ArtPaint@@@std@@XZ
+                         6C1 ?GetExtends@AxialShadingPaint@ArtPaint@@QEBAAEBV?$array@_N$01@std@@XZ
+                         7CE ?GetPoints@AxialShadingPaint@ArtPaint@@QEBAAEBV?$array@V?$PointBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@$01@std@@XZ
+                         A7E ?SetSeparationMapping@?$Factory@VAxialShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@AxialShadingPaint@3@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         A0B ?SetExtends@Factory@AxialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$array@_N$01@std@@@Z
+                         A19 ?SetFunction@Factory@AxialShadingPaint@ArtPaint@@QEAAAEAV123@AEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@@Z
+                         688 ?GetDescription@ICCProfile@ArtColor@@QEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                         12A ??0OutputIntent@ArtColor@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0V?$shared_ptr@$$CBVICCProfile@ArtColor@@@3@@Z
+                         128 ??0OutputIntent@ArtColor@@QEAA@$$QEAV01@@Z
+                         22C ??1OutputIntent@ArtColor@@QEAA@XZ
+                         4B6 ?Clear@ActionList@ArtDoc@@QEAAXXZ
+                         A59 ?SetPageBox@Page@ArtDoc@@QEAAXW4PageBox@2@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         641 ?GetContent@Page@ArtDoc@@QEAAAEAVPageContent@2@XZ
+                         50D ?Create@Document@ArtDoc@@SA?AV?$unique_ptr@VDocument@ArtDoc@@U?$default_delete@VDocument@ArtDoc@@@std@@@std@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         1D1 ??1Document@ArtDoc@@UEAA@XZ
+                         AA3 ?SetTitle@Document@ArtDoc@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         9FF ?SetDirty@Document@ArtDoc@@QEAAX_N@Z
+                         A57 ?SetOutputIntent@Document@ArtDoc@@QEAAXV?$optional@VOutputIntent@ArtColor@@@std@@@Z
+                          82 ??0DocumentOpenException@ArtDoc@@QEAA@AEBVpath@filesystem@boost@@W4Type@FileError@1@@Z
+                         47B ?AddLayerOnTop@LayerConfiguration@ArtDoc@@QEAA?AV?$vector@_KV?$allocator@_K@std@@@std@@AEBUNode@12@@Z
+                         5E7 ?GetBlackSeparation@ArtDoc@@YAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          80 ??0DocumentOpenException@ArtDoc@@QEAA@AEBV01@@Z
+                         1D5 ??1DocumentOpenException@ArtDoc@@UEAA@XZ
+                         129 ??0OutputIntent@ArtColor@@QEAA@AEBV01@@Z
+                         369 ??8ArtColor@@YA_NAEBVOutputIntent@0@0@Z
+                         795 ?GetOutputIntent@Document@ArtDoc@@QEBAAEBV?$optional@VOutputIntent@ArtColor@@@std@@XZ
+                         95A ?ProfileChanged@DynamicObjectController@ArtDoc@@UEAAXXZ
+                         7B3 ?GetPart@Page@ArtDoc@@QEAAPEAVPart@2@XZ
+                         131 ??0PageRanges@ArtDoc@@QEAA@XZ
+                         230 ??1PageRanges@ArtDoc@@QEAA@XZ
+                         486 ?AddRange@PageRanges@ArtDoc@@QEAAXAEBU?$pair@_K_K@std@@@Z
+                         7F6 ?GetRangeArray@PageRanges@ArtDoc@@QEBAAEBV?$vector@U?$pair@_K_K@std@@V?$allocator@U?$pair@_K_K@std@@@2@@std@@XZ
+                         868 ?GetUsedLayers@Layers@ArtDoc@@QEBA?AV?$vector@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@V?$allocator@V?$shared_ptr@VLayerProperties@ArtDoc@@@std@@@2@@std@@AEBVPage@2@@Z
+                         80C ?GetRoot@Parts@ArtDoc@@QEAAAEAVPart@2@XZ
+                         7B1 ?GetParent@Part@ArtDoc@@QEAAPEAV12@XZ
+                         79D ?GetPageBox@Page@ArtDoc@@QEBAAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4PageBox@2@@Z
+                         9B6 ?RemovePageBox@Page@ArtDoc@@QEAAXW4PageBox@2@@Z
+                         89B ?HasPageBox@Page@ArtDoc@@QEBA_NW4PageBox@2@@Z
+                         94C ?PageBoxChanged@DynamicObjectController@ArtDoc@@UEAAXAEBVPage@2@W4PageBox@2@@Z
+                         79B ?GetPage@PageContent@ArtDoc@@QEAAAEAVPage@2@XZ
+                         621 ?GetColor@ArtColor@@YA?AV?$ColorList@UColorPolicy@ArtColor@@@1@AEBV?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@AEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@1@@Z
+                         638 ?GetComponents@ArtColor@@YA?AV?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@AEBV?$ColorList@UColorPolicy@ArtColor@@@1@AEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@1@@Z
+                         658 ?GetConvertedColorSpace@Paint@ArtPaint@@QEBA?AV?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@@Z
+                         64F ?GetConvertedBackground@ShadingPaint@ArtPaint@@QEBAAEBV?$optional@V?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@@std@@XZ
+                         818 ?GetSeparationMapping@ShadingPaint@ArtPaint@@QEBAAEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@XZ
+                         668 ?GetConvertedSeparationMapping@ShadingPaint@ArtPaint@@QEBAAEBV?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@XZ
+                         85C ?GetType@Function@ArtPaint@@QEBA?AW4Type@12@XZ
+                         7F5 ?GetRange@Function@ArtPaint@@QEBAAEBV?$vector@V?$array@N$01@std@@V?$allocator@V?$array@N$01@std@@@2@@std@@XZ
+                         6F9 ?GetFunction@RadialShadingPaint@ArtPaint@@QEBAAEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@XZ
+                         660 ?GetConvertedFunction@RadialShadingPaint@ArtPaint@@QEBAAEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@XZ
+                          BD ??0Factory@RadialShadingPaint@ArtPaint@@QEAA@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@PEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@@Z
+                         5F7 ?GetC0@ExponentialFunction@ArtPaint@@QEBAAEBV?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@XZ
+                         5F8 ?GetC1@ExponentialFunction@ArtPaint@@QEBAAEBV?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@XZ
+                          A7 ??0Factory@ExponentialFunction@ArtPaint@@QEAA@V?$vector@VComponent@ArtColor@@V?$allocator@VComponent@ArtColor@@@std@@@std@@0N@Z
+                         1E5 ??1Factory@ExponentialFunction@ArtPaint@@QEAA@XZ
+                         5A8 ?Get@Factory@ExponentialFunction@ArtPaint@@QEAA?AV?$shared_ptr@$$CBVExponentialFunction@ArtPaint@@@std@@XZ
+                         926 ?MidpointToExponent@ArtPaint@@YANN@Z
+                         6E0 ?GetFlatPaint@ArtPaint@@YA?AV?$shared_ptr@$$CBVFlatPaint@ArtPaint@@@std@@V?$ColorList@UColorPolicy@ArtColor@@@ArtColor@@PEBVDocument@ArtDoc@@@Z
+                         6F6 ?GetFunction@AxialShadingPaint@ArtPaint@@QEBAAEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@XZ
+                         65D ?GetConvertedFunction@AxialShadingPaint@ArtPaint@@QEBAAEBV?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@XZ
+                          A1 ??0Factory@AxialShadingPaint@ArtPaint@@QEAA@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@PEBVDocument@ArtDoc@@AEBV?$shared_ptr@$$CBVICCProfile@ArtColor@@@std@@@Z
+                         6FC ?GetFunctions@StitchingFunction@ArtPaint@@QEBAAEBV?$vector@V?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@V?$allocator@V?$shared_ptr@$$CBVFunction@ArtPaint@@@std@@@2@@std@@XZ
+                         A80 ?SetSeparationMapping@?$Factory@VFunctionShadingPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@FunctionShadingPaint@3@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         A7F ?SetSeparationMapping@?$Factory@VCoonsTensorProductPatchMeshPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@CoonsTensorProductPatchMeshPaint@3@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         A81 ?SetSeparationMapping@?$Factory@VGouraudShadedTriangleMeshPaint@ArtPaint@@@ShadingPaint@ArtPaint@@IEAAAEAVFactory@GouraudShadedTriangleMeshPaint@3@V?$ColorList@USeparationMappingPolicy@ArtColor@@@ArtColor@@@Z
+                         7B4 ?GetPart@Page@ArtDoc@@QEBAPEBVPart@2@XZ
+                         57B ?Erase@PropertiesWithNotification@ArtDoc@@QEAA_KAEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@@Z
+                         7B2 ?GetParent@Part@ArtDoc@@QEBAPEBV12@XZ
+                         7E9 ?GetProperties@Part@ArtDoc@@QEAAAEAVPropertiesWithNotification@2@XZ
+                         7EA ?GetProperties@Part@ArtDoc@@QEBAAEBVPropertiesWithNotification@2@XZ
+                         992 ?RegisterPartDPMReader@ArtDoc@@YA_KV?$function@$$A6AXAEAVPart@ArtDoc@@AEBVGADict@@@Z@std@@@Z
+                         993 ?RegisterPartDPMWriter@ArtDoc@@YA_KV?$function@$$A6A_NAEBVPart@ArtDoc@@@Z@std@@V?$function@$$A6AXAEAVGADict@@AEBVPart@ArtDoc@@@Z@3@@Z
+                         928 ?MovePage@Document@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V345@AEAVPart@2@@Z
+                         521 ?CreateParts@Document@ArtDoc@@QEAAAEAVParts@2@XZ
+                         9B9 ?RemoveParts@Document@ArtDoc@@QEAAXXZ
+                         A3F ?SetLevelNames@Parts@ArtDoc@@QEAAXV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$optional@_K@4@@Z
+                         583 ?ExtractPart@Parts@ArtDoc@@QEAA?AV?$tuple@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@V?$vector@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@V?$allocator@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@2@@2@PEBVDocument@ArtDoc@@@std@@V?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@@Z
+                         8B5 ?InsertPart@Parts@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@AEAVPart@2@@Z
+                         8B7 ?InsertPart@Parts@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V?$tuple@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@V?$vector@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@V?$allocator@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@2@@2@PEBVDocument@ArtDoc@@@std@@AEAVPart@2@@Z
+                         8B6 ?InsertPart@Parts@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V345@@Z
+                         8B8 ?InsertPart@Parts@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@V?$tuple@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@V?$vector@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@V?$allocator@V?$unique_ptr@VPage@ArtDoc@@U?$default_delete@VPage@ArtDoc@@@std@@@std@@@2@@2@PEBVDocument@ArtDoc@@@std@@V345@@Z
+                         233 ??1Part@ArtDoc@@UEAA@XZ
+                         617 ?GetChildrenBegin@Part@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         619 ?GetChildrenEnd@Part@ArtDoc@@QEAA?AV?$indirect_iterator@V?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@V?$unique_ptr@VPart@ArtDoc@@U?$default_delete@VPart@ArtDoc@@@std@@@std@@@std@@@std@@@std@@Uuse_default@boost@@U34@U34@U34@@iterators@boost@@XZ
+                         9A6 ?RelinkDynamicObjects@CloneStrategy@ArtDoc@@QEAAX_N@Z
+                         A7D ?SetSeparationInfo@Document@ArtDoc@@QEAAXV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@std@@@Z
+                         815 ?GetScratchDocument@ArtDoc@@YAAEAVDocument@1@XZ
+                         772 ?GetName@Entry@Separation@ArtDoc@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          8E ??0Entry@Separation@ArtDoc@@QEAA@$$QEAV012@@Z
+                         2F9 ??4Entry@Separation@ArtDoc@@QEAAAEAV012@$$QEAV012@@Z
+                         590 ?Find@Separation@ArtDoc@@YA?AV?$_Vector_iterator@V?$_Vector_val@U?$_Simple_types@VEntry@Separation@ArtDoc@@@std@@@std@@@std@@AEAV?$vector@VEntry@Separation@ArtDoc@@V?$allocator@VEntry@Separation@ArtDoc@@@std@@@4@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@4@@Z
+                         6A6 ?GetDynamicObjectID@DynamicObjectController@ArtDoc@@UEBA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVContentObject@2@@Z
+                         8F8 ?IsProcessingStepLayer@ArtDoc@@YA_NAEBVLayer@1@@Z
+                         8C2 ?IsAllowedTo@Document@ArtDoc@@QEBA_NAEBV?$Flags@W4Permission@Security@ArtDoc@@@Core@ArtSys@@@Z
+                         142 ??0PictureLink@ArtImg@@QEAA@$$QEAU01@@Z
+                         320 ??4PictureLink@ArtImg@@QEAAAEAU01@$$QEAU01@@Z
+                         7FB ?GetReducedColorSpace@ArtDocUtils@@YA?AV?$ColorList@UColorSpacePolicy@ArtColor@@@ArtColor@@AEBVPaint@ArtPaint@@_N@Z
+                          FE ??0Key@ProcessingSteps@ArtDoc@@QEAA@W4Group@12@V?$optional@W4Type@ProcessingSteps@ArtDoc@@@std@@@Z
+                         70C ?GetGroup@Key@ProcessingSteps@ArtDoc@@QEBA?AW4Group@23@XZ
+                         AD5 ?ToKey@ProcessingSteps@ArtDoc@@YA?AV?$optional@VKey@ProcessingSteps@ArtDoc@@@std@@V?$basic_string_view@DU?$char_traits@D@std@@@4@0@Z
+                         A67 ?SetPlates@ProcessingSteps@ArtDoc@@YAXAEBV?$shared_ptr@VLayerProperties@ArtDoc@@@std@@V?$optional@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@4@@Z
+                         7CB ?GetPlates@ProcessingSteps@ArtDoc@@YA?AV?$optional@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@std@@AEBV?$shared_ptr@VLayerProperties@ArtDoc@@@4@@Z
+                         5EB ?GetBoundingBox@ArtDoc@@YA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@AEBVContent@1@W4BoxKind@1@@Z
+                          F2 ??0Image@ArtDoc@@QEAA@V?$shared_ptr@$$CBVPaintedPicture@ArtImg@@@std@@@Z
+                         123 ??0OneByteToBitConverter@ArtImg@@QEAA@_K@Z
+                         4FC ?Convert@OneByteToBitConverter@ArtImg@@QEAAXPEAEPEBE_K@Z
+                          50 ??0ChannelInfo@ArtImg@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4Type@01@AEBV?$array@N$01@3@@Z
+                         A75 ?SetRepresentation@ChannelInfo@ArtImg@@QEAAXAEBVRepresentation@ArtColor@@@Z
+                          4E ??0ChannelInfo@ArtImg@@QEAA@$$QEAV01@@Z
+                         435 ?Accept@Image@ArtDoc@@UEAAXAEAVVisitorBase@2@@Z
+                         436 ?Accept@Image@ArtDoc@@UEBAXAEAVConstVisitorBase@2@@Z
+                         ADE ?TransformationChangedSelf@Blendable@ArtDoc@@MEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4TransformationMode@2@@Z
+                         5EF ?GetBoundingBoxSelf@Image@ArtDoc@@EEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4BoxKind@2@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@4@@Z
+                         542 ?DumpInfo@Image@ArtDoc@@EEBA?AU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@XZ
+                         642 ?GetContent@Page@ArtDoc@@QEBAAEBVPageContent@2@XZ
+                         376 ??8Entry@Separation@ArtDoc@@QEBA_NAEBV012@@Z
+                         7E0 ?GetProperties@Content@ArtDoc@@QEAAAEAVPropertiesWithNotification@2@XZ
+                         7E1 ?GetProperties@Content@ArtDoc@@QEBAAEBVPropertiesWithNotification@2@XZ
+                         809 ?GetResourceManager@Document@ArtDoc@@QEBAAEAVResourceManager@2@XZ
+                         B3B ?VisitContent@ArtDoc@@YAXAEAVDocument@1@_NAEBV?$function@$$A6A_NAEBUValue@ContentTracker@ArtDoc@@@Z@std@@@Z
+                         6C6 ?GetExternalReference@ResourceManager@ArtDoc@@QEAA?AV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@AEBVpath@filesystem@boost@@_KW4PageBox@2@@Z
+                         6C5 ?GetExternalReference@FormPaint@ArtPaint@@QEBAAEBV?$optional@U?$pair@Vpath@filesystem@boost@@_K@std@@@std@@XZ
+                         6A0 ?GetDocumentReference@FormPaint@ArtPaint@@QEBAAEBV?$shared_ptr@VDocument@ArtDoc@@@std@@XZ
+                         A0D ?SetExternalReference@Factory@FormPaint@ArtPaint@@QEAAAEAV123@V?$optional@U?$pair@Vpath@filesystem@boost@@_K@std@@@std@@@Z
+                         A01 ?SetDocumentReference@Factory@FormPaint@ArtPaint@@QEAAAEAV123@V?$shared_ptr@VDocument@ArtDoc@@@std@@@Z
+                         A7C ?SetScope@Factory@FormPaint@ArtPaint@@QEAAAEAV123@V?$optional@W4Scope@FormPaint@ArtPaint@@@std@@@Z
+                         6D5 ?GetFilePath@Document@ArtDoc@@QEBAAEBVpath@filesystem@boost@@XZ
+                         986 ?RegisterFormDefinitionPieceInfoReader@ArtDoc@@YA_KAEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@V?$function@$$A6AXVGAObject@@AEBV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@AEAVReadContext@ArtDoc@@@Z@3@@Z
+                         981 ?RegisterEskoFormDefinitionPieceInfoReader@ArtDoc@@YA_KAEBV?$basic_string_view@DU?$char_traits@D@std@@@std@@V?$function@$$A6AXVGAObject@@AEBV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@AEAVReadContext@ArtDoc@@@Z@3@@Z
+                         999 ?RegisterReuseFormQuery@ArtDoc@@YA_KV?$function@$$A6A_NAEBV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VGAObject@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VGAObject@@@std@@@2@@std@@@Z@std@@@Z
+                         987 ?RegisterFormDefinitionPieceInfoWriter@ArtDoc@@YA_KV?$function@$$A6A_NAEBV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@@Z@std@@AEBV?$basic_string_view@DU?$char_traits@D@std@@@3@V?$function@$$A6AXAEAVGADict@@AEBV?$shared_ptr@$$CBVFormPaint@ArtPaint@@@std@@AEAVWriteContext@ArtDoc@@@Z@3@@Z
+                         AEA ?UTF8String@PDFConverters@ArtDocGlue@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVGAName@@@Z
+                         AD3 ?ToGString@PDFConverters@ArtDocGlue@@YA?AVGString@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                         96E ?ReadURI@ArtDocUtils@@YA?AVuri@2network@boost@@AEBVDocument@ArtDoc@@AEBVGADict@@AEBV2234@@Z
+                         B41 ?WriteURI@ArtDocUtils@@YAXAEBVDocument@ArtDoc@@AEAVGADict@@AEBVuri@5network@boost@@AEBVpath@filesystem@7@@Z
+                         B40 ?WriteStamps@ArtDocUtils@@YAXAEAVGADict@@AEBV?$optional@Vptime@posix_time@boost@@@std@@AEBV?$optional@_K@4@AEBV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@4@@Z
+                         96D ?ReadStamps@ArtDocUtils@@YAXAEBVGADict@@AEAV?$optional@Vptime@posix_time@boost@@@std@@AEAV?$optional@_K@4@AEAV?$optional@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@4@@Z
+                         259 ??1TransferFunctionSet@ArtDoc@@QEAA@XZ
+                         179 ??0TransferFunctionSet@ArtDoc@@QEAA@AEBV01@@Z
+                         332 ??4TransferFunctionSet@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         9BA ?RemoveSeparation@Separations@ArtDoc@@QEAAXV?$basic_string_view@DU?$char_traits@D@std@@@std@@@Z
+                         84B ?GetTransferFunctionSet@Content@ArtDoc@@QEBAAEBV?$optional@VTransferFunctionSet@ArtDoc@@@std@@XZ
+                         4A8 ?Cache@Content@ArtDoc@@QEBAXXZ
+                         8BD ?InvalidateRectangle@ContentAction@ArtDoc@@QEAAXAEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@W4WhatFlags@ContentChanges@2@@Z
+                         6B0 ?GetError@DocumentOpenException@ArtDoc@@QEBA?AW4Type@FileError@2@XZ
+                         AA7 ?SetTransferFunctionSet@Factory@FormPaint@ArtPaint@@QEAAAEAV123@V?$optional@VTransferFunctionSet@ArtDoc@@@std@@@Z
+                         8D0 ?IsEmpty@Representation@ArtColor@@QEBA_NXZ
+                         15C ??0Representation@ArtColor@@QEAA@AEBV01@@Z
+                         A76 ?SetRepresentation@Entry@Separation@ArtDoc@@QEAAXVRepresentation@ArtColor@@@Z
+                         4CB ?Clone@HalftoneSet@ArtDoc@@QEBA?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@AEAVDocument@2@@Z
+                         671 ?GetDb@ContentTracker@ArtDoc@@QEBAAEBV?$unordered_map@_KUValue@ContentTracker@ArtDoc@@U?$hash@_K@std@@U?$equal_to@_K@5@V?$allocator@U?$pair@$$CB_KUValue@ContentTracker@ArtDoc@@@std@@@5@@std@@XZ
+                         58E ?Find@Halftones@ArtDoc@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@@std@@@std@@@std@@AEBV?$shared_ptr@VHalftoneSet@ArtDoc@@@4@@Z
+                         11B ??0MissingLinksException@ArtDoc@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@3@@Z
+                         923 ?MergeHalftoneSets@ArtDoc@@YAXAEAVContent@1@AEBV?$function@$$A6A?AV?$shared_ptr@VHalftoneSet@ArtDoc@@@std@@AEBV12@@Z@std@@@Z
+                         9C6 ?ResolveNormalizedPDFLinks@ArtDoc@@YA?AV?$vector@UMissingLinkInfo@ArtDoc@@V?$allocator@UMissingLinkInfo@ArtDoc@@@std@@@std@@AEBVFormPaint@ArtPaint@@AEBV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@Vpath@filesystem@boost@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@Vpath@filesystem@boost@@@std@@@2@@3@@Z
+                         11A ??0MissingLinksException@ArtDoc@@QEAA@AEBV01@@Z
+                         226 ??1MissingLinksException@ArtDoc@@UEAA@XZ
+                         84F ?GetTransformation@SoftMask@ArtBlend@@QEBAAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@XZ
+                         316 ??4Node@LayerConfiguration@ArtDoc@@QEAAAEAU012@$$QEAU012@@Z
+                         580 ?ExtractLayerAt@LayerConfiguration@ArtDoc@@QEAA?AUNode@12@AEBV?$vector@_KV?$allocator@_K@std@@@std@@@Z
+                         15D ??0Representation@ArtColor@@QEAA@XZ
+                         247 ??1Representation@ArtColor@@QEAA@XZ
+                         327 ??4Properties@ArtDoc@@QEAAAEAV01@AEBV01@@Z
+                         7E2 ?GetProperties@ContentObject@ArtDoc@@QEAAAEAVProperties@2@XZ
+                         93E ?ObjectParentChanged@DynamicObjectController@ArtDoc@@UEAAXAEAVContentObject@2@PEAV32@@Z
+                         49C ?AllowsTransparency@ProcessingSteps@ArtDoc@@YA_NAEBVKey@12@@Z
+                         730 ?GetInkType@Entry@Separation@ArtDoc@@QEBA?AW4InkType@23@XZ
+                         A30 ?SetInkType@Entry@Separation@ArtDoc@@QEAAXW4InkType@23@@Z
+                         9D0 ?SetAlignmentBox@TextGroup@ArtDoc@@QEAAXAEBV?$optional@V?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@std@@@Z
+                         5C3 ?GetAlignmentBox@TextGroup@ArtDoc@@QEBAAEBV?$optional@V?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@std@@XZ
+                         438 ?Accept@ImageImpersonator@DocumentIO@@UEBAXAEAVConstVisitorBase@ArtDoc@@@Z
+                         468 ?AddError@ErrorRecorder@ArtDoc@@QEAAXAEBV?$shared_ptr@VError@Core@ArtSys@@@std@@@Z
+                         B3D ?WasPremultiplied@ChannelInfo@ArtImg@@QEBA_NXZ
+                         370 ??8ArtImg@@YA_NAEBUPictureLink@0@0@Z
+                         680 ?GetDefaultSoftMaskMapping@PictureData@ArtImg@@QEBA?AVValue@ChannelMappingPolicy@ArtColor@@XZ
+                         4EA ?ContourizeImageMask@ArtDocUtils@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$shared_ptr@$$CBVPictureBuffer@ArtImg@@@3@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         AA0 ?SetTextTransformation@Text@ArtDoc@@QEAAXAEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@YAGL@@@Z
+                         AA8 ?SetTransferFunctionSet@Page@ArtDoc@@QEAAXV?$optional@VTransferFunctionSet@ArtDoc@@@std@@@Z
+                          BA ??0Factory@PictureData@ArtImg@@QEAA@AEBVDocument@ArtDoc@@V?$shared_ptr@$$CBVPictureData@ArtImg@@@std@@@Z
+
+    ArtSys.dll
+             1800E6000 Import Address Table
+             180137C88 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         220 ?BeginProgressMap@StatusReporting@ArtSys@@QEAAXMM@Z
+                          D7 ??1Error@Core@ArtSys@@UEAA@XZ
+                          26 ??0Error@Core@ArtSys@@IEAA@AEBV012@@Z
+                         137 ??4Error@Core@ArtSys@@IEAAAEAV012@AEBV012@@Z
+                         5CE ?what@Error@Core@ArtSys@@UEBAPEBDXZ
+                         37F ?GetTitle@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         2B5 ?GetDescription@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         37C ?GetTimeStamp@Error@Core@ArtSys@@UEBA?AV?$basic_string@_WUuni16char_traits@Core@ArtSys@@V?$allocator@_W@std@@@std@@XZ
+                         435 ?ProgressInitialize@StatusReporting@ArtSys@@QEAAXM@Z
+                         436 ?ProgressUpdate@StatusReporting@ArtSys@@QEAAXM@Z
+                         27E ?EndProgressMap@StatusReporting@ArtSys@@QEAAX_N@Z
+                          DA ??1ErrorReporterScopeGuard@Core@ArtSys@@QEAA@XZ
+                          2C ??0ErrorReporterScopeGuard@Core@ArtSys@@QEAA@AEAVErrorReporter@12@V?$function@$$A6AXAEAVError@Core@ArtSys@@@Z@std@@@Z
+                         4D9 ?SetSeverity@Error@Core@ArtSys@@QEAAXW4Severity@123@@Z
+                          27 ??0Error@Core@ArtSys@@QEAA@W4Severity@012@@Z
+
+    tiff.dll
+             1800E83C8 Import Address Table
+             18013A050 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          51 TIFFOpen
+                          86 TIFFSetWarningHandler
+                          7E TIFFSetErrorHandler
+                          80 TIFFSetField
+                           9 TIFFClose
+                          AC TIFFWriteEncodedStrip
+
+    REUSE.dll
+             1800E7F60 Import Address Table
+             180139BE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          55 izat_kill
+                          5A izat_new
+                          35 error_get
+                          58 izat_mono_b_do
+                          5E izat_startwh
+
+    Logging.dll
+             1800E7B80 Import Address Table
+             180139808 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           F ?HasLevel@Logging@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_K@Z
+                           0 ??0Guard@Logging@@QEAA@XZ
+                           3 ??1Guard@Logging@@QEAA@XZ
+
+    ExtraBoostFilesystem.dll
+             1800E7A78 Import Address Table
+             180139700 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          5F ?ToFileURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBV2234@@Z
+                          60 ?ToFileURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBVpath@filesystem@4@@Z
+                          28 ?ApplicationName@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ
+                          4B ?ProcessSpecificTempDirectory@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@XZ
+                          49 ?MountURI@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBVuri@5network@4@@Z
+                          68 ?ToURI@ExtraBoostFilesystem@@YA?AVuri@2network@boost@@AEBVpath@filesystem@4@@Z
+                          35 ?FromUTF8String@ExtraBoostFilesystem@@YA?AVpath@filesystem@boost@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          6A ?ToUTF8String@ExtraBoostFilesystem@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBVpath@filesystem@boost@@@Z
+
+    WS2_32.dll
+             1800E8030 Import Address Table
+             180139CB8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                             Ordinal   116
+                             Ordinal   115
+
+    boost_filesystem.dll
+             1800E8368 Import Address Table
+             180139FF0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1A ?convert@path_traits@detail@filesystem@boost@@YAXPEBD0AEAV?$basic_string@_WU?$char_traits@_W@std@@V?$allocator@_W@2@@std@@PEBV?$codecvt@_WDU_Mbstatet@@@6@@Z
+                          12 ?append_v3@path_algorithms@detail@filesystem@boost@@SAXAEAVpath@34@PEB_W1@Z
+                          49 ?last_write_time@detail@filesystem@boost@@YA_JAEBVpath@23@PEAVerror_code@system@3@@Z
+                          35 ?file_size@detail@filesystem@boost@@YA_KAEBVpath@23@PEAVerror_code@system@3@@Z
+                          18 ?compare_v3@path_algorithms@detail@filesystem@boost@@SAHAEBVpath@34@0@Z
+                          6A ?stem_v3@path_algorithms@detail@filesystem@boost@@SA?AVpath@34@AEBV534@@Z
+                          36 ?filename_v3@path_algorithms@detail@filesystem@boost@@SA?AVpath@34@AEBV534@@Z
+                          6F ?unique_path@detail@filesystem@boost@@YA?AVpath@23@AEBV423@PEAVerror_code@system@3@@Z
+                          21 ?create_directory@detail@filesystem@boost@@YA_NAEBVpath@23@PEBV423@PEAVerror_code@system@3@@Z
+                          1E ?copy_file@detail@filesystem@boost@@YA_NAEBVpath@23@0IPEAVerror_code@system@3@@Z
+                          5D ?remove@detail@filesystem@boost@@YA_NAEBVpath@23@PEAVerror_code@system@3@@Z
+
+    YAGL.dll
+             1800E8048 Import Address Table
+             180139CD0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1A ??1CompoundFactory@YAGL@@QEAA@XZ
+                          C8 ?GetResult@CompoundFactory@YAGL@@QEAA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                         114 ?SetWindingRule@CompoundFactory@YAGL@@QEAAAEAV12@W4WindingRule@2@@Z
+                          64 ?AddSubpath@CompoundFactory@YAGL@@QEAAAEAV12@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@Z
+                          ED ?IsEmpty@CompoundFactory@YAGL@@QEBA_NXZ
+                           6 ??0CompoundFactory@YAGL@@QEAA@XZ
+                          83 ?End@Compound@YAGL@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@std@@@std@@@std@@XZ
+                          6A ?Begin@Compound@YAGL@@QEBA?AV?$_Vector_const_iterator@V?$_Vector_val@U?$_Simple_types@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@std@@@std@@@std@@XZ
+                         125 ?Vector@YAGL@@YA?AV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@AEBV21@0@Z
+                          E0 ?Intersects@YAGL@@YA_NAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@0@Z
+                          1C ??1RotatedRectangle@YAGL@@QEAA@XZ
+                          1D ??1Segment@YAGL@@QEAA@XZ
+                          59 ??DYAGL@@YA?AVRotatedRectangle@0@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@0@AEBV10@@Z
+                          69 ?BackMinusFront@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV23@0@Z
+                          D8 ?Intersect@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV23@0@Z
+                          F4 ?IsRectangle@YAGL@@YA_NAEBVCompound@1@AEBV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          EC ?IsEmpty@Compound@YAGL@@QEBA_NXZ
+                          99 ?GetBoundingBox@Compound@YAGL@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@2@XZ
+                         122 ?Unite@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          CF ?GetUnityPdfRectangleCompound@YAGL@@YAAEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@XZ
+                          C5 ?GetRectangleCompound@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          58 ??DYAGL@@YA?AV?$shared_ptr@$$CBVSubpath@YAGL@@@std@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@0@V12@@Z
+                          E9 ?IsClosed@Subpath@YAGL@@QEBA_NXZ
+                          72 ?CloseAllOpenPaths@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@V23@@Z
+                          CC ?GetSubpaths@Compound@YAGL@@QEBAAEBV?$vector@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@2@@std@@XZ
+                          CB ?GetSize@RotatedRectangle@YAGL@@QEBAAEBV?$DimensionBase@UMilliPointCoordinateSystem@YAGL@@@2@XZ
+                          EE ?IsEmpty@RotatedRectangle@YAGL@@QEBA_NXZ
+                          4D ??8Segment@YAGL@@QEBA_NAEBV01@@Z
+                          55 ??D?$iterator_facade_base@VConstSegmentIterator@YAGL@@VSegment@2@Ubidirectional_iterator_tag@std@@V32@_J$0A@$0A@@detail@iterators@boost@@QEBA?AVSegment@YAGL@@XZ
+                          5D ??E?$iterator_facade_base@VConstSegmentIterator@YAGL@@VSegment@2@Ubidirectional_iterator_tag@std@@V32@_J$0A@$0A@@detail@iterators@boost@@QEAAAEAVConstSegmentIterator@YAGL@@XZ
+                         134 ?equal@ConstSegmentIterator@YAGL@@AEBA_NAEBV12@@Z
+                          6D ?BeginSegment@Subpath@YAGL@@QEBA?AVConstSegmentIterator@2@XZ
+                          86 ?EndSegment@Subpath@YAGL@@QEBA?AVConstSegmentIterator@2@XZ
+                           4 ??0CompoundFactory@YAGL@@QEAA@AEBV?$shared_ptr@$$CBVCompound@YAGL@@@std@@@Z
+                          A2 ?GetDistance@YAGL@@YA?AV?$CoordinateBase@UMilliPointCoordinateSystem@YAGL@@@1@AEBV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@1@0@Z
+                          D0 ?GetVisibleEnvelope@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBUCompoundGroup@1@@Z
+                           5 ??0CompoundFactory@YAGL@@QEAA@V?$shared_ptr@$$CBVSubpath@YAGL@@@std@@@Z
+                          11 ??0RotatedRectangle@YAGL@@QEAA@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@N@Z
+                          88 ?Exclude@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          D6 ?Intersect@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          68 ?BackMinusFront@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          8E ?FrontMinusBack@Private@YAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$vector@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@V?$allocator@V?$shared_ptr@$$CBVCompound@YAGL@@@std@@@2@@4@@Z
+                          90 ?GetAnchor@RotatedRectangle@YAGL@@QEBA?AV?$PointBase@UMilliPointCoordinateSystem@YAGL@@@2@W4Anchor@2@@Z
+                         11F ?ToRectangleSubpath@YAGL@@YA?AV?$shared_ptr@$$CBVSubpath@YAGL@@@std@@AEBV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@1@@Z
+                          D2 ?GetWindingRule@Compound@YAGL@@QEBA?AW4WindingRule@2@XZ
+                          9A ?GetBoundingBox@RotatedRectangle@YAGL@@QEBA?AV?$RectangleBase@UMilliPointCoordinateSystem@YAGL@@@2@XZ
+                          57 ??DYAGL@@YA?AV?$shared_ptr@$$CBVCompound@YAGL@@@std@@AEBV?$TransformationBase@UMilliPointCoordinateSystem@YAGL@@@0@V12@@Z
+                          C9 ?GetRotation@RotatedRectangle@YAGL@@QEBANXZ
+
+    PDFAccessLayer.dll
+             1800E7DD8 Import Address Table
+             180139A60 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         397 ?GetLength@GAArray@@QEBAJXZ
+                         3BA ?GetNumber@GAArray@@QEBA?AVGANumber@@J@Z
+                         34C ?GetDict@GAArray@@QEBA?AVGADict@@J@Z
+                         2CD ?DelayedUpdateLastModified@GADoc@@QEAAXAEBVGADict@@AEBVGName@@@Z
+                          A4 ??0GANumber@@QEAA@AEBVGADoc@@NW4GAPersistenceType@GAPersistentObject@@@Z
+                         30A ?Get@GANumber@@QEBANXZ
+                         391 ?GetInt@GANumber@@QEBAJXZ
+                         15C ??1GANumber@@QEAA@XZ
+                         4BB ?PrepareForInsert@GAObjectSupport@@SA_NAEAVGAObject@@AEBVGADoc@@_N@Z
+                         4C7 ?RectToArray@GAObjectSupport@@SAXAEBV?$GRectBase@N@@AEAVGAArray@@@Z
+                         282 ?ArrayToRect@GAObjectSupport@@SAXAEBVGAArray@@AEAV?$GRectBase@N@@@Z
+                         30D ?Get@GAString@@QEBAXAEAVGBuffer@@@Z
+                         43D ?IsArray@GAObject@@QEBA_NXZ
+                         445 ?IsDict@GAObject@@QEBA_NXZ
+                          19 ??0GAArray@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         26E ?Add@GAArray@@QEAAXAEBVGAObject@@@Z
+                         12C ??1GAArray@@QEAA@XZ
+                         34D ?GetDict@GADict@@QEBA?AV1@AEBVGName@@@Z
+                          40 ??0GADict@@QEAA@AEBVGADoc@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          B1 ??0GAObject@@QEAA@AEBV0@@Z
+                         161 ??1GAObject@@QEAA@XZ
+                         350 ?GetDoc@GAObject@@QEBA?AVGADoc@@XZ
+                         476 ?IsName@GAObject@@QEBA_NXZ
+                         318 ?GetArray@GADict@@QEBA?AVGAArray@@AEBVGName@@@Z
+                         3FE ?GetString@GADict@@QEBA?AVGAString@@AEBVGName@@@Z
+                         3BB ?GetNumber@GADict@@QEBA?AVGANumber@@AEBVGName@@@Z
+                         42D ?Has@GADict@@QEBA_NAEBVGName@@@Z
+                         1AE ??4GADict@@QEAAXAEBV0@@Z
+                         3DD ?GetPersistenceType@GAObject@@QEBA?AW4GAPersistenceType@GAPersistentObject@@XZ
+                         17B ??1GAString@@QEAA@XZ
+                          F8 ??0GAString@@QEAA@AEBVGADoc@@AEBVGString@@W4GAPersistenceType@GAPersistentObject@@@Z
+                          F7 ??0GAString@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         15B ??1GANull@@QEAA@XZ
+                          A2 ??0GANull@@QEAA@XZ
+                         15A ??1GAName@@QEAA@XZ
+                         21B ??9GAName@@QEBA_NPEBD@Z
+                         218 ??8GAName@@QEBA_NPEBD@Z
+                         28D ?Cast@GAName@@SA?AV1@AEBVGAObject@@@Z
+                          9C ??0GAName@@QEAA@AEBVGADoc@@AEBVGBuffer@@W4GAPersistenceType@GAPersistentObject@@@Z
+                         13E ??1GADoc@@QEAA@XZ
+                         13C ??1GADict@@QEAA@XZ
+                         3A2 ?GetName@GADict@@QEBA?AVGAName@@AEBVGName@@@Z
+                         308 ?Get@GADict@@QEBA?AVGAObject@@AEBVGName@@@Z
+                         4D4 ?Remove@GADict@@QEAAXAEBVGName@@@Z
+                         4C4 ?Put@GADict@@QEAAXAEBVGName@@AEBVGAObject@@@Z
+                         28B ?Cast@GADict@@SA?AV1@AEBVGAObject@@@Z
+                          3F ??0GADict@@QEAA@AEBV0@@Z
+                         484 ?IsString@GAObject@@QEBA_NXZ
+
+    BasicFrameworkCoreLayer.dll
+             1800E6080 Import Address Table
+             180137D08 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         A87 ?ToGBuffer@GStdSupport@@YA?AVGBuffer@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z
+                          26 ??0?$GRectBase@N@@QEAA@NNNN@Z
+                          27 ??0?$GRectBase@N@@QEAA@XZ
+                         322 ??8@YA_NAEBVGBuffer@@0@Z
+                          54 ??0GBuffer@@QEAA@PEBD@Z
+                         10F ??0GName@@QEAA@PEBD@Z
+                         21A ??1GString@@QEAA@XZ
+                         674 ?GetInstance@GUTF8Encoding@@SAPEAV1@XZ
+                         1BD ??1GBuffer@@QEAA@XZ
+                         A88 ?ToGString@GStdSupport@@YA?AVGString@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBVGEncoding@@@Z
+
+    KERNEL32.dll
+             1800E7AC0 Import Address Table
+             180139748 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         1B1 FormatMessageW
+                         1B0 FormatMessageA
+                         2F8 GetSystemTimeAsFileTime
+                         125 DisableThreadLibraryCalls
+                         61F WideCharToMultiByte
+                         3DF LocalFree
+                         226 GetCurrentThreadId
+                         222 GetCurrentProcessId
+                         45B QueryPerformanceCounter
+                         38E IsDebuggerPresent
+                         395 IsProcessorFeaturePresent
+                         5AC TerminateProcess
+                         221 GetCurrentProcess
+                         58D SetUnhandledExceptionFilter
+                         5CE UnhandledExceptionFilter
+                         4EE RtlVirtualUnwind
+                         4E7 RtlLookupFunctionEntry
+                         4DF RtlCaptureContext
+                         59F SleepConditionVariableSRW
+                         600 WakeAllConditionVariable
+                           0 AcquireSRWLockExclusive
+                         4C2 ReleaseSRWLockExclusive
+                         378 InitializeSListHead
+
+    MSVCP140.dll
+             1800E7BA0 Import Address Table
+             180139828 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         297 ?__ExceptionPtrCreate@@YAXPEAX@Z
+                         2AF ?clog@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+                         3C9 ?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A
+                         4D5 ?showmanyc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JXZ
+                         1AD ?_Fiopen@std@@YAPEAU_iobuf@@PEB_WHH@Z
+                         368 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
+                         461 ?put@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@D@Z
+                         104 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@N@Z
+                         10C ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_K@Z
+                         10D ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@_N@Z
+                         108 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAVios_base@1@AEAV21@@Z@Z
+                         106 ??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV01@P6AAEAV01@AEAV01@@Z@Z
+                         244 ?_Osfx@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAXXZ
+                          86 ??1?$basic_ostream@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          25 ??0?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAA@PEAV?$basic_streambuf@DU?$char_traits@D@std@@@1@_N@Z
+                           C ??0?$basic_ios@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         534 ?widen@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADD@Z
+                         29A ?__ExceptionPtrRethrow@@YAXPEBX@Z
+                         487 ?rdbuf@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_streambuf@DU?$char_traits@D@std@@@2@XZ
+                         50A ?tie@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBAPEAV?$basic_ostream@DU?$char_traits@D@std@@@2@XZ
+                         4C5 ?setstate@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                         2A6 ?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QEAAXH_N@Z
+                          7D ??1?$basic_ios@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                         546 ?xsputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEBD_J@Z
+                         543 ?xsgetn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@MEAA_JPEAD_J@Z
+                         1F4 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAPEAD0PEAH001@Z
+                         1F5 ?_Init@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXXZ
+                         247 ?_Pnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         24A ?_Pninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         441 ?pbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         1E2 ?_Gnavail@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBA_JXZ
+                         1E8 ?_Gninc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         1E5 ?_Gndec@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAPEADXZ
+                         359 ?epptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         295 ?__ExceptionPtrCopy@@YAXPEAXPEBX@Z
+                         36B ?gbump@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXH@Z
+                         350 ?egptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         447 ?pptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         3C6 ?gptr@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         34D ?eback@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEBAPEADXZ
+                         4E1 ?sputn@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAA_JPEBD_J@Z
+                         4DE ?sputc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEAAHD@Z
+                         3C0 ?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ
+                          89 ??1?$basic_streambuf@DU?$char_traits@D@std@@@std@@UEAA@XZ
+                          2F ??0?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAA@XZ
+                         53D ?width@ios_base@std@@QEAA_J_J@Z
+                         53E ?width@ios_base@std@@QEBA_JXZ
+                         4B8 ?setf@ios_base@std@@QEAAHH@Z
+                         367 ?flags@ios_base@std@@QEBAHXZ
+                         35F ?fail@ios_base@std@@QEBA_NXZ
+                         3C5 ?good@ios_base@std@@QEBA_NXZ
+                         1B1 ?_Getcat@?$codecvt@DDU_Mbstatet@@@std@@SA_KPEAPEBVfacet@locale@2@PEBV42@@Z
+                         527 ?unshift@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEAD1AEAPEAD@Z
+                         433 ?out@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                         3FA ?in@?$codecvt@DDU_Mbstatet@@@std@@QEBAHAEAU_Mbstatet@@PEBD1AEAPEBDPEAD3AEAPEAD@Z
+                         29D ?always_noconv@codecvt_base@std@@QEBA_NXZ
+                         1D5 ?_Getgloballocale@locale@std@@CAPEAV_Locimp@12@XZ
+                         131 ??Bid@locale@std@@QEAA_KXZ
+                         28F ?_Xout_of_range@std@@YAXPEBD@Z
+                         51F ?uncaught_exceptions@std@@YAHXZ
+                          A5 ??1_Lockit@std@@QEAA@XZ
+                          6D ??0_Lockit@std@@QEAA@H@Z
+                         28C ?_Xbad_function_call@std@@YAXXZ
+                         28E ?_Xlength_error@std@@YAXPEBD@Z
+                         293 ?__ExceptionPtrAssign@@YAXPEAXPEBX@Z
+                         299 ?__ExceptionPtrDestroy@@YAXPEAX@Z
+                         29C ?__ExceptionPtrToBool@@YA_NPEBX@Z
+                         4BA ?setg@?$basic_streambuf@DU?$char_traits@D@std@@@std@@IEAAXPEAD00@Z
+                         298 ?__ExceptionPtrCurrentException@@YAXPEAX@Z
+                         361 ?fill@?$basic_ios@DU?$char_traits@D@std@@@std@@QEBADXZ
+
+    VCRUNTIME140.dll
+             1800E7F90 Import Address Table
+             180139C18 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          24 __std_type_info_compare
+                          25 __std_type_info_destroy_list
+                           8 __C_specific_handler
+                          1C __current_exception_context
+                          1B __current_exception
+                          42 strstr
+                          19 __RTtypeid
+                          3E memset
+                          3B memcmp
+                          21 __std_exception_copy
+                          36 _purecall
+                          23 __std_terminate
+                          3D memmove
+                          3C memcpy
+                          18 __RTDynamicCast
+                          22 __std_exception_destroy
+                           1 _CxxThrowException
+
+    VCRUNTIME140_1.dll
+             1800E8020 Import Address Table
+             180139CA8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           0 __CxxFrameHandler4
+
+    api-ms-win-crt-runtime-l1-1-0.dll
+             1800E8260 Import Address Table
+             180139EE8 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          1E _crt_atexit
+                          22 _execute_onexit_table
+                          37 _initterm_e
+                          3C _register_onexit_function
+                          36 _initterm
+                          16 _cexit
+                          39 _invalid_parameter_noinfo_noreturn
+                          34 _initialize_onexit_table
+                          33 _initialize_narrow_environment
+                          18 _configure_narrow_argv
+                          3F _seh_filter_dll
+                          67 terminate
+
+    api-ms-win-crt-heap-l1-1-0.dll
+             1800E81E8 Import Address Table
+             180139E70 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                           8 _callnewh
+                          19 malloc
+                          18 free
+
+    api-ms-win-crt-math-l1-1-0.dll
+             1800E8208 Import Address Table
+             180139E90 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                         109 round
+                         10A roundf
+                          10 _dclass
+                          90 cos
+                          55 atan2
+                          CC hypot
+                          BE floor
+                         112 sin
+                          7C ceil
+                          7D ceilf
+
+    api-ms-win-crt-stdio-l1-1-0.dll
+             1800E82C8 Import Address Table
+             180139F50 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          39 _get_stream_buffer_pointers
+                          74 fclose
+                          77 fflush
+                          78 fgetc
+                          79 fgetpos
+                          9D ungetc
+                          98 setvbuf
+                          8A fwrite
+                          2F _fseeki64
+                          88 fsetpos
+                          83 fread
+                          7F fputc
+                           D __stdio_common_vsprintf
+
+    api-ms-win-crt-string-l1-1-0.dll
+             1800E8338 Import Address Table
+             180139FC0 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          65 isalpha
+                          64 isalnum
+                          68 isdigit
+                          7E isxdigit
+                          8F strncpy
+
+    api-ms-win-crt-filesystem-l1-1-0.dll
+             1800E81D0 Import Address Table
+             180139E58 Import Name Table
+                     0 time date stamp
+                     0 Index of first forwarder reference
+
+                          24 _unlock_file
+                          16 _lock_file
+
+  Summary
+
+       1C000 .data
+        C000 .pdata
+       6C000 .rdata
+        4000 .reloc
+        1000 .rsrc
+       E5000 .text

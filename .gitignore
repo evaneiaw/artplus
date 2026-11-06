@@ -1,0 +1,102 @@
+# Build outputs
+build/
+build-msvc/
+build-msvc-nmake/
+build-vs2022/
+out/
+cmake-build-*/
+
+# Compiled artifacts
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.idb
+*.res
+
+# CMake generated
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+compile_commands.json
+*.cmake.stamp
+CMakeRuleHashes.txt
+TargetDirectories.txt
+CTestCostData.txt
+AutogenUsed.txt
+ParseCache.txt
+
+# Qt generated
+.qt/
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.moc
+
+# Temporary / logs / diagnostics
+*.log
+*.err
+*_err.txt
+*_out.txt
+ap_err.txt
+ap_out.txt
+artpro*_err*.txt
+artpro*_out*.txt
+build_*.log
+build_*.txt
+err_*.txt
+out_*.txt
+m*.err
+ui*.txt
+z_*.txt
+g_*.txt
+fid_*.txt
+insp_*.txt
+menu_*.txt
+max_*.txt
+marks*.err
+smoke_*.txt
+reopen_*.txt
+run_*.txt
+final_*.txt
+last.err
+tmp.txt
+error.txt
+output.txt
+continuar.txt
+etapa1_ativo.txt
+@AutomationLog.txt
+unzip_content.txt
+
+# Supervisor runtime state
+.codex-supervisor/*.log
+.codex-supervisor/cycle-*
+.codex-supervisor/STOP
+.codex-supervisor/*.lock
+
+# Test runtime outputs
+tests/runtime/
+**/*-edited.pdf
+artplus_*_fixture.pdf
+artplus_*_edited.pdf
+
+# Review/scratch
+review_temp/
+unzip_test/
+ARTPLUS_REPORT.zip
+ARTPLUS_REVIEW_PACKAGE.zip
+ARTPLUS_REVIEW_PACKAGE_README.md
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
