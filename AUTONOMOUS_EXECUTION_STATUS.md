@@ -4,18 +4,18 @@
 
 | Campo | Valor |
 |---|---|
-| **ID da Tarefa Atual** | AUDIT-002-B |
-| **Descrição Objetiva** | Verificação do estado de `src/ui/src/PageView.cpp` — integridade do namespace, estrutura de funções, eventos de mouse e rotação visual |
+| **ID da Tarefa Atual** | AUDIT-002-C |
+| **Descrição Objetiva** | Classificar resultados CTest: separar testes aprovados, reprovados, não iniciados, ignorados e verificações fora do CTest |
 | **Milestone** | M22 — PDF Engine and Document Engine |
 | **Estado** | PENDING |
 | **Commit de Origem** | ef01e49 (AUDIT-002 reorganization) |
-| **Arquivos Envolvidos** | src/ui/src/PageView.cpp |
-| **Critérios de Conclusão** | 1. Verificar se o `}` que fecha `mmText()` está presente e posicionado corretamente (verificar profundidade de chaves = 0 por script)<br>2. Verificar se o namespace anônimo está devidamente fechado antes de `namespace artplus::ui`<br>3. Conferir se as linhas perdidas foram restauradas: `wheelEvent`, `mousePressEvent`, `mouseMoveEvent`, `mouseReleaseEvent`, `resizeEvent`, `notifyStatus`, `requestRender`, seleção e crosshair do `paintEvent`<br>4. Verificar se não há chaves órfãs no arquivo (script de verificação de brace depth)<br>5. **Não** reconstruir novamente o arquivo se a correção já estiver presente (já aplicada nesta sessão em 2026-11-05)<br>6. Confirmar que o estado do arquivo não mudou desde a correção anterior (comparação com versão gravada em ef01e49) |
-| **Testes Exigidos** | Inspeção visual e script de verificação de brace depth em src/ui/src/PageView.cpp |
-| **Resultado** | Diagnóstico concluído: arquivo já possui correção de namespace aplicada em 05/11/2026. Estrutura de chaves verificada como consistente (depth 0). Nenhuma reconstrução necessária. |
-| **Commit de Conclusão** | ef01e49 |
+| **Arquivos Envolvidos** | — (dados já observados em 07/11/2026) |
+| **Critérios de Conclusão** | 1. Dividir resultados CTest em categorias distintas:<br>   - **Aprovados**: suites que efetivamente executaram checks e tiveram 0 falhas<br>   - **Reprovados**: suites que efetivamente executaram checks e tiveram falhas<br>   - **Não iniciaram**: suites selecionadas mas que não chegaram a executar checks<br>   - **Ignorados**: suites puladas por dependência de fixture<br>   - **Fora do CTest**: verificações estruturais Python (verify_pdf_fixtures.py, fixture_builder.h controls) que não fazem parte das 6 suítes CTest registradas<br>2. **Não declarar 328 checks aprovados se eles não foram efetivamente executados** — o número real de checks aprovados deve ser informado com base em o que realmente rodou<br>3. Informar o número exato de checks por categoria (baseado em relatórios CTest e logs)<br>4. Manter link direto do commit adfb0ef como fonte dos dados<br>5. Não inventar resultados ou estender coverage além do que foi efetivamente testado naquele ambiente |
+| **Testes Exigidos** | Análise de logs CTest (LastTest.log, resultados parciais); verify_pdf_fixtures.py |
+| **Resultado** | Em andamento — classificação de 8 suítes CTest observadas em 07/11/2026; pendente leitura de logs formais |
+| **Commit de Conclusão** | — |
 | **Próxima Tarefa** | AUDIT-002-C (após conclusão de B) |
-| **Histórico de Tarefas Concluídas** | AUDIT-001 — Auditoria geral de implementação e integração do ArtPlus (2026-11-07)<br>• Status: CONCLUÍDA — 7 relatórios gerados, evidências publicadas no GitHub<br>• Commit: adfb0ef<br>• Arquivos: 7 relatórios ARTPLUS_*.md<br>• Avaliação: engenharia reversa estrutural confiável; validação visual e runtime bloqueada por inicialização GUI<br>• AUDIT-002-A: CONCLUÍDA — Diagnóstico Windows GUI completado; confirmação de falha USER32/GDI32 initialization (Win32 1114); diagnóstico registado sem alterações globais;<br>• AUDIT-002-B: CONCLUÍDA — Verificação PageView.cpp; namespace ja corrigido; nao ha necessidade de reconstrucao |
+| **Histórico de Tarefas Concluídas** | AUDIT-001 — Auditoria geral de implementação e integração do ArtPlus (2026-11-07)<br>• Status: CONCLUÍDA — 7 relatórios gerados, evidências publicadas no GitHub<br>• Commit: adfb0ef<br>• Arquivos: 7 relatórios ARTPLUS_*.md<br>• Avaliação: engenharia reversa estrutural confiável; validação visual e runtime bloqueada por inicialização GUI<br>• AUDIT-002-A: CONCLUÍDA — Diagnóstico Windows GUI completado; confirmação de falha USER32/GDI32 initialization (Win32 1114); diagnóstico registado sem alterações globais;<br>• AUDIT-002-B: CONCLUÍDA — Verificação PageView.cpp; todas as funções esperadas presentes (wheelEvent, mousePressEvent, mouseMoveEvent, mouseReleaseEvent, resizeEvent, notifyStatus, requestRender, paintEvent); namespace corretamente estruturado; nenhuma alteração de código necessária;<br>• AUDIT-002-C: PENDING — Classificação de resultados CTest em andamento; análise de logs formais pendente |
 
 ## 2. Definição de Tarefas AUDIT-002 (Individualizadas)
 
