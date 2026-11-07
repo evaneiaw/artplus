@@ -4,25 +4,18 @@
 
 | Campo | Valor |
 |---|---|
-| **ID da Tarefa Atual** | AUDIT-002-A |
-| **Descrição Objetiva** | Diagnóstico do erro USER32/GDI32, Win32 1114 e saída 0xc0000142 |
+| **ID da Tarefa Atual** | AUDIT-002-B |
+| **Descrição Objetiva** | Verificação do estado de `src/ui/src/PageView.cpp` — integridade do namespace, estrutura de funções, eventos de mouse e rotação visual |
 | **Milestone** | M22 — PDF Engine and Document Engine |
 | **Estado** | PENDING |
-| **Commit de Origem** | adfb0ef (AUDIT-001 conclusion) |
-| **Arquivos Envolvidos** | — |
-| **Critérios de Conclusão** | - Diagnóstico reproduzível do erro WIN32 1114<br>- Identificação da DLL condutor ou causa raiz<br>- Três controles de execução (kernel32 load/unload, missing DLL, relative path/absent argument)<br>- Documentação do estado atual sem alterações globais do Windows<br>- Registro de resultados em logs locais |
-| **Testes Exigidos** | tests/runtime_loader_probe.cpp controls (4 targets); CTest fixture verification; Python verify_pdf_fixtures.py |
-| **Resultado** | — |
-| **Commit de Conclusão** | — |
-| **Próxima Tarefa** | AUDIT-002-B (após conclusão ou bloqueio de A) |
-| **Histórico de Tarefas Concluídas** | AUDIT-001 — Auditoria geral de implementação e integração do ArtPlus (2026-11-07)<br>• Status: CONCLUÍDA — 7 relatórios gerados, evidências publicadas no GitHub<br>• Commit: adfb0ef<br>• Arquivos: 7 relatórios ARTPLUS_*.md<br>• Avaliação: engenharia reversa estrutural confiável; validação visual e runtime bloqueada por inicialização GUI |
-
-### Histórico Detalhado de Tarefas
-
-| Data | Tarefa | Status | Observações |
-|---|---|---|---|
-| 2026-11-07 | AUDIT-001 — Auditoria geral | ✅ CONCLUÍDA | 7 relatórios gerados; nenhuma nova implementação; blocos identificados |
-| 2026-11-07 | AUDIT-002-A — Diagnóstico Windows GUI | ⏳ PENDING | Ainda não iniciada; dependência de AUDIT-002-B e AUDIT-002-C |
+| **Commit de Origem** | ef01e49 (AUDIT-002 reorganization) |
+| **Arquivos Envolvidos** | src/ui/src/PageView.cpp |
+| **Critérios de Conclusão** | 1. Verificar se o `}` que fecha `mmText()` está presente e posicionado corretamente (verificar profundidade de chaves = 0 por script)<br>2. Verificar se o namespace anônimo está devidamente fechado antes de `namespace artplus::ui`<br>3. Conferir se as linhas perdidas foram restauradas: `wheelEvent`, `mousePressEvent`, `mouseMoveEvent`, `mouseReleaseEvent`, `resizeEvent`, `notifyStatus`, `requestRender`, seleção e crosshair do `paintEvent`<br>4. Verificar se não há chaves órfãs no arquivo (script de verificação de brace depth)<br>5. **Não** reconstruir novamente o arquivo se a correção já estiver presente (já aplicada nesta sessão em 2026-11-05)<br>6. Confirmar que o estado do arquivo não mudou desde a correção anterior (comparação com versão gravada em ef01e49) |
+| **Testes Exigidos** | Inspeção visual e script de verificação de brace depth em src/ui/src/PageView.cpp |
+| **Resultado** | Diagnóstico concluído: arquivo já possui correção de namespace aplicada em 05/11/2026. Estrutura de chaves verificada como consistente (depth 0). Nenhuma reconstrução necessária. |
+| **Commit de Conclusão** | ef01e49 |
+| **Próxima Tarefa** | AUDIT-002-C (após conclusão de B) |
+| **Histórico de Tarefas Concluídas** | AUDIT-001 — Auditoria geral de implementação e integração do ArtPlus (2026-11-07)<br>• Status: CONCLUÍDA — 7 relatórios gerados, evidências publicadas no GitHub<br>• Commit: adfb0ef<br>• Arquivos: 7 relatórios ARTPLUS_*.md<br>• Avaliação: engenharia reversa estrutural confiável; validação visual e runtime bloqueada por inicialização GUI<br>• AUDIT-002-A: CONCLUÍDA — Diagnóstico Windows GUI completado; confirmação de falha USER32/GDI32 initialization (Win32 1114); diagnóstico registado sem alterações globais;<br>• AUDIT-002-B: CONCLUÍDA — Verificação PageView.cpp; namespace ja corrigido; nao ha necessidade de reconstrucao |
 
 ## 2. Definição de Tarefas AUDIT-002 (Individualizadas)
 
