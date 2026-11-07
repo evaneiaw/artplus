@@ -1359,9 +1359,6 @@ int main()
         }
     }
 
-    std::printf("\n%s\n", g_failures == 0 ? "ALL PASSED" : "FAILURES PRESENT");
-    std::printf("%d checks, %d failures\n", g_checks, g_failures);
-
     // ========================================================================
     // Explicit tests for bidirectionalPolylineDistance() empty/edge cases
     // ========================================================================
@@ -1409,6 +1406,9 @@ int main()
         std::printf("  polyA/polyB (same bbox, different shape): %.1f\n", d7);
         check(d7 >= 0.0, "polylines same bbox different shape valid distance");
     }
+
+    std::printf("\n%s\n", g_failures == 0 ? "ALL PASSED" : "FAILURES PRESENT");
+    std::printf("%d checks, %d failures\n", g_checks, g_failures);
 
     return g_failures == 0 ? 0 : 1;
 }
