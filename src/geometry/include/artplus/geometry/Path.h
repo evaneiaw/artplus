@@ -77,14 +77,6 @@ double signedArea(const QVector<Point>& polygon);
 bool pointInPolygon(const Point& p, const QVector<Point>& polygon);
 Rect polygonBounds(const QVector<Point>& polygon);
 double polygonPerimeter(const QVector<Point>& polygon);
-
-// Offsets a simple closed polygon. Positive delta expands, negative shrinks.
-// Uses miter joins with a miter limit. Concave self-intersection cleanup is not
-// performed yet; callers should validate the result before destructive use.
-QVector<Point> offsetPolygon(const QVector<Point>& polygon, double delta,
-                             double miterLimit = 4.0, double tolerance = 1e-6);
-
-// Returns how much boundary length two polygons share (collinear overlapping edges).
 double sharedBoundaryLength(const QVector<Point>& a, const QVector<Point>& b,
                             double tolerance = 0.05);
 
@@ -96,6 +88,34 @@ QVector<Point> simplifyPolygon(const QVector<Point>& polygon, double tolerance =
 
 // Removes collinear spikes and duplicate points.
 QVector<Point> cleanPolygon(const QVector<Point>& polygon, double tolerance = 1e-6);
+
+// Circle approximated with four cubic segments.
+Path makeCirclePath(const Point& center, double radius);
+
+// ========================================================================
+// Topological subdivision for Path — foundation for boolean operations
+// ========================================================================
+
+// Point of intersection between two path segments.
+struct Intersection {
+    Point point;      // coordenada do ponto de interseção
+    double t1 = 0.0;  // parâmetro no primeiro segmento (0 = início, 1 = fim)
+    double t2 = 0.0;  // parâmetro no segundo segmento (0 = início, 1 = fim)
+    int source1 = -1; // índice do subpath fonte 1
+    int source2 = -1; // índice do subpath fonte 2
+    bool isTangent = false;  // true se os tangentes são paralelos na interseção
+};
+
+// Divide todos os subpaths em pontos de interseção entre si.
+// Retorna todas as interseções encontradas.
+QVector<Intersection> buildTopology(Path& path);
+
+// Divide um subpath específico em seus pontos de interseção com outros subpaths.
+QVector<Intersection> subdivideSubPath(Path::SubPath& subpath, const Path& path);
+
+// ========================================================================
+// Convenience functions (declarations — implementations in Path.cpp)
+// ========================================================================
 
 // Circle approximated with four cubic segments.
 Path makeCirclePath(const Point& center, double radius);
