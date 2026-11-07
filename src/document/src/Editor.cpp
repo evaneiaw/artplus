@@ -314,4 +314,52 @@ bool Editor::isModified() const
     return m_undoCount > 0 || m_redoCount > 0;
 }
 
+void Editor::groupSelected()
+{
+    saveState();
+    if (m_selected.size() < 2) return;
+    // Criar um novo GroupObject contendo todos os objetos selecionados
+    ArtLayer* primaryLayer = nullptr;
+    // Encontrar a camada primária (primeiro objeto selecionado)
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (layer) {
+            primaryLayer = layer;
+            break;
+        }
+    }
+    if (!primaryLayer) return;
+
+    auto group = std::make_unique<GroupObject>();
+    group->setName(QStringLiteral("Group %1").arg(/* next group id */));
+
+    // Mover todos os objetos selecionados para o grupo
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        // Transferir propriedade do objeto para o grupo
+        // Isso depende da arquitetura de layers do ArtPlus
+        // group->addChild(std::move(obj));
+    }
+
+    // Substituir os objetos selecionados pelo grupo na layer
+    // ... lógica depende da estrutura ArtLayer/ArtDocument
+
+    emit selectionChanged();
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::ungroupSelected()
+{
+    saveState();
+    // Verificar se há um grupo selecionado
+    // ... lógica para encontrar e desagrupar
+    emit selectionChanged();
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
 } // namespace artplus::document

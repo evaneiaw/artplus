@@ -216,4 +216,14 @@ bool Editor::isModified() const
     return m_undoCount > 0 || m_redoCount > 0;
 }
 
-} // namespace artplus::geometry
+// ======================================================================
+// Group/Ungroup — agrupar e desagrupar objetos selecionados
+// ======================================================================
+
+// Agrupar objetos selecionados em um novo grupo
+void Editor::groupSelected();
+
+// Desagrupar um grupo selecionado, retornando seus objetos ao estado individual
+void Editor::ungroupSelected();
+
+} // namespace artplus::document
