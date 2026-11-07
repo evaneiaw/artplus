@@ -101,7 +101,7 @@ public:
     static void clamp(Color& c);
 
 private:
-// Matrizes de conversão padrões
+    // Matrizes de conversão padrões
     static constexpr double rgbToCmykMatrix[3][4] = {
         {-2.0/3.0, 1.0, 1.0, 1.0},
         {1.0, -2.0/3.0, 1.0, 1.0},
@@ -177,7 +177,41 @@ QString colorName(const Color& c);
 // Espaço de cor padrão para novos objetos
 const ColorSpaceType defaultSpace = ColorSpaceType::RGB;
 
-// Limiar para consideração de cor "negativa" ou "zero"
+// Limiar para considerações de cor "negativa" ou "zero"
 constexpr double colorTolerance = 1e-6;
+
+// ======================================================================
+// Overprint e Knockout
+// ======================================================================
+
+// Verificar se a cor deve fazer overprint (sobreposição)
+bool shouldOverprint(const Color& foreground, const Color& background);
+
+// Aplicar overprint a uma cor (afeta como a cor se mistura com o que está por baixo)
+Color applyOverprint(const Color& base, const Color& overprint, bool knockout = false);
+
+// Verificar se knockout deve ser aplicado (remover a cor subjacente)
+bool shouldKnockout(const Color& foreground, const Color& background);
+
+// Aplicar knockout: remover a cor subjacente onde o foreground está
+Color applyKnockout(const Color& base, const Color& foreground);
+
+// ======================================================================
+// Rendering Intent
+// ======================================================================
+
+// Intentos de rendering para conversão de cor
+enum class RenderingIntent {
+    Perceptual,              // Preservar proporções de cor (fotográfico)
+    RelativeColorimetric,    // Pontos brancos/pretos mapeados, outras cores podem mudar
+    AbsoluteColorimetric,    // Como RGB absolute, sem ajustar para white point
+    Saturation               // Preservar saturação, ignorando brilho
+};
+
+// Converter cor com intent especificado
+Color convertWithIntent(const Color& from, ColorSpaceType toSpace, RenderingIntent intent);
+
+// Obter intent recomendado para um uso específico
+RenderingIntent recommendedIntent(ColorSpaceType fromSpace, ColorSpaceType toSpace, bool isProofing = false);
 
 } // namespace artplus::color

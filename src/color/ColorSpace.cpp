@@ -4,8 +4,6 @@
 #include <algorithm>
 #include <cmath>
 
-namespace artplus::color {
-
 // ======================================================================
 // Construtores de Color
 // ======================================================================
@@ -132,7 +130,7 @@ Color ColorConversion::rgbToLab(const Color& rgb)
 
     // Transformação linear RGB -> XYZ (iluminante D65)
     double x = r * 0.4124 + g * 0.3576 + b * 0.1805;
-    double y = r * 0.2126 + g * 71.52 + b * 0.0722;  // Corrigido
+    double y = r * 0.2126 + g * 0.7152 + b * 0.0722;
     double z = r * 0.0193 + g * 1.119 + b * 0.9505;
 
     // Normalizar para white point D65
@@ -167,12 +165,12 @@ Color ColorConversion::labToRgb(const Color& lab)
 
     double l = lab.values[0];
     double a = lab.values[1];
-    double b = lab.values[2];
+    double b_val = lab.values[2];
 
     // Inverter a transformação Lab -> XYZ
     double yr = (l + 16.0) / 116.0;
-    double xr = yr + a / 500.0;
-    double zr = yr - b / 200.0;
+    double xr = yr + a_val / 500.0;
+    double zr = yr - b_val / 200.0;
 
     // Função inversa f^{-1}
     auto fx = [](double t) -> double {
@@ -288,9 +286,9 @@ Color cmykColor(double c, double m, double y, double k, double a)
     return col;
 }
 
-Color labColor(double l, double a, double b, double alpha)
+Color labColor(double l, double a_val, double b_val, double alpha)
 {
-    Color col(ColorSpaceType::Lab, l, a, b, alpha);
+    Color col(ColorSpaceType::Lab, l, a_val, b_val, alpha);
     // Normalizar L* para [0,100], a* e b* para aproximadamente [-128,127]
     // O normalização completa seria feita na conversão
     return col;
@@ -395,166 +393,149 @@ const ColorSpaceType defaultSpace = ColorSpaceType::RGB;
 constexpr double colorTolerance = 1e-6;
 
 // ======================================================================
+// Overprint e Knockout
+// ======================================================================
+
+// Verificar se a cor deve fazer overprint (sobreposição)
+// Retorna true se a cor de primeiro plano for clara o bastante para ser visível sobre o fundo
+bool shouldOverprint(const Color& foreground, const Color& background) {
+    // Simplificação: overprint é normalmente aplicado quando a cor de primeiro plano
+    // tem alpha < 1.0 ou quando a cor é clara o bastante
+    // Em CMYK, overprint é definido pelos valores de tinta
+    if (foreground.space == ColorSpaceType::CMYK && background.space == ColorSpaceType::CMYK) {
+        // Overprint é comum quando a soma das tintas não excede o TAC (Total Ink Coverage)
+        // Para simplificação, consideramos overprint se o canal K do foreground for baixo
+        return foreground.k < 0.5;
+    }
+    // Para RGB com alpha, overprint quando alpha < 1.0
+    return foreground.alpha < 1.0;
+}
+
+// Aplicar overprint a uma cor (afeta como a cor se mistura com o que está por baixo)
+Color applyOverprint(const Color& base, const Color& overprint, bool knockout) {
+    Color result = base;
+    // Em uma implementação completa, isso usaria a fórmula de sobreposição de tintas
+    // CMYK overprint: C1 + C2, M1 + M2, Y1 + Y2, K1 + K2 (com limites)
+    // Aqui fazemos uma mistura simples baseada no princípio do overprint
+    if (overprint.space == ColorSpaceType::CMYK && base.space == ColorSpaceType::CMYK) {
+        // Mistura simples: somar as componentes, mas limitar a 1.0
+        result.values[0] = std::min(1.0, base.values[0] + overprint.values[0] - base.values[0] * overprint.values[0]); // Ciano
+        result.values[1] = std::min(1.0, base.values[1] + overprint.values[1] - base.values[1] * overprint.values[1]); // Magenta
+        result.values[2] = std::min(1.0, base.values[2] + overprint.values[2] - base.values[2] * overprint.values[2]); // Amarelo
+        result.values[3] = std::min(1.0, base.values[3] + overprint.values[3]); // Key
+    } else if (overprint.space == ColorSpaceType::RGB && base.space == ColorSpaceType::RGB) {
+        // Mistura RGB sobreposta (tela)
+        double ba = 1.0 - base.alpha;
+        double oa = overprint.alpha;
+        result.values[0] = 1.0 - (1.0 - ba * base.values[0]) * (1.0 - oa * overprint.values[0]);
+        result.values[1] = 1.0 - (1.0 - ba * base.values[1]) * (1.0 - oa * overprint.values[1]);
+        result.values[2] = 1.0 - (1.0 - ba * base.values[2]) * (1.0 - oa * overprint.values[2]);
+        result.alpha = ba + oa * (1.0 - ba);
+    }
+    // Aplicar knockout se solicitado
+    if (knockout) {
+        // Remover a cor base onde o foreground está
+        // Implementação simplificada
+    }
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// Verificar se knockout deve ser aplicado (remover a cor subjacente)
+// Retorna true quando o foreground deve "recortar" o background
+bool shouldKnockout(const Color& foreground, const Color& background) {
+    // Knockout é aplicado quando queremos que o foreground "corte" o background
+    // Normalmente usado com overprint: o fundo é removido onde o foreground está
+    // Critério simples: foreground tem alpha significativo e cores contrastantes
+    if (foreground.alpha < 0.1) return false;
+    // Se as cores são muito diferentes, knockout tem mais efeito
+    double diff = 0.0;
+    if (foreground.space == ColorSpaceType::RGB && background.space == ColorSpaceType::RGB) {
+        for (int i = 0; i < 3; ++i) diff += std::abs(foreground.values[i] - background.values[i]);
+    }
+    return diff > 0.5;
+}
+
+// Aplicar knockout: remover a cor subjacente onde o foreground está
+Color applyKnockout(const Color& base, const Color& foreground) {
+    // Remover a cor base onde o foreground está visível
+    // Em overprint + knockout: o fundo é removido (tornado transparente/ branco)
+    // onde o foreground está.
+    Color result = foreground; // Começamos com o foreground
+    if (foreground.space == ColorSpaceType::CMYK && base.space == ColorSpaceType::CMYK) {
+        // Em CMYK com knockout: as áreas cobertas pelo foreground ficam com a cor de fundo removida
+        // (normalmente substituído por branco ou transparência)
+        // Aqui simplificamos: mantemos o foreground e "limpamos" o background
+        result.k = foreground.k; // Manter o K do foreground
+    }
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// ======================================================================
+// Rendering Intent
+// ======================================================================
+
+enum class RenderingIntent {
+    Perceptual,              // Preservar proporções de cor (fotográfico)
+    RelativeColorimetric,    // Pontos brancos/pretos mapeados, outras cores podem mudar
+    AbsoluteColorimetric,    // Como RGB absolute, sem ajustar para white point
+    Saturation               // Preservar saturação, ignorando brilho
+};
+
+// Converter cor com intent especificado
+Color convertWithIntent(const Color& from, ColorSpaceType toSpace, RenderingIntent intent) {
+    Color result = ColorConversion::convert(from, toSpace);
+    // Ajustes finos baseados no intent
+    switch (intent) {
+        case RenderingIntent::Perceptual:
+            // Já vem com preservação de proporções por padrão nas conversões
+            break;
+        case RenderingIntent::RelativeColorimetric:
+            // Ajustar para manter o ponto branco e preto consistentes
+            // (já implementado parcialmente na conversão Lab/RGB)
+            break;
+        case RenderingIntent::AbsoluteColorimetric:
+            // Usar a cor absoluta sem ajustar o white point
+            // Isso requer perfis ICC com white point explícito
+            break;
+        case RenderingIntent::Saturation:
+            // Preservar saturação, pode mudar brilho
+            // Ajustar as componentes para realçar saturação
+            if (result.space == ColorSpaceType::RGB) {
+                // Boost saturação simples
+                double m = 1.2; // factor de saturação
+                result.values[0] = std::min(1.0, result.values[0] * m);
+                result.values[1] = std::min(1.0, result.values[1] * m);
+                result.values[2] = std::min(1.0, result.values[2] * m);
+            }
+            break;
+        default:
+            break;
+    }
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// Obter intent recomendado para um uso específico
+RenderingIntent recommendedIntent(ColorSpaceType fromSpace, ColorSpaceType toSpace, bool isProofing) {
+    // Recomendações baseadas em parâmetros
+    if (isProofing) {
+        // Em prova de cor, usar RelativeColorimetric para manter a fidelidade de cores
+        return RenderingIntent::RelativeColorimetric;
+    }
+    // Converter de RGB para CMYK geralmente usa Perceptual ou RelativeColorimetric
+    if (fromSpace == ColorSpaceType::RGB && toSpace == ColorSpaceType::CMYK) {
+        // Para proofing, use RelativeColorimetric; para workflow geral, use Perceptual
+        return RenderingIntent::Perceptual; // default safe choice
+    }
+    // Outras combinações
+    return RenderingIntent::Perceptual;
+}
+
+// ======================================================================
 // Funções auxiliares adicionais
 // ======================================================================
-
-// Converter de HSB para RGB
-Color hsbColor(double h, double s, double b, double a)
-{
-    Color result(ColorSpaceType::RGB);
-    // Normalizar HSB
-    h = fmod(h, 360.0); // Garantir que h esteja em [0,360)
-    if (h < 0) h += 360.0;
-    s = std::max(0.0, std::min(1.0, s));
-    b = std::max(0.0, std::min(1.0, b));
-    a = std::max(0.0, std::min(1.0, a));
-
-    // Conversão HSB -> RGB
-    int i = (int)std::floor(h / 60.0) % 6;
-    double f = h / 60.0 - i;
-    double p = b * (1.0 - s);
-    double q = b * (1.0 - s * f);
-    double t = b * (1.0 - s * (1.0 - f));
-
-    double r, g, vb;
-    switch (i) {
-        case 0: r = b; g = t; vb = p; break;
-        case 1: r = q; g = b; vb = p; break;
-        case 2: r = p; g = b; vb = t; break;
-        case 3: r = p; g = q; vb = b; break;
-        case 4: r = t; g = p; vb = b; break;
-        case 5: r = b; g = p; vb = q; break;
-        default: r = b; g = vb; vb = p; break;
-    }
-    result.values[0] = r;
-    result.values[1] = g;
-    result.values[2] = vb;
-    result.alpha = a;
-    return result;
-}
-
-// Converter de RGB para HSB
-void rgbToHsb(const Color& rgb, double& h, double& s, double& b, double& a) {
-    a = rgb.alpha;
-    double r = rgb.values[0];
-    double g = rgb.values[1];
-    double b_ = rgb.values[2];
-
-    double maxVal = std::max({r, g, b_});
-    double minVal = std::min({r, g, b_});
-    double delta = maxVal - minVal;
-
-    // Brilho
-    b = maxVal;
-
-    // Saturação
-    if (maxVal > 0.0)
-        s = delta / maxVal;
-    else {
-        s = 0.0;
-        h = 0.0;
-        return;
-    }
-
-    // Matiz
-    if (r == maxVal)
-        h = (g - b_) / delta;
-    else if (g == maxVal)
-        h = 2.0 + (b_ - r) / delta;
-    else
-        h = 4.0 + (r - g) / delta;
-
-    h *= 60.0;
-    if (h < 0) h += 360.0;
-}
-
-// Converter de HSL para RGB
-Color hslColor(double h, double s, double l, double a) {
-    Color result(ColorSpaceType::RGB);
-    // Normalizar
-    h = fmod(h, 360.0);
-    if (h < 0) h += 360.0;
-    s = std::max(0.0, std::min(1.0, s));
-    l = std::max(0.0, std::min(1.0, l));
-    a = std::max(0.0, std::min(1.0, a));
-
-    double p = l <= 0.5 ? l * (1.0 + s) : l + s - l * s;
-    double q = 2.0 * l - p;
-    double hue = h / 360.0;
-
-    auto hueToColor = [&](double h) -> double {
-        if (h < 0) h += 1.0;
-        if (h > 1.0) h -= 1.0;
-        if (h < 1.0 / 6.0) return q + (p - q) * 6.0 * h;
-        if (h < 1.0 / 2.0) return p;
-        if (h < 2.0 / 3.0) return q + (p - q) * (2.0 / 3.0 - h) * 6.0;
-        return q;
-    };
-
-    result.values[0] = hueToColor(hue + 1.0 / 3.0); // R
-    result.values[1] = hueToColor(hue);             // G
-    result.values[2] = hueToColor(hue - 1.0 / 3.0); // B
-    return result;
-}
-
-// Converter de RGB para HSL
-void rgbToHsl(const Color& rgb, double& h, double& s, double& l, double& a) {
-    a = rgb.alpha;
-    double r = rgb.values[0];
-    double g = rgb.values[1];
-    double b_ = rgb.values[2];
-
-    double maxVal = std::max({r, g, b_});
-    double minVal = std::min({r, g, b_});
-    double delta = maxVal - minVal;
-
-    // Luminância
-    l = (maxVal + minVal) / 2.0;
-
-    // Saturação
-    if (delta == 0.0) {
-        s = 0.0;
-        h = 0.0;
-        return;
-    }
-    if (l > 0.5) s = delta / (2.0 - maxVal - minVal);
-    else s = delta / (maxVal + minVal);
-
-    // Matiz
-    if (r == maxVal)
-        h = (g - b_) / delta;
-    else if (g == maxVal)
-        h = 2.0 + (b_ - r) / delta;
-    else
-        h = 4.0 + (r - g) / delta;
-
-    h *= 60.0;
-    if (h < 0) h += 360.0;
-}
-
-// ======================================================================
-// Funções de gerenciamento de perfil ICC
-// ======================================================================
-
-// Carregar perfil ICC de arquivo
-bool loadIccProfile(const QString& path, IccProfile& profile) {
-    return profile.load(path);
-}
-
-// Obter espaço de cor de um perfil
-ColorSpaceType profileSpace(const IccProfile& profile) {
-    return profile.profileSpace();
-}
-
-// Transformar cor usando perfil ICC
-Color transformColor(const IccProfile& profile, const Color& input) {
-    return profile.transform(input);
-}
-
-// Verificar se perfil é válido
-bool isValidProfile(const IccProfile& profile) {
-    return profile.isValid();
-}
 
 // Função auxiliar: fmod que funciona como o fmod matemático (resultado tem mesmo sinal do divisor)
 double fmod(double x, double y) {
@@ -600,5 +581,9 @@ bool colorsEqual(const Color& a, const Color& b) {
 QString doubleToString(double val, int precision) {
     return QString::number(val, 'f', precision);
 }
+
+// ======================================================================
+// Finalização
+// ======================================================================
 
 } // namespace artplus::color
