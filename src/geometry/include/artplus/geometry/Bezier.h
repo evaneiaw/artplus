@@ -25,6 +25,28 @@ struct QuadBezier {
     Rect bounds() const;
 };
 
+// Intersect a quadratic Bezier with a line segment.
+enum class QuadBezierIntersectionKind {
+    None,
+    Point,     // exactly one intersection point
+    Overlap,   // collinear overlap
+};
+
+struct QuadBezierIntersection {
+    QuadBezierIntersectionKind kind = QuadBezierIntersectionKind::None;
+    Point point;              // valid when kind == Point
+    double t = 0.0;           // parameter on the quadratic Bezier (0..1)
+    double u = 0.0;           // parameter on the line segment (0..1)
+};
+
+/// Intersect a quadratic Bezier curve with a line segment.
+/// \param bezier   The quadratic Bezier curve.
+/// \param line     The line segment.
+/// \param epsilon  Absolute distance tolerance in points (default: kGeometryEpsilon).
+QuadBezierIntersection intersectQuadBezierLine(const QuadBezier& bezier,
+                                                const Line& line,
+                                                double epsilon = kGeometryEpsilon);
+
 struct CubicBezier {
     Point p0; // start
     Point c1; // control 1
@@ -41,13 +63,31 @@ struct CubicBezier {
     void split(double t, CubicBezier& left, CubicBezier& right) const;
     // Exact axis-aligned bounds (curve extrema, not the control polygon).
     Rect bounds() const;
-    // Exact degree elevation is not possible in the other direction; this
-    // returns the standard quadratic approximation (midpoint control), which is
-    // only intended for API compatibility, never for accurate geometry.
     QuadBezier toQuadratic() const;
-    // Arc length approximated through flattening with the given tolerance.
     double length(double tolerance = 0.01) const;
 };
+
+// Intersect a cubic Bezier with a line segment.
+enum class CubicBezIntersectionKind {
+    None,
+    Point,
+    Overlap,
+};
+
+struct CubicBezIntersection {
+    CubicBezIntersectionKind kind = CubicBezIntersectionKind::None;
+    Point point;
+    double t = 0.0;           // parameter on the cubic Bezier (0..1)
+    double u = 0.0;           // parameter on the line segment (0..1);
+};
+
+/// Intersect a cubic Bezier curve with a line segment.
+/// \param bezier   The cubic Bezier curve.
+/// \param line     The line segment.
+/// \param epsilon  Absolute distance tolerance in points (default: kGeometryEpsilon).
+CubicBezIntersection intersectCubicBezierLine(const CubicBezier& bezier,
+                                               const Line& line,
+                                               double epsilon = kGeometryEpsilon);
 
 // Flattening appends points *after* the curve start: the first appended point is
 // the curve end (or an intermediate point). Callers that need the start point
@@ -66,4 +106,4 @@ void flattenCubic(const Point& p0, const Point& c1, const Point& c2, const Point
 Point evaluateQuadratic(const Point& p0, const Point& c, const Point& p1, double t);
 Point evaluateCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p1, double t);
 
-} // namespace artplus::geometry
+// ... (rest of the file)

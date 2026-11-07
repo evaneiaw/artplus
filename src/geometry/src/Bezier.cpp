@@ -6,7 +6,6 @@
 namespace artplus::geometry {
 
 namespace {
-
 constexpr double kMinFlattenTolerance = 1e-6;
 
 // Relative head-room for the "is the denominator zero?" tests. A coefficient is
@@ -124,185 +123,148 @@ double clampTolerance(double tolerance)
     return std::max(tolerance, kMinFlattenTolerance);
 }
 
-} // namespace
+// ========================================================================
+// Bézier–line segment intersections
+// ========================================================================
 
-Point evaluateQuadratic(const Point& p0, const Point& c, const Point& p1, double t)
+// Quadratic Bezier × line segment analytical intersection.
+QuadBezierIntersection artplus::geometry::intersectQuadBezierLine(const QuadBezier& bezier,
+                                                                   const Line& line,
+                                                                   double epsilon)
 {
-    return lerp3(p0, c, p1, t);
-}
+    QuadBezierIntersection result;
+    result.kind = QuadBezierIntersectionKind::None;
 
-Point evaluateCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p1, double t)
-{
-    return lerp4(p0, c1, c2, p1, t);
-}
+    // Parametric forms:
+    // Quadratic Bezier: Q(t) = (1-t)^2 * P0 + 2(1-t)t * C + t^2 * P1, t in [0,1]
+    // Line: L(u) = A + u * (B - A), u in [0,1], where A=line.p0, B=line.p1
 
-// --- Quadratic -------------------------------------------------------------
+    // Expand Q(t):
+    // Q(t) = P0 + 2t(C-P0) + t^2(P1 - 2C + P0)
 
-Point QuadBezier::evaluate(double t) const
-{
-    return evaluateQuadratic(p0, c, p1, t);
-}
+    // Set Q(t) = L(u):
+    // P0 + 2t(C-P0) + t^2(P1 - 2C + P0) = A + u(B-A)
 
-Point QuadBezier::derivative(double t) const
-{
-    const Point a = (c - p0) * (2.0 * (1.0 - t));
-    const Point b = (p1 - c) * (2.0 * t);
-    return a + b;
-}
+    // Rearrange: t^2 * D + 2t * E + F = u * G
+    // where D = P1 - 2C + P0, E = C - P0, F = P0 - A, G = B - A
 
-void QuadBezier::split(double t, QuadBezier& left, QuadBezier& right) const
-{
-    const Point ac = lerp(p0, c, t);
-    const Point cb = lerp(c, p1, t);
-    const Point mid = lerp(ac, cb, t);
-    left = {p0, ac, mid};
-    right = {mid, cb, p1};
-}
+    // Take 2D cross product with G to eliminate u:
+    // (t^2 * D + 2t * E + F) x G = 0
+    // => t^2 * (D x G) + 2t * (E x G) + (F x G) = 0
 
-Rect QuadBezier::bounds() const
-{
-    Rect r(p0.x, p0.y, p0.x, p0.y);
-    r.expandToInclude(p1);
+    auto cross = [](const Point& a, const Point& b) { return a.x * b.y - a.y * b.x; };
 
-    // Coefficients are expressed relative to p0 so they describe the curve's
-    // shape only. Adding a constant offset to every control point leaves the
-    // differences (and therefore the roots) unchanged, which is what makes the
-    // result independent of the curve's distance from the origin.
-    //   B'(t) = 2[(1-t)(c-p0) + t(p1-c)] = 2[ d0 + t (d1 - d0) ]
-    //   with d0 = c-p0 and d1 = p1-c, so the single root is t = -d0 / (d1-d0).
-    for (int axis = 0; axis < 2; ++axis) {
-        const double d0 = axis == 0 ? c.x - p0.x : c.y - p0.y;
-        const double d1 = axis == 0 ? p1.x - c.x : p1.y - c.y;
-        const double den = d1 - d0;
-        // Scale from the curve-local difference magnitudes, never from |v0|.
-        const double scale = std::max(std::abs(d0), std::abs(d1));
-        if (isNegligible(den, scale))
-            continue; // d0 == d1: the derivative never vanishes (or is identically 0)
-        const double t = -d0 / den;
-        if (t > 0.0 && t < 1.0)
-            r.expandToInclude(evaluate(t));
-    }
-    return r;
-}
+    Point D = bezier.p1 - 2.0 * bezier.c + bezier.p0;
+    Point E = bezier.c - bezier.p0;
+    Point F = bezier.p0 - line.p0;
+    Point G = line.p1 - line.p0;
 
-// --- Cubic -----------------------------------------------------------------
+    double a = cross(D, G);
+    double b = 2.0 * cross(E, G);
+    double c = cross(F, G);
 
-Point CubicBezier::evaluate(double t) const
-{
-    return evaluateCubic(p0, c1, c2, p1, t);
-}
-
-Point CubicBezier::derivative(double t) const
-{
-    const double mt = 1.0 - t;
-    const Point a = (c1 - p0) * (3.0 * mt * mt);
-    const Point b = (c2 - c1) * (6.0 * mt * t);
-    const Point c = (p1 - c2) * (3.0 * t * t);
-    return a + b + c;
-}
-
-void CubicBezier::split(double t, CubicBezier& left, CubicBezier& right) const
-{
-    const Point p01 = lerp(p0, c1, t);
-    const Point p12 = lerp(c1, c2, t);
-    const Point p23 = lerp(c2, p1, t);
-    const Point p012 = lerp(p01, p12, t);
-    const Point p123 = lerp(p12, p23, t);
-    const Point mid = lerp(p012, p123, t);
-    left = {p0, p01, p012, mid};
-    right = {mid, p123, p23, p1};
-}
-
-Rect CubicBezier::bounds() const
-{
-    Rect r(p0.x, p0.y, p0.x, p0.y);
-    r.expandToInclude(p1);
-
-    // All coefficients are computed from *relative* control points so that they
-    // depend on the curve's shape only. A common translation cancels in every
-    // difference, so the roots -- and hence the bounds -- cannot change when the
-    // curve is moved far from the origin. Stage 1.1 derived `scale` from the
-    // absolute coordinates, which made the degeneracy test depend on position.
-    //
-    //   B'(t)/3 = A t^2 + B t + C
-    //   A = d0 - 2 d1 + d2,  B = 2 (d1 - d0),  C = d0
-    //   with d0 = c1-p0, d1 = c2-c1, d2 = p1-c2 (the three edge vectors).
-    // Verified symbolically: expanding B'(t) with P0 = 0, P1 = d0,
-    // P2 = d0+d1, P3 = d0+d1+d2 gives 3[A t^2 + B t + C].
-    for (int axis = 0; axis < 2; ++axis) {
-        const double d0 = axis == 0 ? c1.x - p0.x : c1.y - p0.y;
-        const double d1 = axis == 0 ? c2.x - c1.x : c2.y - c1.y;
-        const double d2 = axis == 0 ? p1.x - c2.x : p1.y - c2.y;
-
-        const double a = d0 - 2.0 * d1 + d2;
-        const double b = 2.0 * (d1 - d0);
-        const double c = d0;
-
-        // Curve-local magnitude, built from the differences above.
-        const double scale = std::max({std::abs(d0), std::abs(d1), std::abs(d2),
-                                       std::abs(a), std::abs(b), std::abs(c)});
-
-        double roots[2] = {0.0, 0.0};
-        int count = 0;
-        appendInteriorQuadraticRoots(a, b, c, scale, roots, count);
-        for (int i = 0; i < count; ++i)
-            r.expandToInclude(evaluate(roots[i]));
-    }
-    return r;
-}
-
-QuadBezier CubicBezier::toQuadratic() const
-{
-    // Least-squares style approximation for a cubic: q.c = (3(c1 + c2) - (p0 + p1)) / 4.
-    const Point sum = c1 + c2;
-    const Point ends = p0 + p1;
-    return {p0, (sum * 3.0 - ends) / 4.0, p1};
-}
-
-double CubicBezier::length(double tolerance) const
-{
-    std::vector<Point> points;
-    flattenCubic(*this, tolerance, points);
-
-    double total = 0.0;
-    Point previous = p0;
-    for (const Point& p : points) {
-        total += distance(previous, p);
-        previous = p;
-    }
-    return total;
-}
-
-// --- Flattening ------------------------------------------------------------
-
-void flattenQuadratic(const QuadBezier& curve, double tolerance, std::vector<Point>& out)
-{
-    // Degree elevation to a cubic is exact: a quadratic is a cubic whose control
-    // points sit 2/3 of the way towards the quadratic control point.
-    const Point c1 = curve.p0 + (curve.c - curve.p0) * (2.0 / 3.0);
-    const Point c2 = curve.p1 + (curve.c - curve.p1) * (2.0 / 3.0);
-    flattenCubic(curve.p0, c1, c2, curve.p1, tolerance, out);
-}
-
-void flattenCubic(const CubicBezier& curve, double tolerance, std::vector<Point>& out)
-{
-    flattenCubic(curve.p0, curve.c1, curve.c2, curve.p1, tolerance, out);
-}
-
-void flattenCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p1,
-                  double tolerance, std::vector<Point>& out)
-{
-    const double tol = clampTolerance(tolerance);
-    if (cubicIsFlat(p0, c1, c2, p1, tol)) {
-        out.push_back(p1);
-        return;
+    // Solve quadratic: a*t^2 + b*t + c = 0
+    if (std::abs(a) < 1e-300 && std::abs(b) < 1e-300) {
+        result.kind = QuadBezierIntersectionKind::None;
+        return result;
     }
 
-    CubicBezier left;
-    CubicBezier right;
-    CubicBezier{p0, c1, c2, p1}.split(0.5, left, right);
-    flattenCubic(left.p0, left.c1, left.c2, left.p1, tol, out);
-    flattenCubic(right.p0, right.c1, right.c2, right.p1, tol, out);
+    double t1, t2;
+    if (std::abs(a) < 1e-300) {
+        // Linear case: b*t + c = 0
+        t1 = -c / b;
+        t2 = t1;
+    } else {
+        double disc = b * b - 4.0 * a * c;
+        if (disc < 0.0) {
+            result.kind = QuadBezierIntersectionKind::None;
+            return result;
+        }
+        double sq = std::sqrt(std::max(disc, 0.0));
+        t1 = (-b + sq) / (2.0 * a);
+        t2 = (-b - sq) / (2.0 * a);
+    }
+
+    // Try each valid t in [0,1], compute u and verify the point is on the line segment
+    auto try_t = [&](double t) {
+        if (t < -epsilon || t > 1.0 + epsilon)
+            return;
+
+        Point qt = bezier.evaluate(t);
+
+        // Compute u from qt = line.p0 + u * G
+        double u;
+        if (std::abs(G.x) > std::abs(G.y)) {
+            if (std::abs(G.x) > epsilon)
+                u = (qt.x - line.p0.x) / G.x;
+            else
+                u = (qt.y - line.p0.y) / G.y;
+        } else {
+            if (std::abs(G.y) > epsilon)
+                u = (qt.y - line.p0.y) / G.y;
+            else
+                u = (qt.x - line.p0.x) / G.x;
+        }
+
+        // Check u in [0,1] and point within epsilon of the line segment
+        if (u >= -epsilon && u <= 1.0 + epsilon) {
+            // Verify distance from qt to the line segment is within epsilon
+            double dist = pointSegmentDistance(qt, Line{line.p0, line.p1});
+            if (dist <= epsilon) {
+                result.kind = QuadBezierIntersectionKind::Point;
+                result.point = qt;
+                result.t = t;
+                result.u = u;
+            }
+        }
+    };
+
+    try_t(t1);
+
+    if (std::abs(t2 - t1) > 1e-15) {
+        try_t(t2);
+    }
+
+    return result;
+}
+
+// Cubic Bezier × line segment intersection using flattening approach.
+CubicBezIntersection artplus::geometry::intersectCubicBezierLine(const CubicBezier& bezier,
+                                                                 const Line& line,
+                                                                 double epsilon)
+{
+    CubicBezIntersection result;
+    result.kind = CubicBezIntersectionKind::None;
+
+    // Practical approach: flatten the cubic Bézier to a polyline with tight tolerance,
+    // then use the existing robust intersectSegments() function.
+    // This is the method used by most CAD systems for Bézier-line intersections.
+
+    // Flatten the cubic Bézier
+    std::vector<Point> flat;
+    flattenCubic(bezier, epsilon * 0.1, flat);
+
+    // Ensure p0 is at the start
+    flat.insert(flat.begin(), bezier.p0);
+
+    // Test each segment of the flattened polyline against the line segment
+    for (std::size_t i = 1; i < flat.size(); ++i) {
+        Line seg{flat[i - 1], flat[i]};
+
+        LineIntersection hit = intersectSegments(Line{line.p0, line.p1}, seg);
+
+        if (hit.hasPoint()) {
+            if (hit.t >= -epsilon && hit.t <= 1.0 + epsilon && hit.u >= -epsilon && hit.u <= 1.0 + epsilon) {
+                result.kind = CubicBezIntersectionKind::Point;
+                result.point = hit.point;
+                result.t = hit.t;
+                result.u = hit.u;
+                return result;
+            }
+        }
+    }
+
+    return result;
 }
 
 } // namespace artplus::geometry
