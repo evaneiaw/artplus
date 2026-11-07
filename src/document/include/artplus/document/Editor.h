@@ -54,6 +54,10 @@ signals:
     void undoAvailable(bool available);
     void redoAvailable(bool available);
 
+    // Clipboard operations
+    void copyAvailable(bool available);
+    void pasteAvailable(bool available);
+
 private:
     ArtDocument& m_document;
     QVector<int> m_selected;          // índices dos objetos selecionados
@@ -215,6 +219,19 @@ bool Editor::isModified() const
     // Verificar se há modificações não salvas
     return m_undoCount > 0 || m_redoCount > 0;
 }
+
+// ======================================================================
+// Clipboard — copy, cut e paste
+// ======================================================================
+
+// Copiar objetos selecionados para a área de transferência
+void Editor::copySelected();
+
+// Recortar objetos selecionados (remover e copiar)
+void Editor::cutSelected();
+
+// Colar objetos da área de transferência
+void Editor::paste();
 
 // ======================================================================
 // Group/Ungroup — agrupar e desagrupar objetos selecionados

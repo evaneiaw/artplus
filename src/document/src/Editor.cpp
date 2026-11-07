@@ -362,4 +362,37 @@ void Editor::ungroupSelected()
     emit redoAvailable(false);
 }
 
+void Editor::copySelected()
+{
+    saveState();
+    // Copiar objetos selecionados para a área de transferência
+    // ... lógica para serializar objetos selecionados
+    emit copyAvailable(true);
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::cutSelected()
+{
+    saveState();
+    // Recortar: remover objetos selecionados e copiar para área de transferência
+    // ... lógica para remover e copiar
+    emit cutAvailable(true);
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::paste()
+{
+    // Colar objetos da área de transferência
+    // ... lógica para colar objetos copiados/cortados
+    emit pasteAvailable(true);
+    emit selectionChanged();
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
 } // namespace artplus::document
