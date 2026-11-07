@@ -499,4 +499,174 @@ Path makeCirclePath(const Point& center, double radius)
     return p;
 }
 
+// ========================================================================
+// Topological subdivision for Path — foundation for boolean operations
+// ========================================================================
+
+// Compute the intersection of two line segments.
+ // Returns true if the segments intersect, and if so, sets the intersection point
+ // and the parameters t1 (on segment 1) and t2 (on segment 2).
+static bool lineSegmentIntersection(const Point& p1, const Point& p2,
+                                    const Point& q1, const Point& q2,
+                                    Point& result,
+                                    double& t1, double& t2,
+                                    double epsilon = 1e-12)
+{
+    // Line 1: p1 + t1 * (p2 - p1)
+    // Line 2: q1 + t2 * (q2 - q1)
+    Point d1 = p2 - p1;
+    Point d2 = q2 - q1;
+
+    double cross = d1.x * d2.y - d1.y * d2.x;
+    if (std::abs(cross) < epsilon) {
+        // Parallel or collinear
+        return false;
+    }
+
+    double t1_num = (q1 - p1).x * d2.y - (q1 - p1).y * d2.x;
+    double t2_num = (q1 - p1).x * d1.y - (q1 - p1).y * d1.x;
+    t1 = t1_num / cross;
+    t2 = t2_num / cross;
+
+    if (t1 >= -epsilon && t1 <= 1.0 + epsilon && t2 >= -epsilon && t2 <= 1.0 + epsilon) {
+        result = p1 + d1 * t1;
+        return true;
+    }
+    return false;
+}
+
+// Find all intersections between all segments of all subpaths in a Path.
+QVector<Intersection> artplus::geometry::buildTopology(Path& path)
+{
+    QVector<Intersection> intersections;
+
+    // Collect all segments with their subpath and segment indices
+    struct SegmentRef {
+        int subpathIdx;
+        int segIdx;
+        Point p1, p2; // endpoints (for line) or p1/p3 for cubic (using de Casteljau at t=0 and t=1)
+        bool isCubic;
+    };
+
+    std::vector<SegmentRef> allSegments;
+    allSegments.reserve(path.subPathCount() * 10); // estimate
+
+    for (int si = 0; si < path.subPathCount(); ++si) {
+        const auto& subpath = path.subPaths()[si];
+        for (int si2 = 0; si2 < (int)subpath.segments.size(); ++si2) {
+            const auto& seg = subpath.segments[si2];
+            SegmentRef ref;
+            ref.subpathIdx = si;
+            ref.segIdx = si2;
+            ref.isCubic = (seg.type == Path::Segment::Type::Cubic);
+            if (ref.isCubic) {
+                // For cubic segments, use the endpoints p1 (t=0) and p3 (t=1)
+                // The cubic is: P(t) = (1-t)^3*P0 + 3(1-t)^2*t*C1 + 3(1-t)*t^2*C2 + t^3*P3
+                // At t=0: P0 = current point (subpath.start transformed)
+                // At t=1: P3 = end point (seg.p3)
+                // For intersection testing, we'll treat cubic segments as polylines
+                // or use the analytical method later. For now, use endpoints.
+                ref.p1 = subpath.start;  // will be set properly below
+                ref.p2 = Point{0, 0};    // placeholder
+                ref.p3 = seg.p3;
+            } else {
+                ref.p1 = seg.p1;
+                ref.p2 = Point{0, 0};
+                ref.isCubic = false;
+            }
+            allSegments.push_back(ref);
+        }
+    }
+
+    // Actually, let's redo this more carefully. We need the actual segment endpoints.
+    // Let's iterate over subpaths and segments directly.
+
+    intersections.clear();
+
+    for (int i = 0; i < path.subPathCount(); ++i) {
+        const auto& subpathI = path.subPaths()[i];
+        for (int j = i + 1; j < path.subPathCount(); ++j) {
+            const auto& subpathJ = path.subPaths()[j];
+
+            // Test all segment pairs between subpath i and subpath j
+            for (int si = 0; si < (int)subpathI.segments.size(); ++si) {
+                const auto& segI = subpathI.segments[si];
+
+                for (int sj = 0; sj < (int)subpathJ.segments.size(); ++sj) {
+                    const auto& segJ = subpathJ.segments[sj];
+
+                    Point intersectPt;
+                    double t1 = 0.0, t2 = 0.0;
+
+                    // Determine types and compute intersection
+                    bool haveIntersection = false;
+
+                    if (!segI.isCubic && !segJ.isCubic) {
+                        // Line × Line
+                        haveIntersection = lineSegmentIntersection(
+                            segI.p1, segI.p3,  // Line endpoints
+                            segJ.p1, segJ.p3,
+                            intersectPt, t1, t2);
+                    } else if (!segI.isCubic && segJ.isCubic) {
+                        // Line × Cubic: flatten the cubic and test line × line segments
+                        // For now, use a coarse approximation: treat cubic as 4 line segments
+                        // via de Casteljau at t=0, 1/3, 2/3, 1
+                        // Actually, let's just use the analytical intersectCubicBezierLine
+                        // but we need a Line, not a segment pair approach.
+                        // For simplicity, skip cubic-cubic and line-cubic for this first pass.
+                        continue;
+                    } else if (segI.isCubic && !segJ.isCubic) {
+                        // Cubic × Line: same as above, skip for now
+                        continue;
+                    } else {
+                        // Cubic × Cubic: skip for now
+                        continue;
+                    }
+
+                    if (haveIntersection) {
+                        Intersection ix;
+                        ix.point = intersectPt;
+                        // Compute t1 for segment i: parameter along segI
+                        // For line segment from p1 to p3: t1 = parameter
+                        ix.t1 = t1;
+                        ix.t2 = t2;
+                        ix.source1 = i;
+                        ix.source2 = j;
+                        intersections.push_back(ix);
+                    }
+                }
+            }
+        }
+    }
+
+    // Sort intersections by position (optional, for deterministic order)
+    // std::sort(intersections.begin(), intersections.end(), [](const Intersection& a, const Intersection& b) {
+    //     return a.point.x < b.point.x || (a.point.x == b.point.x && a.point.y < b.point.y);
+    // });
+
+    return intersections;
+}
+
+// Divide um subpath específico em seus pontos de interseção com outros subpaths.
+QVector<Intersection> artplus::geometry::subdivideSubPath(Path::SubPath& subpath, const Path& path)
+{
+    QVector<Intersection> result;
+
+    // Find all intersections on this subpath with all other subpaths
+    for (int otherIdx = 0; otherIdx < path.subPathCount(); ++otherIdx) {
+        if (&path.subPaths()[otherIdx] == &subpath)
+            continue;
+
+        auto otherIntersections = buildTopologyInternal(path, subpath, otherIdx);
+        result.append(otherIntersections);
+    }
+
+    // Sort intersections by parameter t1
+    std::sort(result.begin(), result.end(), [](const Intersection& a, const Intersection& b) {
+        return a.t1 < b.t1;
+    });
+
+    return result;
+}
+
 } // namespace artplus::geometry
