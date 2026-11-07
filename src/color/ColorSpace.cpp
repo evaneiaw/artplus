@@ -731,6 +731,147 @@ bool requiresSpecialSeparation(const Color& cmyk) {
 }
 
 // ======================================================================
+// Trapping (Engraxante)
+// ======================================================================
+
+// Estrutura para informações de trapping
+TrappingInfo calculateTrapping(const Color& foreground, const Color& background,
+                               double minTrap, double maxTrap) {
+    TrappingInfo info;
+    info.needsTrapping = false;
+    info.trapAmount = 0.0;
+    info.isSpread = true;
+    info.reason = QStringLiteral("");
+
+    // Se as cores são iguais, não há necessidade de trapping
+    if (colorsEqual(foreground, background)) {
+        info.needsTrapping = false;
+        return info;
+    }
+
+    // Calcular diferença de luminância/brilho
+    double lumDiff = 0.0;
+    if (foreground.space == ColorSpaceType::RGB && background.space == ColorSpaceType::RGB) {
+        for (int i = 0; i < 3; ++i) {
+            lumDiff += std::abs(foreground.values[i] - background.values[i]);
+        }
+    } else {
+        // Converter para RGB para comparação
+        Color fgConv = ColorConversion::convert(foreground, ColorSpaceType::RGB);
+        Color bgConv = ColorConversion::convert(background, ColorSpaceType::RGB);
+        for (int i = 0; i < 3; ++i) {
+            lumDiff += std::abs(fgConv.values[i] - bgConv.values[i]);
+        }
+    }
+
+    // Determinar se trapping é necessário baseado na diferença de cores
+    if (lumDiff > 0.3) {
+        info.needsTrapping = true;
+    }
+
+    // Calcular quantidade de trapping
+    if (info.needsTrapping) {
+        // Quantidade baseada na diferença de cores e distância
+        double baseAmount = (lumDiff > 0.8) ? 0.4 : 0.2;
+        info.trapAmount = qBound(minTrap, baseAmount, maxTrap);
+        
+        // Determinar se é spread (expandir fundo) ou choke (contrair foreground)
+        // Regras simplificadas:
+        // - Cores escuras sobre cores claras: spread (expandir fundo para cobrir)
+        // - Cores claras sobre cores escuras: choke (contrair foreground)
+        double fgLum = (foreground.values[0] + foreground.values[1] + foreground.values[2]) / 3.0;
+        double bgLum = (background.values[0] + background.values[1] + background.values[2]) / 3.0;
+        
+        if (fgLum < bgLum) {
+            // Foreground escuro sobre fundo claro: spread
+            info.isSpread = true;
+            info.reason = QStringLiteral("Foreground escuro sobre fundo claro - spreading");
+        } else {
+            // Foreground claro sobre fundo escuro: choke
+            info.isSpread = false;
+            info.reason = QStringLiteral("Foreground claro sobre fundo escuro - choking");
+        }
+    } else {
+        info.reason = QStringLiteral("Sem diferença de cor significativa - sem trapping");
+    }
+
+    return info;
+}
+
+// Verificar se duas cores são adjacentes (requerem trapping)
+bool areColorsAdjacent(const Color& c1, const Color& c2, double colorThreshold, double distanceThreshold) {
+    // Verificar diferença de cor
+    if (!colorsEqual(c1, c2)) {
+        double diff = 0.0;
+        if (c1.space == ColorSpaceType::RGB && c2.space == ColorSpaceType::RGB) {
+            for (int i = 0; i < 3; ++i) diff += std::abs(c1.values[i] - c2.values[i]);
+        } else {
+            Color c1c = ColorConversion::convert(c1, ColorSpaceType::RGB);
+            Color c2c = ColorConversion::convert(c2, ColorSpaceType::RGB);
+            for (int i = 0; i < 3; ++i) diff += std::abs(c1c.values[i] - c2c.values[i]);
+        }
+        if (diff > colorThreshold) return false;
+    }
+
+    // Verificar distância perceptual
+    double dist = 0.0;
+    if (c1.space == ColorSpaceType::RGB && c2.space == ColorSpaceType::RGB) {
+        for (int i = 0; i < 3; ++i) dist += std::abs(c1.values[i] - c2.values[i]);
+        dist += std::abs(c1.alpha - c2.alpha);
+    } else {
+        Color c1c = ColorConversion::convert(c1, ColorSpaceType::RGB);
+        Color c2c = ColorConversion::convert(c2, ColorSpaceType::RGB);
+        for (int i = 0; i < 3; ++i) dist += std::abs(c1c.values[i] - c2c.values[i]);
+        dist += std::abs(c1c.alpha - c2c.alpha);
+    }
+    
+    return dist <= distanceThreshold;
+}
+
+// Aplicar trapping a uma cor de foreground
+Color applyTrapping(const Color& foreground, const Color& background,
+                    double trapAmount, bool isSpread) {
+    Color result = foreground;
+    
+    if (!foreground.space == ColorSpaceType::CMYK || !background.space == ColorSpaceType::CMYK) {
+        // Converter para CMYK para trapping
+        Color fgCmyk = ColorConversion::convert(foreground, ColorSpaceType::CMYK);
+        Color bgCmyk = ColorConversion::convert(background, ColorSpaceType::CMYK);
+        
+        // Aplicar trapping em CMYK
+        // spreading: adicionar cor de fundo aoForeground
+        // choke: remover cor doForeground
+        if (isSpread) {
+            // Spread: aumentar as tintas do foreground para se aproximar do background
+            for (int i = 0; i < 3; ++i) {
+                result.values[i] = std::min(1.0, foreground.values[i] + trapAmount * (background.values[i] - foreground.values[i]));
+            }
+            result.values[3] = std::min(1.0, foreground.values[3] + trapAmount * (background.values[3] - foreground.values[3]));
+        } else {
+            // Choke: diminuir as tintas do foreground
+            for (int i = 0; i < 3; ++i) {
+                result.values[i] = std::max(0.0, foreground.values[i] - trapAmount * foreground.values[i]);
+            }
+            result.values[3] = std::max(0.0, foreground.values[3] - trapAmount * foreground.values[3]);
+        }
+    } else {
+        // Em RGB, aplicar trapping simples
+        if (isSpread) {
+            for (int i = 0; i < 3; ++i) {
+                result.values[i] = std::min(1.0, foreground.values[i] + trapAmount * 0.5);
+            }
+        } else {
+            for (int i = 0; i < 3; ++i) {
+                result.values[i] = std::max(0.0, foreground.values[i] - trapAmount * 0.5);
+            }
+        }
+    }
+    
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// ======================================================================
 // Finalização
 // ======================================================================
 

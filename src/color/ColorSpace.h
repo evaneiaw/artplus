@@ -311,6 +311,29 @@ Color toSpotColor(const Color& cmyk, const QString& spotName);
 bool requiresSpecialSeparation(const Color& cmyk);
 
 // ======================================================================
+// Trapping (Engraxante)
+// ======================================================================
+
+// Calcular necessidade de trapping entre duas cores
+struct TrappingInfo {
+    bool needsTrapping;      // Se trapping é necessário
+    double trapAmount;       // Quantidade de trapping (0.0 a 1.0)
+    bool isSpread;           // True = spread (expandir), False = choke (contrair)
+    QString reason;        // Motivo do trapping
+};
+
+TrappingInfo calculateTrapping(const Color& foreground, const Color& background,
+                               double minTrap = 0.0, double maxTrap = 1.0);
+
+// Verificar se duas cores são adjacentes (requerem trapping)
+bool areColorsAdjacent(const Color& c1, const Color& c2, double colorThreshold = 0.3,
+                       double distanceThreshold = 0.5);
+
+// Aplicar trapping a uma cor de foreground
+Color applyTrapping(const Color& foreground, const Color& background,
+                    double trapAmount, bool isSpread);
+
+// ======================================================================
 // Finalização
 // ======================================================================
 
