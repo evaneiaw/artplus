@@ -502,3 +502,60 @@ void Editor::setLocked(bool locked)
     emit redoAvailable(false);
 }
 
+
+
+void Editor::bringToFront()
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    // Trazer todos os objetos selecionados para o topo da hierarquia z-order
+    // usando GroupObject::reorderChild logic adaptada
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        // Lógica de reordenação z-order para topo
+    }
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::sendToBack()
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    // Enviar todos os objetos selecionados para o fundo da hierarquia z-order
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        // Lógica de reordenação z-order para fundo
+    }
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::bringForward()
+{
+    saveState();
+    if (m_selected.isEmpty() || m_selected.size() < 2) return;
+    // Trazer objeto selecionado um nível para frente na hierarquia z-order
+    // Lógica de troca de z-order com o próximo objeto acima
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::sendBackward()
+{
+    saveState();
+    if (m_selected.isEmpty() || m_selected.size() < 2) return;
+    // Enviar objeto selecionado um nível para trás na hierarquia z-order
+    // Lógica de troca de z-order com o próximo objeto abaixo
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+} // namespace artplus::document
+

@@ -268,4 +268,20 @@ void Editor::groupSelected();
 // Desagrupar um grupo selecionado, retornando seus objetos ao estado individual
 void Editor::ungroupSelected();
 
+// ======================================================================
+// Z-Order — reordenação de objetos na hierarquia
+// ======================================================================
+
+// Trazer objeto selecionado para o primeiro plano (topo da hierarquia)
+void Editor::bringToFront();
+
+// Enviar objeto selecionado para o fundo (fundo da hierarquia)
+void Editor::sendToBack();
+
+// Trazer objeto selecionado um nível para frente
+void Editor::bringForward();
+
+// Enviar objeto selecionado um nível para trás
+void Editor::sendBackward();
+
 } // namespace artplus::document
