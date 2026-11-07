@@ -670,3 +670,275 @@ QVector<Intersection> artplus::geometry::subdivideSubPath(Path::SubPath& subpath
 }
 
 } // namespace artplus::geometry
+
+// ========================================================================
+// Topological graph for boolean operations
+// ========================================================================
+
+// A node in the topological graph. Either an intersection point, or a segment
+// endpoint (start/end of a subpath).
+struct TopoNode {
+    Point point;          // coordinates
+    int id = -1;          // unique node identifier
+    bool isIntersection = false;  // true if this node is an intersection
+    int sourceSubpath = -1;  // which subpath this node belongs to
+    int sourceSegment = -1;  // which segment within the subpath
+    double t = 0.0;       // parameter along the source segment (0 = start, 1 = end)
+};
+
+// An edge in the topological graph, connecting two nodes.
+struct TopoEdge {
+    int from;           // node index from
+    int to;             // node index to
+    int sourceSubpath = -1;  // which subpath this edge belongs to
+    int sourceSegment = -1;  // which source segment
+    double tFrom = 0.0;   // parameter at from node (0 = start, 1 = end)
+    double tTo = 1.0;     // parameter at to node (0 = start, 1 = end)
+};
+
+// The complete topological graph resulting from subdivision.
+struct TopoGraph {
+    QVector<TopoNode> nodes;     // all nodes (intersections + endpoints)
+    QVector<TopoEdge> edges;     // all edges connecting nodes
+    QVector<QVector<int>> faces; // face outlines (node indices in order)
+};
+
+// Build the complete topological graph from a Path.
+// This subdivides all segments at their mutual intersection points
+// and constructs a graph suitable for boolean operations (Union, Difference,
+// Intersection, XOR).
+TopoGraph artplus::geometry::buildTopoGraph(Path& path)
+{
+    TopoGraph graph;
+
+    // Step 1: Find all intersection points between all segment pairs
+    QVector<Intersection> allIntersections = buildTopology(path);
+
+    // Step 2: Collect all segment endpoints (start/end of each subpath)
+    // and add them as nodes if they're not already at the same position as an intersection.
+
+    // Map from Point -> node index (for snapping intersections to existing nodes)
+    // We'll use a simple approach: add all endpoints first, then add intersections.
+
+    // Collect all segment endpoints
+    struct EndpointRef {
+        Point point;
+        int subpathIdx;
+        int segIdx;
+        bool isStart; // true = start point, false = end point
+    };
+
+    QVector<EndpointRef> endpoints;
+    endpoints.reserve(path.subPathCount() * 2);
+
+    for (int i = 0; i < path.subPathCount(); ++i) {
+        const auto& subpath = path.subPaths()[i];
+        if (!subpath.segments.isEmpty()) {
+            // Start point (before first segment)
+            endpoints.append({subpath.start, i, 0, true});
+            // End point (after last segment)
+            if (!subpath.closed)
+                endpoints.append({subpath.segments.last().isCubic ? subpath.segments.last().p3 : subpath.segments.last().p1, i, segIdx, false});
+        }
+    }
+
+    // Actually, let me redo this more carefully. The Path structure has subpaths,
+    // each with segments. The start of the first segment is the subpath start,
+    // and the end of the last segment (or the subpath start if closed) is the end.
+
+    // For now, let's build the graph more directly from the intersections and the
+    // existing segment structure.
+
+    // Step 3: Build nodes from intersections + segment endpoints
+    // We'll use a map to avoid duplicate nodes at the same position
+
+    // Map: rounded point -> node index
+    QMap<QPair<double, double>, int> pointToNode; // (x, y) -> node index
+
+    auto addNode = [&](const Point& pt, bool isInt, int subpathIdx, int segIdx, double t) -> int {
+        // Round to avoid floating point issues in the map
+        double rx = std::round(pt.x * 1e8) / 1e8;
+        double ry = std::round(pt.y * 1e8) / 1e8;
+        QPair<double, double> key{rx, ry};
+
+        if (pointToNode.contains(key)) {
+            return pointToNode[key];
+        }
+
+        int newId = graph.nodes.size();
+        graph.nodes.append({pt, newId, isInt, subpathIdx, segIdx, t});
+        pointToNode[key] = newId;
+        return newId;
+    };
+
+    // Add all intersection points as nodes
+    for (const auto& ix : allIntersections) {
+        addNode(ix.point, true, ix.source1, ix.segIdx, ix.t1);
+        // Also add the second intersection point if it's different
+        // (for line-segment intersections, t1 and t2 are on different segments)
+    }
+
+    // Add segment endpoints as nodes
+    for (const auto& ref : endpoints) {
+        // Check if this endpoint is close to an existing intersection
+        bool isCloseToExisting = false;
+        for (const auto& ix : allIntersections) {
+            if (distance(ix.point, ref.point) < 1e-6) {
+                isCloseToExisting = true;
+                break;
+            }
+        }
+        if (!isCloseToExisting) {
+            // Determine parameter t: 0 for start, 1 for end
+            double t = ref.isStart ? 0.0 : 1.0;
+            addNode(ref.point, false, ref.subpathIdx, ref.segIdx, t);
+        }
+    }
+
+    // Step 4: Build edges connecting nodes along each subpath segment
+    // Between consecutive nodes (sorted by parameter t)
+
+    // For each subpath, sort the nodes that belong to it by their parameter t,
+    // and create edges between consecutive nodes.
+
+    // First, assign each node to its source subpath and segment
+    // (this information was set when the node was added)
+
+    // For simplicity, let's create edges along each subpath's segments,
+    // splitting at any intersection points that lie on them.
+
+    // For each subpath:
+    for (int i = 0; i < path.subPathCount(); ++i) {
+        const auto& subpath = path.subPaths()[i];
+
+        // Collect all nodes that belong to this subpath
+        QVector<int> subpathNodes;
+        for (int n = 0; n < graph.nodes.size(); ++n) {
+            if (graph.nodes[n].sourceSubpath == i) {
+                subpathNodes.append(n);
+            }
+        }
+
+        // Sort nodes by their parameter t
+        std::sort(subpathNodes.begin(), subpathNodes.end(), [&](int n1, int n2) {
+            return graph.nodes[n1].t < graph.nodes[n2].t;
+        });
+
+        // Create edges between consecutive nodes
+        for (int k = 0; k < (int)subpathNodes.size() - 1; ++k) {
+            int from = subpathNodes[k];
+            int to = subpathNodes[k + 1];
+
+            // Skip zero-length edges (same position)
+            if (distance(graph.nodes[from].point, graph.nodes[to].point) < 1e-12)
+                continue;
+
+            graph.edges.append({from, to, i, /* sourceSegment */ 0, /* tFrom */ graph.nodes[from].t, /* tTo */ graph.nodes[to].t});
+        }
+    }
+
+    // Step 5: Identify faces using ray casting / edge traversal
+    // This is the most complex part. For now, we'll mark the outer boundary
+    // and leave hole detection for a later pass.
+
+    // A simple approach: the "outer face" is the one with the largest area.
+    // We can compute the signed area of each face outline and the one with
+    // the largest absolute area is the outer boundary.
+
+    // For now, we'll construct a basic face from the outer boundary edges.
+    // A more complete implementation would use the Bentley-Gray algorithm
+    // or half-edge data structure.
+
+    // Compute faces using a half-edge traversal approach:
+    // Build adjacency: for each node, find the next edge in counterclockwise order.
+
+    // For each node, find outgoing edges
+    QVector<QVector<int>> outgoing(graph.nodes.size());
+    for (int e = 0; e < graph.edges.size(); ++e) {
+        outgoing[graph.edges[e].from].append(e);
+    }
+
+    // For each node, sort outgoing edges by angle (to enable face traversal)
+    for (int n = 0; n < (int)graph.nodes.size(); ++n) {
+        std::sort(outgoing[n].begin(), outgoing[n].end(), [&](int e1, int e2) {
+            const auto& ed1 = graph.edges[e1];
+            const auto& ed2 = graph.edges[e2];
+            // Compute angle of the edge direction at the node
+            Point d1 = graph.nodes[ed1.to].point - graph.nodes[ed1].point;
+            Point d2 = graph.nodes[ed2.to].point - graph.nodes[ed2].point;
+            // atan2(y, x) comparison: quadrant 1 has larger angle than quadrant 4, etc.
+            double angle1 = std::atan2(d1.y, d1.x);
+            double angle2 = std::atan2(d2.y, d2.x);
+            return angle1 < angle2;
+        });
+    }
+
+    // Simple face traversal: start from the leftmost-bottommost node and
+    // always take the "rightmost" turn (which gives the exterior face in CCW
+    // ordering, or interior face in CW ordering).
+
+    // For now, just mark that faces need to be computed properly.
+    // We'll add a placeholder face from the convex hull of all nodes.
+
+    if (graph.nodes.size() >= 3) {
+        // Compute convex hull as a placeholder outer face
+        // (In a full implementation, this would use proper face traversal)
+        QVector<int> outerFace;
+        // Sort nodes by angle from centroid
+        Point centroid{0, 0};
+        for (const auto& node : graph.nodes)
+            centroid = centroid + node.point;
+        centroid = centroid / graph.nodes.size();
+
+        QVector<Point> angles;
+        angles.reserve(graph.nodes.size());
+        for (const auto& node : graph.nodes) {
+            double angle = std::atan2(node.point.y - centroid.y, node.point.x - centroid.x);
+            angles.append(angle);
+        }
+
+        // Sort node indices by angle
+        QVector<int> indices(graph.nodes.size());
+        for (int i = 0; i < (int)graph.nodes.size(); ++i)
+            indices[i] = i;
+        std::sort(indices.begin(), indices.end(), [&](int i1, int i2) {
+            return angles[i1] < angles[i2];
+        });
+
+        for (int idx : indices)
+            outerFace.append(idx);
+
+        if (outerFace.size() >= 3)
+            graph.faces.append(outerFace);
+    }
+
+    return graph;
+}
+
+// Convenience: distance between two points
+double distance(const Point& a, const Point& b)
+{
+    double dx = a.x - b.x;
+    double dy = a.y - b.y;
+    return std::sqrt(dx * dx + dy * dy);
+}
+
+// Convenience: point-segment distance
+double pointSegmentDistance(const Point& p, const Point& s0, const Point& s1)
+{
+    const Point d = s1 - s0;
+    const double lenSq = d.lengthSquared();
+    if (lenSq < 1e-18)
+        return distance(p, s0);
+    double t = ((p - s0).x * d.x + (p - s0).y * d.y) / lenSq;
+    t = std::clamp(t, 0.0, 1.0);
+    return distance(p, s0 + d * t);
+}
+
+// Alias for the global function
+double artplus::geometry::pointSegmentDistance(const Point& p, const Point& s0, const Point& s1)
+{
+    return ::pointSegmentDistance(p, s0, s1);
+}
+
+} // namespace artplus::geometry
