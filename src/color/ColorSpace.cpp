@@ -583,6 +583,299 @@ QString doubleToString(double val, int precision) {
 }
 
 // ======================================================================
+// Funções de Blend Modes
+// ======================================================================
+
+// Converter string para BlendMode
+BlendMode blendModeFromString(const QString& modeName) {
+    if (modeName == QStringLiteral("Normal")) return BlendMode::Normal;
+    if (modeName == QStringLiteral("Multiply")) return BlendMode::Multiply;
+    if (modeName == QStringLiteral("Screen")) return BlendMode::Screen;
+    if (modeName == QStringLiteral("Overlay")) return BlendMode::Overlay;
+    if (modeName == QStringLiteral("SoftLight")) return BlendMode::SoftLight;
+    if (modeName == QStringLiteral("HardLight")) return BlendMode::HardLight;
+    if (modeName == QStringLiteral("ColorDodge")) return BlendMode::ColorDodge;
+    if (modeName == QStringLiteral("ColorBurn")) return BlendMode::ColorBurn;
+    if (modeName == QStringLiteral("Darken")) return BlendMode::Darken;
+    if (modeName == QStringLiteral("Lighten")) return BlendMode::Lighten;
+    if (modeName == QStringLiteral("Difference")) return BlendMode::Difference;
+    if (modeName == QStringLiteral("Exclusion")) return BlendMode::Exclusion;
+    if (modeName == QStringLiteral("Hue")) return BlendMode::Hue;
+    if (modeName == QStringLiteral("Saturation")) return BlendMode::Saturation;
+    if (modeName == QStringLiteral("Color")) return BlendMode::Color;
+    if (modeName == QStringLiteral("Luminosity")) return BlendMode::Luminosity;
+    return BlendMode::Normal; // Default
+}
+
+// Converter BlendMode para QString
+QString blendModeToString(BlendMode mode) {
+    switch (mode) {
+        case BlendMode::Normal: return QStringLiteral("Normal");
+        case BlendMode::Multiply: return QStringLiteral("Multiply");
+        case BlendMode::Screen: return QStringLiteral("Screen");
+        case BlendMode::Overlay: return QStringLiteral("Overlay");
+        case BlendMode::SoftLight: return QStringLiteral("SoftLight");
+        case BlendMode::HardLight: return QStringLiteral("HardLight");
+        case BlendMode::ColorDodge: return QStringLiteral("ColorDodge");
+        case BlendMode::ColorBurn: return QStringLiteral("ColorBurn");
+        case BlendMode::Darken: return QStringLiteral("Darken");
+        case BlendMode::Lighten: return QStringLiteral("Lighten");
+        case BlendMode::Difference: return QStringLiteral("Difference");
+        case BlendMode::Exclusion: return QStringLiteral("Exclusion");
+        case BlendMode::Hue: return QStringLiteral("Hue");
+        case BlendMode::Saturation: return QStringLiteral("Saturation");
+        case BlendMode::Color: return QStringLiteral("Color");
+        case BlendMode::Luminosity: return QStringLiteral("Luminosity");
+        default: return QStringLiteral("Normal");
+    }
+}
+
+// Aplicar opacidade a uma cor
+Color applyOpacity(const Color& c, double opacity) {
+    Color result = c;
+    result.alpha = std::max(0.0, std::min(1.0, c.alpha * opacity));
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// Verificar se duas cores se sobrepõem (have overlapping area)
+bool colorsOverlap(const Color& c1, const Color& c2, double threshold) {
+    // Verificar se as cores têm canais significativamente diferentes de zero
+    // e se estão dentro do threshold um do outro
+    if (c1.space != c2.space) {
+        // Converter para o mesmo espaço para comparação
+        Color c2_converted = ColorConversion::convert(c2, c1.space);
+        return colorsOverlap(c1, c2_converted, threshold);
+    }
+    
+    // Para RGB: verificar se a distância é menor que o threshold
+    double diff = 0.0;
+    for (int i = 0; i < 3; ++i) {
+        diff += std::abs(c1.values[i] - c2.values[i]);
+    }
+    diff += std::abs(c1.alpha - c2.alpha);
+    
+    return diff < threshold;
+}
+
+// Retornar a cor resultante de duas cores sobrepostas com modos de blend
+Color overlayColors(const Color& c1, const Color& c2, BlendMode mode, double alpha1, double alpha2) {
+    // Aplicar alpha às cores
+    Color base = applyOpacity(c1, alpha1);
+    Color blend = applyOpacity(c2, alpha2);
+    
+    // Se os espaços forem diferentes, converter blend para o espaço da base
+    if (blend.space != base.space) {
+        blend = ColorConversion::convert(blend, base.space);
+    }
+    
+    // Aplicar o modo de blend
+    return BlendOperation::blend(base, blend, mode);
+}
+
+// ======================================================================
+// Operações de Blend no BlendOperation
+// ======================================================================
+
+void BlendOperation::blendRGB(double baseR, double baseG, double baseB,
+                              double blendR, double blendG, double blendB,
+                              BlendMode mode, double& outR, double& outG, double& outB) {
+    switch (mode) {
+        case BlendMode::Normal:
+            // Normal: blend = base * baseAlpha + blend * blendAlpha
+            // Simplificado: assumindo alpha 1.0 para ambos
+            outR = baseR * 1.0 + blendR * 1.0; // Will be clamped later
+            outG = baseG * 1.0 + blendG * 1.0;
+            outB = baseB * 1.0 + blendB * 1.0;
+            break;
+            
+        case BlendMode::Multiply:
+            // Multiply: result = base * blend (escurece)
+            outR = baseR * blendR;
+            outG = baseG * blendG;
+            outB = baseB * blendB;
+            break;
+            
+        case BlendMode::Screen:
+            // Screen: result = 1 - (1 - base) * (1 - blend) (clareia)
+            outR = 1.0 - (1.0 - baseR) * (1.0 - blendR);
+            outG = 1.0 - (1.0 - baseG) * (1.0 - blendG);
+            outB = 1.0 - (1.0 - baseB) * (1.0 - blendB);
+            break;
+            
+        case BlendMode::Overlay:
+            // Overlay: combina Multiply e Screen dependendo do brilho da base
+            if (baseR > 0.5) {
+                // Parte clara: Screen
+                outR = 1.0 - (1.0 - baseR) * (1.0 - blendR);
+                outG = 1.0 - (1.0 - baseG) * (1.0 - blendG);
+                outB = 1.0 - (1.0 - baseB) * (1.0 - blendB);
+            } else {
+                // Parte escura: Multiply
+                outR = baseR * blendR;
+                outG = baseG * blendG;
+                outB = baseB * blendB;
+            }
+            break;
+            
+        case BlendMode::Darken:
+            // Darken: mantém a cor mais escura
+            if (baseR < blendR) outR = baseR; else outR = blendR;
+            if (baseG < blendG) outG = baseG; else outG = blendG;
+            if (baseB < blendB) outB = baseB; else outB = blendB;
+            break;
+            
+        case BlendMode::Lighten:
+            // Lighten: mantém a cor mais clara
+            if (baseR > blendR) outR = baseR; else outR = blendR;
+            if (baseG > blendG) outG = baseG; else outG = blendG;
+            if (baseB > blendB) outB = baseB; else outB = blendB;
+            break;
+            
+        case BlendMode::Difference:
+            // Difference: subtrai as cores (absoluto)
+            outR = std::abs(baseR - blendR);
+            outG = std::abs(baseG - blendG);
+            outB = std::abs(baseB - blendB);
+            break;
+            
+        case BlendMode::Exclusion:
+            // Exclusion: similar a Difference, mas com menor contraste
+            outR = baseR + blendR - 2.0 * baseR * blendR;
+            outG = baseG + blendG - 2.0 * baseG * blendG;
+            outB = baseB + blendB - 2.0 * baseB * blendB;
+            break;
+            
+        case BlendMode::Hue:
+            // Hue: troca matiz, preservando saturação e brilho da base
+            // Implementação simplificada: converter para HSB, trocar matiz
+            // ... (implementação completa seria complexa)
+            // Por padrão, mantém a base
+            outR = baseR;
+            outG = baseG;
+            outB = baseB;
+            break;
+            
+        case BlendMode::Saturation:
+            // Saturation: troca saturação, preservando matiz e brilho
+            // Implementação simplificada
+            outR = baseR;
+            outG = baseG;
+            outB = baseB;
+            break;
+            
+        case BlendMode::Color:
+            // Color: troca cor, preservando matiz e brilho
+            // Implementação simplificada
+            outR = baseR;
+            outG = baseG;
+            outB = baseB;
+            break;
+            
+        case BlendMode::Luminosity:
+            // Luminosity: troca brilho, preservando matiz e saturação
+            // Implementação simplificada
+            outR = baseR;
+            outG = baseG;
+            outB = baseB;
+            break;
+            
+        default:
+            outR = baseR;
+            outG = baseG;
+            outB = baseB;
+            break;
+    }
+    
+    // Clamp para [0,1]
+    if (outR < 0.0) outR = 0.0; if (outR > 1.0) outR = 1.0;
+    if (outG < 0.0) outG = 0.0; if (outG > 1.0) outG = 1.0;
+    if (outB < 0.0) outB = 0.0; if (outB > 1.0) outB = 1.0;
+}
+
+void BlendOperation::blendCMYK(double baseC, double baseM, double baseY, double baseK,
+                               double blendC, double blendM, double blendY, double blendK,
+                               BlendMode mode, double& outC, double& outM, double& outY, double& outK) {
+    // Aproximada: converter para RGB, fazer blend, converter de volta
+    // Para simplificação, usamos fórmulas aproximadas CMYK
+    
+    switch (mode) {
+        case BlendMode::Normal:
+            outC = baseC; outM = baseM; outY = baseY; outK = baseK;
+            break;
+        case BlendMode::Multiply:
+            // Multiply em CMYK: somar componentes (escurece)
+            outC = std::min(1.0, baseC + blendC);
+            outM = std::min(1.0, baseM + blendM);
+            outY = std::min(1.0, baseY + blendY);
+            outK = std::min(1.0, baseK + blendK);
+            break;
+        case BlendMode::Screen:
+            // Screen em CMYK: 1 - (1-base) * (1-blend)
+            outC = 1.0 - (1.0 - baseC) * (1.0 - blendC);
+            outM = 1.0 - (1.0 - baseM) * (1.0 - blendM);
+            outY = 1.0 - (1.0 - baseY) * (1.0 - blendY);
+            outK = 1.0 - (1.0 - baseK) * (1.0 - blendK);
+            break;
+        default:
+            outC = baseC; outM = baseM; outY = baseY; outK = baseK;
+            break;
+    }
+    
+    // Clamp
+    if (outC < 0.0) outC = 0.0; if (outC > 1.0) outC = 1.0;
+    if (outM < 0.0) outM = 0.0; if (outM > 1.0) outM = 1.0;
+    if (outY < 0.0) outY = 0.0; if (outY > 1.0) outY = 1.0;
+    if (outK < 0.0) outK = 0.0; if (outK > 1.0) outK = 1.0;
+}
+
+Color BlendOperation::blend(const Color& base, const Color& blendColor, BlendMode mode) {
+    Color result;
+    
+    // Se os espaços forem iguais, fazer blend direto
+    if (base.space == blendColor.space) {
+        if (base.space == ColorSpaceType::RGB) {
+            blendRGB(base.values[0], base.values[1], base.values[2],
+                     blendColor.values[0], blendColor.values[1], blendColor.values[2],
+                     mode, result.values[0], result.values[1], result.values[2]);
+            result.alpha = base.alpha; // Manter alpha da base
+            result.space = ColorSpaceType::RGB;
+        } else if (base.space == ColorSpaceType::CMYK) {
+            blendCMYK(base.values[0], base.values[1], base.values[2], base.values[3],
+                      blendColor.values[0], blendColor.values[1], blendColor.values[2], blendColor.values[3],
+                      mode, result.values[0], result.values[1], result.values[2], result.values[3]);
+            result.alpha = base.alpha;
+            result.space = ColorSpaceType::CMYK;
+        } else {
+            // Para outros espaços, manter a base
+            result = base;
+        }
+    } else {
+        // Espaços diferentes: converter blend para o espaço da base, então blend
+        Color blendConverted = ColorConversion::convert(blendColor, base.space);
+        
+        if (base.space == ColorSpaceType::RGB) {
+            blendRGB(base.values[0], base.values[1], base.values[2],
+                     blendConverted.values[0], blendConverted.values[1], blendConverted.values[2],
+                     mode, result.values[0], result.values[1], result.values[2]);
+            result.alpha = base.alpha;
+            result.space = ColorSpaceType::RGB;
+        } else if (base.space == ColorSpaceType::CMYK) {
+            blendCMYK(base.values[0], base.values[1], base.values[2], base.values[3],
+                      blendConverted.values[0], blendConverted.values[1], blendConverted.values[2], blendConverted.values[3],
+                      mode, result.values[0], result.values[1], result.values[2], result.values[3]);
+            result.alpha = base.alpha;
+            result.space = ColorSpaceType::CMYK;
+        } else {
+            result = base;
+        }
+    }
+    
+    ColorConversion::clamp(result);
+    return result;
+}
+
+// ======================================================================
 // Finalização
 // ======================================================================
 

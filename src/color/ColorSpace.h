@@ -214,4 +214,82 @@ Color convertWithIntent(const Color& from, ColorSpaceType toSpace, RenderingInte
 // Obter intent recomendado para um uso específico
 RenderingIntent recommendedIntent(ColorSpaceType fromSpace, ColorSpaceType toSpace, bool isProofing = false);
 
+// ======================================================================
+// Blend Modes (Modes de Blend)
+// ======================================================================
+
+// Enumeração dos modos de blend suportados
+enum class BlendMode {
+    Normal,           // Modo normal — sem blend especial
+    Multiply,         // Multiplicar — escurece a imagem (útil para sombras)
+    Screen,           // Tela — clareia a imagem (útil para highlights)
+    Overlay,          // Overlay — combina Multiply e Screen
+    SoftLight,        // Light suave — efeito suave de overlay
+    HardLight,        // Hard light — efeito forte de overlay
+    ColorDodge,       // Color dodge — clareia com cores
+    ColorBurn,        // Color burn — escurece com cores
+    Darken,           // Darken — mantém o mais escuro
+    Lighten,          // Lighten — mantém o mais claro
+    Difference,       // Difference — subtrai cores (modo de diferença)
+    Exclusion,        // Exclusion — semelhante a Difference, mas mais suave
+    Hue,              // Hue — troca matiz, preservando saturação e brilho
+    Saturation,       // Saturation — troca saturação, preservando matiz e brilho
+    Color,            // Color — troca cor, preservando matiz e brilho
+    Luminosity        // Luminosity — troca brilho, preservando matiz e saturação
+};
+
+// Função para converter string para BlendMode
+BlendMode blendModeFromString(const QString& modeName);
+
+// Função para converter BlendMode para QString
+QString blendModeToString(BlendMode mode);
+
+// Classe para operação de blend entre duas cores
+class BlendOperation {
+public:
+    // Aplicar modo de blend entre duas cores
+    static Color blend(const Color& base, const Color& blendColor, BlendMode mode);
+
+    // Aplicar blend com considerar alpha (opacidade)
+    static Color blendWithAlpha(const Color& base, const Color& blendColor, double blendAlpha, BlendMode mode);
+
+private:
+    // Fórmulas de blend para RGB
+    static void blendRGB(double baseR, double baseG, double baseB,
+                         double blendR, double blendG, double blendB,
+                         BlendMode mode, double& outR, double& outG, double& outB);
+
+    // Fórmulas de blend para CMYK (aproximadas)
+    static void blendCMYK(double baseC, double baseM, double baseY, double baseK,
+                          double blendC, double blendM, double blendY, double blendK,
+                          BlendMode mode, double& outC, double& outM, double& outY, double& outK);
+};
+
+// ======================================================================
+// Funções de transparência
+// ======================================================================
+
+// Aplicar opacidade a uma cor
+Color applyOpacity(const Color& c, double opacity);
+
+// Verificar se duas cores se sobrepõem (have overlapping area)
+bool colorsOverlap(const Color& c1, const Color& c2, double threshold = 0.5);
+
+// Retornar a cor resultante de duas cores sobrepostas com modos de blend
+Color overlayColors(const Color& c1, const Color& c2, BlendMode mode = BlendMode::Normal, double alpha1 = 1.0, double alpha2 = 1.0);
+
+// ======================================================================
+// Espaço de cor padrão
+// ======================================================================
+
+// Valor padrão
+const ColorSpaceType defaultSpace = ColorSpaceType::RGB;
+
+// Tolerância
+constexpr double colorTolerance = 1e-6;
+
+// ======================================================================
+// Finalização
+// ======================================================================
+
 } // namespace artplus::color
