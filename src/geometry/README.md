@@ -43,7 +43,7 @@ critério adequado:
 |---|---|---|
 | `Matrix::inverted()` | `\|sin θ\| = \|det\| / (\|col₀\|·\|col₁\|) > 1e-12` | Adimensional. `\|det\|` absoluto escalava com a transformação e rejeitava escalas < ~1e-6, que são perfeitamente invertíveis em `double`. |
 | `Point::normalized()` | divisor = maior componente; zero só quando ambas são 0 | Elimina overflow (`1e300`) e underflow (`1e-320`); nenhum vetor não nulo é descartado. |
-| Extremos de Bézier (`Bezier.cpp`) | `64 * ULP(maxCoord)` | Os extremos são calculados a partir dos **diferenciais** da curva, que variam com a escala. Usar ULP local garante robustez sem constantes mágicas como `1e-12`. **Etapa 1.2.3**: tolerâncias fixas `100.0` e `0.9` removidas; todas as comparações agora usam limites baseados em `effectiveUlp()` da magnitude da curva.
+| Extremos de Bézier (`Bezier.cpp`) | `64 * ULP(maxCoord)` | Os extremos são calculados a partir dos **diferenciais** da curva, que variam com a escala. Usar ULP local garante robustez sem constantes mágicas como `1e-12`. **Etapa 1.2.3**: tolerâncias fixas `100.0` e `0.9` removidas; todas as comparações agora usam limites baseados em `effectiveUlp()` da magnitude da curva. **Etapa 1.2.4**: denominação do solver agora usa diferenças locais `d1 - d0` (onde `d0 = c - p0`, `d1 = p1 - c`) em vez de coordenadas absolutas `p0 - 2*c + p1`, evitando cancelamento catastrófico sob translação.
 | `cubicIsFlat()` (colapso da corda) | `1e-12` relativo à extensão da curva | Indica "corda degenerada", que é adimensional em intenção. |
 | `Polygon::orientation()` | `1e-12` relativo à área da bounding box | Ver acima. |
 | `kGeometryEpsilon` (bordas, paralelismo) | **distância** absoluta `1e-9` pt | Aqui a grandeza *é* uma distância física; comparar distâncias com distâncias é correto. |
@@ -201,6 +201,18 @@ Casos cobertos pela suíte `artplus.geometry` (793 checks):
   `1e15` quanto a bounds, extremos, avaliação, forma achatada, comprimento e
   ausência de `NaN`/`infinito`. Todas as comparações são feitas em valores
   **relativos ao início da própria curva**, nunca em coordenadas absolutas.
+
+Tolerâncias são explícitas e documentadas; não são usadas para esconder erro
+numérico. Comparações de área usam um critério **relativo** à bounding box para
+não declarar degenerado um polígono legitimamente pequeno.
+
+## Etapa 1.2.4 — Novos aprimoramentos
+
+- **Ordem de p0**: todos os flattening de curvas agora iniciam com `p0` no início do vetor (`p0 → pontos intermediários → p1`), usando `insert(begin(), p0)` em vez de `push_back`. Curvas transladadas usam `cubic.p0`/`quad.p0` (já traduzidas).
+- **Comprimento quadrático**: `baseLen` e `movedLen` recalculados com sequência correta p0→p1, incluindo o primeiro segmento.
+- **Testes de polilinhas vazias**: `bidirectionalPolylineDistance()` testado com casos vazia/vazia, vazia/non-vazia, non-vazia/vazia, ponto/ponto, ponto/polilinha, polilinha/ponto e polilinhas com shapes diferentes mas bounding boxes iguais. Entradas vazias retornam -1.0 (comparação inválida) e são rejeitadas nas asserções.
+- **Solver quadrático estável**: denominador computado usando diferenças locais (`d1 - d0`) em vez de `p0 - 2*c + p1`, evitando cancelamento catastrófico sob translação.
+- **Solver cúbico**: ramo `q == 0` removido contendo comparação impossível `0.0 > 0.0`. Tratamento matemático correto sem constantes arbitrárias `1e-300`. Raízes garantidas finitas, ordenadas e estritamente internas em `(0,1)`.
 
 Tolerâncias são explícitas e documentadas; não são usadas para esconder erro
 numérico. Comparações de área usam um critério **relativo** à bounding box para

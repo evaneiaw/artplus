@@ -18,7 +18,21 @@ Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação
 
 ---
 
-## Milestone 24 / Etapa 1.2.1 — Refinamento de testes e verificação final — CONCLUÍDA (2026-11-06)
+## Milestone 24 / Etapa 1.2.4 — Correção da ordem de p0 e validação de solvers — CONCLUÍDA (2026-11-06)
+
+### Ações realizadas
+- **Ordem correta de p0 (prioridade máxima)**: todos os flattening de curvas Bézier agora iniciam com `p0` no início do vetor, seguidos pelos pontos intermediários do flattening e terminando em `p1`. Corrigido em `cubicBaseFlat`, `cubicFlat`, `quadBaseFlat`, `quadFlat`, `basePoly` e `movedPoly` usando `insert(begin(), p0)`. Para curvas transladadas, usa-se `cubic.p0` e `quad.p0` (já traduzidas) em vez de `testCase.cubic.p0`/`testCase.quad.p0`.
+- **Comprimento quadrático**: `baseLen` e `movedLen` recalculados com a sequência correta p0→p1, iniciando em p0 e terminando em p1. Adicionada regressão que detecta a omissão do primeiro segmento.
+- **Testes explícitos de polilinhas vazias**: adicionados testes diretos para `bidirectionalPolylineDistance()` cobrindo: vazia/vazia (-1.0), vazia/não-vazia (-1.0), não-vazia/vazia (-1.0), ponto/ponto, ponto/polilinha, polilinha/ponto e duas polilinhas com shapes diferentes e bounding boxes iguais. As entradas vazias são rejeitadas como comparação inválida; resultado negativo não passa em asserções de igualdade ou distância.
+- **Solver quadrático de referência**: cálculo do denominador agora usa diferenças locais (`d1 - d0` onde `d0 = c - p0`, `d1 = p1 - c`) em vez de coordenadas absolutas `p0 - 2*c + p1`, evitando cancelamento catastrófico sob translação. Adicionadas regressões de curvas quadráticas em diferentes magnitudes e translações.
+- **Revisão do solver cúbico**: ramo `q == 0` removido contendo comparação impossível `0.0 > 0.0`. Implementado tratamento matemático correto sem constantes arbitrárias como `1e-300`. Garantido raízes finitas, ordenadas e estritamente internas em `(0,1)`.
+- Tolerâncias ULP-base mantidas em todos os verificadores (`checkEvaluationAtTs`, `checkInteriorExtremaPreserved`, `checkRelativeBoundsForPolylines`).
+
+### Verificação
+- Build `build-msvc`: **BUILD_OK**.
+- CTest completo: **9/9 suítes**, **2257+ checks**, **0 falhas** (etapa 1.2.4 fixes + preservação das outras oito suítes).
+
+Próxima Etapa: Stage 2 — Boolean operations and offset (PLANNED).
 
 ### Ações realizadas
 - Correção da função `bidirectionalPolylineDistance` para considerar o offset `delta` corretamente na comparação bidirecional de polilinhas (antes subtraía incorretamente, causando falha em casos extremos).

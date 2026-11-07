@@ -241,17 +241,19 @@ int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double 
     using artplus::geometry::Point;
     int count = 0;
     for (int axis = 0; axis < 2; ++axis) {
-        const double p0 = (axis == 0) ? q.p0.x : q.p0.y;
-        const double c  = (axis == 0) ? q.c.x  : q.c.y;
-        const double p1 = (axis == 0) ? q.p1.x : q.p1.y;
-        // Diferencial quadratico: denom = p0 - 2*c + p1
-        // Usar o máximo dos termos diferenciais em vez de magnitudes absolutas
-        // para que a translação dos pontos de controle não altere o resultado.
-        const double charmax = std::max({std::abs(p0 - c), std::abs(c - p1)});
+        // Coeficientes diferenciais (invariantes de translação)
+        const double d0 = (axis == 0) ? q.c.x - q.p0.x : q.c.y - q.p0.y;
+        const double d1 = (axis == 0) ? q.p1.x - q.c.x : q.p1.y - q.c.y;
+        // Denominador da raiz quadrática: denom = p0 - 2*c + p1
+        // Usando diferenças locais (d1 - d0) para evitar cancelamento
+        // catastrófico quando a curva é translada para grandes magnitudes.
+        // (d1 - d0) = (p1 - c) - (c - p0) = p1 + p0 - 2*c, equivalente mas
+        // computado por diferenças que cancelam a translação comum.
+        const double denom = d1 - d0;
+        const double charmax = std::max(std::abs(d0), std::abs(d1));
         const double threshold = effectiveUlp(charmax) * 64.0;
-        const double denom = p0 - 2.0 * c + p1;
         if (std::abs(denom) > threshold) {
-            const double t = (c - p0) / denom;
+            const double t = -d0 / denom; // = (c - p0) / (p0 - 2*c + p1)
             if (t > 0.0 && t < 1.0 && count < 2)
                 ts[count++] = t;
         }
@@ -320,19 +322,20 @@ int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&t
                 const double q = (B >= 0.0) ? -0.5 * (B + sq) : -0.5 * (B - sq);
 
                 // Duas raízes: t0 = q / A, t1 = C / q
-                // Tratamento especial quando q ≈ 0 (raiz dupla)
+                // Tratamento especial quando q ≈ 0 (raiz dupla):
+                // quando q é exatamente 0, t0 = 0 e t1 diverge (C/q).
+                // A raiz t = 0 está na fronteira do intervalo (0,1) e é
+                // filtrada pela condição t > 0.0 && t < 1.0 abaixo.
                 if (std::abs(q) > 1e-300) {
                     const double t0 = q / A;
                     const double t1 = C / q;
                     if (t0 > 0.0 && t0 < 1.0 && count < 4) ts[count++] = t0;
                     if (t1 > 0.0 && t1 < 1.0 && count < 4) ts[count++] = t1;
-                } else {
-                    // q == 0 => raiz dupla em t = 0 ou análise de limite
-                    // O termo C/q diverge; se C também é 0, a raiz está em t = 0
-                    // (ou o modelo é degener). Apenas registramos se t=0 for
-                    // um extremo genuíno verificado por avaliação.
-                    if (std::abs(C) <= 1e-300 && 0.0 > 0.0 && 0.0 < 1.0 && count < 4) ts[count++] = 0.0;
                 }
+                // O ramo q == 0 removido: a condição 0.0 > 0.0 era impossível/
+                // morta. Quando q = 0 e C = 0, a dupla raiz está em t = 0 (fronteira),
+                // já filtrada pelas checagens t > 0.0 && t < 1.0. Quando q = 0 e C ≠ 0,
+                // t1 = C/q diverge e não produz raízes internas válidas.
             } else if (disc == 0.0) {
                 // Raiz dupla: t = -B / (2A)
                 const double t = -B / (2.0 * A);
@@ -1206,8 +1209,9 @@ int main()
             const double cubicBaseLength = testCase.cubic.length(tolerance);
             std::vector<Point> cubicBaseFlat;
             flattenCubic(testCase.cubic, tolerance, cubicBaseFlat);
-            // Garantir que p0 este incluído na polilha para cálculos de distância.
-            cubicBaseFlat.push_back(testCase.cubic.p0);
+            // Garantir que p0 este incluído no INÍCIO da polilha para cálculos de distância.
+            // A ordem deve ser p0 → pontos intermediários do flattening → p1.
+            cubicBaseFlat.insert(cubicBaseFlat.begin(), testCase.cubic.p0);
             const int cubicBaseSegments = static_cast<int>(cubicBaseFlat.size());
 
             const Rect quadBaseBounds = testCase.quad.bounds();
@@ -1215,8 +1219,9 @@ int main()
             const double quadBaseHeight = quadBaseBounds.height();
             std::vector<Point> quadBaseFlat;
             flattenQuadratic(testCase.quad, tolerance, quadBaseFlat);
-            // Garantir que p0 este incluído na polilha para cálculos de distância.
-            quadBaseFlat.push_back(testCase.quad.p0);
+            // Garantir que p0 este incluído no INÍCIO da polilha para cálculos de distância.
+            // A ordem deve ser p0 → pontos intermediários do flattening → p1.
+            quadBaseFlat.insert(quadBaseFlat.begin(), testCase.quad.p0);
             const int quadBaseSegments = static_cast<int>(quadBaseFlat.size());
 
             for (double d : translations) {
@@ -1259,7 +1264,8 @@ int main()
                 std::vector<Point> cubicFlat;
                 flattenCubic(cubic, tolerance, cubicFlat);
                 // Garantir que p0 este incluído na polilha.
-                cubicFlat.push_back(testCase.cubic.p0);
+                // Usar cubic.p0 (já traduzido), não testCase.cubic.p0.
+                cubicFlat.insert(cubicFlat.begin(), cubic.p0);
                 check(allFinite(cubicFlat), label);
 
                 // 6. Flattened geometry: bidirectional polyline distance (shape preservation)
@@ -1312,7 +1318,7 @@ int main()
                 std::vector<Point> quadFlat;
                 flattenQuadratic(quad, tolerance, quadFlat);
                 // Garantir que p0 este incluído na polilha.
-                quadFlat.push_back(testCase.quad.p0);
+                quadFlat.insert(quadFlat.begin(), quad.p0);
                 check(allFinite(quadFlat), label);
 
                 // 5. Flattened geometry: bidirectional polyline distance
@@ -1337,9 +1343,9 @@ int main()
                     flattenQuadratic(testCase.quad, tolerance, basePoly);
                     flattenQuadratic(quad, tolerance, movedPoly);
                     // Add p0 to both polylines for distance/length calculations.
-                    // basePoly gets original p0; movedPoly gets translated p0 (quad.p0 already has delta).
-                    basePoly.push_back(testCase.quad.p0);
-                    movedPoly.push_back(quad.p0);
+                    // basePoly gets original p0 at the INÍCIO; movedPoly gets translated p0.
+                    basePoly.insert(basePoly.begin(), testCase.quad.p0);
+                    movedPoly.insert(movedPoly.begin(), quad.p0);
                     double baseLen = 0.0, movedLen = 0.0;
                     for (std::size_t i = 1; i < basePoly.size(); ++i)
                         baseLen += artplus::geometry::distance(basePoly[i - 1], basePoly[i]);
@@ -1355,5 +1361,54 @@ int main()
 
     std::printf("\n%s\n", g_failures == 0 ? "ALL PASSED" : "FAILURES PRESENT");
     std::printf("%d checks, %d failures\n", g_checks, g_failures);
+
+    // ========================================================================
+    // Explicit tests for bidirectionalPolylineDistance() empty/edge cases
+    // ========================================================================
+    std::printf("\nbidirectionalPolylineDistance() empty/edge cases:\n");
+    {
+        // 1. empty / empty -> -1.0 (indeterminado)
+        std::vector<Point> empty1, empty2;
+        double d1 = bidirectionalPolylineDistance(empty1, empty2, {0.0, 0.0});
+        std::printf("  empty/empty: %.1f (expected -1.0)\n", d1);
+        check(d1 == -1.0, "empty/empty returns -1.0");
+
+        // 2. empty / non-empty -> -1.0 (comparacao invalida)
+        std::vector<Point> nonEmpty{Point{0.0, 0.0}, Point{1.0, 1.0}};
+        double d2 = bidirectionalPolylineDistance(empty1, nonEmpty, {0.0, 0.0});
+        std::printf("  empty/non-empty: %.1f (expected -1.0)\n", d2);
+        check(d2 == -1.0, "empty/non-empty returns -1.0");
+
+        // 3. non-empty / empty -> -1.0 (comparacao invalida)
+        double d3 = bidirectionalPolylineDistance(nonEmpty, empty1, {0.0, 0.0});
+        std::printf("  non-empty/empty: %.1f (expected -1.0)\n", d3);
+        check(d3 == -1.0, "non-empty/empty returns -1.0");
+
+        // 4. point / point -> actual distance
+        std::vector<Point> p1{Point{0.0, 0.0}}, p2{Point{3.0, 4.0}};
+        double d4 = bidirectionalPolylineDistance(p1, p2, {0.0, 0.0});
+        std::printf("  point/point: %.1f (expected 5.0)\n", d4);
+        checkNear(d4, 5.0, 1e-12, "point/point distance");
+
+        // 5. point / polylinha
+        std::vector<Point> p3{Point{0.0, 0.0}, Point{1.0, 1.0}};
+        double d5 = bidirectionalPolylineDistance(p1, p3, {0.0, 0.0});
+        std::printf("  point/polyline: %.1f (expected ~0.0, point on segment)\n", d5);
+        check(d5 < 1e-10, "point on polyline segment gives near-zero distance");
+
+        // 6. polylinha / ponto
+        double d6 = bidirectionalPolylineDistance(p3, p1, {0.0, 0.0});
+        std::printf("  polyline/point: %.1f (expected ~0.0, point on segment)\n", d6);
+        check(d6 < 1e-10, "point on polyline segment gives near-zero distance");
+
+        // 7. two polilinhas with different shapes but equal bounding boxes
+        std::vector<Point> polyA{Point{0.0, 0.0}, Point{10.0, 0.0}, Point{10.0, 10.0}};
+        std::vector<Point> polyB{Point{0.0, 0.0}, Point{0.0, 10.0}, Point{10.0, 10.0}};
+        // Both have bounding box [0,0]-[10,10], but different shapes
+        double d7 = bidirectionalPolylineDistance(polyA, polyB, {0.0, 0.0});
+        std::printf("  polyA/polyB (same bbox, different shape): %.1f\n", d7);
+        check(d7 >= 0.0, "polylines same bbox different shape valid distance");
+    }
+
     return g_failures == 0 ? 0 : 1;
 }

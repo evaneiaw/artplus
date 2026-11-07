@@ -222,6 +222,7 @@ Exit criteria: `artplus.geometry` at 2257 checks; full CTest green (9/9, 2257 ch
   - Tolerância agora reflete erro de representação efetivamente calculado: `if (ulp > 0.5) tolerância = ulp * 2.0; else tolerância = geometricTolerance(d, 0.05)`.
 - **Inclusão de `p0` nas polilinhas**: garantido que o ponto inicial esteja incluído nos vetores flattened antes de calcular distância e comprimento.
 - **Testes de translação reforçados**: garantido que os testes verificam invariância geométrica relativa ao ponto de início, não apenas pontos finais ou bounding boxes.
+- **Etapa 1.2.4**: correção da ordem de p0 (insert p0 no início do vetor, não no final), recomputação de comprimentos quadráticos, testes explícitos de polilinhas vazias para `bidirectionalPolylineDistance()`, solver quadrático estável com diferenças locais, revisão do solver cúbico (remoção do ramo `q == 0` com comparação impossível `0.0 > 0.0`), e documentação fiel.
 
 ### Stage 2 — Boolean operations and offset — PLANNED
 
