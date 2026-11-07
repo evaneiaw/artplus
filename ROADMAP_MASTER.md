@@ -210,13 +210,18 @@ Refined the `artplus.geometry` test suite to eliminate remaining flaky behavior 
 Exit criteria: `artplus.geometry` at 2257 checks; full CTest green (9/9, 2257 checks).
 
 
-### Stage 1.2.2 — Final Bézier Validation Criteria and Extrema Solver Robustness — DONE (2026-11-06)
+### Stage 1.2.3 — Correção dos critérios de validação numérica Bézier — DONE (2026-11-06)
 
-Complete stabilization and rigor hardening of Bézier validation criteria and reference interior extrema solvers in `tests/geometry_test.cpp`:
-- Refactored `findQuadraticInteriorExtrema()` and `findCubicInteriorExtrema()` to be robust, scale-invariant reference solvers using Citardauq formulation ($q = -\frac{1}{2}(B + \text{sgn}(B)\sqrt{D})$) and relative thresholding (`effectiveUlp(maxCoord) * 64.0 / 128.0`), avoiding catastrophic cancellation and eliminating hardcoded magic absolute cutoffs (`1e-12`/`1e-18`).
-- Strict separation of IEEE 754 representability: acknowledges that at $d = 10^{15}$, $\text{ULP}(10^{15}) \approx 0.125 > 0.05$ makes sub-point curve variations unrepresentable without growing artificial tolerances; extrema count equality is bounded to representable coordinates while verifying envelope bounds and finiteness.
-- Updated documentation in `src/geometry/README.md`.
-- Full CTest suite green (9/9 passed, 0 failures).
+- **`bidirectionalPolylineDistance()`**: defined behavior for empty polylines (two empty → -1.0, one empty → -1.0, one point → point comparison, two+ points → bidirectional vertex-segment comparison). Correct delta offset handling. Sentinel values like `1e300` not confused with valid distance.
+- **Solvers de referência posicion-independentes**:
+  - `findQuadraticInteriorExtrema()`: critério de degeneração baseado em coeficientes diferenciais em vez de magnitudes absolutas de pontos de controle — garante invariância à translação comum.
+  - `findCubicInteriorExtrema()`: reformulação com fórmula de Citardauq para evitar cancelamento catastrófico; tratamento de casos de borda (B==0, q==0, discriminante zero/negativo, coeficientes degenerados, raízes fora de (0,1)). Critério de degeneração baseado em ULP dos coeficientes diferenciais.
+- **Eliminar tolerâncias permissivas artificiais em 1e15**:
+  - Removido `100.0` ponto de tolerância; removido `0.9` ponto de tolerância aplicado indiscriminadamente.
+  - Removida aprovação automática da contagem de extremos quando `d >= 1e15`.
+  - Tolerância agora reflete erro de representação efetivamente calculado: `if (ulp > 0.5) tolerância = ulp * 2.0; else tolerância = geometricTolerance(d, 0.05)`.
+- **Inclusão de `p0` nas polilinhas**: garantido que o ponto inicial esteja incluído nos vetores flattened antes de calcular distância e comprimento.
+- **Testes de translação reforçados**: garantido que os testes verificam invariância geométrica relativa ao ponto de início, não apenas pontos finais ou bounding boxes.
 
 ### Stage 2 — Boolean operations and offset — PLANNED
 

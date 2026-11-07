@@ -146,7 +146,14 @@ void checkEvaluationAtTs(const Curve& base, const Curve& moved, const artplus::g
 {
     using artplus::geometry::Point;
     static constexpr double ts[] = {0.0, 0.1, 0.25, 0.37, 0.5, 0.75, 0.9, 1.0};
-    const double eps = (d > 1e14) ? 0.9 : geometricTolerance(d, 0.05);
+    // Tolerância baseada em ULP da magnitude: isso reflete o erro de
+    // representação IEEE 754 efetivo em vez de usar constantes fixas como
+    // 100.0 ou 0.9 que seriam arbitrariamente permissivas ou restritivas.
+    const double ulp = effectiveUlp(d);
+    // Para magnitudes onde o ULP excede a tolerância de flattening (0.05 pt),
+    // reconhecemos que a geometria fina não é representável e verificamos
+    // apenas propriedades seguras (finitude, bounds, finitos).
+    const double eps = (ulp > 0.5) ? ulp * 2.0 : geometricTolerance(d, 0.05);
     char label[256];
 
     for (double t : ts) {
@@ -156,7 +163,10 @@ void checkEvaluationAtTs(const Curve& base, const Curve& moved, const artplus::g
         std::snprintf(label, sizeof(label),
                       "%s %s @%.0e: evaluate(t=%.2f) X follows translation",
                       prefix, caseName, d, t);
-        checkNear(movedPt.x - delta.x, basePt.x, (d > 1e14 ? 100.0 : eps), label);
+        // Usar tolerância ULP-based; se a magnitude não é representável,
+        // a comparação ainda deve passar quando os valores coincidem dentro
+        // do possível dado o precision da floating-point.
+        checkNear(movedPt.x - delta.x, basePt.x, eps, label);
 
         std::snprintf(label, sizeof(label),
                       "%s %s @%.0e: evaluate(t=%.2f) Y follows translation",
@@ -167,6 +177,10 @@ void checkEvaluationAtTs(const Curve& base, const Curve& moved, const artplus::g
 
 // Distância geométrica bidirecional entre duas polilinhas (descontando translação).
 // As polilinhas devem ter a mesma translação aplicada: subtrai-se delta de b para trazer para o espaço de a.
+// Comportamento inequívoco para casos de geometria vazia:
+//   - Duas polilinhas vazias: retorna -1.0 para indicar "indeterminado / ausência de geometria".
+//   - Apenas uma vazia: retorna -1.0 (comparação inválida).
+//   - Uma polilinha com um ponto: comparação de ponto única.
 double bidirectionalPolylineDistance(const std::vector<artplus::geometry::Point>& a,
                                      const std::vector<artplus::geometry::Point>& b,
                                      const artplus::geometry::Point& delta)
@@ -174,8 +188,10 @@ double bidirectionalPolylineDistance(const std::vector<artplus::geometry::Point>
     using artplus::geometry::Line;
     using artplus::geometry::pointSegmentDistance;
     using artplus::geometry::distance;
+    if (a.empty() && b.empty())
+        return -1.0; // indeterminado / ausência de geometria
     if (a.empty() || b.empty())
-        return 0.0;
+        return -1.0; // comparação inválida: uma vazia, outra não
     if (a.size() == 1 && b.size() == 1)
         return distance(a.front(), {b.front().x - delta.x, b.front().y - delta.y});
     if (a.size() == 1) {
@@ -216,6 +232,10 @@ double bidirectionalPolylineDistance(const std::vector<artplus::geometry::Point>
 }
 
 // Encontra extremos internos de uma curva Bézier quadrática (retorna ts em (0,1)).
+// O critério de degeneração é baseado nos coeficientes diferenciais da curva,
+// não em magnitudes absolutas dos pontos de controle. Isso garante que uma
+// translação comum dos pontos de controle não mude a quantidade nem os valores
+// de t dos extremos encontrados.
 int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double (&ts)[2])
 {
     using artplus::geometry::Point;
@@ -224,8 +244,12 @@ int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double 
         const double p0 = (axis == 0) ? q.p0.x : q.p0.y;
         const double c  = (axis == 0) ? q.c.x  : q.c.y;
         const double p1 = (axis == 0) ? q.p1.x : q.p1.y;
+        // Diferencial quadratico: denom = p0 - 2*c + p1
+        // Usar o máximo dos termos diferenciais em vez de magnitudes absolutas
+        // para que a translação dos pontos de controle não altere o resultado.
+        const double charmax = std::max({std::abs(p0 - c), std::abs(c - p1)});
+        const double threshold = effectiveUlp(charmax) * 64.0;
         const double denom = p0 - 2.0 * c + p1;
-        const double threshold = effectiveUlp(std::max({std::abs(p0), std::abs(c), std::abs(p1)})) * 64.0;
         if (std::abs(denom) > threshold) {
             const double t = (c - p0) / denom;
             if (t > 0.0 && t < 1.0 && count < 2)
@@ -236,6 +260,19 @@ int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double 
 }
 
 // Encontra extremos internos de uma curva Bézier cúbica (retorna ts em (0,1)).
+// O critério de degeneração é baseado nos coeficientes diferenciais da curva,
+// não em magnitudes absolutas dos pontos de controle. Isso garante que uma
+// translação comum dos pontos de controle não mude a quantidade nem os valores
+// de t dos extremos encontrados.
+//
+// A fórmula de Citardauq ($q = -\frac{1}{2}(B + \text{sgn}(B)\sqrt{D})$) evita
+// cancelamento catastrófico quando $|4AC| \ll B^2$. Trata os casos de borda:
+//   - B == 0
+//   - q == 0 (raiz dupla)
+//   - discriminante negativo (nenhum real)
+//   - discriminante zero (raiz dupla)
+//   - coeficientes degenerados (A == 0)
+//   - raízes fora do intervalo (0,1)
 int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&ts)[4])
 {
     using artplus::geometry::Point;
@@ -246,6 +283,7 @@ int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&t
         const double c2  = (axis == 0) ? c.c2.x  : c.c2.y;
         const double p1  = (axis == 0) ? c.p1.x  : c.p1.y;
 
+        // Coeficientes dos diferenciais da curva (invariantes de translação)
         const double d0 = c1 - p0;
         const double d1 = c2 - c1;
         const double d2 = p1 - c2;
@@ -253,30 +291,55 @@ int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&t
         const double A = d0 - 2.0 * d1 + d2;
         const double B = 2.0 * (d1 - d0);
         const double C = d0;
-        
-        const double maxCoord = std::max({std::abs(p0), std::abs(c1), std::abs(c2), std::abs(p1)});
+
+        // Critério de degeneração baseado em ULP dos coeficientes diferenciais,
+        // não em magnitudes absolutas dos pontos de controle.
+        const double maxCoord = std::max({std::abs(A), std::abs(B), std::abs(C)});
         const double threshold = effectiveUlp(maxCoord) * 128.0;
 
         if (std::abs(A) < threshold) {
+            // A é "zero" relativamente: a curva se reduz a um quadrático ou linear.
             if (std::abs(B) > threshold) {
+                // Caso linear: raiz única t = -C/B
                 const double t = -C / B;
                 if (t > 0.0 && t < 1.0 && count < 4) ts[count++] = t;
+            } else if (std::abs(B) <= threshold && std::abs(C) <= threshold) {
+                // Curva completamente degenerada (todos os coeficientes zero)
+                // Não há extremos internos a serem encontrados.
             }
+            // Se A ≈ 0 mas B não é pequeno: a raiz linear é o único candidato.
+            // Já tratamos acima.
         } else {
+            // A é significativo: cúbica quadrática completa.
             const double disc = B * B - 4.0 * A * C;
-            if (disc >= 0.0) {
+            if (disc > 0.0) {
+                // Dois extremos reais distintos. Aplicar Citardauq para evitar
+                // cancelamento catastrófico quando |4AC| << B^2.
                 const double sq = std::sqrt(disc);
-                // Citardauq formulation: q = -0.5 * (B + sgn(B) * sqrt(D))
-                // This avoids catastrophic cancellation when |4AC| << B^2
-                const double q = -0.5 * (B + (B >= 0 ? sq : -sq));
-                
-                // Root 1: t0 = q / A
-                const double t0 = q / A;
-                // Root 2: t1 = C / q
-                const double t1 = C / q;
-                
-                if (t0 > 0.0 && t0 < 1.0 && count < 4) ts[count++] = t0;
-                if (t1 > 0.0 && t1 < 1.0 && count < 4) ts[count++] = t1;
+                // Citardauq: q = -0.5 * (B + sgn(B) * sqrt(D))
+                const double q = (B >= 0.0) ? -0.5 * (B + sq) : -0.5 * (B - sq);
+
+                // Duas raízes: t0 = q / A, t1 = C / q
+                // Tratamento especial quando q ≈ 0 (raiz dupla)
+                if (std::abs(q) > 1e-300) {
+                    const double t0 = q / A;
+                    const double t1 = C / q;
+                    if (t0 > 0.0 && t0 < 1.0 && count < 4) ts[count++] = t0;
+                    if (t1 > 0.0 && t1 < 1.0 && count < 4) ts[count++] = t1;
+                } else {
+                    // q == 0 => raiz dupla em t = 0 ou análise de limite
+                    // O termo C/q diverge; se C também é 0, a raiz está em t = 0
+                    // (ou o modelo é degener). Apenas registramos se t=0 for
+                    // um extremo genuíno verificado por avaliação.
+                    if (std::abs(C) <= 1e-300 && 0.0 > 0.0 && 0.0 < 1.0 && count < 4) ts[count++] = 0.0;
+                }
+            } else if (disc == 0.0) {
+                // Raiz dupla: t = -B / (2A)
+                const double t = -B / (2.0 * A);
+                if (t > 0.0 && t < 1.0 && count < 4) ts[count++] = t;
+            } else {
+                // discriminante < 0: nenhum extremo real na esta ângulo.
+                // Nada a fazer.
             }
         }
     }
@@ -305,12 +368,15 @@ void checkInteriorExtremaPreserved(const Curve& base, const Curve& moved,
     }
 
     char label[256];
-    const double eps = (d > 1e14) ? 0.9 : geometricTolerance(d, 0.05);
+    // Tolerância baseada em ULP da magnitude da curva - reflete o erro de
+    // representação IEEE 754 em vez de usar 0.9 aplicado indiscriminadamente.
+    const double ulpVal = effectiveUlp(std::max({std::abs(p0), std::abs(c), std::abs(p1)}));
+    const double eps = (ulpVal > 0.5) ? ulpVal * 2.0 : geometricTolerance(d, 0.05);
 
     std::snprintf(label, sizeof(label),
                   "%s %s @%.0e: interior extrema count preserved",
                   prefix, caseName, d);
-    check((baseCount == movedCount) || (d >= 1e15), label);
+    check(baseCount == movedCount, label);
 
     for (int i = 0; i < baseCount; ++i) {
         std::snprintf(label, sizeof(label),
@@ -325,7 +391,9 @@ void checkInteriorExtremaPreserved(const Curve& base, const Curve& moved,
         std::snprintf(label, sizeof(label),
                       "%s %s @%.0e: interior extremum X preserved",
                       prefix, caseName, d);
-        checkNear(movedPt.x - delta.x, basePt.x, (d > 1e14 ? 100.0 : eps), label);
+        // Tolerância baseada em ULP da magnitude da curva, não um fixo 100.0.
+        const double ulpX = effectiveUlp(std::max(std::abs(movedPt.x), std::abs(basePt.x)));
+        checkNear(movedPt.x - delta.x, basePt.x, ulpX * 2.0, label);
 
         std::snprintf(label, sizeof(label),
                       "%s %s @%.0e: interior extremum Y preserved",
@@ -342,7 +410,10 @@ void checkRelativeBoundsForPolylines(const artplus::geometry::Rect& baseBounds,
                                      const char* prefix, const char* caseName, double d)
 {
     using artplus::geometry::Point;
-    const double eps = (d > 1e14) ? 0.9 : geometricTolerance(d, 0.05);
+    // Tolerância baseada em ULP da magnitude - reflete erro de representação
+    // em vez de usar 0.9 aplicado indiscriminadamente.
+    const double ulpVal = effectiveUlp(d);
+    const double eps = (ulpVal > 0.5) ? ulpVal * 2.0 : geometricTolerance(d, 0.05);
     char label[256];
 
     std::snprintf(label, sizeof(label),
@@ -1135,6 +1206,8 @@ int main()
             const double cubicBaseLength = testCase.cubic.length(tolerance);
             std::vector<Point> cubicBaseFlat;
             flattenCubic(testCase.cubic, tolerance, cubicBaseFlat);
+            // Garantir que p0 este incluído na polilha para cálculos de distância.
+            cubicBaseFlat.push_back(testCase.cubic.p0);
             const int cubicBaseSegments = static_cast<int>(cubicBaseFlat.size());
 
             const Rect quadBaseBounds = testCase.quad.bounds();
@@ -1142,6 +1215,8 @@ int main()
             const double quadBaseHeight = quadBaseBounds.height();
             std::vector<Point> quadBaseFlat;
             flattenQuadratic(testCase.quad, tolerance, quadBaseFlat);
+            // Garantir que p0 este incluído na polilha para cálculos de distância.
+            quadBaseFlat.push_back(testCase.quad.p0);
             const int quadBaseSegments = static_cast<int>(quadBaseFlat.size());
 
             for (double d : translations) {
@@ -1183,6 +1258,8 @@ int main()
                               "%s cubic @%.0e: no NaN/inf when flattened", testCase.name, d);
                 std::vector<Point> cubicFlat;
                 flattenCubic(cubic, tolerance, cubicFlat);
+                // Garantir que p0 este incluído na polilha.
+                cubicFlat.push_back(testCase.cubic.p0);
                 check(allFinite(cubicFlat), label);
 
                 // 6. Flattened geometry: bidirectional polyline distance (shape preservation)
@@ -1191,6 +1268,9 @@ int main()
                               "(bidirectional distance)", testCase.name, d);
                 if (representableHere) {
                     const double maxDist = bidirectionalPolylineDistance(cubicBaseFlat, cubicFlat, delta);
+                    // -1.0 returned when geometry is empty (indeterminate);
+                    // in representable case this is a test-fail condition.
+                    check(maxDist >= 0.0, "%s cubic @%.0e: bidirectional distance valid (non-empty polylines)", testCase.name, d);
                     checkNear(maxDist, 0.0, tolerance * 2.0, label);
                 } else {
                     check(allFinite(cubicFlat), label);
@@ -1231,6 +1311,8 @@ int main()
                               "%s quad @%.0e: no NaN/inf when flattened", testCase.name, d);
                 std::vector<Point> quadFlat;
                 flattenQuadratic(quad, tolerance, quadFlat);
+                // Garantir que p0 este incluído na polilha.
+                quadFlat.push_back(testCase.quad.p0);
                 check(allFinite(quadFlat), label);
 
                 // 5. Flattened geometry: bidirectional polyline distance
@@ -1239,6 +1321,9 @@ int main()
                               "(bidirectional distance)", testCase.name, d);
                 if (representableHere) {
                     const double maxDist = bidirectionalPolylineDistance(quadBaseFlat, quadFlat, delta);
+                    // -1.0 returned when geometry is empty (indeterminate);
+                    // in representable case this is a test-fail condition.
+                    check(maxDist >= 0.0, "%s quad @%.0e: bidirectional distance valid (non-empty polylines)", testCase.name, d);
                     checkNear(maxDist, 0.0, tolerance * 2.0, label);
                 } else {
                     check(allFinite(quadFlat), label);
@@ -1251,6 +1336,10 @@ int main()
                     std::vector<Point> basePoly, movedPoly;
                     flattenQuadratic(testCase.quad, tolerance, basePoly);
                     flattenQuadratic(quad, tolerance, movedPoly);
+                    // Add p0 to both polylines for distance/length calculations.
+                    // basePoly gets original p0; movedPoly gets translated p0 (quad.p0 already has delta).
+                    basePoly.push_back(testCase.quad.p0);
+                    movedPoly.push_back(quad.p0);
                     double baseLen = 0.0, movedLen = 0.0;
                     for (std::size_t i = 1; i < basePoly.size(); ++i)
                         baseLen += artplus::geometry::distance(basePoly[i - 1], basePoly[i]);
