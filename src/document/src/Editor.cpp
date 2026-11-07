@@ -1,4 +1,4 @@
-﻿#include "artplus/document/Editor.h"
+#include "artplus/document/Editor.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -97,7 +97,7 @@ void Editor::translateSelected(double dx, double dy)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Aplicar translaÃƒÂ§ÃƒÂ£o usando a matriz afim
         applyObjectAffineTransform(obj, 1, 0, 0, 1, dx, dy);
@@ -116,7 +116,7 @@ void Editor::rotateSelected(double degrees)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Rotacionar: matriz afim de rotaÃƒÂ§ÃƒÂ£o
         double rad = degrees * 3.1415926535 / 180.0;
@@ -139,7 +139,7 @@ void Editor::scaleSelected(double factor)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Escala uniforme
         applyObjectAffineTransform(obj, factor, 0, 0, factor, 0, 0);
@@ -157,7 +157,7 @@ void Editor::setTransform(double a, double b, double c, double d, double e, doub
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Afim completa
         applyObjectAffineTransform(obj, a, b, c, d, e, f);
@@ -195,7 +195,7 @@ void Editor::stepRepeat(int count, double dx, double dy)
         for (int idx : selected) {
             ArtLayer* layer = m_document.page(0)->layer(idx);
             if (!layer) continue;
-            GraphicObject* obj = layer->objects().at(0);
+            GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
             if (!obj) continue;
 
             // Clonar o objeto - isso gera um novo ID ÃƒÂºnico via GraphicObject constructor
@@ -236,7 +236,7 @@ void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, doub
             for (int idx : selected) {
                 ArtLayer* layer = m_document.page(0)->layer(idx);
                 if (!layer) continue;
-                GraphicObject* obj = layer->objects().at(0);
+                GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
                 if (!obj) continue;
 
                 auto cloned = obj->clone();
@@ -269,7 +269,7 @@ void Editor::stepRepeatHexagonal(int count, double radius, double angle)
         for (int idx : selected) {
             ArtLayer* layer = m_document.page(0)->layer(idx);
             if (!layer) continue;
-            GraphicObject* obj = layer->objects().at(0);
+            GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
             if (!obj) continue;
 
             auto cloned = obj->clone();
@@ -429,7 +429,7 @@ void Editor::undo()
             for (int idx : selected) {
                 ArtLayer* layer = m_document.page(0)->layer(idx);
                 if (!layer) continue;
-                GraphicObject* obj = layer->objects().at(0);
+                GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
                 if (!obj) continue;
                 // Aplicar a transformaÃƒÂ§ÃƒÂ£o salva
                 // A estrutura m_undoState deveria ter guardado as transformaÃƒÂ§ÃƒÂµes
@@ -604,7 +604,7 @@ void Editor::setFillColor(unsigned int color)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setFillColor(color);
     }
@@ -621,7 +621,7 @@ void Editor::setStrokeColor(unsigned int color)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setStrokeColor(color);
     }
@@ -638,7 +638,7 @@ void Editor::setStrokeWidth(double width)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setStrokeWidth(width);
     }
@@ -655,7 +655,7 @@ void Editor::setOpacity(double opacity)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setOpacity(std::clamp(opacity, 0.0, 1.0));
     }
@@ -672,7 +672,7 @@ void Editor::setVisible(bool visible)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setVisible(visible);
     }
@@ -689,7 +689,7 @@ void Editor::setLocked(bool locked)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(0);
+        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setLocked(locked);
     }
@@ -750,7 +750,7 @@ void Editor::updateProperties()
     if (m_selected.isEmpty()) return;
     ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
     if (!layer) return;
-    GraphicObject* obj = layer->objects().at(0);
+    GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
     if (!obj) return;
     // TODO: emitir sinais com propriedades do objeto para o painel
     emit objectModified(m_selected.first());
