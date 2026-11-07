@@ -176,37 +176,39 @@ double bidirectionalPolylineDistance(const std::vector<artplus::geometry::Point>
     using artplus::geometry::distance;
     if (a.empty() || b.empty())
         return 0.0;
+    if (a.size() == 1 && b.size() == 1)
+        return distance(a.front(), {b.front().x - delta.x, b.front().y - delta.y});
+    if (a.size() == 1) {
+        // Point a against polyline b
+        const artplus::geometry::Point a_shifted{a.front().x + delta.x, a.front().y + delta.y};
+        return distanceToPolyline(a_shifted, b);
+    }
+    if (b.size() == 1) {
+        // Polyline a against point b
+        const artplus::geometry::Point b_shifted{b.front().x - delta.x, b.front().y - delta.y};
+        return distanceToPolyline(b_shifted, a);
+    }
 
     double maxDist = 0.0;
     // a -> b (trazendo b para o espaço de a subtraindo delta de b)
     for (const auto& pa : a) {
         double minDist = 1e300;
-        if (b.size() == 1) {
-            const artplus::geometry::Point b_in_a{b.front().x - delta.x, b.front().y - delta.y};
-            minDist = distance(pa, b_in_a);
-        } else {
-            for (std::size_t i = 1; i < b.size(); ++i) {
-                const artplus::geometry::Point p0{b[i - 1].x - delta.x, b[i - 1].y - delta.y};
-                const artplus::geometry::Point p1{b[i].x - delta.x, b[i].y - delta.y};
-                double d = pointSegmentDistance(pa, Line{p0, p1});
-                if (d < minDist) minDist = d;
-            }
+        for (std::size_t i = 1; i < b.size(); ++i) {
+            const artplus::geometry::Point p0{b[i - 1].x - delta.x, b[i - 1].y - delta.y};
+            const artplus::geometry::Point p1{b[i].x - delta.x, b[i].y - delta.y};
+            double d = pointSegmentDistance(pa, Line{p0, p1});
+            if (d < minDist) minDist = d;
         }
         if (minDist > maxDist) maxDist = minDist;
     }
     // b -> a (trazendo a para o espaço de b somando delta a a)
     for (const auto& pb : b) {
         double minDist = 1e300;
-        if (a.size() == 1) {
-            const artplus::geometry::Point a_in_b{a.front().x + delta.x, a.front().y + delta.y};
-            minDist = distance(pb, a_in_b);
-        } else {
-            for (std::size_t i = 1; i < a.size(); ++i) {
-                const artplus::geometry::Point p0{a[i - 1].x + delta.x, a[i - 1].y + delta.y};
-                const artplus::geometry::Point p1{a[i].x + delta.x, a[i].y + delta.y};
-                double d = pointSegmentDistance(pb, Line{p0, p1});
-                if (d < minDist) minDist = d;
-            }
+        for (std::size_t i = 1; i < a.size(); ++i) {
+            const artplus::geometry::Point p0{a[i - 1].x + delta.x, a[i - 1].y + delta.y};
+            const artplus::geometry::Point p1{a[i].x + delta.x, a[i].y + delta.y};
+            double d = pointSegmentDistance(pb, Line{p0, p1});
+            if (d < minDist) minDist = d;
         }
         if (minDist > maxDist) maxDist = minDist;
     }
@@ -223,7 +225,7 @@ int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double 
         const double c  = (axis == 0) ? q.c.x  : q.c.y;
         const double p1 = (axis == 0) ? q.p1.x : q.p1.y;
         const double denom = p0 - 2.0 * c + p1;
-        if (std::abs(denom) > 1e-18) {
+        if (std::abs(denom) > 1e-12) { // stricter check than 1e-18
             const double t = (c - p0) / denom;
             if (t > 0.0 && t < 1.0 && count < 2)
                 ts[count++] = t;
@@ -251,8 +253,8 @@ int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&t
         const double B = 2.0 * (d1 - d0);
         const double C = d0;
 
-        if (std::abs(A) < 1e-18) {
-            if (std::abs(B) > 1e-18) {
+        if (std::abs(A) < 1e-12) { // stricter check
+            if (std::abs(B) > 1e-12) { // stricter check
                 const double t = -C / B;
                 if (t > 0.0 && t < 1.0 && count < 4) ts[count++] = t;
             }

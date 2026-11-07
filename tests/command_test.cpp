@@ -591,6 +591,7 @@ int main(int argc, char* argv[])
             result = g_failures == 0 ? 0 : 1;
         }
     }
+}
 
     artplus::pdf::PdfRuntime::shutdown();
     std::printf("\nResult: %d checks, %d failure(s)\n", g_checks, g_failures);
