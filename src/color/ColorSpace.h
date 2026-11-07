@@ -289,6 +289,28 @@ const ColorSpaceType defaultSpace = ColorSpaceType::RGB;
 constexpr double colorTolerance = 1e-6;
 
 // ======================================================================
+// Separations (Separações de Cores)
+// ======================================================================
+
+// Extrair placa C (Cyan) de uma cor CMYK
+Color extractCyan(const Color& cmyk);
+
+// Extrair placa M (Magenta) de uma cor CMYK
+Color extractMagenta(const Color& cmyk);
+
+// Extrair placa Y (Yellow) de uma cor CMYK
+Color extractYellow(const Color& cmyk);
+
+// Extrair placa K (Key/Black) de uma cor CMYK
+Color extractBlack(const Color& cmyk);
+
+// Converter cor para separação de cor especial
+Color toSpotColor(const Color& cmyk, const QString& spotName);
+
+// Verificar se uma cor requer separação especial
+bool requiresSpecialSeparation(const Color& cmyk);
+
+// ======================================================================
 // Finalização
 // ======================================================================
 
