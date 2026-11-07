@@ -41,6 +41,12 @@ public:
     void scaleSelected(double factor);
     void setTransform(double a, double b, double c, double d, double e, double f);
 
+    // Step & Repeat / Imposição
+    void stepRepeat(int count, double dx, double dy);
+    void stepRepeatRectangular(int countX, int countY, double spacingX, double spacingY);
+    void stepRepeatHexagonal(int count, double radius, double angle);
+    void imposeLayout(QString layoutType, int copiesX, int copiesY, double gutterX, double gutterY);
+
     // Undo/Redo
     void undo();
     void redo();

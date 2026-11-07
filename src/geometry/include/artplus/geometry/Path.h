@@ -69,6 +69,44 @@ private:
     std::vector<SubPath> m_subpaths;
 };
 
+// ========================================================================
+// Conversão de EditablePathSegment (do PdfEditor) para Path::Segment
+// ========================================================================
+
+// Converte um EditablePathSegment para Path::Segment
+inline Path::Segment::Type editableSegmentTypeToPathType(EditablePathSegment::Type type)
+{
+    switch (type) {
+    case EditablePathSegment::Type::MoveTo: return Path::Segment::Type::Line;
+    case EditablePathSegment::Type::LineTo: return Path::Segment::Type::Line;
+    case EditablePathSegment::Type::BezierTo: return Path::Segment::Type::Cubic;
+    default: return Path::Segment::Type::Line;
+    }
+}
+
+// Converte QVector<EditablePathSegment> em QVector<Path::Segment>
+// Ajusta o início: o primeiro segmento deve começar no start do subpath
+QVector<Path::Segment> convertEditableSegments(const QVector<EditablePathSegment>& segments,
+                                                const Point& subpathStart);
+
+// Converte QVector<EditableCurve> em QVector<Path::Segment>
+QVector<Path::Segment> convertEditableCurvesToSegments(const QVector<EditableCurve>& curves,
+                                                      const Point& subpathStart);
+
+// ========================================================================
+// Conversão inversa: Path::Segment para EditablePathSegment
+// ========================================================================
+
+// Converte um Path::Segment para EditablePathSegment
+EditablePathSegment::Type pathSegmentTypeToEditableType(Path::Segment::Type type);
+
+// Converte QVector<Path::Segment> em QVector<EditablePathSegment>
+QVector<EditablePathSegment> convertPathSegmentsToEditable(const QVector<Path::Segment>& segments,
+                                                          const Point& subpathStart);
+
+// Converte um EditableCurve para Path::Segment
+Path::Segment convertEditableCurveToSegment(const EditableCurve& curve);
+
 // Splits a cubic bezier into a polyline. Public for geometry tests and offsetting.
 void flattenCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p3,
                   double tolerance, QVector<Point>& out);
@@ -116,8 +154,5 @@ QVector<Intersection> subdivideSubPath(Path::SubPath& subpath, const Path& path)
 // ========================================================================
 // Convenience functions (declarations — implementations in Path.cpp)
 // ========================================================================
-
-// Circle approximated with four cubic segments.
-Path makeCirclePath(const Point& center, double radius);
 
 } // namespace artplus::geometry

@@ -38,6 +38,10 @@ public:
     const geometry::Matrix& transform() const { return m_transform; }
     void setTransform(const geometry::Matrix& m) { m_transform = m; }
 
+    // Transformação afim: x' = a*x + c*y + e, y' = b*x + d*y + f
+    // Aplica-se sobre os pontos locais do objeto.
+    void applyAffineTransform(double a, double b, double c, double d, double e, double f);
+
     const Paint& fill() const { return m_fill; }
     Paint& fill() { return m_fill; }
     void setFill(const Paint& p) { m_fill = p; }
