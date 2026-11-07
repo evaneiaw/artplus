@@ -112,6 +112,20 @@ void GroupObject::addChild(std::unique_ptr<GraphicObject> child)
         m_children.push_back(std::move(child));
 }
 
+int GroupObject::childZOrder(int index) const
+{
+    if (index < 0 || index >= (int)m_children.size())
+        return 0;
+    return m_children[index]->zOrder();
+}
+
+void GroupObject::setChildZOrder(int index, int order)
+{
+    if (index < 0 || index >= (int)m_children.size())
+        return;
+    m_children[index]->setZOrder(order);
+}
+
 geometry::Rect GroupObject::localBounds() const
 {
     geometry::Rect r;
@@ -154,6 +168,19 @@ std::unique_ptr<GraphicObject> GroupObject::clone() const
     for (const auto& child : m_children)
         copy->addChild(child->clone());
     return copy;
-}
+void GroupObject::reorderChild(int from, int to)
+{
+    if (from < 0 || from >= (int)m_children.size() ||
+        to < 0 || to >= (int)m_children.size())
+        return;
 
-} // namespace artplus::objects
+    if (from == to)
+        return;
+
+    // Swap the children
+    std::swap(m_children[from], m_children[to]);
+
+    // Reassign z-orders to maintain consistency
+    for (int i = 0; i < (int)m_children.size(); ++i)
+        m_children[i]->setZOrder(i);
+}

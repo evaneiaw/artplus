@@ -32,6 +32,9 @@ public:
     bool isLocked() const { return m_locked; }
     void setLocked(bool locked) { m_locked = locked; }
 
+    int zOrder() const { return m_zOrder; }
+    void setZOrder(int order) { m_zOrder = order; }
+
     const geometry::Matrix& transform() const { return m_transform; }
     void setTransform(const geometry::Matrix& m) { m_transform = m; }
 
@@ -69,6 +72,7 @@ private:
     QString m_name;
     bool m_visible = true;
     bool m_locked = false;
+    int m_zOrder = 0;  // Z-order for draw ordering
     geometry::Matrix m_transform;
     Paint m_fill;
     Paint m_stroke;
@@ -158,6 +162,11 @@ public:
     const std::vector<std::unique_ptr<GraphicObject>>& children() const { return m_children; }
     std::vector<std::unique_ptr<GraphicObject>>& children() { return m_children; }
     int childCount() const { return static_cast<int>(m_children.size()); }
+
+    // Z-order management
+    int childZOrder(int index) const;
+    void setChildZOrder(int index, int order);
+    void reorderChild(int from, int to);
 
     geometry::Rect localBounds() const override;
     geometry::Path outline() const override;
