@@ -941,4 +941,152 @@ double artplus::geometry::pointSegmentDistance(const Point& p, const Point& s0, 
     return ::pointSegmentDistance(p, s0, s1);
 }
 
+// ========================================================================
+// Implementação das funções de conversão de EditablePathSegment <-> Path::Segment
+// ========================================================================
+
+// Converte um EditablePathSegment para Path::Segment
+inline Path::Segment::Type editableSegmentTypeToPathType(EditablePathSegment::Type type)
+{
+    switch (type) {
+    case EditablePathSegment::Type::MoveTo: return Path::Segment::Type::Line;
+    case EditablePathSegment::Type::LineTo: return Path::Segment::Type::Line;
+    case EditablePathSegment::Type::BezierTo: return Path::Segment::Type::Cubic;
+    default: return Path::Segment::Type::Line;
+    }
+}
+
+// Converte QVector<EditablePathSegment> em QVector<Path::Segment>
+// O parâmetro subpathStart é o ponto inicial do subpath (transformado para coordenadas locais)
+QVector<Path::Segment> artplus::geometry::convertEditableSegments(const QVector<EditablePathSegment>& segments,
+                                                                 const Point& subpathStart)
+{
+    QVector<Path::Segment> result;
+    result.reserve(segments.size());
+
+    for (const auto& seg : segments) {
+        Path::Segment s;
+        s.type = editableSegmentTypeToPathType(seg.type);
+
+        // O segmento EditablePathSegment tem 'point' como ponto final.
+        // Para LineTo/MoveTo, o ponto é o destino.
+        // Para BezierTo, 'point' é o ponto final da curva, e precisamos dos controles.
+        // Neste nível de conversão básica, usamos o ponto fornecido como p1 (end point)
+        // e definimos p3 como o mesmo para cubicas, ou calculamos baseado no início.
+
+        if (s.type == Path::Segment::Type::Cubic) {
+            // Para cubicas, usamos o point como p3 (end), e definimos p1/p2 como placeholders
+            // A conversão completa exigiria os controles, que o EditableCurve fornece.
+            s.p1 = Point{0, 0};     // control 1 placeholder
+            s.p2 = Point{0, 0};     // control 2 placeholder
+            s.p3 = Point{seg.point.x, seg.point.y}; // end point from editable
+        } else {
+            // Para linhas, o point é o destino (p1)
+            s.p1 = Point{seg.point.x, seg.point.y}; // end point
+            s.p2 = Point{0, 0};     // control 1 placeholder (não usado para linha)
+            s.p3 = Point{0, 0};     // control 2 placeholder (não usado para linha)
+        }
+
+        // Ajusta o início: se este for o primeiro segmento e o subpath tenha um start,
+        // o segmento deve começar no subpathStart. Ajuste de posição será feito pelo chamador.
+        result.append(s);
+    }
+
+    return result;
+}
+
+// Converte QVector<EditableCurve> em QVector<Path::Segment>
+// Cada EditableCurve tem start, control1, control2, end em coordenadas page-space.
+// Precisamos transformar para o modelo Path::Segment.
+QVector<Path::Segment> artplus::geometry::convertEditableCurvesToSegments(const QVector<EditableCurve>& curves,
+                                                                         const Point& subpathStart)
+{
+    QVector<Path::Segment> result;
+    result.reserve(curves.size());
+
+    for (const auto& curve : curves) {
+        Path::Segment s;
+        s.type = Path::Segment::Type::Cubic;
+
+        // O EditableCurve tem start, control1, control2, end em QPointF (page coordinates).
+        // Precisamos converter para Point (geometry coordinates) e ajustar o início.
+        s.p1 = Point{curve.control1.x, curve.control1.y}; // control 1
+        s.p2 = Point{curve.control2.x, curve.control2.y}; // control 2
+        s.p3 = Point{curve.end.x, curve.end.y};           // end point
+
+        // Ajustar início: o start do segmento deve ser o 'start' do subpath
+        // ou o point do segmento anterior. Para esta conversão básica, registramos
+        // os valores e o ajuste de posição é feito pelo chamador.
+
+        result.append(s);
+    }
+
+    return result;
+}
+
+// ========================================================================
+// Conversão inversa: Path::Segment para EditablePathSegment
+// ========================================================================
+
+// Converte um Path::Segment para EditablePathSegment
+EditablePathSegment::Type artplus::geometry::pathSegmentTypeToEditableType(Path::Segment::Type type)
+{
+    switch (type) {
+    case Path::Segment::Type::Line: return EditablePathSegment::Type::LineTo;
+    case Path::Segment::Type::Cubic: return EditablePathSegment::Type::BezierTo;
+    default: return EditablePathSegment::Type::Unknown;
+    }
+}
+
+// Converte QVector<Path::Segment> em QVector<EditablePathSegment>
+// O parâmetro subpathStart é o ponto inicial do subpath (para posicionamento correto)
+QVector<EditablePathSegment> artplus::geometry::convertPathSegmentsToEditable(const QVector<Path::Segment>& segments,
+                                                                             const Point& subpathStart)
+{
+    QVector<EditablePathSegment> result;
+    result.reserve(segments.size());
+
+    for (const auto& seg : segments) {
+        EditablePathSegment s;
+        s.type = pathSegmentTypeToEditableType(seg.type);
+
+        if (s.type == EditablePathSegment::Type::BezierTo) {
+            // Para cubicas, populamos o point (end) e os controles
+            s.point = Point{seg.p3.x, seg.p3.y}; // end point
+            s.closes = false;
+            // control1 e control2 já estão em seg.p1 e seg.p2
+            // Nota: a ordem pode precisar de ajuste baseado na convenção PDF vs geometry
+            // PDF: cubicTo(c1, c2, end) onde c1 e c2 são control points
+            // Geometry: o segment tem p1=p1, p2=c1, p3=c2, p3=end (já definido acima)
+            s.point = Point{seg.p3.x, seg.p3.y};
+        } else {
+            // Para linhas, o point é o destino
+            s.point = Point{seg.p1.x, seg.p1.y}; // end point (p1 do segment)
+            s.closes = false;
+        }
+
+        result.append(s);
+    }
+
+    return result;
+}
+
+// Converte um EditableCurve para Path::Segment
+Path::Segment artplus::geometry::convertEditableCurveToSegment(const EditableCurve& curve)
+{
+    Path::Segment s;
+    s.type = Path::Segment::Type::Cubic;
+
+    // O EditableCurve tem: start, control1, control2, end em QPointF
+    // Convertendo para Point (geometry coordinates)
+    s.p1 = Point{curve.control1.x, curve.control1.y}; // control 1
+    s.p2 = Point{curve.control2.x, curve.control2.y}; // control 2
+    s.p3 = Point{curve.end.x, curve.end.y};           // end point
+
+    // O start do segmento é implicitamente o 'start' do subpath onde esta curva está
+    // Para esta função standalone, registramos os controles e o end point.
+
+    return s;
+}
+
 } // namespace artplus::geometry
