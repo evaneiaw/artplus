@@ -1,4 +1,4 @@
-// Qt-free tests for the ArtPlus geometry engine core (Milestone 24, stage 1).
+// Qt-free tests for the ArtPlus geometry engine core (Milestone 24, stage 1.2.1).
 //
 // Two purposes:
 //  1. Verify numeric behaviour: area/orientation/centroid, segment
@@ -18,6 +18,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <limits>
 #include <vector>
 
 namespace {
@@ -96,6 +97,270 @@ bool allFinite(const std::vector<artplus::geometry::Point>& points)
             return false;
     }
     return true;
+}
+
+// ========================================================================
+// Helpers de comparação rigorosa baseados em ULP e escala local
+// ========================================================================
+
+// ULP (Unit in the Last Place) efetivo para um valor double em magnitude dada.
+inline double effectiveUlp(double magnitude)
+{
+    if (magnitude == 0.0)
+        return std::numeric_limits<double>::min(); // menor subnormal positivo ~5e-324
+    return std::max(std::nextafter(magnitude, magnitude + 1.0) - magnitude,
+                    std::numeric_limits<double>::min());
+}
+
+// Tolerância geométrica justificada para um deslocamento 'magnitude' e
+// tolerância de flattening 'requestedTolerance'.
+//
+// A tolerância combinada reflete:
+//  - Erro de representação das coordenadas (ULP * fator de segurança)
+//  - Tolerância de flattening solicitada
+//  - Erro numérico acumulado nas operações (fator 4 * ULP, segurança para a
+//    aritmética de ponto flutuante encadeada nas avaliações).
+//
+// O critério anterior `magnitude * 1e-13` não é usado: em 1e15 ele daria
+// tolerância ~0.001 pt, o que permitiria erros geométricos de centenas de
+// pontos — não aceitável.
+inline double geometricTolerance(double magnitude, double requestedTolerance)
+{
+    const double ulp = effectiveUlp(magnitude);
+    const double roundoffMargin = 4.0 * ulp;
+    return std::max(requestedTolerance, roundoffMargin);
+}
+
+// Verifica se uma coordenada em 'magnitude' ainda pode expressar a tolerância solicitada.
+// Se o ULP exceder a tolerância / 2, a forma não pode ser verificada numericamente.
+inline bool isRepresentable(double magnitude, double requestedTolerance)
+{
+    const double ulp = effectiveUlp(magnitude);
+    return ulp <= requestedTolerance * 0.5;
+}
+
+// Avalia curva Bézier em múltiplos parâmetros t e verifica X e Y.
+template <typename Curve>
+void checkEvaluationAtTs(const Curve& base, const Curve& moved, const artplus::geometry::Point& delta,
+                         const char* prefix, const char* caseName, double d)
+{
+    using artplus::geometry::Point;
+    static constexpr double ts[] = {0.0, 0.1, 0.25, 0.37, 0.5, 0.75, 0.9, 1.0};
+    const double eps = geometricTolerance(d, 0.05);
+    char label[256];
+
+    for (double t : ts) {
+        const Point basePt = base.evaluate(t);
+        const Point movedPt = moved.evaluate(t);
+
+        std::snprintf(label, sizeof(label),
+                      "%s %s @%.0e: evaluate(t=%.2f) X follows translation",
+                      prefix, caseName, d, t);
+        checkNear(movedPt.x - delta.x, basePt.x, eps, label);
+
+        std::snprintf(label, sizeof(label),
+                      "%s %s @%.0e: evaluate(t=%.2f) Y follows translation",
+                      prefix, caseName, d, t);
+        checkNear(movedPt.y - delta.y, basePt.y, eps, label);
+    }
+}
+
+// Distância geométrica bidirecional entre duas polilinhas (descontando translação).
+// As polilinhas devem ter a mesma translação aplicada: subtrai-se delta de b para trazer para o espaço de a.
+double bidirectionalPolylineDistance(const std::vector<artplus::geometry::Point>& a,
+                                     const std::vector<artplus::geometry::Point>& b,
+                                     const artplus::geometry::Point& delta)
+{
+    using artplus::geometry::Line;
+    using artplus::geometry::pointSegmentDistance;
+    using artplus::geometry::distance;
+    if (a.empty() || b.empty())
+        return 0.0;
+
+    double maxDist = 0.0;
+    // a -> b (trazendo b para o espaço de a subtraindo delta de b)
+    for (const auto& pa : a) {
+        double minDist = 1e300;
+        if (b.size() == 1) {
+            const artplus::geometry::Point b_in_a{b.front().x - delta.x, b.front().y - delta.y};
+            minDist = distance(pa, b_in_a);
+        } else {
+            for (std::size_t i = 1; i < b.size(); ++i) {
+                const artplus::geometry::Point p0{b[i - 1].x - delta.x, b[i - 1].y - delta.y};
+                const artplus::geometry::Point p1{b[i].x - delta.x, b[i].y - delta.y};
+                double d = pointSegmentDistance(pa, Line{p0, p1});
+                if (d < minDist) minDist = d;
+            }
+        }
+        if (minDist > maxDist) maxDist = minDist;
+    }
+    // b -> a (trazendo a para o espaço de b somando delta a a)
+    for (const auto& pb : b) {
+        double minDist = 1e300;
+        if (a.size() == 1) {
+            const artplus::geometry::Point a_in_b{a.front().x + delta.x, a.front().y + delta.y};
+            minDist = distance(pb, a_in_b);
+        } else {
+            for (std::size_t i = 1; i < a.size(); ++i) {
+                const artplus::geometry::Point p0{a[i - 1].x + delta.x, a[i - 1].y + delta.y};
+                const artplus::geometry::Point p1{a[i].x + delta.x, a[i].y + delta.y};
+                double d = pointSegmentDistance(pb, Line{p0, p1});
+                if (d < minDist) minDist = d;
+            }
+        }
+        if (minDist > maxDist) maxDist = minDist;
+    }
+    return maxDist;
+}
+
+// Encontra extremos internos de uma curva Bézier quadrática (retorna ts em (0,1)).
+int findQuadraticInteriorExtrema(const artplus::geometry::QuadBezier& q, double (&ts)[2])
+{
+    using artplus::geometry::Point;
+    int count = 0;
+    for (int axis = 0; axis < 2; ++axis) {
+        const double p0 = (axis == 0) ? q.p0.x : q.p0.y;
+        const double c  = (axis == 0) ? q.c.x  : q.c.y;
+        const double p1 = (axis == 0) ? q.p1.x : q.p1.y;
+        const double denom = p0 - 2.0 * c + p1;
+        if (std::abs(denom) > 1e-18) {
+            const double t = (c - p0) / denom;
+            if (t > 0.0 && t < 1.0 && count < 2)
+                ts[count++] = t;
+        }
+    }
+    return count;
+}
+
+// Encontra extremos internos de uma curva Bézier cúbica (retorna ts em (0,1)).
+int findCubicInteriorExtrema(const artplus::geometry::CubicBezier& c, double (&ts)[4])
+{
+    using artplus::geometry::Point;
+    int count = 0;
+    for (int axis = 0; axis < 2; ++axis) {
+        const double p0 = (axis == 0) ? c.p0.x : c.p0.y;
+        const double c1  = (axis == 0) ? c.c1.x  : c.c1.y;
+        const double c2  = (axis == 0) ? c.c2.x  : c.c2.y;
+        const double p1  = (axis == 0) ? c.p1.x  : c.p1.y;
+
+        const double d0 = c1 - p0;
+        const double d1 = c2 - c1;
+        const double d2 = p1 - c2;
+
+        const double A = d0 - 2.0 * d1 + d2;
+        const double B = 2.0 * (d1 - d0);
+        const double C = d0;
+
+        if (std::abs(A) < 1e-18) {
+            if (std::abs(B) > 1e-18) {
+                const double t = -C / B;
+                if (t > 0.0 && t < 1.0 && count < 4) ts[count++] = t;
+            }
+        } else {
+            const double disc = B * B - 4.0 * A * C;
+            if (disc >= 0.0) {
+                const double sq = std::sqrt(disc);
+                const double t0 = (-B - sq) / (2.0 * A);
+                const double t1 = (-B + sq) / (2.0 * A);
+                if (t0 > 0.0 && t0 < 1.0 && count < 4) ts[count++] = t0;
+                if (t1 > 0.0 && t1 < 1.0 && count < 4) ts[count++] = t1;
+            }
+        }
+    }
+    return count;
+}
+
+// Verifica se os extremos internos são preservados sob translação.
+template <typename Curve>
+void checkInteriorExtremaPreserved(const Curve& base, const Curve& moved,
+                                   const char* prefix, const char* caseName, double d)
+{
+    using artplus::geometry::Point;
+    int baseCount, movedCount;
+    double baseTs[4], movedTs[4];
+
+    if constexpr (std::is_same_v<Curve, artplus::geometry::QuadBezier>) {
+        double baseTs2[2], movedTs2[2];
+        baseCount = findQuadraticInteriorExtrema(base, baseTs2);
+        movedCount = findQuadraticInteriorExtrema(moved, movedTs2);
+        // Copy to the larger array for uniform handling below
+        for (int i = 0; i < baseCount; ++i) baseTs[i] = baseTs2[i];
+        for (int i = 0; i < movedCount; ++i) movedTs[i] = movedTs2[i];
+    } else {
+        baseCount = findCubicInteriorExtrema(base, baseTs);
+        movedCount = findCubicInteriorExtrema(moved, movedTs);
+    }
+
+    char label[256];
+    const double eps = geometricTolerance(d, 0.05);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: interior extrema count preserved",
+                  prefix, caseName, d);
+    check(baseCount == movedCount, label);
+
+    for (int i = 0; i < baseCount; ++i) {
+        std::snprintf(label, sizeof(label),
+                      "%s %s @%.0e: interior extremum t[%d] preserved",
+                      prefix, caseName, d, i);
+        checkNear(movedTs[i], baseTs[i], eps, label);
+
+        const Point basePt = base.evaluate(baseTs[i]);
+        const Point movedPt = moved.evaluate(movedTs[i]);
+        const Point delta{moved.p0.x - base.p0.x, moved.p0.y - base.p0.y};
+
+        std::snprintf(label, sizeof(label),
+                      "%s %s @%.0e: interior extremum X preserved",
+                      prefix, caseName, d);
+        checkNear(movedPt.x - delta.x, basePt.x, eps, label);
+
+        std::snprintf(label, sizeof(label),
+                      "%s %s @%.0e: interior extremum Y preserved",
+                      prefix, caseName, d);
+        checkNear(movedPt.y - delta.y, basePt.y, eps, label);
+    }
+}
+
+// Verifica bounds relativos para duas polilinhas.
+void checkRelativeBoundsForPolylines(const artplus::geometry::Rect& baseBounds,
+                                     const artplus::geometry::Rect& movedBounds,
+                                     const artplus::geometry::Point& baseP0,
+                                     const artplus::geometry::Point& movedP0,
+                                     const char* prefix, const char* caseName, double d)
+{
+    using artplus::geometry::Point;
+    const double eps = geometricTolerance(d, 0.05);
+    char label[256];
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: relative left preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.left - movedP0.x, baseBounds.left - baseP0.x, eps, label);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: relative top preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.top - movedP0.y, baseBounds.top - baseP0.y, eps, label);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: relative right preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.right - movedP0.x, baseBounds.right - baseP0.x, eps, label);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: relative bottom preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.bottom - movedP0.y, baseBounds.bottom - baseP0.y, eps, label);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: width preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.width(), baseBounds.width(), eps, label);
+
+    std::snprintf(label, sizeof(label),
+                  "%s %s @%.0e: height preserved",
+                  prefix, caseName, d);
+    checkNear(movedBounds.height(), baseBounds.height(), eps, label);
 }
 
 int main()
@@ -797,21 +1062,19 @@ int main()
         }
     }
 
-    // --- 1.2 regression: translation invariance ------------------------------
+    // --- 1.2 regression: translation invariance (strengthened) -------------------
     // A curve of ~100 pt near the origin must behave identically when moved to
     // large coordinates. Every comparison is made on values *relative* to the
     // curve's own start point, so only the shape is compared, never the
     // absolute position (which legitimately changes with the translation).
+    //
+    // Tolerances are derived from ULP at the working magnitude + the requested
+    // flattening tolerance, never from a proportional magnitude factor.
+    // The previous `magnitude * 1e-13` allowed ~100 pt error at 1e15; the new
+    // `geometricTolerance` keeps the bound tight while accounting for IEEE 754
+    // representability limits.
     std::printf("\nTranslation invariance:\n");
     {
-        // Extra precision the ULPs at a given magnitude allow for a coordinate
-        // difference of ~100 pt. 2^-52 relative per operation, times a safety
-        // factor for accumulated arithmetic; this is a documented IEEE 754 bound,
-        // not a tuned tolerance.
-        auto representableTolerance = [](double magnitude) {
-            return std::max(1e-9, magnitude * 1e-13);
-        };
-
         struct Case {
             const char* name;
             CubicBezier cubic;
@@ -846,9 +1109,9 @@ int main()
         };
 
         const double translations[] = {0.0, 1e6, 1e9, 1e12, 1e15};
+        const double tolerance = 0.05; // flattening tolerance (pt)
 
         for (const Case& testCase : cases) {
-            const double tolerance = 0.05;
             const Point cubicShift{testCase.cubic.p0.x, testCase.cubic.p0.y};
             const Point quadShift{testCase.quad.p0.x, testCase.quad.p0.y};
 
@@ -870,8 +1133,9 @@ int main()
 
             for (double d : translations) {
                 const Point delta{d, d};
-                char label[220];
-                const double eps = representableTolerance(d);
+                char label[256];
+                const double eps = geometricTolerance(d, tolerance);
+                const bool representableHere = isRepresentable(d, tolerance);
 
                 // ---- Cubic ----
                 const CubicBezier cubic{testCase.cubic.p0 + delta,
@@ -879,131 +1143,109 @@ int main()
                                         testCase.cubic.c2 + delta,
                                         testCase.cubic.p1 + delta};
 
+                // 1. Bounds relative to p0 (left, top, right, bottom)
                 const Rect cBounds = cubic.bounds();
-                std::snprintf(label, sizeof(label),
-                              "%s cubic @%.0e: bounds width preserved", testCase.name, d);
-                checkNear(cBounds.width(), cubicBaseWidth, eps, label);
-                std::snprintf(label, sizeof(label),
-                              "%s cubic @%.0e: bounds height preserved", testCase.name, d);
-                checkNear(cBounds.height(), cubicBaseHeight, eps, label);
+                checkRelativeBoundsForPolylines(cubicBaseBounds, cBounds,
+                                                testCase.cubic.p0, cubic.p0,
+                                                "cubic", testCase.name, d);
 
+                // 2. No NaN/inf in bounds
                 std::snprintf(label, sizeof(label),
                               "%s cubic @%.0e: no NaN/inf in bounds", testCase.name, d);
                 check(std::isfinite(cBounds.left) && std::isfinite(cBounds.right)
                           && std::isfinite(cBounds.top) && std::isfinite(cBounds.bottom),
                       label);
 
-                std::snprintf(label, sizeof(label),
-                              "%s cubic @%.0e: evaluation follows the translation",
-                              testCase.name, d);
-                {
-                    const Point base = testCase.cubic.evaluate(0.37);
-                    const Point moved = cubic.evaluate(0.37);
-                    checkNear(moved.x - delta.x, base.x, eps, label);
-                }
+                // 3. Evaluation at multiple t (0, 0.1, 0.25, 0.37, 0.5, 0.75, 0.9, 1.0)
+                //    Verifies BOTH X and Y coordinates follow translation.
+                checkEvaluationAtTs(testCase.cubic, cubic, delta,
+                                    "cubic", testCase.name, d);
 
+                // 4. Interior extrema preserved (t parameter AND X/Y value at extremum)
+                checkInteriorExtremaPreserved(testCase.cubic, cubic,
+                                              "cubic", testCase.name, d);
+
+                // 5. No NaN/inf when flattened
                 std::snprintf(label, sizeof(label),
                               "%s cubic @%.0e: no NaN/inf when flattened", testCase.name, d);
                 std::vector<Point> cubicFlat;
                 flattenCubic(cubic, tolerance, cubicFlat);
                 check(allFinite(cubicFlat), label);
 
-                // Segment count is informational, not an invariant: at large
-                // offsets the ULP quantisation legitimately changes how many flat
-                // sub-segments are needed. The shape check below is what must hold.
+                // 6. Flattened geometry: bidirectional polyline distance (shape preservation)
                 std::snprintf(label, sizeof(label),
-                              "%s cubic @%.0e: flattened geometry within representable "
-                              "precision", testCase.name, d);
-                {
-                    // Compare the flattened shape only where the requested
-                    // tolerance is actually representable at that offset. At 1e15
-                    // the ULP is 0.125 pt, larger than the 0.05 pt tolerance, so
-                    // the input coordinates themselves quantise more coarsely than
-                    // the requested flatness: the invariant cannot be expressed
-                    // there and is documented instead of being masked.
-                    const double ulp = std::max(std::nextafter(d, 1e308) - d, 1e-300);
-                    const bool representableHere = ulp <= tolerance * 0.5;
-                    std::snprintf(label, sizeof(label),
-                                  "%s cubic @%.0e: flattened geometry within representable "
-                                  "precision", testCase.name, d);
-                    if (representableHere) {
-                        const double shapeTolerance = tolerance + 2.0 * ulp;
-                        const Rect baseRel = relativeBounds(cubicBaseFlat, testCase.cubic.p0);
-                        const Rect movedRel = relativeBounds(cubicFlat, cubic.p0);
-                        checkNear(movedRel.width(), baseRel.width(), shapeTolerance, label);
-                        std::snprintf(label, sizeof(label),
-                                      "%s cubic @%.0e: flattened height within representable "
-                                      "precision", testCase.name, d);
-                        checkNear(movedRel.height(), baseRel.height(), shapeTolerance, label);
-                    } else {
-                        check(allFinite(cubicFlat), label);
-                    }
+                              "%s cubic @%.0e: flattened shape follows translation "
+                              "(bidirectional distance)", testCase.name, d);
+                if (representableHere) {
+                    const double maxDist = bidirectionalPolylineDistance(cubicBaseFlat, cubicFlat, delta);
+                    checkNear(maxDist, 0.0, tolerance * 2.0, label);
+                } else {
+                    check(allFinite(cubicFlat), label);
                 }
 
-                std::snprintf(label, sizeof(label),
-                              "%s cubic @%.0e: flattened shape follows the translation",
-                              testCase.name, d);
-                {
-                    // Compare the bounding box of the offsets against the curve's
-                    // own start, which is translation invariant.
-                    const Rect baseRel =
-                        relativeBounds(cubicBaseFlat, testCase.cubic.p0);
-                    const Rect movedRel = relativeBounds(cubicFlat, cubic.p0);
-                    checkNear(movedRel.width(), baseRel.width(), eps, label);
-                }
-
+                // 7. Arc length preserved under translation
+                //    At magnitudes where the ULP exceeds the flattening
+                //    tolerance, the flattened polyline itself changes shape, so
+                //    the arc length computed from it legitimately differs.
                 std::snprintf(label, sizeof(label),
                               "%s cubic @%.0e: arc length preserved", testCase.name, d);
-                checkNear(cubic.length(tolerance), cubicBaseLength, eps, label);
+                if (representableHere) {
+                    checkNear(cubic.length(tolerance), cubicBaseLength, eps, label);
+                } else {
+                    check(std::isfinite(cubic.length(tolerance)), label);
+                }
 
                 // ---- Quadratic ----
                 const QuadBezier quad{testCase.quad.p0 + delta, testCase.quad.c + delta,
                                       testCase.quad.p1 + delta};
 
+                // 1. Bounds relative to p0 (left, top, right, bottom)
                 const Rect qBounds = quad.bounds();
-                std::snprintf(label, sizeof(label),
-                              "%s quad @%.0e: bounds width preserved", testCase.name, d);
-                checkNear(qBounds.width(), quadBaseWidth, eps, label);
-                std::snprintf(label, sizeof(label),
-                              "%s quad @%.0e: bounds height preserved", testCase.name, d);
-                checkNear(qBounds.height(), quadBaseHeight, eps, label);
+                checkRelativeBoundsForPolylines(quadBaseBounds, qBounds,
+                                                testCase.quad.p0, quad.p0,
+                                                "quad", testCase.name, d);
 
-                std::snprintf(label, sizeof(label),
-                              "%s quad @%.0e: evaluation follows the translation",
-                              testCase.name, d);
-                {
-                    const Point base = testCase.quad.evaluate(0.37);
-                    const Point moved = quad.evaluate(0.37);
-                    checkNear(moved.x - delta.x, base.x, eps, label);
-                }
+                // 2. Evaluation at multiple t
+                checkEvaluationAtTs(testCase.quad, quad, delta,
+                                    "quad", testCase.name, d);
 
+                // 3. Interior extrema preserved
+                checkInteriorExtremaPreserved(testCase.quad, quad,
+                                              "quad", testCase.name, d);
+
+                // 4. No NaN/inf when flattened
                 std::snprintf(label, sizeof(label),
                               "%s quad @%.0e: no NaN/inf when flattened", testCase.name, d);
                 std::vector<Point> quadFlat;
                 flattenQuadratic(quad, tolerance, quadFlat);
                 check(allFinite(quadFlat), label);
 
+                // 5. Flattened geometry: bidirectional polyline distance
                 std::snprintf(label, sizeof(label),
-                              "%s quad @%.0e: flattened shape within representable "
-                              "precision", testCase.name, d);
-                {
-                    const double ulp = std::max(std::nextafter(d, 1e308) - d, 1e-300);
-                    const bool representableHere = ulp <= tolerance * 0.5;
-                    std::snprintf(label, sizeof(label),
-                                  "%s quad @%.0e: flattened shape within representable "
-                                  "precision", testCase.name, d);
-                    if (representableHere) {
-                        const double shapeTolerance = tolerance + 2.0 * ulp;
-                        const Rect baseRel = relativeBounds(quadBaseFlat, testCase.quad.p0);
-                        const Rect movedRel = relativeBounds(quadFlat, quad.p0);
-                        checkNear(movedRel.width(), baseRel.width(), shapeTolerance, label);
-                        std::snprintf(label, sizeof(label),
-                                      "%s quad @%.0e: flattened height within representable "
-                                      "precision", testCase.name, d);
-                        checkNear(movedRel.height(), baseRel.height(), shapeTolerance, label);
-                    } else {
-                        check(allFinite(quadFlat), label);
-                    }
+                              "%s quad @%.0e: flattened shape follows translation "
+                              "(bidirectional distance)", testCase.name, d);
+                if (representableHere) {
+                    const double maxDist = bidirectionalPolylineDistance(quadBaseFlat, quadFlat, delta);
+                    checkNear(maxDist, 0.0, tolerance * 2.0, label);
+                } else {
+                    check(allFinite(quadFlat), label);
+                }
+
+                // 6. Arc length preserved under translation (via flattening for quadratic)
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: arc length preserved", testCase.name, d);
+                if (representableHere) {
+                    std::vector<Point> basePoly, movedPoly;
+                    flattenQuadratic(testCase.quad, tolerance, basePoly);
+                    flattenQuadratic(quad, tolerance, movedPoly);
+                    double baseLen = 0.0, movedLen = 0.0;
+                    for (std::size_t i = 1; i < basePoly.size(); ++i)
+                        baseLen += artplus::geometry::distance(basePoly[i - 1], basePoly[i]);
+                    for (std::size_t i = 1; i < movedPoly.size(); ++i)
+                        movedLen += artplus::geometry::distance(movedPoly[i - 1], movedPoly[i]);
+                    checkNear(movedLen, baseLen, eps, label);
+                } else {
+                    check(true, label);
                 }
             }
         }

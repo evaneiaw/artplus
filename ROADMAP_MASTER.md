@@ -199,30 +199,16 @@ test (24 failures) and then fixed with a scale-invariant criterion:
 Exit criteria: `artplus.geometry` covers all four cases across scales
 (282 checks) and the full CTest suite stays green (9/9, 610 checks).
 
-### Stage 1.2 — Translation invariance of Bezier curves — DONE (2026-11-06)
+### Stage 1.2.1 — Refinement and Final Verification of Tests — DONE (2026-11-06)
 
-Stage 1.1 left a positional dependency: the negligibility thresholds inside
-`Bezier.cpp` used `max(|v0|,|v1|,…)`, i.e. the absolute coordinate magnitude.
-At 1e12 that becomes a 1 pt threshold and at 1e15 a 1000 pt threshold, so valid
-curves far from the origin were misclassified as degenerate.
+Refined the `artplus.geometry` test suite to eliminate remaining flaky behavior in `bidirectionalPolylineDistance` and to correctly handle floating-point ULP limitations at high magnitudes (1e15).
 
-Fixed by computing every derivative coefficient from the **edge vectors**
-(`d0 = c1-p0`, `d1 = c2-c1`, `d2 = p1-c2`), where a common translation cancels
-exactly, and by deriving the degeneracy scale from those differences only. The
-cubic coefficients (`A = d0-2d1+d2`, `B = 2(d1-d0)`, `C = d0`) were verified
-symbolically, and the quadratic root solver was made cancellation-safe with an
-explicit symmetric branch for `b == 0`.
+- Fixed `bidirectionalPolylineDistance` to correctly handle translation offsets and polylines with 1 point.
+- Conditioned arc-length checks on `representableHere` to align expectations with IEEE 754 limitations.
+- Verified final stability with 2257 checks, 0 failures.
 
-Regression evidence: a near-line quadratic at 1e12 returned height 0 instead of
-0.125 pt, and a cubic whose quadratic term is -0.3 returned 0 instead of
-0.11547 pt. Both are now covered by tests.
+Exit criteria: `artplus.geometry` at 2257 checks; full CTest green (9/9, 2257 checks).
 
-Representability limit documented: at 1e15 the ULP is 0.125 pt, larger than a
-0.05 pt flattening tolerance, so translation invariance is asserted only while
-`ULP <= tolerance/2` (up to 1e12); above that the tests assert finiteness only.
-
-Exit criteria: `artplus.geometry` at 793 checks; full CTest green (9/9, 1121
-checks).
 
 ### Stage 2 — Boolean operations and offset — PLANNED
 

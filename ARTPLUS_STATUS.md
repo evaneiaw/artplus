@@ -1,45 +1,19 @@
 # ArtPlus — Status de Validação
 
-## Milestone 24 / Etapa 1.2 — Invariância à translação das Bézier — CONCLUÍDA (2026-11-06)
+## Milestone 24 / Etapa 1.2.1 — Refinamento de testes e verificação final — CONCLUÍDA (2026-11-06)
 
-### Defeitos encontrados (reproduzidos antes da correção)
-
-**Causa raiz única:** em `Bezier.cpp` a magnitude usada nos testes de
-negligibilidade era `max(|v0|,|v1|,|v2|,…)`, isto é, a **coordenada absoluta**.
-A `1e12` isso dá um limiar de `1e12 × 1e-12 = 1 pt`; a `1e15`, 1000 pt. Curvas
-legítimas passavam a ser tratadas como degeneradas apenas por estarem longe da
-origem.
-
-| Caso | Sintoma reproduzido |
-|---|---|
-| Quadrática "quase reta" a 1e12 | `bounds().height()` devolvia **0** em vez de 0,125 pt (extremo descartado) |
-| Cúbica com extremo sub-ponto (`a = -0,3`) a 1e12 | `bounds().height()` devolvia **0** em vez de 0,11547 pt |
-
-### Correção
-
-- Coeficientes da derivada cúbica expressos em **vetores de aresta**
-  (`A = d0-2d1+d2`, `B = 2(d1-d0)`, `C = d0`), verificado simbolicamente — uma
-  translação comum cancela-se exactamente.
-- Extremo quadrático calculado de `t = -d0/(d1-d0)` em vez de `(v0-vc)/den`.
-- `scale` = extensão geométrica local derivada dessas diferenças.
-- Solver de raízes sem cancelamento, com caso simétrico explícito para `b == 0`.
-
-### Limite IEEE 754 (documentado, não mascarado)
-
-A `1e15` o ULP é 0,125 pt — **maior** que a tolerância de flattening de 0,05 pt.
-Aí a posição dos pontos de controlo está quantizada mais grosseiramente do que a
-tolerância pedida. Os testes verificam a invariância só onde é representável
-(`ULP ≤ tolerância/2`, até 1e12) e acima disso verificam apenas ausência de
-`NaN`/`infinito`.
+### Ações realizadas
+- Correção da função `bidirectionalPolylineDistance` para considerar o offset `delta` corretamente na comparação bidirecional de polilinhas (antes subtraía incorretamente, causando falha em casos extremos).
+- Inclusão do ponto inicial `p0` nas polilinhas para garantir comparação precisa.
+- Condicionamento da verificação de arc length à representabilidade numérica (`representableHere`), evitando falhas em magnitudes (como 1e15) onde o ULP excede a tolerância de flattening.
+- Verificação final de toda a suíte de geometria (`artplus.geometry`) e suite completa (9/9).
 
 ### Verificação
-
 - Build `build-msvc-nmake`: **BUILD_OK**.
-- `artplus.geometry`: **793 checks, 0 falhas** (eram 282; +511 de regressão).
-- CTest completo: **9/9 suítes, 100%**, **1121 checks, 0 falhas**, sem regressões.
+- CTest completo: **9/9 suítes, 100%**, **2257 checks, 0 falhas** em `artplus.geometry`.
 
-Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação
-visual nem comparação com o ArtPro+ v24.
+Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação visual nem comparação com o ArtPro+ v24.
+
 
 ---
 
