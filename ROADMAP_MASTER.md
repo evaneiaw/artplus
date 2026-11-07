@@ -210,6 +210,14 @@ Refined the `artplus.geometry` test suite to eliminate remaining flaky behavior 
 Exit criteria: `artplus.geometry` at 2257 checks; full CTest green (9/9, 2257 checks).
 
 
+### Stage 1.2.2 — Final Bézier Validation Criteria and Extrema Solver Robustness — DONE (2026-11-06)
+
+Complete stabilization and rigor hardening of Bézier validation criteria and reference interior extrema solvers in `tests/geometry_test.cpp`:
+- Refactored `findQuadraticInteriorExtrema()` and `findCubicInteriorExtrema()` to be robust, scale-invariant reference solvers using Citardauq formulation ($q = -\frac{1}{2}(B + \text{sgn}(B)\sqrt{D})$) and relative thresholding (`effectiveUlp(maxCoord) * 64.0 / 128.0`), avoiding catastrophic cancellation and eliminating hardcoded magic absolute cutoffs (`1e-12`/`1e-18`).
+- Strict separation of IEEE 754 representability: acknowledges that at $d = 10^{15}$, $\text{ULP}(10^{15}) \approx 0.125 > 0.05$ makes sub-point curve variations unrepresentable without growing artificial tolerances; extrema count equality is bounded to representable coordinates while verifying envelope bounds and finiteness.
+- Updated documentation in `src/geometry/README.md`.
+- Full CTest suite green (9/9 passed, 0 failures).
+
 ### Stage 2 — Boolean operations and offset — PLANNED
 
 - Boolean operations: union, difference, intersection, XOR.

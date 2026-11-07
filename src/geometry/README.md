@@ -43,7 +43,7 @@ critério adequado:
 |---|---|---|
 | `Matrix::inverted()` | `\|sin θ\| = \|det\| / (\|col₀\|·\|col₁\|) > 1e-12` | Adimensional. `\|det\|` absoluto escalava com a transformação e rejeitava escalas < ~1e-6, que são perfeitamente invertíveis em `double`. |
 | `Point::normalized()` | divisor = maior componente; zero só quando ambas são 0 | Elimina overflow (`1e300`) e underflow (`1e-320`); nenhum vetor não nulo é descartado. |
-| Extremos de Bézier (`Bezier.cpp`) | `isNegligible(coef, escala)` com `1e-12` **relativo** ao maior termo | Coeficientes de derivada e discriminantes variam com a escala da curva; limite absoluto `1e-12`/`1e-18` perdia extremos em curvas de 1e-15. |
+| Extremos de Bézier (`Bezier.cpp`) | `64 * ULP(maxCoord)` | Os extremos são calculados a partir dos diferenciais, que variam com a escala. Usar ULP local garante robustez sem constantes mágicas como `1e-12`. |
 | `cubicIsFlat()` (colapso da corda) | `1e-12` relativo à extensão da curva | Indica "corda degenerada", que é adimensional em intenção. |
 | `Polygon::orientation()` | `1e-12` relativo à área da bounding box | Ver acima. |
 | `kGeometryEpsilon` (bordas, paralelismo) | **distância** absoluta `1e-9` pt | Aqui a grandeza *é* uma distância física; comparar distâncias com distâncias é correto. |

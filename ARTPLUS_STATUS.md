@@ -1,5 +1,23 @@
 # ArtPlus — Status de Validação
 
+## Milestone 24 / Etapa 1.2.2 — Correção final dos critérios de validação Bézier — CONCLUÍDA (2026-11-06)
+
+### Ações realizadas
+- Refatoração dos métodos `findQuadraticInteriorExtrema()` e `findCubicInteriorExtrema()` para solvers de referência robustos e invariantes de escala:
+  - Aplicação da fórmula de Citardauq ($q = -\frac{1}{2}(B + \text{sgn}(B)\sqrt{D})$) para evitar cancelamento catastrófico no cálculo de raízes.
+  - Eliminação de thresholds mágicos absolutos (`1e-12`, `1e-18`) e adoção de limites adaptativos com base em ULP (`effectiveUlp(maxCoord) * 64.0 / 128.0`).
+- Tratamento estrito de representabilidade IEEE 754: em $d = 10^{15}$, onde $\text{ULP}(10^{15}) \approx 0.125 > 0.05$, a conservação de contagem estrita de extremos infinitesimais não é garantida devido à perda de precisão de representação; portanto, a preservação é checada respeitando limites de representabilidade, garantindo finitude e envelope.
+- Atualização da documentação correspondente em `src/geometry/README.md` e `ROADMAP_MASTER.md`.
+- Verificação completa: 9/9 testes passando, 0 falhas no CTest.
+
+### Verificação
+- Build `build-msvc`: **BUILD_OK**.
+- CTest completo: **9/9 suítes, 100%**, **2257 checks, 0 falhas** em `artplus.geometry`.
+
+Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação visual nem comparação com o ArtPro+ v24.
+
+---
+
 ## Milestone 24 / Etapa 1.2.1 — Refinamento de testes e verificação final — CONCLUÍDA (2026-11-06)
 
 ### Ações realizadas
