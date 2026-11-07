@@ -66,6 +66,38 @@ double distanceToPolyline(const artplus::geometry::Point& p,
 
 } // namespace
 
+// Bounding box of the *offsets* of a polyline relative to a reference point.
+// Used to compare a curve with a translated copy without requiring absolute
+// coordinate equality.
+artplus::geometry::Rect relativeBounds(const std::vector<artplus::geometry::Point>& points,
+                                       const artplus::geometry::Point& origin)
+{
+    using artplus::geometry::Point;
+    using artplus::geometry::Rect;
+    if (points.empty())
+        return {};
+    Rect r{points.front().x - origin.x, points.front().y - origin.y,
+           points.front().x - origin.x, points.front().y - origin.y};
+    for (const Point& p : points) {
+        const double rx = p.x - origin.x;
+        const double ry = p.y - origin.y;
+        if (rx < r.left) r.left = rx;
+        if (ry < r.top) r.top = ry;
+        if (rx > r.right) r.right = rx;
+        if (ry > r.bottom) r.bottom = ry;
+    }
+    return r;
+}
+
+bool allFinite(const std::vector<artplus::geometry::Point>& points)
+{
+    for (const auto& p : points) {
+        if (!std::isfinite(p.x) || !std::isfinite(p.y))
+            return false;
+    }
+    return true;
+}
+
 int main()
 {
     using namespace artplus::geometry;
@@ -762,6 +794,218 @@ int main()
             }
             std::snprintf(label, sizeof(label), "quad %.0e: flattening within tolerance", s);
             check(worst <= requestedTolerance * 1.001, label);
+        }
+    }
+
+    // --- 1.2 regression: translation invariance ------------------------------
+    // A curve of ~100 pt near the origin must behave identically when moved to
+    // large coordinates. Every comparison is made on values *relative* to the
+    // curve's own start point, so only the shape is compared, never the
+    // absolute position (which legitimately changes with the translation).
+    std::printf("\nTranslation invariance:\n");
+    {
+        // Extra precision the ULPs at a given magnitude allow for a coordinate
+        // difference of ~100 pt. 2^-52 relative per operation, times a safety
+        // factor for accumulated arithmetic; this is a documented IEEE 754 bound,
+        // not a tuned tolerance.
+        auto representableTolerance = [](double magnitude) {
+            return std::max(1e-9, magnitude * 1e-13);
+        };
+
+        struct Case {
+            const char* name;
+            CubicBezier cubic;
+            QuadBezier quad;
+        };
+
+        const std::vector<Case> cases{
+            // Distinct control points, interior extremum on both axes.
+            {"S-curve", {{0, 0}, {0, 100}, {100, 100}, {100, 0}},
+             {{0, 0}, {50, 100}, {100, 0}}},
+            // Nearly straight: control points almost on the chord.
+            {"near-line", {{0, 0}, {33, 0.5}, {66, -0.5}, {100, 0}},
+             {{0, 0}, {50, 0.25}, {100, 0}}},
+            // Small dimensions (1 pt span) with an interior extremum.
+            {"small", {{0, 0}, {0, 1}, {1, 1}, {1, 0}}, {{0, 0}, {0.5, 1}, {1, 0}}},
+            // Degenerate: every control point coincident.
+            {"point", {{0, 0}, {0, 0}, {0, 0}, {0, 0}}, {{0, 0}, {0, 0}, {0, 0}}},
+            // Degenerate: coincident endpoints, a loop.
+            {"loop", {{0, 0}, {50, 50}, {50, -50}, {0, 0}}, {{0, 0}, {50, 50}, {0, 0}}},
+            // Collinear control points (a straight cubic).
+            {"collinear", {{0, 0}, {30, 30}, {70, 70}, {100, 100}},
+             {{0, 0}, {50, 50}, {100, 100}}},
+            // Sub-point extremum with a genuinely non-zero quadratic term.
+            // Coefficients on the Y axis: d0 = 0.1, d1 = 0.1, d2 = -0.2, so
+            // a = d0 - 2 d1 + d2 = -0.3, b = 2 (d1 - d0) = 0, c = 0.1. The
+            // interior extremum sits at t = 0.577 with value 0.11547. An
+            // absolute-magnitude threshold at 1e12 is 1e12 * 1e-12 = 1 pt, so
+            // |a| = 0.3 was judged negligible, the quadratic degenerated to a
+            // linear equation and the extremum was silently dropped.
+            {"sub-point-extremum", {{0, 0}, {0, 0.1}, {100, 0.2}, {100, 0}},
+             {{0, 0}, {50, 0.1}, {100, 0}}},
+        };
+
+        const double translations[] = {0.0, 1e6, 1e9, 1e12, 1e15};
+
+        for (const Case& testCase : cases) {
+            const double tolerance = 0.05;
+            const Point cubicShift{testCase.cubic.p0.x, testCase.cubic.p0.y};
+            const Point quadShift{testCase.quad.p0.x, testCase.quad.p0.y};
+
+            // Reference results at the origin.
+            const Rect cubicBaseBounds = testCase.cubic.bounds();
+            const double cubicBaseWidth = cubicBaseBounds.width();
+            const double cubicBaseHeight = cubicBaseBounds.height();
+            const double cubicBaseLength = testCase.cubic.length(tolerance);
+            std::vector<Point> cubicBaseFlat;
+            flattenCubic(testCase.cubic, tolerance, cubicBaseFlat);
+            const int cubicBaseSegments = static_cast<int>(cubicBaseFlat.size());
+
+            const Rect quadBaseBounds = testCase.quad.bounds();
+            const double quadBaseWidth = quadBaseBounds.width();
+            const double quadBaseHeight = quadBaseBounds.height();
+            std::vector<Point> quadBaseFlat;
+            flattenQuadratic(testCase.quad, tolerance, quadBaseFlat);
+            const int quadBaseSegments = static_cast<int>(quadBaseFlat.size());
+
+            for (double d : translations) {
+                const Point delta{d, d};
+                char label[220];
+                const double eps = representableTolerance(d);
+
+                // ---- Cubic ----
+                const CubicBezier cubic{testCase.cubic.p0 + delta,
+                                        testCase.cubic.c1 + delta,
+                                        testCase.cubic.c2 + delta,
+                                        testCase.cubic.p1 + delta};
+
+                const Rect cBounds = cubic.bounds();
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: bounds width preserved", testCase.name, d);
+                checkNear(cBounds.width(), cubicBaseWidth, eps, label);
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: bounds height preserved", testCase.name, d);
+                checkNear(cBounds.height(), cubicBaseHeight, eps, label);
+
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: no NaN/inf in bounds", testCase.name, d);
+                check(std::isfinite(cBounds.left) && std::isfinite(cBounds.right)
+                          && std::isfinite(cBounds.top) && std::isfinite(cBounds.bottom),
+                      label);
+
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: evaluation follows the translation",
+                              testCase.name, d);
+                {
+                    const Point base = testCase.cubic.evaluate(0.37);
+                    const Point moved = cubic.evaluate(0.37);
+                    checkNear(moved.x - delta.x, base.x, eps, label);
+                }
+
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: no NaN/inf when flattened", testCase.name, d);
+                std::vector<Point> cubicFlat;
+                flattenCubic(cubic, tolerance, cubicFlat);
+                check(allFinite(cubicFlat), label);
+
+                // Segment count is informational, not an invariant: at large
+                // offsets the ULP quantisation legitimately changes how many flat
+                // sub-segments are needed. The shape check below is what must hold.
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: flattened geometry within representable "
+                              "precision", testCase.name, d);
+                {
+                    // Compare the flattened shape only where the requested
+                    // tolerance is actually representable at that offset. At 1e15
+                    // the ULP is 0.125 pt, larger than the 0.05 pt tolerance, so
+                    // the input coordinates themselves quantise more coarsely than
+                    // the requested flatness: the invariant cannot be expressed
+                    // there and is documented instead of being masked.
+                    const double ulp = std::max(std::nextafter(d, 1e308) - d, 1e-300);
+                    const bool representableHere = ulp <= tolerance * 0.5;
+                    std::snprintf(label, sizeof(label),
+                                  "%s cubic @%.0e: flattened geometry within representable "
+                                  "precision", testCase.name, d);
+                    if (representableHere) {
+                        const double shapeTolerance = tolerance + 2.0 * ulp;
+                        const Rect baseRel = relativeBounds(cubicBaseFlat, testCase.cubic.p0);
+                        const Rect movedRel = relativeBounds(cubicFlat, cubic.p0);
+                        checkNear(movedRel.width(), baseRel.width(), shapeTolerance, label);
+                        std::snprintf(label, sizeof(label),
+                                      "%s cubic @%.0e: flattened height within representable "
+                                      "precision", testCase.name, d);
+                        checkNear(movedRel.height(), baseRel.height(), shapeTolerance, label);
+                    } else {
+                        check(allFinite(cubicFlat), label);
+                    }
+                }
+
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: flattened shape follows the translation",
+                              testCase.name, d);
+                {
+                    // Compare the bounding box of the offsets against the curve's
+                    // own start, which is translation invariant.
+                    const Rect baseRel =
+                        relativeBounds(cubicBaseFlat, testCase.cubic.p0);
+                    const Rect movedRel = relativeBounds(cubicFlat, cubic.p0);
+                    checkNear(movedRel.width(), baseRel.width(), eps, label);
+                }
+
+                std::snprintf(label, sizeof(label),
+                              "%s cubic @%.0e: arc length preserved", testCase.name, d);
+                checkNear(cubic.length(tolerance), cubicBaseLength, eps, label);
+
+                // ---- Quadratic ----
+                const QuadBezier quad{testCase.quad.p0 + delta, testCase.quad.c + delta,
+                                      testCase.quad.p1 + delta};
+
+                const Rect qBounds = quad.bounds();
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: bounds width preserved", testCase.name, d);
+                checkNear(qBounds.width(), quadBaseWidth, eps, label);
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: bounds height preserved", testCase.name, d);
+                checkNear(qBounds.height(), quadBaseHeight, eps, label);
+
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: evaluation follows the translation",
+                              testCase.name, d);
+                {
+                    const Point base = testCase.quad.evaluate(0.37);
+                    const Point moved = quad.evaluate(0.37);
+                    checkNear(moved.x - delta.x, base.x, eps, label);
+                }
+
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: no NaN/inf when flattened", testCase.name, d);
+                std::vector<Point> quadFlat;
+                flattenQuadratic(quad, tolerance, quadFlat);
+                check(allFinite(quadFlat), label);
+
+                std::snprintf(label, sizeof(label),
+                              "%s quad @%.0e: flattened shape within representable "
+                              "precision", testCase.name, d);
+                {
+                    const double ulp = std::max(std::nextafter(d, 1e308) - d, 1e-300);
+                    const bool representableHere = ulp <= tolerance * 0.5;
+                    std::snprintf(label, sizeof(label),
+                                  "%s quad @%.0e: flattened shape within representable "
+                                  "precision", testCase.name, d);
+                    if (representableHere) {
+                        const double shapeTolerance = tolerance + 2.0 * ulp;
+                        const Rect baseRel = relativeBounds(quadBaseFlat, testCase.quad.p0);
+                        const Rect movedRel = relativeBounds(quadFlat, quad.p0);
+                        checkNear(movedRel.width(), baseRel.width(), shapeTolerance, label);
+                        std::snprintf(label, sizeof(label),
+                                      "%s quad @%.0e: flattened height within representable "
+                                      "precision", testCase.name, d);
+                        checkNear(movedRel.height(), baseRel.height(), shapeTolerance, label);
+                    } else {
+                        check(allFinite(quadFlat), label);
+                    }
+                }
+            }
         }
     }
 

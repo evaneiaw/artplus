@@ -60,6 +60,42 @@ posição após a transformação. `Rect::isEmpty()` continua a reportar esses r
 como vazios (semântica histórica usada por `intersects`/`united`), mas
 `mapRect()` **não** usa esse predicado. Só `NaN` produz um rect vazio.
 
+### Invariância à translação
+
+Uma curva não deve mudar de forma só porque foi movida para longe da origem.
+Por isso **nenhum limiar de `Bezier.cpp` usa coordenadas absolutas**:
+
+| Cálculo | Como é feito |
+|---|---|
+| Coeficientes da derivada | Calculados a partir dos **vetores de aresta** `d0 = c1-p0`, `d1 = c2-c1`, `d2 = p1-c2`. Uma translação comum cancela-se exactamente em cada diferença. |
+| Magnitude da curva (`scale`) | `max(\|d0\|,\|d1\|,\|d2\|,\|a\|,\|b\|,\|c\|)` — a **extensão geométrica local**, nunca `\|v0\|`/`\|p0\|`. |
+| Extremos cúbicos | `B'(t)/3 = A t² + B t + C` com `A = d0-2d1+d2`, `B = 2(d1-d0)`, `C = d0` (verificado simbolicamente). |
+| Extremos quadráticos | `B'(t)/2 = d0 + t(d1-d0)` ⇒ `t = -d0/(d1-d0)`. |
+| Raízes da quadrática | Fórmula sem cancelamento (`q = -½(b + sign(b)·√Δ)`, segunda raiz por `c/q`) e caso simétrico explícito quando `b == 0`. |
+| Discriminante | Comparado com a sua própria magnitude (`b² + \|4ac\|`), não com uma constante. |
+| Flatness / subdivisão | Já era relativo a `p0`; passou a usar `localExtent()` em vez de uma expressão ad-hoc. |
+
+### Limite real do IEEE 754
+
+A `double` tem 52 bits de mantissa. Para uma coordenada de magnitude `d`, o
+espaçamento entre valores representáveis (ULP) é `≈ d · 2⁻⁵²`:
+
+| Deslocamento | ULP | Um curva de 100 pt ocupa |
+|---|---|---|
+| 1e6 | 1,2e-10 pt | ~8,6e11 valores |
+| 1e9 | 1,2e-7 pt | ~8,4e8 valores |
+| 1e12 | 1,2e-4 pt | ~8,2e5 valores |
+| 1e15 | **0,125 pt** | **~800 valores** |
+
+Consequência documentada: a `1e15` o ULP (0,125 pt) é **maior** que a tolerância
+de flattening usual (0,05 pt). Aí a própria posição dos pontos de controlo está
+quantizada mais grosseiramente do que a tolerância pedida, pelo que a forma do
+polígono não é reproduzível. Os testes **verificam a invariância só onde ela é
+representável** (`ULP ≤ tolerância/2`, isto é, até 1e12) e nas magnitudes
+maiores verificam apenas ausência de `NaN`/`infinito`. Esta limitação é um facto
+do IEEE 754, não um defeito do algoritmo, e não é mascarada.
+
+
 
 ## API
 
@@ -141,7 +177,7 @@ bounding box) o centroide é a média aritmética dos vértices e a orientação
 
 ## Robustez
 
-Casos cobertos pela suíte `artplus.geometry` (282 checks):
+Casos cobertos pela suíte `artplus.geometry` (793 checks):
 
 - coordenadas negativas;
 - polígonos degenerados (colineares, 1 e 2 vértices, vazio);
@@ -157,7 +193,14 @@ Casos cobertos pela suíte `artplus.geometry` (282 checks):
   subnormal `(1e-320, 0)`, com verificação de ausência de NaN/infinito;
 - curvas quadráticas e cúbicas em escalas `1e-21 … 1e9`, verificando bounds,
   avaliação, flattening (dentro da tolerância) e comprimento de arco;
-- magnitudes muito pequenas (1e-6 pt) e muito grandes (1e9 pt).
+- magnitudes muito pequenas (1e-6 pt) e muito grandes (1e9 pt);
+- **invariância à translação** (etapa 1.2): seis famílias de curvas quadráticas e
+  cúbicas — controlos distintos com extremos interiores, quase retas, dimensões de
+  1 pt, controlos coincidentes, laço com extremos coincidentes, colineares e
+  extremo sub-ponto (0,115 pt) — comparadas em `(0,0)`, `1e6`, `1e9`, `1e12` e
+  `1e15` quanto a bounds, extremos, avaliação, forma achatada, comprimento e
+  ausência de `NaN`/`infinito`. Todas as comparações são feitas em valores
+  **relativos ao início da própria curva**, nunca em coordenadas absolutas.
 
 Tolerâncias são explícitas e documentadas; não são usadas para esconder erro
 numérico. Comparações de área usam um critério **relativo** à bounding box para

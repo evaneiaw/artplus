@@ -1,5 +1,48 @@
 # ArtPlus — Status de Validação
 
+## Milestone 24 / Etapa 1.2 — Invariância à translação das Bézier — CONCLUÍDA (2026-11-06)
+
+### Defeitos encontrados (reproduzidos antes da correção)
+
+**Causa raiz única:** em `Bezier.cpp` a magnitude usada nos testes de
+negligibilidade era `max(|v0|,|v1|,|v2|,…)`, isto é, a **coordenada absoluta**.
+A `1e12` isso dá um limiar de `1e12 × 1e-12 = 1 pt`; a `1e15`, 1000 pt. Curvas
+legítimas passavam a ser tratadas como degeneradas apenas por estarem longe da
+origem.
+
+| Caso | Sintoma reproduzido |
+|---|---|
+| Quadrática "quase reta" a 1e12 | `bounds().height()` devolvia **0** em vez de 0,125 pt (extremo descartado) |
+| Cúbica com extremo sub-ponto (`a = -0,3`) a 1e12 | `bounds().height()` devolvia **0** em vez de 0,11547 pt |
+
+### Correção
+
+- Coeficientes da derivada cúbica expressos em **vetores de aresta**
+  (`A = d0-2d1+d2`, `B = 2(d1-d0)`, `C = d0`), verificado simbolicamente — uma
+  translação comum cancela-se exactamente.
+- Extremo quadrático calculado de `t = -d0/(d1-d0)` em vez de `(v0-vc)/den`.
+- `scale` = extensão geométrica local derivada dessas diferenças.
+- Solver de raízes sem cancelamento, com caso simétrico explícito para `b == 0`.
+
+### Limite IEEE 754 (documentado, não mascarado)
+
+A `1e15` o ULP é 0,125 pt — **maior** que a tolerância de flattening de 0,05 pt.
+Aí a posição dos pontos de controlo está quantizada mais grosseiramente do que a
+tolerância pedida. Os testes verificam a invariância só onde é representável
+(`ULP ≤ tolerância/2`, até 1e12) e acima disso verificam apenas ausência de
+`NaN`/`infinito`.
+
+### Verificação
+
+- Build `build-msvc-nmake`: **BUILD_OK**.
+- `artplus.geometry`: **793 checks, 0 falhas** (eram 282; +511 de regressão).
+- CTest completo: **9/9 suítes, 100%**, **1121 checks, 0 falhas**, sem regressões.
+
+Pendente: operações booleanas e offset (etapa 2). Continua **sem** validação
+visual nem comparação com o ArtPro+ v24.
+
+---
+
 ## Milestone 24 / Etapa 1.1 — Correção de robustez numérica — CONCLUÍDA (2026-11-06)
 
 Revisão do commit `f55a01b` identificou quatro defeitos numéricos reproduzíveis.
@@ -44,8 +87,8 @@ visual nem comparação com o ArtPro+ v24.
 ### Build e testes executados em 2026-11-06
 
 - Build: `build-msvc-nmake` → **BUILD_OK** (MSVC 2022 14.44, sem erros).
-- CTest: **9/9 suítes (100%)**, **610 checks, 0 falhas** após a etapa 1.1:
-  geometry 282 · edit 88 · command 73 · pageview 35 · smoke 20 · import 18 ·
+- CTest: **9/9 suítes (100%)**, **1121 checks, 0 falhas** após a etapa 1.2:
+  geometry 793 · edit 88 · command 73 · pageview 35 · smoke 20 · import 18 ·
   mainwindow 46 · colour 20 · transform_again 28.
 - Sem regressões: as 8 suítes pré-existentes continuam a passar.
 
