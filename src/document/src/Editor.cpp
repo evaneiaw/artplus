@@ -1,4 +1,4 @@
-#include "artplus/document/Editor.h"
+﻿#include "artplus/document/Editor.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -26,10 +26,10 @@ static void applyObjectAffineTransform(GraphicObject* obj, double a, double b, d
 {
     if (!obj) return;
     // Compor a nova matriz: nova = antiga * transformacao
-    // Na convenÃƒÂ§ÃƒÂ£o: x' = a*x + c*y + e, y' = b*x + d*y + f
+    // Na convenÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: x' = a*x + c*y + e, y' = b*x + d*y + f
     geometry::Matrix current = obj->transform();
     geometry::Matrix nova;
-    // MultiplicaÃƒÂ§ÃƒÂ£o de matrizes: assuming row-vector convention or column-major as needed
+    // MultiplicaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de matrizes: assuming row-vector convention or column-major as needed
     // The existing applyAffineTransform in GraphicObject does:
     // nova.a = m_transform.a * a + m_transform.c * b;
     // etc. We'll use that approach but ensure it's correct.
@@ -61,12 +61,12 @@ Editor::Editor(ArtDocument& document, QObject* parent)
 }
 
 // ======================================================================
-// SeleÃƒÂ§ÃƒÂ£o
+// SeleÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
 // ======================================================================
 
 void Editor::selectObject(int index)
 {
-    // LÃƒÂ³gica de seleÃƒÂ§ÃƒÂ£o: adiciona/remove do conjunto selecionado
+    // LÃƒÆ’Ã‚Â³gica de seleÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: adiciona/remove do conjunto selecionado
     if (m_selected.contains(index)) {
         m_selected.removeOne(index);
     } else {
@@ -87,7 +87,7 @@ QVector<int> Editor::selectedObjects() const
 }
 
 // ======================================================================
-// TransformaÃƒÂ§ÃƒÂµes sobre a seleÃƒÂ§ÃƒÂ£o atual
+// TransformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes sobre a seleÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o atual
 // ======================================================================
 
 void Editor::translateSelected(double dx, double dy)
@@ -97,14 +97,14 @@ void Editor::translateSelected(double dx, double dy)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
-        // Aplicar translaÃƒÂ§ÃƒÂ£o usando a matriz afim
+        // Aplicar translaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o usando a matriz afim
         applyObjectAffineTransform(obj, 1, 0, 0, 1, dx, dy);
     }
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-    // Reset redo state quando nova aÃƒÂ§ÃƒÂ£o realizada
+    // Reset redo state quando nova aÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o realizada
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -116,14 +116,14 @@ void Editor::rotateSelected(double degrees)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
-        // Rotacionar: matriz afim de rotaÃƒÂ§ÃƒÂ£o
+        // Rotacionar: matriz afim de rotaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         double rad = degrees * 3.1415926535 / 180.0;
         double c = cos(rad);
         double s = sin(rad);
-        // Aplica rotaÃƒÂ§ÃƒÂ£o: x' = x*cos - y*sin + tx, y' = x*sin + y*cos + ty
-        // Para rotaÃƒÂ§ÃƒÂ£o em torno da origem com possÃƒÂ­vel deslocamento
+        // Aplica rotaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o: x' = x*cos - y*sin + tx, y' = x*sin + y*cos + ty
+        // Para rotaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o em torno da origem com possÃƒÆ’Ã‚Â­vel deslocamento
         applyObjectAffineTransform(obj, c, s, -s, c, 0, 0);
     }
     emit selectionChanged();
@@ -139,7 +139,7 @@ void Editor::scaleSelected(double factor)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Escala uniforme
         applyObjectAffineTransform(obj, factor, 0, 0, factor, 0, 0);
@@ -157,7 +157,7 @@ void Editor::setTransform(double a, double b, double c, double d, double e, doub
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // Afim completa
         applyObjectAffineTransform(obj, a, b, c, d, e, f);
@@ -169,15 +169,15 @@ void Editor::setTransform(double a, double b, double c, double d, double e, doub
 }
 
 // ======================================================================
-// Step & Repeat / ImposiÃƒÂ§ÃƒÂ£o
+// Step & Repeat / ImposiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
 // ======================================================================
 
 
-// Sobrecarregas ou refatoraÃƒÂ§ÃƒÂ£o necessÃƒÂ¡ria para stepRepeat - precisamos de estrutura diferente
+// Sobrecarregas ou refatoraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o necessÃƒÆ’Ã‚Â¡ria para stepRepeat - precisamos de estrutura diferente
 // Vamos refatorar todo o stepRepeat para ter loops adequados
 
 // ======================================================================
-// VersÃƒÂ£o corrigida de stepRepeat
+// VersÃƒÆ’Ã‚Â£o corrigida de stepRepeat
 // ======================================================================
 
 void Editor::stepRepeat(int count, double dx, double dy)
@@ -186,7 +186,7 @@ void Editor::stepRepeat(int count, double dx, double dy)
     QVector<int> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // Para cada iteraÃƒÂ§ÃƒÂ£o de cÃƒÂ³pia
+    // Para cada iteraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de cÃƒÆ’Ã‚Â³pia
     for (int i = 0; i < count; ++i) {
         double accumX = dx * (i + 1);
         double accumY = dy * (i + 1);
@@ -195,24 +195,24 @@ void Editor::stepRepeat(int count, double dx, double dy)
         for (int idx : selected) {
             ArtLayer* layer = m_document.page(0)->layer(idx);
             if (!layer) continue;
-            GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+            GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
             if (!obj) continue;
 
-            // Clonar o objeto - isso gera um novo ID ÃƒÂºnico via GraphicObject constructor
+            // Clonar o objeto - isso gera um novo ID ÃƒÆ’Ã‚Âºnico via GraphicObject constructor
             auto cloned = obj->clone();
             if (!cloned) continue;
 
             // Aplicar deslocamento acumulado ao clone
-            // O clone tem a transformaÃƒÂ§ÃƒÂ£o original. Aplicar translate acumulado.
-            // Como applyAffineTransform compÃƒÂµe: nova = antiga * translate,
-            // o resultado serÃƒÂ¡ original + acumulado, que ÃƒÂ© o que queremos.
+            // O clone tem a transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o original. Aplicar translate acumulado.
+            // Como applyAffineTransform compÃƒÆ’Ã‚Âµe: nova = antiga * translate,
+            // o resultado serÃƒÆ’Ã‚Â¡ original + acumulado, que ÃƒÆ’Ã‚Â© o que queremos.
             applyObjectAffineTransform(cloned.get(), 1, 0, 0, 1, accumX, accumY);
 
             // O cloned object agora precisa ser adicionado ao documento.
-            // Mas Editor sozinho nÃƒÂ£o tem acesso direto para adicionar ao ArtDocument/ArtLayer.
+            // Mas Editor sozinho nÃƒÆ’Ã‚Â£o tem acesso direto para adicionar ao ArtDocument/ArtLayer.
             // Isso seria responsabilidade do comando ou do documento.
-            // Por ora, apenas emitimos que houve modificaÃƒÂ§ÃƒÂ£o.
-            // A integraÃƒÂ§ÃƒÂ£o com o documento via command stack seria feita pelo comando.
+            // Por ora, apenas emitimos que houve modificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o.
+            // A integraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com o documento via command stack seria feita pelo comando.
         }
     }
     emit selectionChanged();
@@ -236,7 +236,7 @@ void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, doub
             for (int idx : selected) {
                 ArtLayer* layer = m_document.page(0)->layer(idx);
                 if (!layer) continue;
-                GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+                GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
                 if (!obj) continue;
 
                 auto cloned = obj->clone();
@@ -269,7 +269,7 @@ void Editor::stepRepeatHexagonal(int count, double radius, double angle)
         for (int idx : selected) {
             ArtLayer* layer = m_document.page(0)->layer(idx);
             if (!layer) continue;
-            GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+            GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
             if (!obj) continue;
 
             auto cloned = obj->clone();
@@ -295,8 +295,8 @@ void Editor::imposeLayout(QString layoutType, int copiesX, int copiesY, double g
     if (layoutType == QStringLiteral("grid")) {
         stepRepeatRectangular(copiesX, copiesY, gutterX, gutterY);
     } else if (layoutType == QStringLiteral("hexagonal")) {
-        // Para hexagonal, usar stepRepeatHexagonal com parÃƒÂ¢metros padrÃƒÂ£o
-        // radius=50, angle=60 degrees como referÃƒÂªncia
+        // Para hexagonal, usar stepRepeatHexagonal com parÃƒÆ’Ã‚Â¢metros padrÃƒÆ’Ã‚Â£o
+        // radius=50, angle=60 degrees como referÃƒÆ’Ã‚Âªncia
         stepRepeatHexagonal(copiesX, 50.0, 60.0);
     }
 
@@ -317,15 +317,15 @@ void Editor::drawRegistrationMark(const QString& markType, const QRectF& rect, c
     QVector<int> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // Criar objeto de marca temporÃƒÂ¡rio
-    // Em um implementaÃƒÂ§ÃƒÂ£o completa, isto criaria um PathObject ou GroupObject
-    // com as caracterÃƒÂ­sticas da marca e o adicionasse ÃƒÂ  layer ativa.
-    // Por ora, apenas registramos a intenÃƒÂ§ÃƒÂ£o e emitimos mudanÃƒÂ§as.
+    // Criar objeto de marca temporÃƒÆ’Ã‚Â¡rio
+    // Em um implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa, isto criaria um PathObject ou GroupObject
+    // com as caracterÃƒÆ’Ã‚Â­sticas da marca e o adicionasse ÃƒÆ’Ã‚Â  layer ativa.
+    // Por ora, apenas registramos a intenÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o e emitimos mudanÃƒÆ’Ã‚Â§as.
 
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // TODO: adicionar objeto de marca ÃƒÂ  layer
+        // TODO: adicionar objeto de marca ÃƒÆ’Ã‚Â  layer
         // Isto exigiria criar o tipo de objeto apropriado (PathObject, etc.)
         // e configurar suas propriedades (forma, tamanho, cor).
     }
@@ -344,7 +344,7 @@ void Editor::drawCutMark(const QString& markType, const QRectF& rect, const QCol
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // TODO: adicionar objeto de marca de corte ÃƒÂ  layer
+        // TODO: adicionar objeto de marca de corte ÃƒÆ’Ã‚Â  layer
     }
 
     emit selectionChanged();
@@ -361,7 +361,7 @@ void Editor::drawBleedMark(const QString& markType, const QRectF& rect, const QC
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // TODO: adicionar objeto de marca de sangria ÃƒÂ  layer
+        // TODO: adicionar objeto de marca de sangria ÃƒÆ’Ã‚Â  layer
     }
 
     emit selectionChanged();
@@ -378,14 +378,14 @@ void Editor::drawColorBar(const QString& markType, const QRectF& rect, const QCo
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // TODO: adicionar objeto de barra de cor ÃƒÂ  layer
+        // TODO: adicionar objeto de barra de cor ÃƒÆ’Ã‚Â  layer
     }
 
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
 }
 
-// Gerar todas as marcas de impressÃƒÂ£o para um layout
+// Gerar todas as marcas de impressÃƒÆ’Ã‚Â£o para um layout
 void Editor::generatePrintMarks(QString markSet, int copiesX, int copiesY, double gutterX, double gutterY)
 {
     saveState();
@@ -421,18 +421,18 @@ void Editor::undo()
     if (m_undoCount > 0) {
         // Aplicar o estado salvo
         // Nota: saveState() agora salva o estado real dos objetos transformados
-        // A implementaÃƒÂ§ÃƒÂ£o exata depende de como saveState captura o estado
+        // A implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o exata depende de como saveState captura o estado
         // Por ora, aplicamos o state salvo
         if (m_undoState.hasTransform) {
-            // Aplicar transformaÃƒÂ§ÃƒÂµes salvas aos objetos selecionados
+            // Aplicar transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes salvas aos objetos selecionados
             QVector<int> selected = selectedObjects();
             for (int idx : selected) {
                 ArtLayer* layer = m_document.page(0)->layer(idx);
                 if (!layer) continue;
-                GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+                GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
                 if (!obj) continue;
-                // Aplicar a transformaÃƒÂ§ÃƒÂ£o salva
-                // A estrutura m_undoState deveria ter guardado as transformaÃƒÂ§ÃƒÂµes
+                // Aplicar a transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o salva
+                // A estrutura m_undoState deveria ter guardado as transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
                 // Para agora, apenas emitimos
             }
         }
@@ -446,8 +446,8 @@ void Editor::undo()
 void Editor::redo()
 {
     if (m_redoCount > 0) {
-        // Reaplicar a operaÃƒÂ§ÃƒÂ£o salva
-        // Similar ao undo, mas na direÃƒÂ§ÃƒÂ£o inversa
+        // Reaplicar a operaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o salva
+        // Similar ao undo, mas na direÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o inversa
         m_undoCount++;
         m_redoCount--;
         emit undoAvailable(m_undoCount > 0);
@@ -461,7 +461,7 @@ void Editor::redo()
 
 bool Editor::isModified() const
 {
-    // Verificar se hÃƒÂ¡ modificaÃƒÂ§ÃƒÂµes nÃƒÂ£o salvas
+    // Verificar se hÃƒÆ’Ã‚Â¡ modificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes nÃƒÆ’Ã‚Â£o salvas
     // Considerando o novo sistema, verificar contadores e estado dos objetos
     return m_undoCount > 0 || m_redoCount > 0;
 }
@@ -478,15 +478,15 @@ void Editor::groupSelected()
 
     // Criar um GroupObject contendo todos os objetos selecionados
     // Nota: isto exige acesso ao ArtDocument/ArtLayer para adicionar o grupo.
-    // Por ora, apenas documentamos a intenÃƒÂ§ÃƒÂ£o.
+    // Por ora, apenas documentamos a intenÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o.
     
-    // Em uma implementaÃƒÂ§ÃƒÂ£o completa:
+    // Em uma implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa:
     // 1. Criar std::make_unique<GroupObject>()
     // 2. Adicionar cada objeto selecionado como filho via addChild()
-    // 3. Adicionar o GroupObject ÃƒÂ  layer ativa do documento
-    // 4. Remover os objetos individuais da layer (ou mantÃƒÂª-los, dependendo do design)
+    // 3. Adicionar o GroupObject ÃƒÆ’Ã‚Â  layer ativa do documento
+    // 4. Remover os objetos individuais da layer (ou mantÃƒÆ’Ã‚Âª-los, dependendo do design)
     
-    // Por ora, apenas emitimos mudanÃƒÂ§a
+    // Por ora, apenas emitimos mudanÃƒÆ’Ã‚Â§a
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
 }
@@ -498,13 +498,13 @@ void Editor::ungroupSelected()
     if (selected.isEmpty()) return;
 
     // Desagrupar: remover o grupo e adicionar seus filhos individuais de volta
-    // ÃƒÂ  layer, mantendo suas propriedades.
-    // Em uma implementaÃƒÂ§ÃƒÂ£o completa:
+    // ÃƒÆ’Ã‚Â  layer, mantendo suas propriedades.
+    // Em uma implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa:
     // 1. Encontrar o grupo selecionado na layer
     // 2. Mover todos os filhos do grupo de volta para a layer
     // 3. Remover o grupo
     
-    // Por ora, apenas emitimos mudanÃƒÂ§a
+    // Por ora, apenas emitimos mudanÃƒÆ’Ã‚Â§a
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
 }
@@ -516,15 +516,15 @@ void Editor::ungroupSelected()
 void Editor::copyAvailable(bool available)
 {
     Q_UNUSED(available);
-    // O portapapÃƒÂ©is deveria armazenar clones independentes dos objetos selecionados
-    // para que nÃƒÂ£o sejam invalidados quando o documento mudar.
-    // Em implementaÃƒÂ§ÃƒÂ£o futura, serializarÃƒÂ­amos os objetos ou seus IDs.
+    // O portapapÃƒÆ’Ã‚Â©is deveria armazenar clones independentes dos objetos selecionados
+    // para que nÃƒÆ’Ã‚Â£o sejam invalidados quando o documento mudar.
+    // Em implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o futura, serializarÃƒÆ’Ã‚Â­amos os objetos ou seus IDs.
 }
 
 void Editor::pasteAvailable(bool available)
 {
     Q_UNUSED(available);
-    // Colar objetos da ÃƒÂ¡rea de transferÃƒÂªncia de volta ao documento.
+    // Colar objetos da ÃƒÆ’Ã‚Â¡rea de transferÃƒÆ’Ã‚Âªncia de volta ao documento.
     // Os objetos colados deveriam ser clones dos objetos copiados/cortados,
     // posicionados apropriadamente.
 }
@@ -540,12 +540,12 @@ void Editor::bringToFront()
     if (selected.isEmpty()) return;
 
     // Trazer todos os objetos selecionados para o topo da hierarquia z-order
-    // usando a lÃƒÂ³gica de reorderChild adaptada para a estrutura ArtLayer/ArtDocument
+    // usando a lÃƒÆ’Ã‚Â³gica de reorderChild adaptada para a estrutura ArtLayer/ArtDocument
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // LÃƒÂ³gica de reordenaÃƒÂ§ÃƒÂ£o z-order para topo
-        // Isto dependeria da implementaÃƒÂ§ÃƒÂ£o especÃƒÂ­fica de ArtLayer
+        // LÃƒÆ’Ã‚Â³gica de reordenaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o z-order para topo
+        // Isto dependeria da implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica de ArtLayer
     }
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
@@ -561,7 +561,7 @@ void Editor::sendToBack()
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        // LÃƒÂ³gica de reordenaÃƒÂ§ÃƒÂ£o z-order para fundo
+        // LÃƒÆ’Ã‚Â³gica de reordenaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o z-order para fundo
     }
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
@@ -573,8 +573,8 @@ void Editor::bringForward()
     QVector<int> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // Trazer objeto selecionado um nÃƒÂ­vel para frente na hierarquia z-order
-    // usando lÃƒÂ³gica de troca de z-order com o prÃƒÂ³ximo objeto acima
+    // Trazer objeto selecionado um nÃƒÆ’Ã‚Â­vel para frente na hierarquia z-order
+    // usando lÃƒÆ’Ã‚Â³gica de troca de z-order com o prÃƒÆ’Ã‚Â³ximo objeto acima
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
 }
@@ -585,8 +585,8 @@ void Editor::sendBackward()
     QVector<int> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // Enviar objeto selecionado um nÃƒÂ­vel para trÃƒÂ¡s na hierarquia z-order
-    // usando lÃƒÂ³gica de troca de z-order com o prÃƒÂ³ximo objeto abaixo
+    // Enviar objeto selecionado um nÃƒÆ’Ã‚Â­vel para trÃƒÆ’Ã‚Â¡s na hierarquia z-order
+    // usando lÃƒÆ’Ã‚Â³gica de troca de z-order com o prÃƒÆ’Ã‚Â³ximo objeto abaixo
     emit selectionChanged();
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
 }
@@ -604,7 +604,7 @@ void Editor::setFillColor(unsigned int color)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setFillColor(color);
     }
@@ -621,7 +621,7 @@ void Editor::setStrokeColor(unsigned int color)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setStrokeColor(color);
     }
@@ -638,7 +638,7 @@ void Editor::setStrokeWidth(double width)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setStrokeWidth(width);
     }
@@ -655,7 +655,7 @@ void Editor::setOpacity(double opacity)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setOpacity(std::clamp(opacity, 0.0, 1.0));
     }
@@ -672,7 +672,7 @@ void Editor::setVisible(bool visible)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setVisible(visible);
     }
@@ -689,7 +689,7 @@ void Editor::setLocked(bool locked)
     for (int idx : selected) {
         ArtLayer* layer = m_document.page(0)->layer(idx);
         if (!layer) continue;
-        GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+        GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
         if (!obj) continue;
         // obj->setLocked(locked);
     }
@@ -707,9 +707,9 @@ void Editor::copySelected()
     QVector<int> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // Copiar objetos selecionados para a ÃƒÂ¡rea de transferÃƒÂªncia
-    // ... lÃƒÂ³gica para serializar objetos selecionados
-    // Em implementaÃƒÂ§ÃƒÂ£o futura, armazenarÃƒÂ­amos clones ou IDs dos objetos.
+    // Copiar objetos selecionados para a ÃƒÆ’Ã‚Â¡rea de transferÃƒÆ’Ã‚Âªncia
+    // ... lÃƒÆ’Ã‚Â³gica para serializar objetos selecionados
+    // Em implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o futura, armazenarÃƒÆ’Ã‚Â­amos clones ou IDs dos objetos.
     emit copyAvailable(true);
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
     m_redoCount = 0;
@@ -719,9 +719,9 @@ void Editor::copySelected()
 void Editor::cutSelected()
 {
     saveState();
-    // Recortar: remover objetos selecionados e copiar para ÃƒÂ¡rea de transferÃƒÂªncia
-    // ... lÃƒÂ³gica para remover e copiar
-    // A remoÃƒÂ§ÃƒÂ£o dos objetos da layer seria feita via ArtLayer::removeObject(id)
+    // Recortar: remover objetos selecionados e copiar para ÃƒÆ’Ã‚Â¡rea de transferÃƒÆ’Ã‚Âªncia
+    // ... lÃƒÆ’Ã‚Â³gica para remover e copiar
+    // A remoÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o dos objetos da layer seria feita via ArtLayer::removeObject(id)
     emit cutAvailable(true);
     emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
     m_redoCount = 0;
@@ -730,9 +730,9 @@ void Editor::cutSelected()
 
 void Editor::paste()
 {
-    // Colar objetos da ÃƒÂ¡rea de transferÃƒÂªncia
-    // ... lÃƒÂ³gica para colar objetos copiados/cortados
-    // ... adicionar novos objetos ÃƒÂ  layer ativa
+    // Colar objetos da ÃƒÆ’Ã‚Â¡rea de transferÃƒÆ’Ã‚Âªncia
+    // ... lÃƒÆ’Ã‚Â³gica para colar objetos copiados/cortados
+    // ... adicionar novos objetos ÃƒÆ’Ã‚Â  layer ativa
     emit pasteAvailable(true);
     emit selectionChanged();
     emit objectModified(m_selected.first());
@@ -746,11 +746,11 @@ void Editor::paste()
 
 void Editor::updateProperties()
 {
-    // Atualizar propriedades do objeto selecionado no painel de inspeÃƒÂ§ÃƒÂ£o
+    // Atualizar propriedades do objeto selecionado no painel de inspeÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
     if (m_selected.isEmpty()) return;
     ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
     if (!layer) return;
-    GraphicObject* obj = layer->objects().at(qBound(0, idx, (int)layer->objects().size() - 1));
+    GraphicObject* obj = layer->objects().at(qBound(0, m_selected.first(), (int)layer->objects().size() - 1));
     if (!obj) return;
     // TODO: emitir sinais com propriedades do objeto para o painel
     emit objectModified(m_selected.first());
@@ -759,7 +759,7 @@ void Editor::updateProperties()
 }
 
 // ======================================================================
-// inline saveState e applyState (implementaÃƒÂ§ÃƒÂµes simplificadas mas funcionais)
+// inline saveState e applyState (implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes simplificadas mas funcionais)
 // ======================================================================
 
 inline void Editor::saveState()
