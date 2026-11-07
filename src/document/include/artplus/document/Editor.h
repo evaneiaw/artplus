@@ -234,6 +234,31 @@ void Editor::cutSelected();
 void Editor::paste();
 
 // ======================================================================
+// Inspector e Propriedades do Objeto
+// ======================================================================
+
+// Atualizar propriedades do objeto selecionado
+void Editor::updateProperties();
+
+// Definir cor de preenchimento (0xAARRGGBB)
+void Editor::setFillColor(unsigned int color);
+
+// Definir cor de traço (0xAARRGGBB)
+void Editor::setStrokeColor(unsigned int color);
+
+// Definir largura do traço
+void Editor::setStrokeWidth(double width);
+
+// Definir opacidade (0.0 a 1.0)
+void Editor::setOpacity(double opacity);
+
+// Definir visibilidade
+void Editor::setVisible(bool visible);
+
+// Definir bloqueado
+void Editor::setLocked(bool locked);
+
+// ======================================================================
 // Group/Ungroup — agrupar e desagrupar objetos selecionados
 // ======================================================================
 

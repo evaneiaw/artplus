@@ -396,3 +396,109 @@ void Editor::paste()
 }
 
 } // namespace artplus::document
+
+void Editor::updateProperties()
+{
+    // Atualizar propriedades do objeto selecionado no painel de inspeção
+    if (m_selected.isEmpty()) return;
+    ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
+    if (!layer) return;
+    GraphicObject* obj = layer->findObject(/* id */);
+    if (!obj) return;
+    // TODO: emitir sinais com propriedades do objeto para o painel
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setFillColor(unsigned int color)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
+    if (!layer) return;
+    GraphicObject* obj = layer->findObject(/* id */);
+    if (!obj) return;
+    // obj->setFillColor(color);
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setStrokeColor(unsigned int color)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
+    if (!layer) return;
+    GraphicObject* obj = layer->findObject(/* id */);
+    if (!obj) return;
+    // obj->setStrokeColor(color);
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setStrokeWidth(double width)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    ArtLayer* layer = m_document.page(0)->layer(m_selected.first());
+    if (!layer) return;
+    GraphicObject* obj = layer->findObject(/* id */);
+    if (!obj) return;
+    // obj->setStrokeWidth(width);
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setOpacity(double opacity)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    // Aplicar opacidade a todos os objetos selecionados
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        GraphicObject* obj = layer->findObject(/* id */);
+        if (!obj) continue;
+        // obj->setOpacity(std::clamp(opacity, 0.0, 1.0));
+    }
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setVisible(bool visible)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        GraphicObject* obj = layer->findObject(/* id */);
+        if (!obj) continue;
+        // obj->setVisible(visible);
+    }
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::setLocked(bool locked)
+{
+    saveState();
+    if (m_selected.isEmpty()) return;
+    for (int idx : m_selected) {
+        ArtLayer* layer = m_document.page(0)->layer(idx);
+        if (!layer) continue;
+        GraphicObject* obj = layer->findObject(/* id */);
+        if (!obj) continue;
+        // obj->setLocked(locked);
+    }
+    emit objectModified(m_selected.first());
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
