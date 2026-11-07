@@ -145,7 +145,7 @@ Informar:
 - **Tarefas concluídas, pendentes e bloqueadas** (consulte a tabela de histórico; atualmente: AUDIT-001 CONCLUÍDA, todas as AUDIT-002/N/A bloqueadas por definição)
 - **Testes realmente executados** (8/8 CTest suites where runtime permits; 328 checks onde o ambiente permite; 3 bloqueadas por GUI init; 3 skips por fixture; verificações Python estruturais fora do CTest)
 - **Problemas encontrados** (Windows GUI init 0xc0000142, USER32/GDI32 Win32 1114, namespace corruption PageView.cpp corrigido 05/11, scaffolding modules não integrados, bloqueios por definição de dependências)
-- **Próxima tarefa selecionada** (AUDIT-002-A)
+- **Próxima tarefa selecionada** (AUDIT-002-B)
 
 Não iniciar várias integrações simultâneas.
 
