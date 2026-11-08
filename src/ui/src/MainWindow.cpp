@@ -982,11 +982,21 @@ void MainWindow::buildRightDock()
         toolsLayout->setContentsMargins(6, 1, 10, 1);
         toolsLayout->setSpacing(1);
         toolsLayout->addStretch();
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Plus, QStringLiteral("Add layer")));
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Minus, QStringLiteral("Remove layer")));
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::LayersOrder, QStringLiteral("Layer order")));
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Gear, QStringLiteral("Layer options")));
+        m_addLayerButton = makeFlatButton(theme::IconKind::Plus, QStringLiteral("Add layer"));
+        toolsLayout->addWidget(m_addLayerButton);
+        m_removeLayerButton = makeFlatButton(theme::IconKind::Minus, QStringLiteral("Remove layer"));
+        toolsLayout->addWidget(m_removeLayerButton);
+        m_layerOrderButton = makeFlatButton(theme::IconKind::LayersOrder, QStringLiteral("Layer order"));
+        toolsLayout->addWidget(m_layerOrderButton);
+        m_layerOptionsButton = makeFlatButton(theme::IconKind::Gear, QStringLiteral("Layer options"));
+        toolsLayout->addWidget(m_layerOptionsButton);
         m_layersPanel->bodyLayout()->addWidget(tools);
+
+        // Connect layer tool buttons
+        connect(m_addLayerButton, &QToolButton::clicked, this, &MainWindow::addLayer);
+        connect(m_removeLayerButton, &QToolButton::clicked, this, &MainWindow::removeLayer);
+        connect(m_layerOrderButton, &QToolButton::clicked, this, [this]() { reorderLayer(true); });
+        connect(m_layerOptionsButton, &QToolButton::clicked, this, [this]() { /* TODO: show layer options dialog */ });
     }
     stack->addWidget(m_layersPanel);
 
@@ -1091,10 +1101,18 @@ void MainWindow::buildRightDock()
         toolsLayout->setSpacing(1);
         toolsLayout->addWidget(makeFlatButton(theme::IconKind::Printer, QStringLiteral("Print setup")));
         toolsLayout->addStretch();
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Plus, QStringLiteral("Add separation")));
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Minus, QStringLiteral("Remove separation")));
-        toolsLayout->addWidget(makeFlatButton(theme::IconKind::Gear, QStringLiteral("Separation options")));
+        m_addSeparationButton = makeFlatButton(theme::IconKind::Plus, QStringLiteral("Add separation"));
+        toolsLayout->addWidget(m_addSeparationButton);
+        m_removeSeparationButton = makeFlatButton(theme::IconKind::Minus, QStringLiteral("Remove separation"));
+        toolsLayout->addWidget(m_removeSeparationButton);
+        m_separationOptionsButton = makeFlatButton(theme::IconKind::Gear, QStringLiteral("Separation options"));
+        toolsLayout->addWidget(m_separationOptionsButton);
         m_separationsPanel->bodyLayout()->addWidget(tools);
+
+        // Connect separation tool buttons
+        connect(m_addSeparationButton, &QToolButton::clicked, this, &MainWindow::addSeparation);
+        connect(m_removeSeparationButton, &QToolButton::clicked, this, &MainWindow::removeSeparation);
+        connect(m_separationOptionsButton, &QToolButton::clicked, this, [this]() { /* TODO: show separation options dialog */ });
     }
     stack->addWidget(m_separationsPanel);
 
@@ -3034,6 +3052,93 @@ void MainWindow::showSelectedObjects(bool show)
     updatePanels();
     statusBar()->showMessage(show ? QStringLiteral("Showed %1 object(s)").arg(m_selectedObjects.size())
                                   : QStringLiteral("Hidden %1 object(s)").arg(m_selectedObjects.size()), 4000);
+}
+
+void MainWindow::addLayer()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    // Create a new ArtLayer in the current page's ArtDocument
+    // For now, we'll create a layer in the ArtPage model
+    // This is a placeholder - full implementation requires ArtDocument integration
+    statusBar()->showMessage(QStringLiteral("Add layer - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::removeLayer()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item) {
+        statusBar()->showMessage(QStringLiteral("No layer selected"), 3000);
+        return;
+    }
+
+    statusBar()->showMessage(QStringLiteral("Remove layer - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::reorderLayer(bool up)
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item) {
+        statusBar()->showMessage(QStringLiteral("No layer selected"), 3000);
+        return;
+    }
+
+    statusBar()->showMessage(QStringLiteral("Reorder layer - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::renameLayer(const QString& name)
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Rename layer - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::toggleLayerVisibility()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Toggle layer visibility - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::toggleLayerLock()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Toggle layer lock - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::toggleLayerPrint()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Toggle layer print - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::addSeparation()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Add separation - pending ArtDocument integration"), 3000);
+}
+
+void MainWindow::removeSeparation()
+{
+    if (!m_editor || !m_doc)
+        return;
+
+    statusBar()->showMessage(QStringLiteral("Remove separation - pending ArtDocument integration"), 3000);
 }
 
 } // namespace artplus::ui

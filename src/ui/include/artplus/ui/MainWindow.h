@@ -152,6 +152,19 @@ private:
     void showShaperDialog();
     void showWrapDialog();
 
+    // Layer operations
+    void addLayer();
+    void removeLayer();
+    void reorderLayer(bool up);
+    void renameLayer(const QString& name);
+    void toggleLayerVisibility();
+    void toggleLayerLock();
+    void toggleLayerPrint();
+
+    // Separation operations
+    void addSeparation();
+    void removeSeparation();
+
     // Units: 0 = mm, 1 = pt, 2 = inch.
     double toDisplayUnits(double points) const;
     QString unitSuffix() const;
@@ -227,6 +240,18 @@ private:
     QAction* m_moveRight = nullptr;
     QAction* m_moveUp = nullptr;
     QAction* m_moveDown = nullptr;
+
+    // Layer panel tool buttons
+    QToolButton* m_addLayerButton = nullptr;
+    QToolButton* m_removeLayerButton = nullptr;
+    QToolButton* m_layerOrderButton = nullptr;
+    QToolButton* m_layerOptionsButton = nullptr;
+
+    // Separation panel tool buttons
+    QToolButton* m_addSeparationButton = nullptr;
+    QToolButton* m_removeSeparationButton = nullptr;
+    QToolButton* m_separationOptionsButton = nullptr;
+
     int m_selectedObject = -1;
     QVector<int> m_selectedObjects;
     artplus::edit::TransformParams m_transformDefaults;
