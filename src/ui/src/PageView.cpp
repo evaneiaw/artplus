@@ -508,7 +508,10 @@ void PageView::mouseReleaseEvent(QMouseEvent* event)
             m_marqueeCurrentPos = QRectF();
         }
         else if (m_dragState == DragState::ObjectDrag) {
-            // Object drag ended - callback already notified during drag
+            // Object drag ended - notify callback
+            if (m_objectDragEndCb) {
+                m_objectDragEndCb();
+            }
         }
 
         m_dragState = DragState::None;

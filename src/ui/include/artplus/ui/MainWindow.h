@@ -218,6 +218,10 @@ private:
     QAction* m_showBoxesAction = nullptr;
     QAction* m_crosshairAction = nullptr;
 
+    // Drag state for object dragging and marquee selection
+    QPointF m_dragStartPagePos;
+    bool m_isDraggingObject = false;
+
     int m_page = 0;
     int m_userRotation = 0;
     int m_units = 0;

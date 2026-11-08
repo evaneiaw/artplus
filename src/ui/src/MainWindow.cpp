@@ -197,6 +197,86 @@ MainWindow::MainWindow(QWidget* parent)
         return 0;
     });
 
+    // Object drag callback: translate selected objects
+    m_view->setObjectDragCallback([this](const QPointF& currentPagePos) {
+        if (!m_editor || m_selectedObjects.isEmpty())
+            return;
+        if (!m_isDraggingObject) {
+            // First call - store the start position
+            m_dragStartPagePos = currentPagePos;
+            m_isDraggingObject = true;
+            return;
+        }
+        // Calculate delta from start position
+        double dx = currentPagePos.x() - m_dragStartPagePos.x();
+        double dy = currentPagePos.y() - m_dragStartPagePos.y();
+        
+        // Translate all selected objects
+        for (int index : m_selectedObjects) {
+            if (index >= 0 && index < m_editor->objectCount()) {
+                m_editor->translateObject(index, dx, dy);
+            }
+        }
+        
+        // Update drag start position for next incremental move
+        m_dragStartPagePos = currentPagePos;
+        
+        // Update UI and schedule render
+        updateSelectionOverlay();
+        scheduleRender();
+    });
+
+    // Marquee select callback: select objects within rectangle
+    m_view->setMarqueeSelectCallback([this](const QRectF& marqueeRect) {
+        if (!m_editor || !m_objectList)
+            return;
+        
+        const Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
+        bool shiftDown = mods.testFlag(Qt::ShiftModifier);
+        bool ctrlDown = mods.testFlag(Qt::ControlModifier);
+        
+        QVector<int> newSelection;
+        for (int i = 0; i < m_editor->objectCount(); ++i) {
+            const auto* object = m_editor->object(i);
+            if (object && marqueeRect.intersects(object->bounds)) {
+                newSelection.append(i);
+            }
+        }
+        
+        if (ctrlDown) {
+            // Toggle selection
+            for (int idx : newSelection) {
+                if (m_selectedObjects.contains(idx))
+                    m_selectedObjects.erase(std::find(m_selectedObjects.begin(), m_selectedObjects.end(), idx));
+                else
+                    m_selectedObjects.append(idx);
+            }
+            std::sort(m_selectedObjects.begin(), m_selectedObjects.end());
+            m_selectedObjects.erase(std::unique(m_selectedObjects.begin(), m_selectedObjects.end()), m_selectedObjects.end());
+        } else if (shiftDown && !m_selectedObjects.isEmpty()) {
+            // Extend selection range
+            int first = qMin(newSelection.first(), m_selectedObjects.first());
+            int last = qMax(newSelection.last(), m_selectedObjects.last());
+            m_selectedObjects.clear();
+            for (int i = first; i <= last; ++i)
+                m_selectedObjects.append(i);
+        } else {
+            // Replace selection
+            m_selectedObjects = newSelection;
+            std::sort(m_selectedObjects.begin(), m_selectedObjects.end());
+        }
+        
+        m_selectedObject = m_selectedObjects.isEmpty() ? -1 : m_selectedObjects.first();
+        m_objectList->setCurrentRow(m_selectedObject);
+        updateSelectionOverlay();
+        onObjectSelectionChanged();
+    });
+
+    // Object drag end callback: reset drag state
+    m_view->setObjectDragEndCallback([this]() {
+        m_isDraggingObject = false;
+    });
+
     m_renderTimer = new QTimer(this);
     m_renderTimer->setSingleShot(true);
     m_renderTimer->setInterval(120);

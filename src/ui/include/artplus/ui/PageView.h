@@ -79,6 +79,8 @@ public:
     void setClickCallback(std::function<void(const QPointF&)> cb) { m_clickCb = std::move(cb); }
     // Called when an object is being dragged (object moved).
     void setObjectDragCallback(std::function<void(const QPointF&)> cb) { m_objectDragCb = std::move(cb); }
+    // Called when an object drag ends.
+    void setObjectDragEndCallback(std::function<void()> cb) { m_objectDragEndCb = std::move(cb); }
     // Called when a marquee selection rectangle is completed.
     void setMarqueeSelectCallback(std::function<void(const QRectF&)> cb) { m_marqueeSelectCb = std::move(cb); }
     // Called to determine if a point (in page coordinates) hits an object.
@@ -131,6 +133,7 @@ private:
     std::function<void(const QPointF&)> m_cursorCb;
     std::function<void(const QPointF&)> m_clickCb;
     std::function<void(const QPointF&)> m_objectDragCb;
+    std::function<void()> m_objectDragEndCb;
     std::function<void(const QRectF&)> m_marqueeSelectCb;
     QPointF m_pressPos;
     bool m_draggedSincePress = false;
