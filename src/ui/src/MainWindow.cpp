@@ -14,6 +14,9 @@
 #include "artplus/ui/StepAndRepeatDialog.h"
 #include "artplus/ui/TrappingDialog.h"
 #include "artplus/ui/ScreeningDialog.h"
+#include "artplus/ui/RecolorDialog.h"
+#include "artplus/ui/ShaperDialog.h"
+#include "artplus/ui/WrapDialog.h"
 
 #include <QAction>
 #include <QApplication>
@@ -753,12 +756,15 @@ void MainWindow::buildToolStrip()
             m_view->setInteractionMode(PageView::InteractionMode::Pan);
         }
     });
-    addSmall(theme::IconKind::Recolor, QStringLiteral("Recolor"), false);
-    addSmall(theme::IconKind::Shaper, QStringLiteral("Shaper"), false);
+    auto* recolorBtn = addSmall(theme::IconKind::Recolor, QStringLiteral("Recolor"), true);
+    connect(recolorBtn, &QToolButton::clicked, this, &MainWindow::showRecolorDialog);
+    auto* shaperBtn = addSmall(theme::IconKind::Shaper, QStringLiteral("Shaper"), true);
+    connect(shaperBtn, &QToolButton::clicked, this, &MainWindow::showShaperDialog);
     addSmall(theme::IconKind::Barcode, QStringLiteral("Barcode"), true);
     addSmall(theme::IconKind::Screening, QStringLiteral("Screening"), true);
     addSmall(theme::IconKind::Trapping, QStringLiteral("Trapping"), true);
-    addSmall(theme::IconKind::Wrap, QStringLiteral("Wrap"), false);
+    auto* wrapBtn = addSmall(theme::IconKind::Wrap, QStringLiteral("Wrap"), true);
+    connect(wrapBtn, &QToolButton::clicked, this, &MainWindow::showWrapDialog);
 
     auto* spacer = new QWidget(bar);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -1930,6 +1936,58 @@ void MainWindow::showStepAndRepeatDialog()
     statusBar()->showMessage(QStringLiteral("Step & Repeat: %1x%2 copies, offset (%3, %4) mm")
                                  .arg(params.copiesX).arg(params.copiesY)
                                  .arg(params.offsetX).arg(params.offsetY), 5000);
+}
+
+void MainWindow::showRecolorDialog()
+{
+    if (!m_editor) {
+        statusBar()->showMessage(QStringLiteral("No editable page"), 3000);
+        return;
+    }
+
+    RecolorDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const RecolorDialog::Params params = dialog.params();
+    statusBar()->showMessage(QStringLiteral("Recolor: %1 -> %2, tolerance=%3%")
+                                 .arg(params.colorSpace, params.targetColor)
+                                 .arg(params.tolerance), 5000);
+    // TODO: Apply recolor to document
+}
+
+void MainWindow::showShaperDialog()
+{
+    if (!m_editor || m_selectedObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("No objects selected"), 3000);
+        return;
+    }
+
+    ShaperDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const ShaperDialog::Params params = dialog.params();
+    statusBar()->showMessage(QStringLiteral("Shaper: %1, bend=%2%")
+                                 .arg(params.shapeType).arg(params.bend), 5000);
+    // TODO: Apply shaper/envelope distort to selected objects
+}
+
+void MainWindow::showWrapDialog()
+{
+    if (!m_editor || m_selectedObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("No objects selected"), 3000);
+        return;
+    }
+
+    WrapDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const WrapDialog::Params params = dialog.params();
+    statusBar()->showMessage(QStringLiteral("Text Wrap: %1, offset=%2pt")
+                                 .arg(params.wrapType).arg(params.offset), 5000);
+    // TODO: Apply text wrap to selected objects
 }
 
 void MainWindow::onTransformAgain()

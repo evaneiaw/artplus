@@ -7,6 +7,9 @@ add_library(artplus_ui STATIC
     src/StepAndRepeatDialog.cpp
     src/TrappingDialog.cpp
     src/ScreeningDialog.cpp
+    src/RecolorDialog.cpp
+    src/ShaperDialog.cpp
+    src/WrapDialog.cpp
     src/DocumentManager.cpp
     src/StatusBarPanel.cpp
     include/artplus/ui/MainWindow.h
@@ -17,6 +20,9 @@ add_library(artplus_ui STATIC
     include/artplus/ui/StepAndRepeatDialog.h
     include/artplus/ui/TrappingDialog.h
     include/artplus/ui/ScreeningDialog.h
+    include/artplus/ui/RecolorDialog.h
+    include/artplus/ui/ShaperDialog.h
+    include/artplus/ui/WrapDialog.h
     include/artplus/ui/StatusBarPanel.h
     include/artplus/ui/DocumentManager.h
 )

@@ -148,6 +148,10 @@ private:
     void updateWindowTitle();
     void onCursorMoved(const QPointF& pagePoint);
 
+    void showRecolorDialog();
+    void showShaperDialog();
+    void showWrapDialog();
+
     // Units: 0 = mm, 1 = pt, 2 = inch.
     double toDisplayUnits(double points) const;
     QString unitSuffix() const;
@@ -216,6 +220,9 @@ private:
     QAction* m_stepRepeatAction = nullptr;
     QAction* m_preflightAction = nullptr;
     QAction* m_updateTrapLayerAction = nullptr;
+    QAction* m_recolorAction = nullptr;
+    QAction* m_shaperAction = nullptr;
+    QAction* m_wrapAction = nullptr;
     QAction* m_moveLeft = nullptr;
     QAction* m_moveRight = nullptr;
     QAction* m_moveUp = nullptr;
