@@ -590,7 +590,24 @@ void MainWindow::buildToolStrip()
     };
 
     addSmall(theme::IconKind::Clean, QStringLiteral("Clean"), true);
-    addSmall(theme::IconKind::Select, QStringLiteral("Select"), true);
+    auto* selectBtn = addSmall(theme::IconKind::Select, QStringLiteral("Select"), true);
+    selectBtn->setCheckable(true);
+    selectBtn->setChecked(true);
+    auto* handBtn = addSmall(theme::IconKind::Hand, QStringLiteral("Hand"), true);
+    handBtn->setCheckable(true);
+    // Make Select and Hand mutually exclusive
+    connect(selectBtn, &QToolButton::toggled, this, [this, handBtn](bool checked) {
+        if (checked) {
+            handBtn->setChecked(false);
+            m_view->setInteractionMode(PageView::InteractionMode::Selection);
+        }
+    });
+    connect(handBtn, &QToolButton::toggled, this, [this, selectBtn](bool checked) {
+        if (checked) {
+            selectBtn->setChecked(false);
+            m_view->setInteractionMode(PageView::InteractionMode::Pan);
+        }
+    });
     addSmall(theme::IconKind::Recolor, QStringLiteral("Recolor"), false);
     addSmall(theme::IconKind::Shaper, QStringLiteral("Shaper"), false);
     addSmall(theme::IconKind::Barcode, QStringLiteral("Barcode"), true);

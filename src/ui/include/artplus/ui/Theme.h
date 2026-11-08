@@ -54,6 +54,7 @@ enum class IconKind {
     ShareApprove,
     Clean,
     Select,
+    Hand,
     Recolor,
     Shaper,
     Barcode,

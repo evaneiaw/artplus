@@ -10,6 +10,8 @@
 
 #include <functional>
 
+#include "artplus/objects/GraphicObject.h"
+
 namespace artplus::ui {
 
 // A lightweight PDF page viewport.
@@ -24,6 +26,13 @@ namespace artplus::ui {
 class PageView : public QWidget
 {
 public:
+    // Interaction mode determines how mouse events are interpreted.
+    enum class InteractionMode {
+        Selection,    // Select objects, drag to move, marquee select on empty
+        Pan,          // Pan the viewport (Hand tool)
+        Marquee       // Drag to create selection rectangle (could be merged with Selection)
+    };
+
     explicit PageView(QWidget* parent = nullptr);
 
     // Page geometry, in PDF points (already account for /Rotate + view rotation).
@@ -66,11 +75,19 @@ public:
 
     // Cursor position in PDF points, relative to the page top-left corner.
     void setCursorCallback(std::function<void(const QPointF&)> cb) { m_cursorCb = std::move(cb); }
-    // Called on a left click that did not turn into a pan drag.
+    // Called on a left click that did not turn into a pan drag or object drag.
     void setClickCallback(std::function<void(const QPointF&)> cb) { m_clickCb = std::move(cb); }
+    // Called when an object is being dragged (object moved).
+    void setObjectDragCallback(std::function<void(const QPointF&)> cb) { m_objectDragCb = std::move(cb); }
+    // Called when a marquee selection rectangle is completed.
+    void setMarqueeSelectCallback(std::function<void(const QRectF&)> cb) { m_marqueeSelectCb = std::move(cb); }
 
     void setStatusCallback(std::function<void()> cb) { m_statusCb = std::move(cb); }
     void setRenderRequestCallback(std::function<void()> cb) { m_requestRender = std::move(cb); }
+
+    // Set the interaction mode (Selection, Pan, etc.)
+    void setInteractionMode(InteractionMode mode) { m_interactionMode = mode; }
+    InteractionMode interactionMode() const { return m_interactionMode; }
 
     QSize sizeHint() const override { return {900, 700}; }
 
@@ -110,8 +127,25 @@ private:
     std::function<void()> m_requestRender;
     std::function<void(const QPointF&)> m_cursorCb;
     std::function<void(const QPointF&)> m_clickCb;
+    std::function<void(const QPointF&)> m_objectDragCb;
+    std::function<void(const QRectF&)> m_marqueeSelectCb;
     QPointF m_pressPos;
     bool m_draggedSincePress = false;
+
+    // Interaction state machine
+    enum class DragState {
+        None,
+        Pan,
+        ObjectDrag,
+        MarqueeSelect
+    };
+    DragState m_dragState = DragState::None;
+    InteractionMode m_interactionMode = InteractionMode::Selection;
+    objects::ObjectId m_dragObjectId = 0;
+    QPointF m_dragStartPagePos;
+    QPointF m_marqueeStartPos;
+    QRectF m_marqueeCurrentPos;
+    bool m_marqueeActive = false;
 };
 
 } // namespace artplus::ui

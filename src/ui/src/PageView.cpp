@@ -214,11 +214,19 @@ void PageView::setCrosshairEnabled(bool enabled)
 
 void PageView::updateCursorShape()
 {
-    if (m_dragging) {
-        setCursor(Qt::ClosedHandCursor);
+    if (m_dragState != DragState::None) {
+        if (m_dragState == DragState::ObjectDrag) {
+            setCursor(Qt::ClosedHandCursor);
+        } else {
+            setCursor(Qt::ClosedHandCursor);
+        }
         return;
     }
-    setCursor(m_crosshair ? Qt::CrossCursor : Qt::ArrowCursor);
+    if (m_interactionMode == InteractionMode::Pan) {
+        setCursor(Qt::OpenHandCursor);
+    } else {
+        setCursor(m_crosshair ? Qt::CrossCursor : Qt::ArrowCursor);
+    }
 }
 
 void PageView::enterEvent(QEnterEvent* event)
@@ -316,6 +324,16 @@ void PageView::paintEvent(QPaintEvent* event)
         }
     }
 
+    // Marquee selection rectangle (widget coordinates).
+    if (m_marqueeActive) {
+        QPen pen(QColor(0x1F, 0x6F, 0xD0));
+        pen.setWidthF(1.8);
+        pen.setStyle(Qt::DashLine);
+        p.setPen(pen);
+        p.setBrush(QColor(0x1F, 0x6F, 0xD0, 0x20));
+        p.drawRect(m_marqueeCurrentPos);
+    }
+
     // Crosshair follows the cursor across the whole viewport.
     if (m_crosshair && m_lastMousePos.x() >= 0 && m_lastMousePos.y() >= 0) {
         QPen pen(QColor(0x60, 0x60, 0x60, 0xB0));
@@ -370,6 +388,26 @@ void PageView::mousePressEvent(QMouseEvent* event)
         m_draggedSincePress = false;
         m_pressPos = event->position();
         m_lastMousePos = event->position().toPoint();
+
+        // Convert to page coordinates
+        const QRectF page = pageRect();
+        QPointF pagePos((event->position().x() - page.left()) / m_scale,
+                        (event->position().y() - page.top()) / m_scale);
+
+        // Determine drag behavior based on interaction mode
+        if (m_interactionMode == InteractionMode::Pan) {
+            m_dragState = DragState::Pan;
+            m_pressPos = event->position();
+            m_draggedSincePress = false;
+        } else { // Selection mode
+            // Check if we're clicking on a selection handle or object
+            // For now, start marquee selection - MainWindow will handle object selection via click callback
+            m_dragState = DragState::MarqueeSelect;
+            m_marqueeStartPos = event->position();
+            m_marqueeCurrentPos = QRectF(event->position(), event->position()).normalized();
+            m_marqueeActive = true;
+        }
+
         updateCursorShape();
         update();
         event->accept();
@@ -383,16 +421,38 @@ void PageView::mouseMoveEvent(QMouseEvent* event)
     const QPointF pos = event->position();
 
     if (m_dragging) {
-        const QPointF delta = pos - m_lastMousePos;
-        m_pan += delta;
-        m_lastMousePos = pos.toPoint();
-        if ((pos - m_pressPos).manhattanLength() > 8.0)
-            m_draggedSincePress = true;
-        clampPan();
-        update();
-        notifyStatus();
-        event->accept();
-        return;
+        if (m_dragState == DragState::Pan) {
+            const QPointF delta = pos - m_lastMousePos;
+            m_pan += delta;
+            m_lastMousePos = pos.toPoint();
+            if ((pos - m_pressPos).manhattanLength() > 8.0)
+                m_draggedSincePress = true;
+            clampPan();
+            update();
+            notifyStatus();
+            event->accept();
+            return;
+        }
+        else if (m_dragState == DragState::MarqueeSelect) {
+            // Update marquee rectangle
+            m_marqueeCurrentPos = QRectF(m_marqueeStartPos, pos).normalized();
+            update();
+            event->accept();
+            return;
+        }
+        else if (m_dragState == DragState::ObjectDrag) {
+            // Object drag - notify callback
+            if (m_objectDragCb) {
+                // Convert to page coordinates
+                QRectF page = pageRect();
+                QPointF pagePos((pos.x() - page.left()) / m_scale,
+                                (pos.y() - page.top()) / m_scale);
+                m_objectDragCb(pagePos);
+            }
+            update();
+            event->accept();
+            return;
+        }
     }
 
     m_lastMousePos = pos.toPoint();
@@ -412,12 +472,37 @@ void PageView::mouseReleaseEvent(QMouseEvent* event)
         m_dragging = false;
         updateCursorShape();
         update();
-        if (!m_draggedSincePress && m_clickCb && m_pageSizePoints.width() > 0.0) {
-            const QRectF page = pageRect();
-            const QPointF pt((event->position().x() - page.left()) / m_scale,
-                             (event->position().y() - page.top()) / m_scale);
-            m_clickCb(pt);
+
+        if (m_dragState == DragState::Pan) {
+            if (!m_draggedSincePress && m_clickCb && m_pageSizePoints.width() > 0.0) {
+                const QRectF page = pageRect();
+                const QPointF pt((event->position().x() - page.left()) / m_scale,
+                                 (event->position().y() - page.top()) / m_scale);
+                m_clickCb(pt);
+            }
         }
+        else if (m_dragState == DragState::MarqueeSelect) {
+            m_marqueeActive = false;
+            if (m_marqueeSelectCb && !m_marqueeCurrentPos.isEmpty() &&
+                m_marqueeCurrentPos.width() > 4.0 && m_marqueeCurrentPos.height() > 4.0) {
+                // Convert marquee to page coordinates
+                QRectF page = pageRect();
+                QRectF marqueePage((m_marqueeCurrentPos.left() - page.left()) / m_scale,
+                                   (m_marqueeCurrentPos.top() - page.top()) / m_scale,
+                                   m_marqueeCurrentPos.width() / m_scale,
+                                   m_marqueeCurrentPos.height() / m_scale);
+                m_marqueeSelectCb(marqueePage.normalized());
+            }
+            m_marqueeCurrentPos = QRectF();
+        }
+        else if (m_dragState == DragState::ObjectDrag) {
+            // Object drag ended - callback already notified during drag
+        }
+
+        m_dragState = DragState::None;
+        m_draggedSincePress = false;
+        updateCursorShape();
+        update();
         event->accept();
         return;
     }
@@ -448,4 +533,3 @@ void PageView::requestRender()
 }
 
 } // namespace artplus::ui
-

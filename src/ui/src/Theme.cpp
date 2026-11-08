@@ -437,6 +437,24 @@ QIcon icon(IconKind kind, const QColor& color, int size)
         p.drawPoint(QPointF(box.center().x(), box.bottom() - box.height() * 0.18));
         break;
     }
+    case IconKind::Hand: {
+        // Hand tool (pan) - draw an open hand
+        p.setPen(QPen(color, std::max(1.0, s / 18.0)));
+        p.setBrush(Qt::NoBrush);
+        // Palm
+        QRectF palm(box.left() + box.width() * 0.25, box.top() + box.height() * 0.25,
+                     box.width() * 0.5, box.height() * 0.55);
+        p.drawEllipse(palm);
+        // Fingers (4 lines)
+        for (int i = 0; i < 4; ++i) {
+            double fx = palm.left() + palm.width() * (0.15 + i * 0.2);
+            p.drawLine(QPointF(fx, palm.top()), QPointF(fx, palm.bottom()));
+        }
+        // Thumb
+        p.drawEllipse(QRectF(palm.left() - palm.width() * 0.25, palm.top() + palm.height() * 0.2,
+                             palm.width() * 0.25, palm.height() * 0.5));
+        break;
+    }
     }
 
     p.end();
