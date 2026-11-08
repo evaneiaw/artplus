@@ -35,6 +35,11 @@ public:
     void deselectAll();
     QVector<int> selectedObjects() const;
 
+    // Hit-testing / object access
+    int objectCount() const;
+    GraphicObject* object(int globalIndex);
+    const GraphicObject* object(int globalIndex) const;
+
     // Transformações sobre a seleção atual
     void translateSelected(double dx, double dy);
     void rotateSelected(double degrees);
@@ -78,6 +83,9 @@ private:
     void saveState();
     // Aplicar snapshot salvo
     void applyState(struct TransformationState& state);
+
+    // Helper: collect all objects from page 0 in visual order (bottom to top)
+    QVector<GraphicObject*> collectAllObjects() const;
 };
 
 // ======================================================================
@@ -288,6 +296,69 @@ void Editor::sendToBack();
 void Editor::bringForward();
 
 // Enviar objeto selecionado um nível para trás
-void Editor::sendBackward();
+void Editor::sendBackward()
+{
+}
+
+int Editor::objectCount() const
+{
+    int count = 0;
+    if (ArtPage* page = m_document.page(0)) {
+        for (int i = 0; i < page->layerCount(); ++i) {
+            if (ArtLayer* layer = page->layer(i)) {
+                count += layer->objectCount();
+            }
+        }
+    }
+    return count;
+}
+
+GraphicObject* Editor::object(int globalIndex)
+{
+    if (globalIndex < 0)
+        return nullptr;
+    
+    int currentIndex = 0;
+    if (ArtPage* page = m_document.page(0)) {
+        // Iterate layers in visual order (bottom to top = layer 0 to layer N)
+        for (int i = 0; i < page->layerCount(); ++i) {
+            if (ArtLayer* layer = page->layer(i)) {
+                int layerObjCount = layer->objectCount();
+                if (globalIndex < currentIndex + layerObjCount) {
+                    // Object is in this layer
+                    const auto& objects = layer->objects();
+                    int localIndex = globalIndex - currentIndex;
+                    if (localIndex >= 0 && localIndex < (int)objects.size()) {
+                        return objects[localIndex].get();
+                    }
+                    return nullptr;
+                }
+                currentIndex += layerObjCount;
+            }
+        }
+    }
+    return nullptr;
+}
+
+const GraphicObject* Editor::object(int globalIndex) const
+{
+    return const_cast<Editor*>(this)->object(globalIndex);
+}
+
+QVector<GraphicObject*> Editor::collectAllObjects() const
+{
+    QVector<GraphicObject*> result;
+    if (ArtPage* page = m_document.page(0)) {
+        for (int i = 0; i < page->layerCount(); ++i) {
+            if (ArtLayer* layer = page->layer(i)) {
+                const auto& objects = layer->objects();
+                for (const auto& obj : objects) {
+                    result.append(obj.get());
+                }
+            }
+        }
+    }
+    return result;
+}
 
 } // namespace artplus::document

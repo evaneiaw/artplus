@@ -4,6 +4,7 @@
 // Qt-free core: results are returned through std::vector.
 
 #include "artplus/geometry/Point.h"
+#include "artplus/geometry/Line.h"
 
 #include <vector>
 
@@ -106,4 +107,4 @@ void flattenCubic(const Point& p0, const Point& c1, const Point& c2, const Point
 Point evaluateQuadratic(const Point& p0, const Point& c, const Point& p1, double t);
 Point evaluateCubic(const Point& p0, const Point& c1, const Point& c2, const Point& p1, double t);
 
-// ... (rest of the file)
+} // namespace artplus::geometry

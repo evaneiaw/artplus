@@ -1,4 +1,4 @@
-﻿#include "artplus/ui/PageView.h"
+#include "artplus/ui/PageView.h"
 
 #include "artplus/ui/Theme.h"
 
@@ -386,7 +386,7 @@ void PageView::mouseMoveEvent(QMouseEvent* event)
         const QPointF delta = pos - m_lastMousePos;
         m_pan += delta;
         m_lastMousePos = pos.toPoint();
-        if ((pos - m_pressPos).manhattanLength() > 2.0)
+        if ((pos - m_pressPos).manhattanLength() > 8.0)
             m_draggedSincePress = true;
         clampPan();
         update();

@@ -5,7 +5,6 @@
 
 namespace artplus::geometry {
 
-namespace {
 constexpr double kMinFlattenTolerance = 1e-6;
 
 // Relative head-room for the "is the denominator zero?" tests. A coefficient is
@@ -31,11 +30,6 @@ bool isNegligible(double value, double scale)
 }
 
 // Curve-local magnitude: the largest distance of any control point from `origin`.
-// This is the geometric size of the curve. Using the absolute coordinate
-// magnitude instead (as stage 1.1 did) made every threshold depend on how far
-// the curve sits from the document origin: at 1e12 a 100 pt curve has "scale"
-// 1e12, so a legitimate 0.25 pt deviation was judged negligible and the extremum
-// was dropped, and at 1e15 the flatness test changed the segment count.
 double localExtent(const Point& origin, const Point& a, const Point& b, const Point& c)
 {
     return std::max({std::abs(a.x - origin.x), std::abs(a.y - origin.y),
@@ -88,36 +82,6 @@ void appendInteriorQuadraticRoots(double a, double b, double c, double scale,
 }
 
 
-// Flatness test: the sum of both control points' perpendicular distances from
-// the chord is compared against tolerance * chordLength. This is the classic
-// "distance of control polygon to chord" bound and over-estimates the true
-// deviation, so it never accepts a segment that is further off than tolerance.
-bool cubicIsFlat(const Point& p0, const Point& c1, const Point& c2, const Point& p1,
-                 double tolerance)
-{
-    // Everything here is already expressed through differences of control
-    // points, so a common translation cancels exactly and the flatness verdict
-    // (hence the number of flattened segments) is translation invariant.
-    const double dx = p1.x - p0.x;
-    const double dy = p1.y - p0.y;
-    const double lenSq = dx * dx + dy * dy;
-
-    // Curve-local extent: the largest control point offset from p0.
-    const double extent = localExtent(p0, c1, c2, p1);
-
-    if (!(lenSq > 0.0) || (extent > 0.0 && std::abs(dx) <= kRelativeEpsilon * extent
-                           && std::abs(dy) <= kRelativeEpsilon * extent)) {
-        // Chord collapses towards a point: the deviation from a degenerate curve
-        // is the control point spread, measured relative to p0 as well.
-        return std::max(distance(p0, c1), distance(p0, c2)) <= tolerance;
-    }
-
-    const double d1 = std::abs((c1.x - p1.x) * dy - (c1.y - p1.y) * dx);
-    const double d2 = std::abs((c2.x - p1.x) * dy - (c2.y - p1.y) * dx);
-    const double sum = d1 + d2;
-    return sum * sum <= tolerance * tolerance * lenSq;
-}
-
 double clampTolerance(double tolerance)
 {
     return std::max(tolerance, kMinFlattenTolerance);
@@ -128,9 +92,9 @@ double clampTolerance(double tolerance)
 // ========================================================================
 
 // Quadratic Bezier × line segment analytical intersection.
-QuadBezierIntersection artplus::geometry::intersectQuadBezierLine(const QuadBezier& bezier,
-                                                                   const Line& line,
-                                                                   double epsilon)
+QuadBezierIntersection intersectQuadBezierLine(const QuadBezier& bezier,
+                                               const Line& line,
+                                               double epsilon)
 {
     QuadBezierIntersection result;
     result.kind = QuadBezierIntersectionKind::None;
@@ -154,7 +118,7 @@ QuadBezierIntersection artplus::geometry::intersectQuadBezierLine(const QuadBezi
 
     auto cross = [](const Point& a, const Point& b) { return a.x * b.y - a.y * b.x; };
 
-    Point D = bezier.p1 - 2.0 * bezier.c + bezier.p0;
+    Point D = bezier.p1 - bezier.c * 2.0 + bezier.p0;
     Point E = bezier.c - bezier.p0;
     Point F = bezier.p0 - line.p0;
     Point G = line.p1 - line.p0;
@@ -229,9 +193,9 @@ QuadBezierIntersection artplus::geometry::intersectQuadBezierLine(const QuadBezi
 }
 
 // Cubic Bezier × line segment intersection using flattening approach.
-CubicBezIntersection artplus::geometry::intersectCubicBezierLine(const CubicBezier& bezier,
-                                                                 const Line& line,
-                                                                 double epsilon)
+CubicBezIntersection intersectCubicBezierLine(const CubicBezier& bezier,
+                                              const Line& line,
+                                              double epsilon)
 {
     CubicBezIntersection result;
     result.kind = CubicBezIntersectionKind::None;
