@@ -9,6 +9,7 @@
 #include <QVector>
 #include <QString>
 #include <QDebug>
+#include <unordered_set>
 
 namespace artplus::document {
 
@@ -30,15 +31,18 @@ public:
     explicit Editor(ArtDocument& document, QObject* parent = nullptr);
     ~Editor();
 
-    // Seleção
-    void selectObject(int index);
+    // Seleção - usa ObjectId estável
+    void selectObject(objects::ObjectId id);
     void deselectAll();
-    QVector<int> selectedObjects() const;
+    QVector<objects::ObjectId> selectedObjects() const;
+    bool isSelected(objects::ObjectId id) const;
 
-    // Hit-testing / object access
+    // Hit-testing / object access - por ID estável
     int objectCount() const;
-    GraphicObject* object(int globalIndex);
-    const GraphicObject* object(int globalIndex) const;
+    GraphicObject* object(objects::ObjectId id);
+    const GraphicObject* object(objects::ObjectId id) const;
+    GraphicObject* objectAt(int pageIndex, int layerIndex, int localIndex);
+    const GraphicObject* objectAt(int pageIndex, int layerIndex, int localIndex) const;
 
     // Transformações sobre a seleção atual
     void translateSelected(double dx, double dy);
@@ -59,24 +63,50 @@ public:
     // Properties
     bool isModified() const;
 
-signals:
-    void selectionChanged();
-    void objectModified(int index);
-    void undoAvailable(bool available);
-    void redoAvailable(bool available);
+    // Clipboard operations
+    void copySelected();
+    void cutSelected();
+    void paste();
+
+    // Group/Ungroup
+    void groupSelected();
+    void ungroupSelected();
+
+    // Z-Order operations
+    void bringToFront();
+    void sendToBack();
+    void bringForward();
+    void sendBackward();
+
+    // Properties
+    void setFillColor(unsigned int color);
+    void setStrokeColor(unsigned int color);
+    void setStrokeWidth(double width);
+    void setOpacity(double opacity);
+    void setVisible(bool visible);
+    void setLocked(bool locked);
+    void updateProperties();
 
     // Clipboard operations
     void copyAvailable(bool available);
     void pasteAvailable(bool available);
 
+signals:
+    void selectionChanged();
+    void objectModified(objects::ObjectId id);
+    void undoAvailable(bool available);
+    void redoAvailable(bool available);
+    void copyAvailable(bool available);
+    void cutAvailable(bool available);
+    void pasteAvailable(bool available);
+
 private:
     ArtDocument& m_document;
-    QVector<int> m_selected;          // índices globais dos objetos selecionados
+    std::unordered_set<objects::ObjectId> m_selected;  // IDs estáveis dos objetos selecionados
     
     struct TransformationState {
-        // Para cada objeto selecionado, guarda o índice global e a matriz de transformação
         struct ObjectState {
-            int globalIndex;
+            objects::ObjectId id;
             geometry::Matrix transform;
         };
         QVector<ObjectState> objects;
@@ -85,13 +115,16 @@ private:
     int m_undoCount = 0;
     int m_redoCount = 0;
 
+    // Clipboard
+    QVector<std::unique_ptr<objects::GraphicObject>> m_clipboard;
+
     // Gerar snapshot do estado atual para undo
     void saveState();
     // Aplicar snapshot salvo
     void applyState(const TransformationState& state);
     
-    // Helper: collect all objects from page 0 in visual order (bottom to top)
-    QVector<std::pair<int, GraphicObject*>> collectAllObjectsWithIndices() const;
+    // Helper: collect all objects with their IDs
+    QVector<std::pair<objects::ObjectId, GraphicObject*>> collectAllObjectsWithIds() const;
 };
 
 } // namespace artplus::document

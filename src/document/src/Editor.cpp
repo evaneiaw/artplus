@@ -5,12 +5,16 @@
 #include "artplus/document/ArtPage.h"
 #include "artplus/objects/GraphicObject.h"
 #include "artplus/objects/PathObject.h"
+#include "artplus/colors/Paint.h"
 
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDateTime>
+#include <QMimeData>
+#include <QApplication>
 
 #include <algorithm>
+#include <cmath>
 
 namespace artplus::document {
 
@@ -37,6 +41,7 @@ static void applyObjectAffineTransform(GraphicObject* obj, double a, double b, d
     // Multiplicação correta: current * new_transform
     // [a c e] * [a c e] = [a*a' + c*b'   a*c' + c*d'   a*e' + c*f' + e]
     // [b d f]   [b d f]   [b*a' + d*b'   b*c' + d*d'   b*e' + d*f' + f]
+    geometry::Matrix nova;
     nova.a = current.a * a + current.c * b;
     nova.b = current.b * a + current.d * b;
     nova.c = current.a * c + current.c * d;
@@ -54,7 +59,6 @@ static void applyObjectAffineTransform(GraphicObject* obj, double a, double b, d
 Editor::Editor(ArtDocument& document, QObject* parent)
     : QObject(parent), m_document(document)
 {
-    m_selected.clear();
     m_undoState.hasTransform = false;
     m_redoState.hasTransform = false;
     m_undoCount = 0;
@@ -64,16 +68,15 @@ Editor::Editor(ArtDocument& document, QObject* parent)
 Editor::~Editor() {}
 
 // ======================================================================
-// Seleção
+// Seleção - usando ObjectId estável
 // ======================================================================
 
-void Editor::selectObject(int index)
+void Editor::selectObject(objects::ObjectId id)
 {
-    // Lógica de seleção: adiciona/remove do conjunto selecionado
-    if (m_selected.contains(index)) {
-        m_selected.removeOne(index);
+    if (m_selected.contains(id)) {
+        m_selected.erase(id);
     } else {
-        m_selected.append(index);
+        m_selected.insert(id);
     }
     emit selectionChanged();
 }
@@ -84,74 +87,80 @@ void Editor::deselectAll()
     emit selectionChanged();
 }
 
-QVector<int> Editor::selectedObjects() const
+QVector<objects::ObjectId> Editor::selectedObjects() const
 {
-    return m_selected;
+    QVector<objects::ObjectId> result;
+    result.reserve(m_selected.size());
+    for (const auto& id : m_selected) {
+        result.append(id);
+    }
+    return result;
+}
+
+bool Editor::isSelected(objects::ObjectId id) const
+{
+    return m_selected.contains(id);
 }
 
 // ======================================================================
-// Hit-testing / object access
+// Hit-testing / object access - usando ObjectId estável
 // ======================================================================
 
 int Editor::objectCount() const
 {
     int count = 0;
-    if (ArtPage* page = m_document.page(0)) {
-        for (int i = 0; i < page->layerCount(); ++i) {
-            if (ArtLayer* layer = page->layer(i)) {
-                count += layer->objectCount();
-            }
-        }
+    for (const auto& page : m_document.pages()) {
+        count += page->objectCount();
     }
     return count;
 }
 
-GraphicObject* Editor::object(int globalIndex)
+GraphicObject* Editor::object(objects::ObjectId id)
 {
-    if (globalIndex < 0)
-        return nullptr;
+    if (!id) return nullptr;
     
-    int currentIndex = 0;
-    if (ArtPage* page = m_document.page(0)) {
-        // Iterate layers in visual order (bottom to top = layer 0 to layer N)
-        for (int i = 0; i < page->layerCount(); ++i) {
-            if (ArtLayer* layer = page->layer(i)) {
-                int layerObjCount = layer->objectCount();
-                if (globalIndex < currentIndex + layerObjCount) {
-                    // Object is in this layer
-                    const auto& objects = layer->objects();
-                    int localIndex = globalIndex - currentIndex;
-                    if (localIndex >= 0 && localIndex < (int)objects.size()) {
-                        return objects[localIndex].get();
-                    }
-                    return nullptr;
-                }
-                currentIndex += layerObjCount;
+    for (auto& page : m_document.pages()) {
+        for (auto& layer : page->layers()) {
+            if (auto* obj = layer->findObject(id)) {
+                return obj;
             }
         }
     }
     return nullptr;
 }
 
-const GraphicObject* Editor::object(int globalIndex) const
+const GraphicObject* Editor::object(objects::ObjectId id) const
 {
-    return const_cast<Editor*>(this)->object(globalIndex);
+    return const_cast<Editor*>(this)->object(id);
 }
 
-// Helper: collect all objects with their global indices
-QVector<std::pair<int, GraphicObject*>> Editor::collectAllObjectsWithIndices() const
+GraphicObject* Editor::objectAt(int pageIndex, int layerIndex, int localIndex)
 {
-    QVector<std::pair<int, GraphicObject*>> result;
-    int globalIndex = 0;
+    if (ArtPage* page = m_document.page(pageIndex)) {
+        if (ArtLayer* layer = page->layer(layerIndex)) {
+            const auto& objects = layer->objects();
+            if (localIndex >= 0 && localIndex < (int)objects.size()) {
+                return objects[localIndex].get();
+            }
+        }
+    }
+    return nullptr;
+}
+
+const GraphicObject* Editor::objectAt(int pageIndex, int layerIndex, int localIndex) const
+{
+    return const_cast<Editor*>(this)->objectAt(pageIndex, layerIndex, localIndex);
+}
+
+// Helper: collect all objects with their IDs
+QVector<std::pair<objects::ObjectId, GraphicObject*>> Editor::collectAllObjectsWithIds() const
+{
+    QVector<std::pair<objects::ObjectId, GraphicObject*>> result;
     
-    if (ArtPage* page = m_document.page(0)) {
-        for (int i = 0; i < page->layerCount(); ++i) {
-            if (ArtLayer* layer = page->layer(i)) {
-                const auto& objects = layer->objects();
-                for (int j = 0; j < (int)objects.size(); ++j) {
-                    result.append({globalIndex, objects[j].get()});
-                    ++globalIndex;
-                }
+    for (auto& page : m_document.pages()) {
+        for (auto& layer : page->layers()) {
+            for (const auto& obj : layer->objects()) {
+                result.append({obj->id(), obj.get()});
             }
         }
     }
@@ -166,12 +175,12 @@ void Editor::translateSelected(double dx, double dy)
 {
     saveState();
     
-    auto objects = collectAllObjectsWithIndices();
+    auto objects = collectAllObjectsWithIds();
     for (const auto& pair : objects) {
-        int globalIdx = pair.first;
+        objects::ObjectId id = pair.first;
         GraphicObject* obj = pair.second;
         
-        if (!m_selected.contains(globalIdx) || !obj)
+        if (!m_selected.contains(id) || !obj)
             continue;
         
         // Apply translation
@@ -179,7 +188,7 @@ void Editor::translateSelected(double dx, double dy)
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -192,16 +201,15 @@ void Editor::rotateSelected(double degrees)
     double c = cos(rad);
     double s = sin(rad);
     
-    auto objects = collectAllObjectsWithIndices();
+    auto objects = collectAllObjectsWithIds();
     for (const auto& pair : objects) {
-        int globalIdx = pair.first;
+        objects::ObjectId id = pair.first;
         GraphicObject* obj = pair.second;
         
-        if (!m_selected.contains(globalIdx) || !obj)
+        if (!m_selected.contains(obj->id()) || !obj)
             continue;
         
         // Apply rotation around object center
-        // Get object center in local coordinates
         geometry::Rect bounds = obj->bounds();
         geometry::Point center = bounds.center();
         
@@ -221,7 +229,7 @@ void Editor::rotateSelected(double degrees)
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -230,12 +238,12 @@ void Editor::scaleSelected(double factor)
 {
     saveState();
     
-    auto objects = collectAllObjectsWithIndices();
+    auto objects = collectAllObjectsWithIds();
     for (const auto& pair : objects) {
-        int globalIdx = pair.first;
+        objects::ObjectId id = pair.first;
         GraphicObject* obj = pair.second;
         
-        if (!m_selected.contains(globalIdx) || !obj)
+        if (!m_selected.contains(id) || !obj)
             continue;
         
         // Scale around object center
@@ -251,7 +259,7 @@ void Editor::scaleSelected(double factor)
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -260,19 +268,19 @@ void Editor::setTransform(double a, double b, double c, double d, double e, doub
 {
     saveState();
     
-    auto objects = collectAllObjectsWithIndices();
+    auto objects = collectAllObjectsWithIds();
     for (const auto& pair : objects) {
-        int globalIdx = pair.first;
+        objects::ObjectId id = pair.first;
         GraphicObject* obj = pair.second;
         
-        if (!m_selected.contains(globalIdx) || !obj)
+        if (!m_selected.contains(id) || !obj)
             continue;
         
         applyObjectAffineTransform(obj, a, b, c, d, e, f);
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -284,12 +292,12 @@ void Editor::setTransform(double a, double b, double c, double d, double e, doub
 void Editor::stepRepeat(int count, double dx, double dy)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // Get the layer of the first selected object to add copies there
-    int firstGlobalIdx = selected.first();
-    GraphicObject* firstObj = object(firstGlobalIdx);
+    objects::ObjectId firstId = selected.first();
+    GraphicObject* firstObj = object(firstId);
     if (!firstObj) return;
     
     // Find the layer containing the first selected object
@@ -306,6 +314,7 @@ void Editor::stepRepeat(int count, double dx, double dy)
                 }
                 if (targetLayer) break;
             }
+        }
     }
     
     if (!targetLayer) return;
@@ -316,8 +325,8 @@ void Editor::stepRepeat(int count, double dx, double dy)
         double accumY = dy * (i + 1);
         
         // For each selected object
-        for (int globalIdx : selected) {
-            GraphicObject* obj = object(globalIdx);
+        for (objects::ObjectId objId : selected) {
+            GraphicObject* obj = object(objId);
             if (!obj) continue;
 
             // Clone the object
@@ -333,7 +342,7 @@ void Editor::stepRepeat(int count, double dx, double dy)
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -341,12 +350,12 @@ void Editor::stepRepeat(int count, double dx, double dy)
 void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, double spacingY)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // Find target layer
-    int firstGlobalIdx = selected.first();
-    GraphicObject* firstObj = object(firstGlobalIdx);
+    objects::ObjectId firstId = selected.first();
+    GraphicObject* firstObj = object(firstId);
     if (!firstObj) return;
     
     ArtLayer* targetLayer = nullptr;
@@ -372,8 +381,8 @@ void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, doub
             double accumX = spacingX * x;
             double accumY = spacingY * y;
             
-            for (int globalIdx : selected) {
-                GraphicObject* obj = object(globalIdx);
+            for (objects::ObjectId objId : selected) {
+                GraphicObject* obj = object(objId);
                 if (!obj) continue;
 
                 auto cloned = obj->clone();
@@ -386,7 +395,7 @@ void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, doub
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -394,7 +403,7 @@ void Editor::stepRepeatRectangular(int countX, int countY, double spacingX, doub
 void Editor::stepRepeatHexagonal(int count, double radius, double angle)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     int firstGlobalIdx = selected.first();
@@ -424,8 +433,8 @@ void Editor::stepRepeatHexagonal(int count, double radius, double angle)
         double dx = radius * cos(theta);
         double dy = radius * sin(theta);
 
-        for (int globalIdx : selected) {
-            GraphicObject* obj = object(globalIdx);
+        for (objects::ObjectId objId : selected) {
+            GraphicObject* obj = object(objId);
             if (!obj) continue;
 
             auto cloned = obj->clone();
@@ -437,7 +446,7 @@ void Editor::stepRepeatHexagonal(int count, double radius, double angle)
     }
     
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -445,7 +454,7 @@ void Editor::stepRepeatHexagonal(int count, double radius, double angle)
 void Editor::imposeLayout(QString layoutType, int copiesX, int copiesY, double gutterX, double gutterY)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     if (layoutType == QStringLiteral("grid")) {
@@ -455,7 +464,7 @@ void Editor::imposeLayout(QString layoutType, int copiesX, int copiesY, double g
     }
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -467,62 +476,62 @@ void Editor::imposeLayout(QString layoutType, int copiesX, int copiesY, double g
 void Editor::drawRegistrationMark(const QString& markType, const QRectF& rect, const QColor& color, double lineWidth)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // TODO: Implementar criação de marca de registro
     // Por enquanto, apenas emitir sinal de modificação
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::drawCutMark(const QString& markType, const QRectF& rect, const QColor& color, double lineWidth)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // TODO: Implementar criação de marca de corte
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::drawBleedMark(const QString& markType, const QRectF& rect, const QColor& color, double lineWidth)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // TODO: Implementar criação de marca de sangria
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::drawColorBar(const QString& markType, const QRectF& rect, const QColor& color, double lineWidth)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // TODO: Implementar criação de barra de cor
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::generatePrintMarks(QString markSet, int copiesX, int copiesY, double gutterX, double gutterY)
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // TODO: Implementar geração de marcas de impressão
 
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 // ======================================================================
@@ -531,23 +540,18 @@ void Editor::generatePrintMarks(QString markSet, int copiesX, int copiesY, doubl
 
 void Editor::saveState()
 {
-    if (m_selected.isEmpty()) return;
+    if (m_selected.empty()) return;
 
     m_undoState.objects.clear();
     m_undoState.hasTransform = false;
     
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        TransformationState::ObjectState state;
-        state.globalIndex = globalIdx;
-        state.transform = obj->transform();
-        m_undoState.objects.append(state);
+    for (const auto& id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            TransformationState::ObjectState state;
+            state.id = id;
+            state.transform = obj->transform();
+            m_undoState.objects.append(state);
+        }
     }
     
     m_undoState.hasTransform = !m_undoState.objects.isEmpty();
@@ -561,8 +565,7 @@ void Editor::applyState(const TransformationState& state)
         return;
 
     for (const auto& objState : state.objects) {
-        GraphicObject* obj = object(objState.globalIndex);
-        if (obj) {
+        if (GraphicObject* obj = object(objState.id)) {
             obj->setTransform(objState.transform);
         }
     }
@@ -586,8 +589,8 @@ void Editor::undo()
         emit undoAvailable(m_undoCount > 0);
         emit redoAvailable(true);
         emit selectionChanged();
-        if (!m_selected.isEmpty()) {
-            emit objectModified(m_selected.first());
+        if (!m_selected.empty()) {
+            emit objectModified(*m_selected.begin());
         }
     }
 }
@@ -610,8 +613,8 @@ void Editor::redo()
         emit undoAvailable(true);
         emit redoAvailable(m_redoCount > 0);
         emit selectionChanged();
-        if (!m_selected.isEmpty()) {
-            emit objectModified(m_selected.first());
+        if (!m_selected.empty()) {
+            emit objectModified(*m_selected.begin());
         }
     }
 }
@@ -629,20 +632,95 @@ bool Editor::isModified() const
 // Clipboard — copy, cut e paste
 // ======================================================================
 
-void Editor::copyAvailable(bool available)
+void Editor::copySelected()
 {
-    Q_UNUSED(available);
-    // O portapapéis deveria armazenar clones independentes dos objetos selecionados
-    // para que não sejam invalidados quando o documento mudar.
-    // Em implementação futura, serializaríamos os objetos ou seus IDs.
+    saveState();
+    QVector<objects::ObjectId> selected = selectedObjects();
+    if (selected.isEmpty()) return;
+
+    m_clipboard.clear();
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            m_clipboard.append(obj->clone());
+        }
+    }
+    emit copyAvailable(true);
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
+    m_redoCount = 0;
+    emit redoAvailable(false);
 }
 
-void Editor::pasteAvailable(bool available)
+void Editor::cutSelected()
 {
-    Q_UNUSED(available);
-    // Colar objetos da área de transferência de volta ao documento.
-    // Os objetos colados deveriam ser clones dos objetos copiados/cortados,
-    // posicionados apropriadamente.
+    saveState();
+    QVector<objects::ObjectId> selected = selectedObjects();
+    if (selected.isEmpty()) return;
+
+    m_clipboard.clear();
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            m_clipboard.append(obj->clone());
+        }
+    }
+
+    // Remove selected objects from document
+    for (objects::ObjectId id : selected) {
+        // Find and remove from layer
+        for (auto& page : m_document.pages()) {
+            for (auto& layer : page->layers()) {
+                if (layer->removeObject(id)) {
+                    break;
+                }
+            }
+        }
+    }
+    
+    m_selected.clear();
+    emit selectionChanged();
+    emit copyAvailable(true);
+    emit objectModified(objects::ObjectId{});
+    m_redoCount = 0;
+    emit redoAvailable(false);
+}
+
+void Editor::paste()
+{
+    if (m_clipboard.isEmpty()) return;
+    
+    saveState();
+    
+    // Find target layer (first layer of first page, or create default)
+    ArtLayer* targetLayer = nullptr;
+    if (ArtPage* page = m_document.page(0)) {
+        if (page->layerCount() > 0) {
+            targetLayer = page->layer(0);
+        } else {
+            targetLayer = page->addLayer(QStringLiteral("Paste"), LayerType::Artwork);
+        }
+    }
+    
+    if (!targetLayer) return;
+
+    QVector<objects::ObjectId> pastedIds;
+    for (const auto& obj : m_clipboard) {
+        auto cloned = obj->clone();
+        if (cloned) {
+            pastedIds.append(cloned->id());
+            targetLayer->addObject(std::move(cloned));
+        }
+    }
+    
+    // Select pasted objects
+    m_selected.clear();
+    for (auto id : pastedIds) {
+        m_selected.insert(id);
+    }
+    
+    emit selectionChanged();
+    emit pasteAvailable(true);
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
+    m_redoCount = 0;
+    emit redoAvailable(false);
 }
 
 // ======================================================================
@@ -652,7 +730,7 @@ void Editor::pasteAvailable(bool available)
 void Editor::groupSelected()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
     // Find target layer
@@ -660,20 +738,24 @@ void Editor::groupSelected()
     if (!firstObj) return;
     
     ArtLayer* targetLayer = nullptr;
-    if (ArtPage* page = m_document.page(0)) {
-        for (int i = 0; i < page->layerCount(); ++i) {
-            if (ArtLayer* layer = page->layer(i)) {
-                const auto& objects = layer->objects();
-                for (const auto& obj : objects) {
-                    if (obj.get() == firstObj) {
-                        targetLayer = layer;
-                        break;
+    int pageIdx = -1, layerIdx = -1;
+    for (int p = 0; p < m_document.pageCount(); ++p) {
+        if (ArtPage* page = m_document.page(p)) {
+            for (int l = 0; l < page->layerCount(); ++l) {
+                if (ArtLayer* layer = page->layer(l)) {
+                    const auto& objects = layer->objects();
+                    for (const auto& obj : objects) {
+                        if (obj.get() == firstObj) {
+                            targetLayer = layer;
+                            pageIdx = p;
+                            layerIdx = l;
+                            break;
+                        }
                     }
+                    if (targetLayer) break;
                 }
-                if (targetLayer) break;
             }
         }
-    }
     
     if (!targetLayer) return;
 
@@ -681,36 +763,87 @@ void Editor::groupSelected()
     auto group = std::make_unique<objects::GroupObject>();
     group->setName(QStringLiteral("Group"));
     
-    // Collect selected objects (in reverse order to maintain z-order)
+    // Collect selected objects and remove them from layers
     QVector<std::unique_ptr<objects::GraphicObject>> children;
-    for (int i = selected.size() - 1; i >= 0; --i) {
-        int globalIdx = selected[i];
-        if (ArtPage* page = m_document.page(0)) {
-            for (int i = 0; i < page->layerCount(); ++i) {
-                if (ArtLayer* layer = page->layer(i)) {
-                    if (layer->removeObject(globalIdx)) {
-                        // This is complex - we need to find the actual object
-                        // For now, just emit signals
-                    }
-                }
+    for (objects::ObjectId id : selected) {
+        if (auto* obj = object(id)) {
+            // We need to remove from layer and take ownership
+            // For simplicity, clone and remove original
+            children.append(obj->clone());
+        }
+    }
+    
+    // Remove original objects
+    for (objects::ObjectId id : selected) {
+        for (auto& page : m_document.pages()) {
+            for (auto& layer : page->layers()) {
+                layer->removeObject(id);
             }
         }
     }
     
-    // For now, just emit signals - full implementation requires more infrastructure
+    // Add children to group
+    for (auto& child : children) {
+        group->addChild(std::move(child));
+    }
+    
+    // Add group to target layer
+    objects::ObjectId groupId = group->id();
+    targetLayer->addObject(std::move(group));
+    
+    // Select the new group
+    m_selected.clear();
+    m_selected.insert(groupId);
+    
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(groupId);
+    m_redoCount = 0;
+    emit redoAvailable(false);
 }
 
 void Editor::ungroupSelected()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // TODO: Implement ungrouping
+    // Find group objects among selected
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            if (obj->type() == objects::ObjectType::Group) {
+                auto* group = static_cast<objects::GroupObject*>(obj);
+                
+                // Find layer containing this group
+                ArtLayer* parentLayer = nullptr;
+                int pageIdx = -1;
+                for (int p = 0; p < m_document.pageCount(); ++p) {
+                    if (ArtPage* page = m_document.page(p)) {
+                        for (int l = 0; l < page->layerCount(); ++l) {
+                            if (ArtLayer* layer = page->layer(l)) {
+                                if (layer->findObject(id)) {
+                                    // Remove group from layer
+                                    layer->removeObject(id);
+                                    
+                                    // Add children to layer
+                                    for (auto& child : group->children()) {
+                                        layer->addObject(child->clone());
+                                    }
+                                    break;
+                                }
+                            }
+                            if (parentLayer) break;
+                        }
+                        if (parentLayer) break;
+                    }
+                }
+            }
+        }
+    
+    m_selected.clear();
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(objects::ObjectId{});
+    m_redoCount = 0;
+    emit redoAvailable(false);
 }
 
 // ======================================================================
@@ -734,42 +867,119 @@ void Editor::pasteAvailable(bool available)
 void Editor::bringToFront()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
-    // TODO: Implement z-order operations
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            // Find layer and move to front
+            for (auto& page : m_document.pages()) {
+                for (auto& layer : page->layers()) {
+                    if (layer->findObject(id)) {
+                        // Move to end of vector (top of z-order)
+                        auto& objects = const_cast<std::vector<std::unique_ptr<objects::GraphicObject>>&>(layer->objects());
+                        auto it = std::find_if(objects.begin(), objects.end(),
+                            [id](const auto& o) { return o->id() == id; });
+                        if (it != objects.end()) {
+                            auto obj = std::move(*it);
+                            objects.erase(it);
+                            objects.push_back(std::move(obj));
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::sendToBack()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            for (auto& page : m_document.pages()) {
+                for (auto& layer : page->layers()) {
+                    if (layer->findObject(id)) {
+                        auto& objects = const_cast<std::vector<std::unique_ptr<objects::GraphicObject>>&>(layer->objects());
+                        auto it = std::find_if(objects.begin(), objects.end(),
+                            [id](const auto& o) { return o->id() == id; });
+                        if (it != objects.end()) {
+                            auto obj = std::move(*it);
+                            objects.erase(it);
+                            objects.insert(objects.begin(), std::move(obj));
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::bringForward()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            for (auto& page : m_document.pages()) {
+                for (auto& layer : page->layers()) {
+                    if (layer->findObject(id)) {
+                        auto& objects = const_cast<std::vector<std::unique_ptr<objects::GraphicObject>>&>(layer->objects());
+                        auto it = std::find_if(objects.begin(), objects.end(),
+                            [id](const auto& o) { return o->id() == id; });
+                        if (it != objects.end() && std::next(it) != objects.end()) {
+                            std::iter_swap(it, std::next(it));
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 void Editor::sendBackward()
 {
     saveState();
-    QVector<int> selected = selectedObjects();
+    QVector<objects::ObjectId> selected = selectedObjects();
     if (selected.isEmpty()) return;
 
+    for (objects::ObjectId id : selected) {
+        if (GraphicObject* obj = object(id)) {
+            for (auto& page : m_document.pages()) {
+                for (auto& layer : page->layers()) {
+                    if (layer->findObject(id)) {
+                        auto& objects = const_cast<std::vector<std::unique_ptr<objects::GraphicObject>>&>(layer->objects());
+                        auto it = std::find_if(objects.begin(), objects.end(),
+                            [id](const auto& o) { return o->id() == id; });
+                        if (it != objects.begin()) {
+                            std::iter_swap(it, std::prev(it));
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
 }
 
 // ======================================================================
@@ -779,18 +989,13 @@ void Editor::sendBackward()
 void Editor::setFillColor(unsigned int color)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setFill(artplus::colors::Paint::fromColor(color));
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            obj->setFill(artplus::colors::Paint::fromColor(color));
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -798,18 +1003,13 @@ void Editor::setFillColor(unsigned int color)
 void Editor::setStrokeColor(unsigned int color)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setStroke(artplus::colors::Paint::fromColor(color));
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            obj->setStroke(artplus::colors::Paint::fromColor(color));
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -817,18 +1017,13 @@ void Editor::setStrokeColor(unsigned int color)
 void Editor::setStrokeWidth(double width)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setStrokeWidth(width);
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            obj->setStrokeWidth(width);
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -836,20 +1031,17 @@ void Editor::setStrokeWidth(double width)
 void Editor::setOpacity(double opacity)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setVisible(obj->isVisible());
-        // Opacity would be set via paint opacity in fill/stroke
-        // For now just emit signal
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            // Opacity is handled via paint opacity in fill/stroke
+            // For now, we adjust the fill opacity
+            auto fill = obj->fill();
+            fill.setOpacity(std::clamp(opacity, 0.0, 1.0));
+            obj->setFill(fill);
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -857,18 +1049,13 @@ void Editor::setOpacity(double opacity)
 void Editor::setVisible(bool visible)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setVisible(visible);
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            obj->setVisible(visible);
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -876,18 +1063,13 @@ void Editor::setVisible(bool visible)
 void Editor::setLocked(bool locked)
 {
     saveState();
-    auto objects = collectAllObjectsWithIndices();
-    for (const auto& pair : objects) {
-        int globalIdx = pair.first;
-        GraphicObject* obj = pair.second;
-        
-        if (!m_selected.contains(globalIdx) || !obj)
-            continue;
-        
-        obj->setLocked(locked);
+    for (objects::ObjectId id : m_selected) {
+        if (GraphicObject* obj = object(id)) {
+            obj->setLocked(locked);
+        }
     }
     emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    emit objectModified(m_selected.empty() ? objects::ObjectId{} : *m_selected.begin());
     m_redoCount = 0;
     emit redoAvailable(false);
 }
@@ -896,73 +1078,14 @@ void Editor::setLocked(bool locked)
 // Clipboard operations
 // ======================================================================
 
-void Editor::copySelected()
+void Editor::copyAvailable(bool available)
 {
-    saveState();
-    QVector<int> selected = selectedObjects();
-    if (selected.isEmpty()) return;
-
-    // TODO: Implement clipboard copy with serialization
-    emit copyAvailable(true);
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-    m_redoCount = 0;
-    emit redoAvailable(false);
+    Q_UNUSED(available);
 }
 
-void Editor::cutSelected()
+void Editor::pasteAvailable(bool available)
 {
-    saveState();
-    // TODO: Implement cut
-    emit cutAvailable(true);
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-    m_redoCount = 0;
-    emit redoAvailable(false);
-}
-
-void Editor::paste()
-{
-    // TODO: Implement paste
-    emit pasteAvailable(true);
-    emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-    m_redoCount = 0;
-    emit redoAvailable(false);
-}
-
-// ======================================================================
-// Z-Order operations
-// ======================================================================
-
-void Editor::bringToFront()
-{
-    saveState();
-    // TODO: Implement z-order operations
-    emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-}
-
-void Editor::sendToBack()
-{
-    saveState();
-    // TODO
-    emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-}
-
-void Editor::bringForward()
-{
-    saveState();
-    // TODO
-    emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
-}
-
-void Editor::sendBackward()
-{
-    saveState();
-    // TODO
-    emit selectionChanged();
-    emit objectModified(m_selected.isEmpty() ? -1 : m_selected.first());
+    Q_UNUSED(available);
 }
 
 // ======================================================================
@@ -971,16 +1094,15 @@ void Editor::sendBackward()
 
 void Editor::updateProperties()
 {
-    if (m_selected.isEmpty()) return;
+    if (m_selected.empty()) return;
     
     // Emit signal with current object's properties for inspector panel
-    int globalIdx = m_selected.first();
-    GraphicObject* obj = object(globalIdx);
-    if (obj) {
+    objects::ObjectId id = *m_selected.begin();
+    if (GraphicObject* obj = object(id)) {
         // Emit signals with object properties for inspector panel
-        // TODO: Implement property signals
+        // This would connect to a property panel
+        emit objectModified(id);
     }
-    emit objectModified(globalIdx);
     m_redoCount = 0;
     emit redoAvailable(false);
 }
