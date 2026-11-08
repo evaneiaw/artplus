@@ -17,6 +17,9 @@
 #include "artplus/ui/RecolorDialog.h"
 #include "artplus/ui/ShaperDialog.h"
 #include "artplus/ui/WrapDialog.h"
+#include "artplus/document/ArtDocument.h"
+#include "artplus/document/ArtPage.h"
+#include "artplus/document/ArtLayer.h"
 
 #include <QAction>
 #include <QApplication>
@@ -64,6 +67,8 @@
 #include <vector>
 
 namespace artplus::ui {
+
+using namespace artplus::document;
 
 namespace {
 
@@ -1207,6 +1212,20 @@ bool MainWindow::openDocument(const QString& path)
     }
 
     m_doc = std::move(document);
+    // Create ArtDocument from PdfDocument for layer operations
+    m_artDoc = std::make_unique<artplus::document::ArtDocument>();
+    m_artDoc->setFilePath(m_doc->filePath());
+    // Import pages from PdfDocument to ArtDocument
+    for (int i = 0; i < m_doc->pageCount(); ++i) {
+        const QSizeF pageSize = m_doc->pageSize(i);
+        auto* page = m_artDoc->addPage(pageSize);
+        // Note: Full PDF content import would require parsing page content
+        // For now, create at least one default layer per page
+        if (page->layerCount() == 0) {
+            page->addLayer(QStringLiteral("Artwork"), artplus::document::LayerType::Artwork);
+        }
+    }
+
     m_snapshot = std::make_unique<artplus::pdf::PdfSnapshot>(
         artplus::pdf::PdfSnapshot::capture(*m_doc));
     m_page = 0;
@@ -1321,6 +1340,7 @@ void MainWindow::closeDocument()
 void MainWindow::resetDocumentState()
 {
     m_doc.reset();
+    m_artDoc.reset();
     m_snapshot.reset();
     m_page = 0;
     m_userRotation = 0;
@@ -1456,7 +1476,48 @@ void MainWindow::scheduleRender()
         m_renderTimer->start();
 }
 
-void MainWindow::onRenderTimer() { renderCurrentPage(); }
+void MainWindow::onRenderTimer()
+{
+    renderCurrentPage();
+}
+
+void MainWindow::refreshLayersPanel()
+{
+    if (!m_artDoc || !m_objectList)
+        return;
+
+    // Block signals to avoid triggering selection changes
+    QSignalBlocker blocker(m_objectList);
+    m_objectList->clear();
+
+    artplus::document::ArtPage* page = m_artDoc ? m_artDoc->page(m_page) : nullptr;
+    if (!page) {
+        if (m_layerName)
+            m_layerName->setText(QStringLiteral("Layer 1"));
+        return;
+    }
+
+    // Populate layers list
+    int row = 0;
+    for (const auto& layer : page->layers()) {
+        QListWidgetItem* item = new QListWidgetItem(layer->name());
+        // Store visibility and lock state in item data
+        item->setData(Qt::UserRole, QVariant(layer->isVisible()));
+        item->setData(Qt::UserRole + 1, QVariant(layer->isLocked()));
+        m_objectList->addItem(item);
+
+        // Set icons based on state
+        // TODO: Add proper icons for visibility/lock/print
+        ++row;
+    }
+
+    // Update layer name
+    if (m_layerName && page->layerCount() > 0) {
+        m_layerName->setText(page->layers().front()->name());
+    } else if (m_layerName) {
+        m_layerName->setText(QStringLiteral("Layer 1"));
+    }
+}
 
 void MainWindow::previousPage()
 {
@@ -1500,6 +1561,7 @@ void MainWindow::goToPage(int oneBasedIndex)
     updateUi();
     rebuildEditor();
     updateDocumentInfo();  // <-- added
+    refreshLayersPanel();  // Refresh layers panel for new page
 }
 
 void MainWindow::fitPage()
@@ -2518,6 +2580,10 @@ void MainWindow::updatePanels()
     if (m_qualityPanel)
         m_qualityPanel->setEnabled(hasDoc);
 
+    // Refresh layers panel to show current layers
+    if (hasDoc)
+        refreshLayersPanel();
+
     // Selection tools. "Same fill/stroke colour" needs a selected object that
     // actually carries paint of that kind, otherwise there is nothing to match.
     const bool hasObjects = editable && m_editor->objectCount() > 0;
@@ -2612,7 +2678,7 @@ void MainWindow::updatePanels()
             missing->setText(1, QStringLiteral("2"));
         }
     }
-}
+    }
 
 void MainWindow::updateWindowTitle()
 {
@@ -3056,18 +3122,32 @@ void MainWindow::showSelectedObjects(bool show)
 
 void MainWindow::addLayer()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    // Create a new ArtLayer in the current page's ArtDocument
-    // For now, we'll create a layer in the ArtPage model
-    // This is a placeholder - full implementation requires ArtDocument integration
-    statusBar()->showMessage(QStringLiteral("Add layer - pending ArtDocument integration"), 3000);
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    // Generate unique layer name
+    int layerNum = page->layerCount() + 1;
+    QString name = QStringLiteral("Layer %1").arg(layerNum);
+    while (page->findLayer(name)) {
+        ++layerNum;
+        name = QStringLiteral("Layer %1").arg(layerNum);
+    }
+
+    ArtLayer* newLayer = page->addLayer(name, artplus::document::LayerType::Artwork);
+    if (newLayer) {
+        m_artDoc->touch();
+        refreshLayersPanel();
+        statusBar()->showMessage(QStringLiteral("Added layer: %1").arg(name), 4000);
+    }
 }
 
 void MainWindow::removeLayer()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
     QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
@@ -3076,12 +3156,37 @@ void MainWindow::removeLayer()
         return;
     }
 
-    statusBar()->showMessage(QStringLiteral("Remove layer - pending ArtDocument integration"), 3000);
+    int row = m_objectList->row(item);
+    if (row < 0)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    // Get layer name from the list
+    QString layerName = item->text(); // Assuming first column is name
+    if (layerName.isEmpty())
+        return;
+
+    // Prevent removing the last layer
+    if (page->layerCount() <= 1) {
+        statusBar()->showMessage(QStringLiteral("Cannot remove the last layer"), 3000);
+        return;
+    }
+
+    if (page->removeLayer(layerName)) {
+        m_artDoc->touch();
+        refreshLayersPanel();
+        statusBar()->showMessage(QStringLiteral("Removed layer: %1").arg(layerName), 4000);
+    } else {
+        statusBar()->showMessage(QStringLiteral("Layer not found: %1").arg(layerName), 3000);
+    }
 }
 
 void MainWindow::reorderLayer(bool up)
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
     QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
@@ -3090,55 +3195,170 @@ void MainWindow::reorderLayer(bool up)
         return;
     }
 
-    statusBar()->showMessage(QStringLiteral("Reorder layer - pending ArtDocument integration"), 3000);
+    int row = m_objectList->row(item);
+    if (row < 0)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    auto& layers = page->layers(); // This returns non-const reference
+    if (layers.empty())
+        return;
+
+    if (up && row > 0) {
+        // Manual swap to avoid std::swap issues with unique_ptr
+        auto temp = std::move(layers[row]);
+        layers[row] = std::move(layers[row - 1]);
+        layers[row - 1] = std::move(temp);
+    } else if (!up && row < static_cast<int>(page->layerCount()) - 1) {
+        auto temp = std::move(layers[row]);
+        layers[row] = std::move(layers[row + 1]);
+        layers[row + 1] = std::move(temp);
+    } else {
+        return; // Cannot move further
+    }
+
+    m_artDoc->touch();
+    refreshLayersPanel();
+    statusBar()->showMessage(up ? QStringLiteral("Layer moved up") : QStringLiteral("Layer moved down"), 3000);
 }
 
 void MainWindow::renameLayer(const QString& name)
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc || name.isEmpty())
         return;
 
-    statusBar()->showMessage(QStringLiteral("Rename layer - pending ArtDocument integration"), 3000);
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    QString oldName = item->text();
+    if (oldName.isEmpty())
+        return;
+
+    ArtLayer* layer = page->findLayer(oldName);
+    if (!layer)
+        return;
+
+    // Check if new name already exists
+    if (page->findLayer(name)) {
+        statusBar()->showMessage(QStringLiteral("Layer name already exists: %1").arg(name), 3000);
+        return;
+    }
+
+    layer->setName(name);
+    m_artDoc->touch();
+    refreshLayersPanel();
+    statusBar()->showMessage(QStringLiteral("Layer renamed to: %1").arg(name), 4000);
 }
 
 void MainWindow::toggleLayerVisibility()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    statusBar()->showMessage(QStringLiteral("Toggle layer visibility - pending ArtDocument integration"), 3000);
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    QString layerName = item->text();
+    if (layerName.isEmpty())
+        return;
+
+    ArtLayer* layer = page->findLayer(layerName);
+    if (!layer)
+        return;
+
+    layer->setVisible(!layer->isVisible());
+    m_artDoc->touch();
+    renderCurrentPage();
+    refreshLayersPanel();
+    statusBar()->showMessage(layer->isVisible() ? QStringLiteral("Layer shown: %1").arg(layerName)
+                                                  : QStringLiteral("Layer hidden: %1").arg(layerName), 4000);
 }
 
 void MainWindow::toggleLayerLock()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    statusBar()->showMessage(QStringLiteral("Toggle layer lock - pending ArtDocument integration"), 3000);
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    QString layerName = item->text();
+    if (layerName.isEmpty())
+        return;
+
+    ArtLayer* layer = page->findLayer(layerName);
+    if (!layer)
+        return;
+
+    layer->setLocked(!layer->isLocked());
+    m_artDoc->touch();
+    refreshLayersPanel();
+    statusBar()->showMessage(layer->isLocked() ? QStringLiteral("Layer locked: %1").arg(layerName)
+                                                  : QStringLiteral("Layer unlocked: %1").arg(layerName), 4000);
 }
 
 void MainWindow::toggleLayerPrint()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    statusBar()->showMessage(QStringLiteral("Toggle layer print - pending ArtDocument integration"), 3000);
+    QListWidgetItem* item = m_objectList ? m_objectList->currentItem() : nullptr;
+    if (!item)
+        return;
+
+    ArtPage* page = m_artDoc->page(m_page);
+    if (!page)
+        return;
+
+    QString layerName = item->text();
+    if (layerName.isEmpty())
+        return;
+
+    ArtLayer* layer = page->findLayer(layerName);
+    if (!layer)
+        return;
+
+    layer->setPrinting(!layer->isPrinting());
+    m_artDoc->touch();
+    refreshLayersPanel();
+    statusBar()->showMessage(layer->isPrinting() ? QStringLiteral("Layer print enabled: %1").arg(layerName)
+                                                    : QStringLiteral("Layer print disabled: %1").arg(layerName), 4000);
 }
 
 void MainWindow::addSeparation()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    statusBar()->showMessage(QStringLiteral("Add separation - pending ArtDocument integration"), 3000);
+    // TODO: Implement separation addition with dialog
+    statusBar()->showMessage(QStringLiteral("Add separation - not yet implemented"), 3000);
 }
 
 void MainWindow::removeSeparation()
 {
-    if (!m_editor || !m_doc)
+    if (!m_artDoc)
         return;
 
-    statusBar()->showMessage(QStringLiteral("Remove separation - pending ArtDocument integration"), 3000);
+    // TODO: Implement separation removal
+    statusBar()->showMessage(QStringLiteral("Remove separation - not yet implemented"), 3000);
 }
 
 } // namespace artplus::ui

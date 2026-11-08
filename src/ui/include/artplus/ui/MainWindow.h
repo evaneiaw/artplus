@@ -18,6 +18,8 @@ class QListWidget;
 class QPushButton;
 class QSpinBox;
 class QTimer;
+
+namespace artplus::document { class ArtDocument; }
 class QTreeWidget;
 
 namespace artplus::pdf { class PdfDocument; struct PdfSnapshot; class PdfEditor; }
@@ -160,6 +162,7 @@ private:
     void toggleLayerVisibility();
     void toggleLayerLock();
     void toggleLayerPrint();
+    void refreshLayersPanel();
 
     // Separation operations
     void addSeparation();
@@ -170,6 +173,7 @@ private:
     QString unitSuffix() const;
 
     std::unique_ptr<artplus::pdf::PdfDocument> m_doc;
+    std::unique_ptr<artplus::document::ArtDocument> m_artDoc;
     std::unique_ptr<artplus::pdf::PdfSnapshot> m_snapshot;
     std::unique_ptr<artplus::pdf::PdfEditor> m_editor;
     std::unique_ptr<artplus::edit::CommandStack> m_history;
