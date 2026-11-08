@@ -87,9 +87,9 @@ public:
     void setLocked(bool locked);
     void updateProperties();
 
-    // Clipboard operations
-    void copyAvailable(bool available);
-    void pasteAvailable(bool available);
+    // Clipboard operations (clipboard state notifications)
+    // void copyAvailable(bool available);
+    // void pasteAvailable(bool available);
 
 signals:
     void selectionChanged();

@@ -1078,15 +1078,15 @@ void Editor::setLocked(bool locked)
 // Clipboard operations
 // ======================================================================
 
-void Editor::copyAvailable(bool available)
-{
-    Q_UNUSED(available);
-}
+// void Editor::copyAvailable(bool available)
+// {
+//     Q_UNUSED(available);
+// }
 
-void Editor::pasteAvailable(bool available)
-{
-    Q_UNUSED(available);
-}
+// void Editor::pasteAvailable(bool available)
+// {
+//     Q_UNUSED(available);
+// }
 
 // ======================================================================
 // Properties
