@@ -125,6 +125,10 @@ private:
     void deleteSelectedObjects();
     void copySelectedObjects();
     void pasteObjects();
+    void groupSelected();
+    void ungroupSelected();
+    void lockSelectedObjects(bool lock);
+    void showSelectedObjects(bool show);
     void updatePanels();
     void renderCurrentPage();
     void scheduleRender();
@@ -194,6 +198,12 @@ private:
     QAction* m_copyAction = nullptr;
     QAction* m_pasteAction = nullptr;
     QAction* m_deleteAction = nullptr;
+    QAction* m_groupAction = nullptr;
+    QAction* m_ungroupAction = nullptr;
+    QAction* m_lockAction = nullptr;
+    QAction* m_unlockAction = nullptr;
+    QAction* m_hideAction = nullptr;
+    QAction* m_showAction = nullptr;
     QAction* m_moveLeft = nullptr;
     QAction* m_moveRight = nullptr;
     QAction* m_moveUp = nullptr;

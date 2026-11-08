@@ -862,4 +862,10 @@ bool PdfEditor::saveAs(const QString& path, QString* errorMessage)
     return true;
 }
 
+// Group/ungroup/lock/visible - not supported in PDFium model
+bool PdfEditor::groupSelected() { return false; }
+bool PdfEditor::ungroupSelected() { return false; }
+bool PdfEditor::setLocked(bool) { return false; }
+bool PdfEditor::setVisible(bool) { return false; }
+
 } // namespace artplus::pdf

@@ -433,19 +433,39 @@ void MainWindow::buildMenus()
     connect(m_transformAgainAction, &QAction::triggered, this, &MainWindow::onTransformAgain);
 
     objectMenu->addSeparator();
-    // Group/Ungroup/Lock/Hide are ArtPro+ document-model features. The current
-    // PDFium-based object model has no group object, no lock flag and no hidden
-    // state to mutate, so these stay disabled placeholders instead of faking an
-    // action in the UI.
-    addDisabled(objectMenu, QStringLiteral("Group"), QKeySequence(QStringLiteral("Ctrl+G")));
-    addDisabled(objectMenu, QStringLiteral("Ungroup"),
-                QKeySequence(QStringLiteral("Ctrl+Shift+G")));
-    addDisabled(objectMenu, QStringLiteral("Lock"), QKeySequence(QStringLiteral("Ctrl+2")));
-    addDisabled(objectMenu, QStringLiteral("Unlock All"),
-                QKeySequence(QStringLiteral("Ctrl+Alt+2")));
-    addDisabled(objectMenu, QStringLiteral("Hide"), QKeySequence(QStringLiteral("Ctrl+3")));
-    addDisabled(objectMenu, QStringLiteral("Show All"),
-                QKeySequence(QStringLiteral("Ctrl+Alt+3")));
+    // Group/Ungroup/Lock/Hide - now functional with Editor support
+    m_groupAction = objectMenu->addAction(QStringLiteral("Group"));
+    m_groupAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+G")));
+    m_groupAction->setEnabled(false);
+    connect(m_groupAction, &QAction::triggered, this, &MainWindow::groupSelected);
+
+    m_ungroupAction = objectMenu->addAction(QStringLiteral("Ungroup"));
+    m_ungroupAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Shift+G")));
+    m_ungroupAction->setEnabled(false);
+    connect(m_ungroupAction, &QAction::triggered, this, &MainWindow::ungroupSelected);
+
+    objectMenu->addSeparator();
+
+    m_lockAction = objectMenu->addAction(QStringLiteral("Lock"));
+    m_lockAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+2")));
+    m_lockAction->setEnabled(false);
+    connect(m_lockAction, &QAction::triggered, this, [this]() { lockSelectedObjects(true); });
+
+    m_unlockAction = objectMenu->addAction(QStringLiteral("Unlock All"));
+    m_unlockAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Alt+2")));
+    m_unlockAction->setEnabled(false);
+    connect(m_unlockAction, &QAction::triggered, this, [this]() { lockSelectedObjects(false); });
+
+    m_hideAction = objectMenu->addAction(QStringLiteral("Hide"));
+    m_hideAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+3")));
+    m_hideAction->setEnabled(false);
+    connect(m_hideAction, &QAction::triggered, this, [this]() { showSelectedObjects(false); });
+
+    m_showAction = objectMenu->addAction(QStringLiteral("Show All"));
+    m_showAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Alt+3")));
+    m_showAction->setEnabled(false);
+    connect(m_showAction, &QAction::triggered, this, [this]() { showSelectedObjects(true); });
+
     objectMenu->addSeparator();
     addTodoSubmenu(objectMenu, QStringLiteral("Path"));
     addTodoSubmenu(objectMenu, QStringLiteral("Compound"));
@@ -2379,6 +2399,20 @@ void MainWindow::updatePanels()
     if (m_deleteAction)
         m_deleteAction->setEnabled(hasSelection);
 
+    // Object menu actions
+    if (m_groupAction)
+        m_groupAction->setEnabled(hasSelection && m_selectedObjects.size() > 1);
+    if (m_ungroupAction)
+        m_ungroupAction->setEnabled(hasSelection);
+    if (m_lockAction)
+        m_lockAction->setEnabled(hasSelection);
+    if (m_unlockAction)
+        m_unlockAction->setEnabled(hasSelection);
+    if (m_hideAction)
+        m_hideAction->setEnabled(hasSelection);
+    if (m_showAction)
+        m_showAction->setEnabled(hasSelection);
+
     // Run preflight checks when document is open
     if (hasDocument() && m_runPreflightButton) {
         onRunPreflight();
@@ -2813,6 +2847,60 @@ void MainWindow::pasteObjects()
     refreshProperties();
     updatePanels();
     statusBar()->showMessage(QStringLiteral("Pasted %1 object(s) — unsaved").arg(m_clipboardObjects.size()), 5000);
+}
+
+void MainWindow::groupSelected()
+{
+    if (!m_editor || m_selectedObjects.isEmpty())
+        return;
+    m_editor->groupSelected();
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(QStringLiteral("Grouped %1 object(s)").arg(m_selectedObjects.size()), 4000);
+}
+
+void MainWindow::ungroupSelected()
+{
+    if (!m_editor || m_selectedObjects.isEmpty())
+        return;
+    m_editor->ungroupSelected();
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(QStringLiteral("Ungrouped"), 4000);
+}
+
+void MainWindow::lockSelectedObjects(bool lock)
+{
+    if (!m_editor || m_selectedObjects.isEmpty())
+        return;
+    m_editor->setLocked(lock);
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(lock ? QStringLiteral("Locked %1 object(s)").arg(m_selectedObjects.size())
+                                  : QStringLiteral("Unlocked %1 object(s)").arg(m_selectedObjects.size()), 4000);
+}
+
+void MainWindow::showSelectedObjects(bool show)
+{
+    if (!m_editor || m_selectedObjects.isEmpty())
+        return;
+    m_editor->setVisible(show);
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(show ? QStringLiteral("Showed %1 object(s)").arg(m_selectedObjects.size())
+                                  : QStringLiteral("Hidden %1 object(s)").arg(m_selectedObjects.size()), 4000);
 }
 
 } // namespace artplus::ui

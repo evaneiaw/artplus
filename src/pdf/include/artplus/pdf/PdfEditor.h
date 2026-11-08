@@ -130,6 +130,12 @@ public:
     // Removes and destroys the page object at `index`.
     bool removeObject(int index);
 
+    // Group/ungroup/lock/visible - not supported in PDFium model, return false
+    bool groupSelected();
+    bool ungroupSelected();
+    bool setLocked(bool locked);
+    bool setVisible(bool visible);
+
     // Re-imports the page object list. Needed after inserting/removing objects.
     void refresh();
 
