@@ -186,6 +186,16 @@ MainWindow::MainWindow(QWidget* parent)
     m_view->setRenderRequestCallback([this]() { scheduleRender(); });
     m_view->setCursorCallback([this](const QPointF& p) { onCursorMoved(p); });
     m_view->setClickCallback([this](const QPointF& p) { selectObjectAt(p); });
+    m_view->setHitTestCallback([this](const QPointF& pagePos) -> objects::ObjectId {
+        if (!m_editor)
+            return 0;
+        for (int i = m_editor->objectCount() - 1; i >= 0; --i) {
+            const auto* object = m_editor->object(i);
+            if (object && object->bounds.contains(pagePos))
+                return static_cast<objects::ObjectId>(object->index);
+        }
+        return 0;
+    });
 
     m_renderTimer = new QTimer(this);
     m_renderTimer->setSingleShot(true);

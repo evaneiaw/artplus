@@ -400,13 +400,25 @@ void PageView::mousePressEvent(QMouseEvent* event)
             m_pressPos = event->position();
             m_draggedSincePress = false;
         } else { // Selection mode
-            // Check if we're clicking on a selection handle or object
-            // For now, start marquee selection - MainWindow will handle object selection via click callback
-            m_dragState = DragState::MarqueeSelect;
-            m_marqueeStartPos = event->position();
-            m_marqueeCurrentPos = QRectF(event->position(), event->position()).normalized();
-            m_marqueeActive = true;
-        }
+            // Check if we're clicking on an object using hit test
+            objects::ObjectId hitId = 0;
+            if (m_hitTestCb) {
+                hitId = m_hitTestCb(pagePos);
+            }
+            
+            if (hitId) {
+                m_dragState = DragState::ObjectDrag;
+                m_dragObjectId = hitId;
+                m_dragStartPagePos = pagePos;
+                m_draggedSincePress = false;
+            } else {
+                // Start marquee selection - MainWindow will handle object selection via click callback
+                m_dragState = DragState::MarqueeSelect;
+                m_marqueeStartPos = event->position();
+                m_marqueeCurrentPos = QRectF(event->position(), event->position()).normalized();
+                m_marqueeActive = true;
+            }
+        } // end else (Selection mode)
 
         updateCursorShape();
         update();

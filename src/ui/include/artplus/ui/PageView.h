@@ -81,6 +81,9 @@ public:
     void setObjectDragCallback(std::function<void(const QPointF&)> cb) { m_objectDragCb = std::move(cb); }
     // Called when a marquee selection rectangle is completed.
     void setMarqueeSelectCallback(std::function<void(const QRectF&)> cb) { m_marqueeSelectCb = std::move(cb); }
+    // Called to determine if a point (in page coordinates) hits an object.
+    // Returns the object ID if hit, 0 otherwise.
+    void setHitTestCallback(std::function<objects::ObjectId(const QPointF&)> cb) { m_hitTestCb = std::move(cb); }
 
     void setStatusCallback(std::function<void()> cb) { m_statusCb = std::move(cb); }
     void setRenderRequestCallback(std::function<void()> cb) { m_requestRender = std::move(cb); }
@@ -146,6 +149,7 @@ private:
     QPointF m_marqueeStartPos;
     QRectF m_marqueeCurrentPos;
     bool m_marqueeActive = false;
+    std::function<objects::ObjectId(const QPointF&)> m_hitTestCb;
 };
 
 } // namespace artplus::ui
