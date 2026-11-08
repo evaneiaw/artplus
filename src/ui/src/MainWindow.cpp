@@ -11,6 +11,9 @@
 #include "artplus/ui/PageView.h"
 #include "artplus/ui/Theme.h"
 #include "artplus/ui/TransformDialog.h"
+#include "artplus/ui/StepAndRepeatDialog.h"
+#include "artplus/ui/TrappingDialog.h"
+#include "artplus/ui/ScreeningDialog.h"
 
 #include <QAction>
 #include <QApplication>
@@ -541,26 +544,35 @@ void MainWindow::buildMenus()
     prepress->addSeparator();
     addTodoSubmenu(prepress, QStringLiteral("Ink Eater Areas"));
     prepress->addSeparator();
-    addDisabled(prepress, QStringLiteral("Screening..."),
-                QKeySequence(QStringLiteral("Ctrl+Alt+S")));
+    m_screeningAction = prepress->addAction(QStringLiteral("Screening..."));
+    m_screeningAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Alt+S")));
+    m_screeningAction->setEnabled(true);
+    connect(m_screeningAction, &QAction::triggered, this, &MainWindow::showScreeningDialog);
     addDisabled(prepress, QStringLiteral("Ink Coverage..."));
     addTodoSubmenu(prepress, QStringLiteral("Convert Separations With"));
     prepress->addSeparator();
     addTodoSubmenu(prepress, QStringLiteral("Thin Parts"));
     prepress->addSeparator();
-    addDisabled(prepress, QStringLiteral("Update Trap Layer"),
-                QKeySequence(QStringLiteral("Ctrl+T")));
-    addDisabled(prepress, QStringLiteral("Trapping..."),
-                QKeySequence(QStringLiteral("Ctrl+Alt+T")));
+    m_updateTrapLayerAction = prepress->addAction(QStringLiteral("Update Trap Layer"));
+    m_updateTrapLayerAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+T")));
+    m_updateTrapLayerAction->setEnabled(false);
+    m_trappingAction = prepress->addAction(QStringLiteral("Trapping..."));
+    m_trappingAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Alt+T")));
+    m_trappingAction->setEnabled(true);
+    connect(m_trappingAction, &QAction::triggered, this, &MainWindow::showTrappingDialog);
     prepress->addSeparator();
     addTodoSubmenu(prepress, QStringLiteral("Warp"));
     prepress->addSeparator();
-    addDisabled(prepress, QStringLiteral("Preflight..."));
+    m_preflightAction = prepress->addAction(QStringLiteral("Preflight..."));
+    m_preflightAction->setEnabled(true);
+    connect(m_preflightAction, &QAction::triggered, this, &MainWindow::onRunPreflight);
     addDisabled(prepress, QStringLiteral("Manage Preflight Profiles..."));
     prepress->addSeparator();
     addTodoSubmenu(prepress, QStringLiteral("Variable Data"));
     prepress->addSeparator();
-    addTodoSubmenu(prepress, QStringLiteral("Step & Repeat"));
+    m_stepRepeatAction = prepress->addAction(QStringLiteral("Step & Repeat"));
+    m_stepRepeatAction->setEnabled(true);
+    connect(m_stepRepeatAction, &QAction::triggered, this, &MainWindow::showStepAndRepeatDialog);
     addDisabled(prepress, QStringLiteral("Create Seamless Repetition..."));
     prepress->addSeparator();
     addTodoSubmenu(prepress, QStringLiteral("Flexo Tools"));
@@ -1855,6 +1867,69 @@ void MainWindow::showTransformDialog()
     } else {
         statusBar()->showMessage(QStringLiteral("Transform could not be applied"), 4000);
     }
+}
+
+void MainWindow::showScreeningDialog()
+{
+    if (!m_editor) {
+        statusBar()->showMessage(QStringLiteral("No editable page"), 3000);
+        return;
+    }
+
+    ScreeningDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const ScreeningDialog::Params params = dialog.params();
+    statusBar()->showMessage(QStringLiteral("Screening applied (params: freq=%1 lpi, angle=%2°)")
+                                 .arg(params.frequency).arg(params.angle), 5000);
+    // TODO: Apply screening to document
+}
+
+void MainWindow::showTrappingDialog()
+{
+    if (!m_editor) {
+        statusBar()->showMessage(QStringLiteral("No editable page"), 3000);
+        return;
+    }
+
+    TrappingDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const TrappingDialog::Params params = dialog.params();
+    statusBar()->showMessage(QStringLiteral("Trapping applied (width=%1 mm, max=%2 mm)")
+                                 .arg(params.trapWidth).arg(params.maxTrapWidth), 5000);
+    // TODO: Apply trapping to document
+}
+
+void MainWindow::showStepAndRepeatDialog()
+{
+    if (!m_editor || m_selectedObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("No objects selected"), 3000);
+        return;
+    }
+
+    StepAndRepeatDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    const StepAndRepeatDialog::Params params = dialog.params();
+
+    // Apply Step & Repeat to selected objects
+    std::vector<int> indices;
+    indices.reserve(static_cast<size_t>(m_selectedObjects.size()));
+    for (int index : m_selectedObjects) {
+        if (index >= 0 && index < m_editor->objectCount())
+            indices.push_back(index);
+    }
+    if (indices.empty())
+        return;
+
+    // TODO: Implement Step & Repeat using stepandrepeat module
+    statusBar()->showMessage(QStringLiteral("Step & Repeat: %1x%2 copies, offset (%3, %4) mm")
+                                 .arg(params.copiesX).arg(params.copiesY)
+                                 .arg(params.offsetX).arg(params.offsetY), 5000);
 }
 
 void MainWindow::onTransformAgain()

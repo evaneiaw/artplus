@@ -107,6 +107,9 @@ private:
     void selectSameStrokeColor();
     void onRunPreflight();
     void showTransformDialog();
+    void showScreeningDialog();
+    void showTrappingDialog();
+    void showStepAndRepeatDialog();
     void zoomToSelection();
     void buildObjectPanel();
     void rebuildEditor();
@@ -204,6 +207,11 @@ private:
     QAction* m_unlockAction = nullptr;
     QAction* m_hideAction = nullptr;
     QAction* m_showAction = nullptr;
+    QAction* m_screeningAction = nullptr;
+    QAction* m_trappingAction = nullptr;
+    QAction* m_stepRepeatAction = nullptr;
+    QAction* m_preflightAction = nullptr;
+    QAction* m_updateTrapLayerAction = nullptr;
     QAction* m_moveLeft = nullptr;
     QAction* m_moveRight = nullptr;
     QAction* m_moveUp = nullptr;

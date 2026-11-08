@@ -4,6 +4,9 @@ add_library(artplus_ui STATIC
     src/Panel.cpp
     src/Theme.cpp
     src/TransformDialog.cpp
+    src/StepAndRepeatDialog.cpp
+    src/TrappingDialog.cpp
+    src/ScreeningDialog.cpp
     src/DocumentManager.cpp
     src/StatusBarPanel.cpp
     include/artplus/ui/MainWindow.h
@@ -11,6 +14,9 @@ add_library(artplus_ui STATIC
     include/artplus/ui/Panel.h
     include/artplus/ui/Theme.h
     include/artplus/ui/TransformDialog.h
+    include/artplus/ui/StepAndRepeatDialog.h
+    include/artplus/ui/TrappingDialog.h
+    include/artplus/ui/ScreeningDialog.h
     include/artplus/ui/StatusBarPanel.h
     include/artplus/ui/DocumentManager.h
 )
