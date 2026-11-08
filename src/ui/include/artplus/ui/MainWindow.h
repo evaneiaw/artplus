@@ -132,6 +132,10 @@ private:
     void ungroupSelected();
     void lockSelectedObjects(bool lock);
     void showSelectedObjects(bool show);
+    void toggleOutlineMode();
+    void toggleColorManagedPreview();
+    void cycleInspector(int direction);
+    void goToPageDialog();
     void updatePanels();
     void renderCurrentPage();
     void scheduleRender();
@@ -250,6 +254,10 @@ private:
 
     QAction* m_showBoxesAction = nullptr;
     QAction* m_crosshairAction = nullptr;
+    QAction* m_outlineAction = nullptr;
+    QAction* m_colorManagedPreviewAction = nullptr;
+    QAction* m_nextInspectorAction = nullptr;
+    QAction* m_prevInspectorAction = nullptr;
 
     // Drag state for object dragging and marquee selection
     QPointF m_dragStartPagePos;
