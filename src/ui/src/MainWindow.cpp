@@ -283,8 +283,15 @@ MainWindow::MainWindow(QWidget* parent)
         onObjectSelectionChanged();
     });
 
-    // Object drag end callback: reset drag state
+    // Object drag end callback: apply edits and reset drag state
     m_view->setObjectDragEndCallback([this]() {
+        if (m_editor && m_isDraggingObject) {
+            m_editor->applyEdits();
+            renderCurrentPage();
+            refreshObjectList();
+            refreshProperties();
+            updatePanels();
+        }
         m_isDraggingObject = false;
     });
 

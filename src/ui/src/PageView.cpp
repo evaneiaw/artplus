@@ -225,6 +225,8 @@ void PageView::updateCursorShape()
     if (m_interactionMode == InteractionMode::Pan) {
         setCursor(Qt::OpenHandCursor);
     } else {
+        // Selection mode: use a standard arrow cursor
+        // (A custom black arrow cursor could be added if needed)
         setCursor(m_crosshair ? Qt::CrossCursor : Qt::ArrowCursor);
     }
 }
