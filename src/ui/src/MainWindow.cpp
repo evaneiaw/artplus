@@ -332,13 +332,21 @@ void MainWindow::buildMenus()
                 QKeySequence(QStringLiteral("Ctrl+Alt+W")));
     auto* save = fileMenu->addAction(QStringLiteral("Save"));
     save->setShortcut(QKeySequence::Save);
-    connect(save, &QAction::triggered, this, [this]() { saveCurrent(); });
+    connect(save, &QAction::triggered, this, &MainWindow::saveCurrent);
     m_saveEditedAction = fileMenu->addAction(QStringLiteral("Save As..."));
     m_saveEditedAction->setShortcut(QKeySequence(QStringLiteral("Ctrl+Shift+S")));
     m_saveEditedAction->setEnabled(false);
     connect(m_saveEditedAction, &QAction::triggered, this, &MainWindow::saveEditedAs);
     fileMenu->addSeparator();
-    addTodoSubmenu(fileMenu, QStringLiteral("Export To"));
+    auto* exportMenu = fileMenu->addMenu(QStringLiteral("Export To"));
+    auto* exportPdf = exportMenu->addAction(QStringLiteral("PDF..."));
+    exportPdf->setShortcut(QKeySequence(QStringLiteral("Ctrl+E")));
+    connect(exportPdf, &QAction::triggered, this, &MainWindow::exportPdf);
+    auto* exportPng = exportMenu->addAction(QStringLiteral("PNG..."));
+    connect(exportPng, &QAction::triggered, this, &MainWindow::exportPng);
+    auto* exportJpg = exportMenu->addAction(QStringLiteral("JPEG..."));
+    connect(exportJpg, &QAction::triggered, this, &MainWindow::exportJpg);
+    fileMenu->addSeparator();
     fileMenu->addSeparator();
     addDisabled(fileMenu, QStringLiteral("Convert To PDF+"));
     addDisabled(fileMenu, QStringLiteral("Convert To Report Template..."));
@@ -377,9 +385,21 @@ void MainWindow::buildMenus()
     m_redoAction->setEnabled(false);
     connect(m_redoAction, &QAction::triggered, this, &MainWindow::redoEdit);
     editMenu->addSeparator();
-    addDisabled(editMenu, QStringLiteral("Cut"), QKeySequence::Cut);
-    addDisabled(editMenu, QStringLiteral("Copy"), QKeySequence::Copy);
-    addDisabled(editMenu, QStringLiteral("Paste"), QKeySequence::Paste);
+    m_cutAction = editMenu->addAction(QStringLiteral("Cut"));
+    m_cutAction->setShortcut(QKeySequence::Cut);
+    m_cutAction->setEnabled(false);
+    connect(m_cutAction, &QAction::triggered, this, [this]() {
+        copySelectedObjects();
+        deleteSelectedObjects();
+    });
+    m_copyAction = editMenu->addAction(QStringLiteral("Copy"));
+    m_copyAction->setShortcut(QKeySequence::Copy);
+    m_copyAction->setEnabled(false);
+    connect(m_copyAction, &QAction::triggered, this, &MainWindow::copySelectedObjects);
+    m_pasteAction = editMenu->addAction(QStringLiteral("Paste"));
+    m_pasteAction->setShortcut(QKeySequence::Paste);
+    m_pasteAction->setEnabled(false);
+    connect(m_pasteAction, &QAction::triggered, this, &MainWindow::pasteObjects);
     editMenu->addSeparator();
     addDisabled(editMenu, QStringLiteral("Paste in Front"),
                 QKeySequence(QStringLiteral("Ctrl+F")));
@@ -390,7 +410,10 @@ void MainWindow::buildMenus()
     addDisabled(editMenu, QStringLiteral("Paste and Match Style"),
                 QKeySequence(QStringLiteral("Ctrl+Alt+Shift+V")));
     editMenu->addSeparator();
-    addDisabled(editMenu, QStringLiteral("Delete"), QKeySequence(Qt::Key_Backspace));
+    m_deleteAction = editMenu->addAction(QStringLiteral("Delete"));
+    m_deleteAction->setShortcut(QKeySequence(Qt::Key_Backspace));
+    m_deleteAction->setEnabled(false);
+    connect(m_deleteAction, &QAction::triggered, this, &MainWindow::deleteSelectedObjects);
     editMenu->addSeparator();
     addDisabled(editMenu, QStringLiteral("Options..."),
                 QKeySequence(QStringLiteral("Ctrl+K")));
@@ -1153,10 +1176,23 @@ bool MainWindow::saveCurrent()
         statusBar()->showMessage(QStringLiteral("Nothing to save"), 3000);
         return false;
     }
+    // If editor has modifications, apply them first
+    if (m_editor && m_editor->isModified()) {
+        m_editor->applyEdits();
+        renderCurrentPage();
+    }
+    QString error;
+    if (!m_doc->save(m_doc->filePath(), &error)) {
+        showError(QStringLiteral("Save"), error);
+        return false;
+    }
+    if (m_history)
+        m_history->markClean();
     statusBar()->showMessage(
-        QStringLiteral("In-place saving is not available. Use File > Save As (edited)… or Save As Copy…"),
-        6000);
-    return false;
+        QStringLiteral("Saved: %1").arg(QFileInfo(m_doc->filePath()).fileName()), 5000);
+    updatePanels();
+    updateWindowTitle();
+    return true;
 }
 
 void MainWindow::saveAsCopy()
@@ -2331,6 +2367,18 @@ void MainWindow::updatePanels()
         m_selectSameStrokeAction->setEnabled(current && current->hasStrokeColor);
     }
 
+    // Edit menu actions
+    const bool hasSelection = editable && !m_selectedObjects.isEmpty();
+    const bool hasClipboard = editable && !m_clipboardObjects.isEmpty();
+    if (m_cutAction)
+        m_cutAction->setEnabled(hasSelection);
+    if (m_copyAction)
+        m_copyAction->setEnabled(hasSelection);
+    if (m_pasteAction)
+        m_pasteAction->setEnabled(hasClipboard);
+    if (m_deleteAction)
+        m_deleteAction->setEnabled(hasSelection);
+
     // Run preflight checks when document is open
     if (hasDocument() && m_runPreflightButton) {
         onRunPreflight();
@@ -2589,6 +2637,182 @@ void MainWindow::dropEvent(QDropEvent* event)
         }
     }
     event->ignore();
+}
+
+void MainWindow::exportPdf()
+{
+    if (!hasDocument()) {
+        statusBar()->showMessage(QStringLiteral("No document to export"), 3000);
+        return;
+    }
+    const QFileInfo source(m_doc->filePath());
+    const QString suggested = source.absolutePath() + QLatin1Char('/') +
+                              source.completeBaseName() + QStringLiteral("-export.pdf");
+    const QString path = QFileDialog::getSaveFileName(
+        this, QStringLiteral("Export as PDF"), suggested,
+        QStringLiteral("PDF Files (*.pdf)"));
+    if (path.isEmpty())
+        return;
+
+    // Apply any pending edits
+    if (m_editor && m_editor->isModified())
+        m_editor->applyEdits();
+
+    QString error;
+    if (!m_doc->save(path, &error)) {
+        showError(QStringLiteral("Export PDF"), error);
+        return;
+    }
+    statusBar()->showMessage(
+        QStringLiteral("Exported as PDF: %1").arg(QFileInfo(path).fileName()), 5000);
+}
+
+void MainWindow::exportPng()
+{
+    if (!hasDocument()) {
+        statusBar()->showMessage(QStringLiteral("No document to export"), 3000);
+        return;
+    }
+    const QFileInfo source(m_doc->filePath());
+    const QString suggested = source.absolutePath() + QLatin1Char('/') +
+                              source.completeBaseName() + QStringLiteral(".png");
+    const QString path = QFileDialog::getSaveFileName(
+        this, QStringLiteral("Export as PNG"), suggested,
+        QStringLiteral("PNG Files (*.png)"));
+    if (path.isEmpty())
+        return;
+
+    // Render at high resolution
+    const double scale = 300.0 / 72.0; // 300 DPI
+    QImage image = m_doc->renderPage(m_page, scale, m_userRotation, true).image;
+    if (image.isNull()) {
+        showError(QStringLiteral("Export PNG"), QStringLiteral("Failed to render page"));
+        return;
+    }
+    if (!image.save(path, "PNG")) {
+        showError(QStringLiteral("Export PNG"), QStringLiteral("Failed to save PNG file"));
+        return;
+    }
+    statusBar()->showMessage(
+        QStringLiteral("Exported as PNG: %1").arg(QFileInfo(path).fileName()), 5000);
+}
+
+void MainWindow::exportJpg()
+{
+    if (!hasDocument()) {
+        statusBar()->showMessage(QStringLiteral("No document to export"), 3000);
+        return;
+    }
+    const QFileInfo source(m_doc->filePath());
+    const QString suggested = source.absolutePath() + QLatin1Char('/') +
+                              source.completeBaseName() + QStringLiteral(".jpg");
+    const QString path = QFileDialog::getSaveFileName(
+        this, QStringLiteral("Export as JPEG"), suggested,
+        QStringLiteral("JPEG Files (*.jpg *.jpeg)"));
+    if (path.isEmpty())
+        return;
+
+    // Render at high resolution
+    const double scale = 300.0 / 72.0; // 300 DPI
+    QImage image = m_doc->renderPage(m_page, scale, m_userRotation, true).image;
+    if (image.isNull()) {
+        showError(QStringLiteral("Export JPEG"), QStringLiteral("Failed to render page"));
+        return;
+    }
+    if (!image.save(path, "JPG", 90)) {
+        showError(QStringLiteral("Export JPEG"), QStringLiteral("Failed to save JPEG file"));
+        return;
+    }
+    statusBar()->showMessage(
+        QStringLiteral("Exported as JPEG: %1").arg(QFileInfo(path).fileName()), 5000);
+}
+
+void MainWindow::deleteSelectedObjects()
+{
+    if (!m_editor || m_selectedObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("No objects selected to delete"), 3000);
+        return;
+    }
+
+    if (QMessageBox::question(this, QStringLiteral("Delete Objects"),
+                              QStringLiteral("Delete %1 selected object(s)?").arg(m_selectedObjects.size()),
+                              QMessageBox::Yes | QMessageBox::No) != QMessageBox::Yes)
+        return;
+
+    // Delete in reverse order to maintain indices
+    std::vector<int> indices(m_selectedObjects.begin(), m_selectedObjects.end());
+    std::sort(indices.begin(), indices.end(), std::greater<int>());
+
+    bool anyDeleted = false;
+    for (int index : indices) {
+        if (index >= 0 && index < m_editor->objectCount()) {
+            if (m_editor->removeObject(index))
+                anyDeleted = true;
+        }
+    }
+
+    if (!anyDeleted) {
+        statusBar()->showMessage(QStringLiteral("No objects could be deleted"), 3000);
+        return;
+    }
+
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(QStringLiteral("Deleted %1 object(s) — unsaved").arg(indices.size()), 5000);
+}
+
+void MainWindow::copySelectedObjects()
+{
+    if (!m_editor || m_selectedObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("No objects selected to copy"), 3000);
+        return;
+    }
+
+    // Store selected objects for paste (in-memory clipboard)
+    m_clipboardObjects.clear();
+    for (int index : m_selectedObjects) {
+        if (index >= 0 && index < m_editor->objectCount()) {
+            const auto* object = m_editor->object(index);
+            if (object) {
+                m_clipboardObjects.append(*object);
+            }
+        }
+    }
+    statusBar()->showMessage(QStringLiteral("Copied %1 object(s)").arg(m_clipboardObjects.size()), 3000);
+}
+
+void MainWindow::pasteObjects()
+{
+    if (!m_editor || m_clipboardObjects.isEmpty()) {
+        statusBar()->showMessage(QStringLiteral("Nothing to paste"), 3000);
+        return;
+    }
+
+    // Paste at center of view
+    QRectF page = m_view->pageRect();
+    QPointF center(page.center().x(), page.center().y());
+    QPointF pageCenter((center.x() - page.left()) / m_view->zoom(),
+                       (center.y() - page.top()) / m_view->zoom());
+
+    for (const auto& clipObj : m_clipboardObjects) {
+        artplus::pdf::PdfMatrix matrix;
+        matrix.a = 1.0; matrix.b = 0.0; matrix.c = 0.0; matrix.d = 1.0;
+        matrix.e = pageCenter.x() + (clipObj.bounds.left() - m_clipboardObjects.first().bounds.left());
+        matrix.f = pageCenter.y() + (clipObj.bounds.top() - m_clipboardObjects.first().bounds.top());
+
+        QString error;
+        m_editor->duplicateObject(clipObj.index, matrix, &error);
+    }
+
+    m_editor->applyEdits();
+    renderCurrentPage();
+    refreshObjectList();
+    refreshProperties();
+    updatePanels();
+    statusBar()->showMessage(QStringLiteral("Pasted %1 object(s) — unsaved").arg(m_clipboardObjects.size()), 5000);
 }
 
 } // namespace artplus::ui

@@ -117,6 +117,14 @@ private:
     void updateSelectionOverlay();
     void updateUi();
     void updateStatus();
+
+    void exportPdf();
+    void exportPng();
+    void exportJpg();
+
+    void deleteSelectedObjects();
+    void copySelectedObjects();
+    void pasteObjects();
     void updatePanels();
     void renderCurrentPage();
     void scheduleRender();
@@ -182,6 +190,10 @@ private:
     QListWidget* m_preflightResults = nullptr;
     bool m_updatingProperties = false;
     QAction* m_saveEditedAction = nullptr;
+    QAction* m_cutAction = nullptr;
+    QAction* m_copyAction = nullptr;
+    QAction* m_pasteAction = nullptr;
+    QAction* m_deleteAction = nullptr;
     QAction* m_moveLeft = nullptr;
     QAction* m_moveRight = nullptr;
     QAction* m_moveUp = nullptr;
@@ -194,6 +206,9 @@ private:
     QLabel* m_profileValue = nullptr;
     QLabel* m_pageSizeValue = nullptr;
     QSpinBox* m_tacLimit = nullptr;
+
+    // Clipboard for copy/paste objects
+    QVector<artplus::pdf::EditableObject> m_clipboardObjects;
 
     // Document panel metadata labels
     QLabel* m_pageCountLabel = nullptr;
