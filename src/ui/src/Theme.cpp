@@ -267,15 +267,21 @@ QIcon icon(IconKind kind, const QColor& color, int size)
         break;
     }
     case IconKind::Select: {
-        QPen dashed(color, std::max(1.2, s / 18.0), Qt::DashLine);
-        p.setPen(dashed);
-        p.drawRect(box);
+        // Black arrow selection tool (ArtPro+ style)
         p.setPen(Qt::NoPen);
-        p.setBrush(color);
-        const double h = s * 0.07;
-        const QPointF corners[4] = {box.topLeft(), box.topRight(), box.bottomLeft(), box.bottomRight()};
-        for (const QPointF& c : corners)
-            p.drawRect(QRectF(c.x() - h / 2, c.y() - h / 2, h, h));
+        p.setBrush(Qt::black);
+        QPolygonF arrow;
+        const double cx = box.center().x();
+        const double cy = box.center().y();
+        const double sz = qMin(box.width(), box.height()) * 0.45;
+        arrow << QPointF(cx, cy - sz * 0.6)                    // Tip
+              << QPointF(cx - sz * 0.35, cy + sz * 0.2)       // Left base
+              << QPointF(cx - sz * 0.15, cy + sz * 0.2)       // Left inner
+              << QPointF(cx - sz * 0.15, cy + sz * 0.6)       // Left shaft
+              << QPointF(cx + sz * 0.15, cy + sz * 0.6)       // Right shaft
+              << QPointF(cx + sz * 0.15, cy + sz * 0.2)       // Right inner
+              << QPointF(cx + sz * 0.35, cy + sz * 0.2);      // Right base
+        p.drawPolygon(arrow);
         break;
     }
     case IconKind::Recolor: {
