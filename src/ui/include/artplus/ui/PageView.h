@@ -86,6 +86,13 @@ public:
     // Called to determine if a point (in page coordinates) hits an object.
     // Returns the object ID if hit, 0 otherwise.
     void setHitTestCallback(std::function<objects::ObjectId(const QPointF&)> cb) { m_hitTestCb = std::move(cb); }
+    // Called when an object is selected by clicking (in Selection mode).
+    // Provides the hit object ID and keyboard modifiers.
+    // Called when an object is selected by clicking (in Selection mode).
+    // Provides the hit object ID and keyboard modifiers.
+    void setObjectSelectCallback(std::function<void(objects::ObjectId, Qt::KeyboardModifiers)> cb) { m_objectSelectCb = std::move(cb); }
+    // Called when clicking on empty space in Selection mode (no object hit, no drag).
+    void setEmptySpaceClickCallback(std::function<void(const QPointF&)> cb) { m_emptySpaceClickCb = std::move(cb); }
 
     void setStatusCallback(std::function<void()> cb) { m_statusCb = std::move(cb); }
     void setRenderRequestCallback(std::function<void()> cb) { m_requestRender = std::move(cb); }
@@ -153,6 +160,8 @@ private:
     QRectF m_marqueeCurrentPos;
     bool m_marqueeActive = false;
     std::function<objects::ObjectId(const QPointF&)> m_hitTestCb;
+    std::function<void(objects::ObjectId, Qt::KeyboardModifiers)> m_objectSelectCb;
+    std::function<void(const QPointF&)> m_emptySpaceClickCb;
 };
 
 } // namespace artplus::ui

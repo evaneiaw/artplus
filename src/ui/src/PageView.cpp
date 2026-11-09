@@ -409,6 +409,12 @@ void PageView::mousePressEvent(QMouseEvent* event)
             }
             
             if (hitId) {
+                // Notify MainWindow about the object selection immediately
+                // Include keyboard modifiers for multi-selection handling
+                if (m_objectSelectCb) {
+                    m_objectSelectCb(hitId, event->modifiers());
+                }
+                
                 m_dragState = DragState::ObjectDrag;
                 m_dragObjectId = hitId;
                 m_dragStartPagePos = pagePos;
@@ -506,6 +512,12 @@ void PageView::mouseReleaseEvent(QMouseEvent* event)
                                    m_marqueeCurrentPos.width() / m_scale,
                                    m_marqueeCurrentPos.height() / m_scale);
                 m_marqueeSelectCb(marqueePage.normalized());
+            } else if (m_emptySpaceClickCb && m_pageSizePoints.width() > 0.0) {
+                // Click on empty space without dragging - clear selection
+                const QRectF page = pageRect();
+                const QPointF pt((event->position().x() - page.left()) / m_scale,
+                                 (event->position().y() - page.top()) / m_scale);
+                m_emptySpaceClickCb(pt);
             }
             m_marqueeCurrentPos = QRectF();
         }

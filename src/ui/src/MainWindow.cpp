@@ -208,6 +208,52 @@ MainWindow::MainWindow(QWidget* parent)
         return 0;
     });
 
+    // Object select callback: handle object selection with modifiers
+    m_view->setObjectSelectCallback([this](objects::ObjectId hitId, Qt::KeyboardModifiers mods) {
+        if (!m_editor)
+            return;
+        
+        bool shiftDown = mods.testFlag(Qt::ShiftModifier);
+        bool ctrlDown = mods.testFlag(Qt::ControlModifier);
+        
+        int foundRow = static_cast<int>(hitId);
+        if (foundRow < 0 || foundRow >= m_editor->objectCount())
+            return;
+        
+        // --- Multi-selection logic ---
+        if (ctrlDown) {
+            // Ctrl+click: toggles the individual object in the selection vector
+            if (m_selectedObjects.contains(foundRow))
+                m_selectedObjects.erase(std::find(m_selectedObjects.begin(), m_selectedObjects.end(), foundRow));
+            else
+                m_selectedObjects.append(foundRow);
+            std::sort(m_selectedObjects.begin(), m_selectedObjects.end());
+            const auto last = std::unique(m_selectedObjects.begin(), m_selectedObjects.end());
+            m_selectedObjects.erase(last, m_selectedObjects.end());
+        }
+        else if (shiftDown && !m_selectedObjects.isEmpty()) {
+            // Shift+click: select range from last clicked to the previously selected row
+            int first = qMin(foundRow, m_selectedObject);
+            int last = qMax(foundRow, m_selectedObject);
+            m_selectedObjects.clear();
+            for (int i = first; i <= last; ++i)
+                m_selectedObjects.append(i);
+            std::sort(m_selectedObjects.begin(), m_selectedObjects.end());
+            const auto lastUniq = std::unique(m_selectedObjects.begin(), m_selectedObjects.end());
+            m_selectedObjects.erase(lastUniq, m_selectedObjects.end());
+        }
+        else {
+            // Simple click (no modifiers): replace selection with just this object
+            m_selectedObjects.clear();
+            m_selectedObjects.append(foundRow);
+        }
+        
+        m_selectedObject = m_selectedObjects.isEmpty() ? -1 : m_selectedObjects.first();
+        m_objectList->setCurrentRow(m_selectedObject);
+        updateSelectionOverlay();
+        onObjectSelectionChanged();
+    });
+
     // Object drag callback: translate selected objects
     m_view->setObjectDragCallback([this](const QPointF& currentPagePos) {
         if (!m_editor || m_selectedObjects.isEmpty())
@@ -293,6 +339,21 @@ MainWindow::MainWindow(QWidget* parent)
             updatePanels();
         }
         m_isDraggingObject = false;
+    });
+
+    // Empty space click callback: clear selection when clicking on empty space
+    m_view->setEmptySpaceClickCallback([this](const QPointF& pagePos) {
+        if (!m_editor)
+            return;
+        
+        // Clear selection when clicking on empty space
+        m_selectedObjects.clear();
+        m_selectedObject = -1;
+        if (m_objectList)
+            m_objectList->clearSelection();
+        updateSelectionOverlay();
+        onObjectSelectionChanged();
+        statusBar()->showMessage(QStringLiteral("Selection cleared"), 3000);
     });
 
     m_renderTimer = new QTimer(this);
