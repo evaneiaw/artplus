@@ -419,6 +419,8 @@ void PageView::mousePressEvent(QMouseEvent* event)
                 m_dragObjectId = hitId;
                 m_dragStartPagePos = pagePos;
                 m_draggedSincePress = false;
+                // Store the initial press position for proper drag delta calculation
+                m_pressPos = event->position();
             } else {
                 // Start marquee selection - MainWindow will handle object selection via click callback
                 m_dragState = DragState::MarqueeSelect;

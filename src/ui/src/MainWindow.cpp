@@ -220,6 +220,9 @@ MainWindow::MainWindow(QWidget* parent)
         if (foundRow < 0 || foundRow >= m_editor->objectCount())
             return;
         
+        // Track last clicked object for Shift+click range selection
+        m_lastClickedObject = foundRow;
+        
         // --- Multi-selection logic ---
         if (ctrlDown) {
             // Ctrl+click: toggles the individual object in the selection vector
@@ -232,9 +235,9 @@ MainWindow::MainWindow(QWidget* parent)
             m_selectedObjects.erase(last, m_selectedObjects.end());
         }
         else if (shiftDown && !m_selectedObjects.isEmpty()) {
-            // Shift+click: select range from last clicked to the previously selected row
-            int first = qMin(foundRow, m_selectedObject);
-            int last = qMax(foundRow, m_selectedObject);
+            // Shift+click: select range from last clicked to the previously clicked row
+            int first = qMin(foundRow, m_lastClickedObject);
+            int last = qMax(foundRow, m_lastClickedObject);
             m_selectedObjects.clear();
             for (int i = first; i <= last; ++i)
                 m_selectedObjects.append(i);
@@ -258,12 +261,7 @@ MainWindow::MainWindow(QWidget* parent)
     m_view->setObjectDragCallback([this](const QPointF& currentPagePos) {
         if (!m_editor || m_selectedObjects.isEmpty())
             return;
-        if (!m_isDraggingObject) {
-            // First call - store the start position
-            m_dragStartPagePos = currentPagePos;
-            m_isDraggingObject = true;
-            return;
-        }
+        // m_dragStartPagePos is initialized in PageView::mousePressEvent
         // Calculate delta from start position
         double dx = currentPagePos.x() - m_dragStartPagePos.x();
         double dy = currentPagePos.y() - m_dragStartPagePos.y();
@@ -310,7 +308,7 @@ MainWindow::MainWindow(QWidget* parent)
             }
             std::sort(m_selectedObjects.begin(), m_selectedObjects.end());
             m_selectedObjects.erase(std::unique(m_selectedObjects.begin(), m_selectedObjects.end()), m_selectedObjects.end());
-        } else if (shiftDown && !m_selectedObjects.isEmpty()) {
+        } else if (shiftDown && !m_selectedObjects.isEmpty() && !newSelection.isEmpty()) {
             // Extend selection range
             int first = qMin(newSelection.first(), m_selectedObjects.first());
             int last = qMax(newSelection.last(), m_selectedObjects.last());
@@ -2432,6 +2430,9 @@ void MainWindow::selectObjectAt(const QPointF& pagePoint)
     if (foundRow < 0)
         return; // nothing clicked
 
+    // Track the last clicked object for Shift+click range selection
+    m_lastClickedObject = foundRow;
+
     // --- Multi-selection logic ---
     if (ctrlDown) {
         // Ctrl+click: toggles the individual object in the selection vector
@@ -2444,9 +2445,9 @@ void MainWindow::selectObjectAt(const QPointF& pagePoint)
         m_selectedObjects.erase(last, m_selectedObjects.end());
     }
     else if (shiftDown && !m_selectedObjects.isEmpty()) {
-        // Shift+click: select range from last clicked to the previously selected row
-        int first = qMin(foundRow, m_selectedObject);
-        int last = qMax(foundRow, m_selectedObject);
+        // Shift+click: select range from last clicked to the previously clicked row
+        int first = qMin(foundRow, m_lastClickedObject);
+        int last = qMax(foundRow, m_lastClickedObject);
         m_selectedObjects.clear();
         for (int i = first; i <= last; ++i)
             m_selectedObjects.append(i);
