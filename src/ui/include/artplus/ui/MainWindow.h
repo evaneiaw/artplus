@@ -257,6 +257,7 @@ private:
     QToolButton* m_separationOptionsButton = nullptr;
 
     int m_selectedObject = -1;
+    int m_lastClickedObject = -1;
     QVector<int> m_selectedObjects;
     artplus::edit::TransformParams m_transformDefaults;
     artplus::edit::TransformAnchor m_transformAnchor =
